@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References/>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="PE9UQV9BaXJBdmFpbFJRIFNpZ25PdXQ9J3RydWUnIFRhcmdldD0nUUFBJyBUcmFuc2FjdGlvbklkZW50aWZpZXI9JycgVmVyc2lvbj0nMCcgeG1sbnM9J2h0dHA6Ly9zaXRhLmFlcm8vU0lUQV9BaXJBdmFpbFJRLzQvMCc+DQogICA8UE9TPg0KICAgICAgPFNvdXJjZSBBZ2VudER1dHlDb2RlPScxNycgQWdlbnRTaW5lPSczMDAvMzAwYScgQWlybGluZVZlbmRvcklEPSdCUycgQWlycG9ydENvZGU9J1NFTCcgRVJTUF9Vc2VySUQ9J0hBQ0tUSE9OLzFIQVQ0VScgSVNPQ291bnRyeT0nVVMnIFBzZXVkb0NpdHlDb2RlPSdXV1cwMDEnLz4NCiAgIDwvUE9TPg0KICAgPE9yaWdpbkRlc3RpbmF0aW9uSW5mb3JtYXRpb24+DQogICAgICA8RGVwYXJ0dXJlRGF0ZVRpbWU+MjAxNy0wMS0yMDwvRGVwYXJ0dXJlRGF0ZVRpbWU+DQogICAgICA8T3JpZ2luTG9jYXRpb24gTG9jYXRpb25Db2RlPSdJQ04nLz4NCiAgICAgIDxEZXN0aW5hdGlvbkxvY2F0aW9uIExvY2F0aW9uQ29kZT0nTUZNJy8+DQogICA8L09yaWdpbkRlc3RpbmF0aW9uSW5mb3JtYXRpb24+DQo8L09UQV9BaXJBdmFpbFJRPg=="/>
+                <L7p:ContentType stringValue="text/xml; charset=utf-8"/>
+                <L7p:DataType variableDataType="message"/>
+                <L7p:Enabled booleanValue="false"/>
+                <L7p:VariableToSet stringValue="msg"/>
+            </L7p:SetVariable>
+            <L7p:ResponseXpathAssertion>
+                <L7p:Enabled booleanValue="false"/>
+                <L7p:VariablePrefix stringValue="vendorCode"/>
+                <L7p:XmlMsgSrc stringValue="msg"/>
+                <L7p:XpathExpression xpathExpressionValue="included">
+                    <L7p:Expression stringValue="/ns:OTA_AirAvailRQ/ns:POS/ns:Source/@AirlineVendorID"/>
+                    <L7p:Namespaces mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="ns"/>
+                            <L7p:value stringValue="http://sita.aero/SITA_AirAvailRQ/4/0"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="s"/>
+                            <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                        </L7p:entry>
+                    </L7p:Namespaces>
+                    <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                </L7p:XpathExpression>
+            </L7p:ResponseXpathAssertion>
+            <L7p:RequestXpathAssertion>
+                <L7p:VariablePrefix stringValue="vendorCode"/>
+                <L7p:XpathExpression xpathExpressionValue="included">
+                    <L7p:Expression stringValue="/ns:OTA_AirAvailRQ/ns:POS/ns:Source/@AirlineVendorID"/>
+                    <L7p:Namespaces mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="ns"/>
+                            <L7p:value stringValue="http://sita.aero/SITA_AirAvailRQ/4/0"/>
+                        </L7p:entry>
+                    </L7p:Namespaces>
+                    <L7p:XpathVersion xpathVersion="XPATH_2_0"/>
+                </L7p:XpathExpression>
+            </L7p:RequestXpathAssertion>
+            <L7p:AuditDetailAssertion>
+                <L7p:Detail stringValue="Request Content: ${request.mainpart}"/>
+            </L7p:AuditDetailAssertion>
+            <L7p:HardcodedResponse>
+                <L7p:Base64ResponseBody stringValue="VmVuZG9yIFN0dWZmOgpSZXN1bHQ6ICR7dmVuZG9yQ29kZS5yZXN1bHR9ClJlc3VsdDogJHt2ZW5kb3JDb2RlLnJlc3VsdHN9ClJlc3VsdDogJHt2ZW5kb3JDb2RlLmVsZW1lbnR9ClJlc3VsdDogJHt2ZW5kb3JDb2RlLmVsZW1lbnRzfQpSZXN1bHQ6ICR7dmVuZG9yQ29kZS5mb3VuZH0KUmVzdWx0OiAke3ZlbmRvckNvZGUuY291bnR9Cgoke3JlcXVlc3QubWFpbnBhcnR9"/>
+                <L7p:ResponseContentType stringValue="text/plain; charset=UTF-8"/>
+            </L7p:HardcodedResponse>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

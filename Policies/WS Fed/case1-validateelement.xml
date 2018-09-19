@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References>
+        <TrustedCertificateReference RefType="com.l7tech.console.policy.exporter.TrustedCertReference">
+            <GOID>a69259fd43520ce4dfc15ae785c94440</GOID>
+            <CertificateName>explore.apim.ca</CertificateName>
+            <CertificateIssuerDn>CN=explore.apim.ca</CertificateIssuerDn>
+            <CertificateSerialNum>17067558637916476356</CertificateSerialNum>
+        </TrustedCertificateReference>
+    </exp:References>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:AuditAssertion>
+                <L7p:SaveRequest booleanValue="true"/>
+                <L7p:SaveResponse booleanValue="true"/>
+            </L7p:AuditAssertion>
+            <L7p:FaultLevel>
+                <L7p:LevelInfo soapFaultLevel="included">
+                    <L7p:Level intValue="4"/>
+                </L7p:LevelInfo>
+            </L7p:FaultLevel>
+            <L7p:AddWssSecurityToken>
+                <L7p:Encrypt booleanValue="true"/>
+                <L7p:IncludeCreated booleanValue="false"/>
+                <L7p:IncludeNonce booleanValue="false"/>
+                <L7p:IncludePassword booleanValue="true"/>
+                <L7p:Password stringValue="CAdemo123"/>
+                <L7p:Target target="REQUEST"/>
+                <L7p:UseLastGatheredCredentials booleanValue="false"/>
+                <L7p:Username stringValue="jkirk"/>
+            </L7p:AddWssSecurityToken>
+            <L7p:WssSignElement>
+                <L7p:AssertionComment assertionComment="included">
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="//sign element"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:AssertionComment>
+                <L7p:Target target="REQUEST"/>
+                <L7p:XpathExpression xpathExpressionValue="included">
+                    <L7p:Expression stringValue="/s:Envelope/s:Body"/>
+                    <L7p:Namespaces mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="s"/>
+                            <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="impl"/>
+                            <L7p:value stringValue="http://warehouse.acme.com/ws"/>
+                        </L7p:entry>
+                    </L7p:Namespaces>
+                    <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                </L7p:XpathExpression>
+            </L7p:WssSignElement>
+            <L7p:WsSecurity>
+                <L7p:RecipientTrustedCertificateGoid goidValue="a69259fd43520ce4dfc15ae785c94440"/>
+                <L7p:WsSecurityVersion wsSecurityVersion="WSS11"/>
+            </L7p:WsSecurity>
+            <L7p:HttpRoutingAssertion>
+                <L7p:AssertionComment assertionComment="included">
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="//route to the backend for element validation"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:AssertionComment>
+                <L7p:ProtectedServiceUrl stringValue="http://explore.apim.ca:8080/case1/backend"/>
+                <L7p:ProxyPassword stringValueNull="null"/>
+                <L7p:ProxyUsername stringValueNull="null"/>
+                <L7p:RequestHeaderRules httpPassthroughRuleSet="included">
+                    <L7p:ForwardAll booleanValue="true"/>
+                    <L7p:Rules httpPassthroughRules="included">
+                        <L7p:item httpPassthroughRule="included">
+                            <L7p:Name stringValue="Cookie"/>
+                        </L7p:item>
+                        <L7p:item httpPassthroughRule="included">
+                            <L7p:Name stringValue="SOAPAction"/>
+                        </L7p:item>
+                    </L7p:Rules>
+                </L7p:RequestHeaderRules>
+                <L7p:RequestParamRules httpPassthroughRuleSet="included">
+                    <L7p:ForwardAll booleanValue="true"/>
+                    <L7p:Rules httpPassthroughRules="included"/>
+                </L7p:RequestParamRules>
+                <L7p:ResponseHeaderRules httpPassthroughRuleSet="included">
+                    <L7p:ForwardAll booleanValue="true"/>
+                    <L7p:Rules httpPassthroughRules="included">
+                        <L7p:item httpPassthroughRule="included">
+                            <L7p:Name stringValue="Set-Cookie"/>
+                        </L7p:item>
+                    </L7p:Rules>
+                </L7p:ResponseHeaderRules>
+            </L7p:HttpRoutingAssertion>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

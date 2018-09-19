@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References/>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="eyJlcnJvciI6IlNMQSBNYW5hZ2VtZW50IiwgImVycm9yX2Rlc2NyaXB0aW9uIjoiUmF0ZSBsaW1pdCBleGNlZWRlZCJ9"/>
+                        <L7p:VariableToSet stringValue="errorMsg"/>
+                    </L7p:SetVariable>
+                    <L7p:RateLimit>
+                        <L7p:BlackoutPeriodInSeconds stringValue="1"/>
+                        <L7p:CounterName stringValue="ec7e6b80-${channel}"/>
+                        <L7p:MaxConcurrency stringValue="1"/>
+                        <L7p:MaxRequestsPerSecond stringValue="10"/>
+                    </L7p:RateLimit>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="eyJlcnJvciI6IlNMQSBNYW5hZ2VtZW50IiwgImVycm9yX2Rlc2NyaXB0aW9uIjoiR2l2ZW4gUXVvdGEgRXhjZWVkZWQifQ=="/>
+                        <L7p:VariableToSet stringValue="errorMsg"/>
+                    </L7p:SetVariable>
+                    <L7p:ThroughputQuota>
+                        <L7p:CounterName stringValue="f4c4cd43-${channel}"/>
+                        <L7p:Global booleanValue="true"/>
+                        <L7p:Quota stringValue="20"/>
+                        <L7p:Synchronous booleanValue="false"/>
+                        <L7p:TimeUnit intValue="2"/>
+                        <L7p:VariablePrefix stringValue="quota"/>
+                    </L7p:ThroughputQuota>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="eyJlcnJvciI6IlNMQSBNYW5hZ2VtZW50IiwgImVycm9yX2Rlc2NyaXB0aW9uIjoiUmVzdHJpY3Rpb24gaGFzIGJlZW4gYXBwbGllZCJ9"/>
+                        <L7p:VariableToSet stringValue="errorMsg"/>
+                    </L7p:SetVariable>
+                    <L7p:TimeRange>
+                        <L7p:EndDayOfWeek intValue="6"/>
+                        <L7p:StartDayOfWeek intValue="2"/>
+                        <L7p:TimeRange timeOfDayRange="included">
+                            <L7p:From timeOfDay="included">
+                                <L7p:Hour intValue="12"/>
+                            </L7p:From>
+                            <L7p:To timeOfDay="included">
+                                <L7p:Hour intValue="21"/>
+                            </L7p:To>
+                        </L7p:TimeRange>
+                    </L7p:TimeRange>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="eyJlcnJvciI6IlNMQSBNYW5hZ2VtZW50IiwgImVycm9yX2Rlc2NyaXB0aW9uIjoiSVAgQWRkcmVzcyBSZXN0cmljdGlvbiJ9"/>
+                        <L7p:VariableToSet stringValue="errorMsg"/>
+                    </L7p:SetVariable>
+                    <L7p:RemoteIpAddressRange>
+                        <L7p:AllowRange booleanValue="false"/>
+                        <L7p:StartIp stringValue="184.72.110.192"/>
+                    </L7p:RemoteIpAddressRange>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="MDAwNA=="/>
+                        <L7p:VariableToSet stringValue="errorCode"/>
+                    </L7p:SetVariable>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="NDA0"/>
+                        <L7p:VariableToSet stringValue="status"/>
+                    </L7p:SetVariable>
+                    <L7p:AuditDetailAssertion>
+                        <L7p:CustomLoggerSuffix stringValue="hca"/>
+                        <L7p:Detail stringValue="${errorCode} :- ${errorMsg} with response ${response.mainpart}"/>
+                    </L7p:AuditDetailAssertion>
+                    <L7p:RaiseError/>
+                </wsp:All>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="THROTTLING"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="//  Service Availability examples"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:OneOrMore>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

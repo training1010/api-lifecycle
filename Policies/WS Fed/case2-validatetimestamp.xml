@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References>
+        <TrustedCertificateReference RefType="com.l7tech.console.policy.exporter.TrustedCertReference">
+            <GOID>a69259fd43520ce4dfc15ae785c94440</GOID>
+            <CertificateName>explore.apim.ca</CertificateName>
+            <CertificateIssuerDn>CN=explore.apim.ca</CertificateIssuerDn>
+            <CertificateSerialNum>17067558637916476356</CertificateSerialNum>
+        </TrustedCertificateReference>
+    </exp:References>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:AuditAssertion>
+                <L7p:SaveRequest booleanValue="true"/>
+                <L7p:SaveResponse booleanValue="true"/>
+            </L7p:AuditAssertion>
+            <L7p:AddWssTimestamp>
+                <L7p:AssertionComment assertionComment="included">
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="//Add timestamp"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:AssertionComment>
+                <L7p:ExpiryMilliseconds longValue="3600000"/>
+                <L7p:SignatureRequired booleanValue="false"/>
+                <L7p:Target target="REQUEST"/>
+            </L7p:AddWssTimestamp>
+            <L7p:WsSecurity>
+                <L7p:RecipientTrustedCertificateGoid goidValue="a69259fd43520ce4dfc15ae785c94440"/>
+                <L7p:UseSecureSpanActor booleanValue="true"/>
+                <L7p:WsSecurityVersion wsSecurityVersion="WSS11"/>
+            </L7p:WsSecurity>
+            <L7p:HttpRoutingAssertion>
+                <L7p:AssertionComment assertionComment="included">
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="//validate timestamp"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:AssertionComment>
+                <L7p:ProtectedServiceUrl stringValue="http://explore.apim.ca:8080/case2/backend"/>
+                <L7p:ProxyPassword stringValueNull="null"/>
+                <L7p:ProxyUsername stringValueNull="null"/>
+                <L7p:RequestHeaderRules httpPassthroughRuleSet="included">
+                    <L7p:ForwardAll booleanValue="true"/>
+                    <L7p:Rules httpPassthroughRules="included">
+                        <L7p:item httpPassthroughRule="included">
+                            <L7p:Name stringValue="Cookie"/>
+                        </L7p:item>
+                        <L7p:item httpPassthroughRule="included">
+                            <L7p:Name stringValue="SOAPAction"/>
+                        </L7p:item>
+                    </L7p:Rules>
+                </L7p:RequestHeaderRules>
+                <L7p:RequestParamRules httpPassthroughRuleSet="included">
+                    <L7p:ForwardAll booleanValue="true"/>
+                    <L7p:Rules httpPassthroughRules="included"/>
+                </L7p:RequestParamRules>
+                <L7p:ResponseHeaderRules httpPassthroughRuleSet="included">
+                    <L7p:ForwardAll booleanValue="true"/>
+                    <L7p:Rules httpPassthroughRules="included">
+                        <L7p:item httpPassthroughRule="included">
+                            <L7p:Name stringValue="Set-Cookie"/>
+                        </L7p:item>
+                    </L7p:Rules>
+                </L7p:ResponseHeaderRules>
+            </L7p:HttpRoutingAssertion>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

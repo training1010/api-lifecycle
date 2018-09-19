@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References/>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:HttpRoutingAssertion>
+                <L7p:ProtectedServiceUrl stringValue="http://explore.apim.ca:8080/ACMEWarehouse/services/WarehouseSoap"/>
+                <L7p:RequestHeaderRules httpPassthroughRuleSet="included">
+                    <L7p:ForwardAll booleanValue="true"/>
+                    <L7p:Rules httpPassthroughRules="included">
+                        <L7p:item httpPassthroughRule="included">
+                            <L7p:Name stringValue="Cookie"/>
+                        </L7p:item>
+                        <L7p:item httpPassthroughRule="included">
+                            <L7p:Name stringValue="SOAPAction"/>
+                        </L7p:item>
+                    </L7p:Rules>
+                </L7p:RequestHeaderRules>
+                <L7p:RequestParamRules httpPassthroughRuleSet="included">
+                    <L7p:ForwardAll booleanValue="true"/>
+                    <L7p:Rules httpPassthroughRules="included"/>
+                </L7p:RequestParamRules>
+                <L7p:ResponseHeaderRules httpPassthroughRuleSet="included">
+                    <L7p:ForwardAll booleanValue="true"/>
+                    <L7p:Rules httpPassthroughRules="included">
+                        <L7p:item httpPassthroughRule="included">
+                            <L7p:Name stringValue="Set-Cookie"/>
+                        </L7p:item>
+                    </L7p:Rules>
+                </L7p:ResponseHeaderRules>
+            </L7p:HttpRoutingAssertion>
+            <L7p:AddWsAddressing>
+                <L7p:Action stringValue="&lt;Explicit from WSDL (Input)>"/>
+                <L7p:Destination stringValue="http://www.w3.org/2005/08/addressing/anonymous"/>
+                <L7p:FaultEndpoint stringValue="http://www.w3.org/2005/08/addressing/anonymous"/>
+                <L7p:MessageId stringValue="&lt;auto>"/>
+                <L7p:ReplyEndpoint stringValue="http://www.w3.org/2005/08/addressing/anonymous"/>
+                <L7p:SourceEndpoint stringValue="http://www.w3.org/2005/08/addressing/anonymous"/>
+                <L7p:Target target="RESPONSE"/>
+                <L7p:WsaNamespaceUri stringValue="http://www.w3.org/2005/08/addressing"/>
+            </L7p:AddWsAddressing>
+            <L7p:WssSignElement>
+                <L7p:XpathExpression xpathExpressionValue="included">
+                    <L7p:Expression stringValue="/s:Envelope/s:Body/impl:listProductsResponse/impl:listProductsResult"/>
+                    <L7p:Namespaces mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="impl"/>
+                            <L7p:value stringValue="http://warehouse.acme.com/ws"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="s"/>
+                            <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                        </L7p:entry>
+                    </L7p:Namespaces>
+                    <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                </L7p:XpathExpression>
+            </L7p:WssSignElement>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

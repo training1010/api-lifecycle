@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References>
+        <SiteMinderConfigurationReference RefType="com.l7tech.external.assertions.siteminder.SiteMinderExternalReference">
+            <GOID>559f4652fe9c1400800cfa7c103de157</GOID>
+            <siteMinderConfiguration
+                id="559f4652fe9c1400800cfa7c103de157" version="0" xmlns:ns2="http://ns.l7tech.com/secureSpan/1.0/core">
+                <ns2:name>CASSO</ns2:name>
+                <address>127.0.0.1</address>
+                <clusterThreshold>50</clusterThreshold>
+                <enabled>true</enabled>
+                <fipsmode>1</fipsmode>
+                <hostConfiguration>hco.apim</hostConfiguration>
+                <hostname>magw.ras.apim.ca.com</hostname>
+                <ipcheck>false</ipcheck>
+                <nonClusterFailover>false</nonClusterFailover>
+                <properties>
+                    <entry>
+                        <key>server.0.0.accounting.port</key>
+                        <value>44441</value>
+                    </entry>
+                    <entry>
+                        <key>server.0.0.timeout</key>
+                        <value>60</value>
+                    </entry>
+                    <entry>
+                        <key>server.0.0.connection.step</key>
+                        <value>1</value>
+                    </entry>
+                    <entry>
+                        <key>server.0.0.authorization.port</key>
+                        <value>44443</value>
+                    </entry>
+                    <entry>
+                        <key>server.0.0.connection.min</key>
+                        <value>1</value>
+                    </entry>
+                    <entry>
+                        <key>server.0.0.connection.max</key>
+                        <value>3</value>
+                    </entry>
+                    <entry>
+                        <key>server.0.0.address</key>
+                        <value>casso.caapim.com</value>
+                    </entry>
+                    <entry>
+                        <key>server.0.0.authentication.port</key>
+                        <value>44442</value>
+                    </entry>
+                </properties>
+                <updateSSOToken>false</updateSSOToken>
+                <userName>siteminder</userName>
+            </siteMinderConfiguration>
+        </SiteMinderConfigurationReference>
+    </exp:References>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="************************************************************"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API :- /rest/mymortgage"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API Group :- RAS-DEMO"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API TYPE :- &lt;REST/SOAP/DATA>"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="Author: Balaji Radhakrishnan"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="************************************************************"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="REST CALL: https://magw.ras.apim.ca.com:8443/rest/mymortgage?sso-jwt=eyJ0eX...."/>
+            </L7p:CommentAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtyZXF1ZXN0Lmh0dHAucGFyYW1ldGVyLnNzby1qd3R9"/>
+                    <L7p:VariableToSet stringValue="sso-jwt"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue=""/>
+                    <L7p:VariableToSet stringValue="error"/>
+                </L7p:SetVariable>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="VARIABLES"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="// all required inputs for this policy [sso-jwt]"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="ew0KCSJFcnJvciI6IlJlcXVlc3QgRmFpbGVkIiwNCgkiRGVzY3JpcHRpb24iOiAiTWlzc2luZyBTU08gSldULCBQbHMgcHJvdmlkZSByZXF1aXJlZCBzc28gand0IGZvciB1c2VyIEF1dGhlbnRpY2F0aW9uIg0KfQ=="/>
+                        <L7p:VariableToSet stringValue="error"/>
+                    </L7p:SetVariable>
+                    <L7p:ComparisonAssertion>
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Expression1 stringValue="${sso-jwt}"/>
+                        <L7p:Operator operatorNull="null"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item dataType="included">
+                                <L7p:Type variableDataType="string"/>
+                            </L7p:item>
+                            <L7p:item binary="included">
+                                <L7p:Negated booleanValue="true"/>
+                                <L7p:Operator operator="EMPTY"/>
+                                <L7p:RightValue stringValue=""/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:CustomizeErrorResponse>
+                        <L7p:Content stringValue="${error}"/>
+                        <L7p:ExtraHeaders nameValuePairArray="included">
+                            <L7p:item nameValuePair="included">
+                                <L7p:Key stringValue="RAS-CA-Code"/>
+                                <L7p:Value stringValue="101 - Missing JWT"/>
+                            </L7p:item>
+                        </L7p:ExtraHeaders>
+                    </L7p:CustomizeErrorResponse>
+                    <L7p:RaiseError/>
+                </wsp:All>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="VALIDATION"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="// verifying the JWT existence"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:OneOrMore>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="ew0KCSJFcnJvciI6IlJlcXVlc3QgRmFpbGVkIiwNCgkiRGVzY3JpcHRpb24iOiAiU1NPIGRvd24sIHRyeSBzb21ldGltZWxhdGVyIg0KfQ=="/>
+                        <L7p:VariableToSet stringValue="error"/>
+                    </L7p:SetVariable>
+                    <L7p:SiteMinderCheckProtected>
+                        <L7p:Action stringValue="GET"/>
+                        <L7p:AgentGoid goidValue="559f4652fe9c1400800cfa7c103de157"/>
+                        <L7p:AgentId stringValue="CASSO"/>
+                        <L7p:Prefix stringValue="siteminder"/>
+                        <L7p:ProtectedResource stringValue="/jwt"/>
+                        <L7p:SmAgentName stringValue="agent.apim"/>
+                        <L7p:SourceIpAddress stringValue=""/>
+                    </L7p:SiteMinderCheckProtected>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="ew0KCSJFcnJvciI6IkF1dGhlbnRpY2F0aW9uIEZhaWxlZCIsDQoJIkRlc2NyaXB0aW9uIjogIlVzZXIgbm90IGZvdW5kLCBwbHMgY29udGFjdCBhZG1pbiINCn0="/>
+                        <L7p:VariableToSet stringValue="error"/>
+                    </L7p:SetVariable>
+                    <L7p:SiteMinderAuthenticate>
+                        <L7p:CookieSourceVar stringValue="cookie.SMSESSION"/>
+                        <L7p:LastCredential booleanValue="false"/>
+                        <L7p:NamedCertificate stringValue=""/>
+                        <L7p:NamedJsonWebToken stringValue="${sso-jwt}"/>
+                        <L7p:NamedUser stringValue=""/>
+                        <L7p:Prefix stringValue="siteminder"/>
+                        <L7p:SendJWT booleanValue="true"/>
+                        <L7p:SendUsernamePasswordCredential booleanValue="false"/>
+                        <L7p:SsoZoneName stringValue=""/>
+                    </L7p:SiteMinderAuthenticate>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="ew0KCSJFcnJvciI6IkF1dGhvcml6YXRpb24gRmFpbGVkIiwNCgkiRGVzY3JpcHRpb24iOiAiVXNlciBkb2VzIG5vdCBoYXZlIHJlcXVpcmVkIHByZXZpbGxhZ2UiDQp9"/>
+                        <L7p:VariableToSet stringValue="error"/>
+                    </L7p:SetVariable>
+                    <L7p:SiteMinderAuthorize>
+                        <L7p:CookieComment stringValue=""/>
+                        <L7p:CookieDomain stringValue=""/>
+                        <L7p:CookieMaxAge stringValue=""/>
+                        <L7p:CookieName stringValue="SMSESSION"/>
+                        <L7p:CookiePath stringValue=""/>
+                        <L7p:CookieSecure stringValue=""/>
+                        <L7p:CookieSourceVar stringValue=""/>
+                        <L7p:CookieVersion stringValue=""/>
+                        <L7p:Prefix stringValue="siteminder"/>
+                        <L7p:UseCustomCookieName booleanValue="true"/>
+                    </L7p:SiteMinderAuthorize>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:CustomizeErrorResponse>
+                        <L7p:Content stringValue="${error}"/>
+                        <L7p:ExtraHeaders nameValuePairArray="included">
+                            <L7p:item nameValuePair="included">
+                                <L7p:Key stringValue="RAS-CA-CODE"/>
+                                <L7p:Value stringValue="102 - User AuthN/AuthZ failed"/>
+                            </L7p:item>
+                        </L7p:ExtraHeaders>
+                    </L7p:CustomizeErrorResponse>
+                    <L7p:RaiseError/>
+                </wsp:All>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="SSO AUTHN/AUTHZ"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="// User Authentication and Authorization using SSO JWT"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:OneOrMore>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="ew0KCSJFcnJvciI6IlJvdXRlIEZhaWxlZCIsDQoJIkRlc2NyaXB0aW9uIjogIk1vcnRnYWdlIHNpdGUgaXMgZG93biwgcGxzIHRyeSBsYXRlciINCn0="/>
+                        <L7p:VariableToSet stringValue="error"/>
+                    </L7p:SetVariable>
+                    <L7p:HttpRoutingAssertion>
+                        <L7p:ProtectedServiceUrl stringValue="https://sites.google.com/prod/view/cabankmortgage"/>
+                        <L7p:RequestHeaderRules httpPassthroughRuleSet="included">
+                            <L7p:ForwardAll booleanValue="true"/>
+                            <L7p:Rules httpPassthroughRules="included">
+                                <L7p:item httpPassthroughRule="included">
+                                    <L7p:Name stringValue="Cookie"/>
+                                </L7p:item>
+                                <L7p:item httpPassthroughRule="included">
+                                    <L7p:Name stringValue="SOAPAction"/>
+                                </L7p:item>
+                            </L7p:Rules>
+                        </L7p:RequestHeaderRules>
+                        <L7p:RequestParamRules httpPassthroughRuleSet="included">
+                            <L7p:ForwardAll booleanValue="true"/>
+                            <L7p:Rules httpPassthroughRules="included"/>
+                        </L7p:RequestParamRules>
+                        <L7p:ResponseHeaderRules httpPassthroughRuleSet="included">
+                            <L7p:ForwardAll booleanValue="true"/>
+                            <L7p:Rules httpPassthroughRules="included">
+                                <L7p:item httpPassthroughRule="included">
+                                    <L7p:Name stringValue="Set-Cookie"/>
+                                </L7p:item>
+                            </L7p:Rules>
+                        </L7p:ResponseHeaderRules>
+                        <L7p:SamlAssertionVersion intValue="2"/>
+                    </L7p:HttpRoutingAssertion>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:CustomizeErrorResponse>
+                        <L7p:Content stringValue="${error}"/>
+                        <L7p:ExtraHeaders nameValuePairArray="included">
+                            <L7p:item nameValuePair="included">
+                                <L7p:Key stringValue="RAS-CA-CODE"/>
+                                <L7p:Value stringValue="103 - Route Failed"/>
+                            </L7p:item>
+                        </L7p:ExtraHeaders>
+                    </L7p:CustomizeErrorResponse>
+                    <L7p:RaiseError/>
+                </wsp:All>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="ROUTE"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="// Route to Mortgage site"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:OneOrMore>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

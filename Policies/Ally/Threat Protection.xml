@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References/>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="eyJlcnJvciI6IlRocmVhdCBQcm90ZWN0aW9uIiwgImVycm9yX2Rlc2NyaXB0aW9uIjoiRmFpbGVkIGR1ZSB0byBDU1JGIEZvcmdlcnkifQ=="/>
+                        <L7p:VariableToSet stringValue="errorMsg"/>
+                    </L7p:SetVariable>
+                    <L7p:CookieCredentialSource>
+                        <L7p:CookieName stringValue="allySession"/>
+                        <L7p:Enabled booleanValue="false"/>
+                    </L7p:CookieCredentialSource>
+                    <L7p:CsrfProtection>
+                        <L7p:AllowMissingOrEmptyReferer booleanValue="true"/>
+                        <L7p:CookieName stringValue="allySession"/>
+                        <L7p:EnableHttpRefererChecking booleanValue="true"/>
+                        <L7p:OnlyAllowCurrentDomain booleanValue="false"/>
+                        <L7p:ParameterName stringValue="ally"/>
+                        <L7p:ParameterType httpParameterType="GET_AND_POST"/>
+                        <L7p:TrustedDomains stringListValue="included">
+                            <L7p:item stringValue="www.ally.com"/>
+                        </L7p:TrustedDomains>
+                    </L7p:CsrfProtection>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="eyJlcnJvciI6IlRocmVhdCBQcm90ZWN0aW9uIiwgImVycm9yX2Rlc2NyaXB0aW9uIjoiRmFpbGVkIGR1ZSB0byBNZXNzYWdlIFNpemUifQ=="/>
+                        <L7p:VariableToSet stringValue="errorMsg"/>
+                    </L7p:SetVariable>
+                    <L7p:RequestSizeLimit>
+                        <L7p:Limit stringValue="10"/>
+                    </L7p:RequestSizeLimit>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="MDAwMw=="/>
+                        <L7p:VariableToSet stringValue="errorCode"/>
+                    </L7p:SetVariable>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="NDAz"/>
+                        <L7p:VariableToSet stringValue="status"/>
+                    </L7p:SetVariable>
+                    <L7p:AuditDetailAssertion>
+                        <L7p:CustomLoggerSuffix stringValue="hca"/>
+                        <L7p:Detail stringValue="${errorCode} :- ${errorMsg} with response ${response.mainpart}"/>
+                    </L7p:AuditDetailAssertion>
+                    <L7p:RaiseError/>
+                </wsp:All>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="THREAT"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="//  Threat Protection Examples"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:OneOrMore>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

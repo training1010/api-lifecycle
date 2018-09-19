@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References/>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="ew0KICAgICAgImlkIjogMiwNCiAgICAgICJuYW1lIjogIkFuIGljZSBzY3VscHR1cmUiLA0KICAgICAgInByaWNlIjogMTIuNTANCn0="/>
+                <L7p:VariableToSet stringValue="token"/>
+            </L7p:SetVariable>
+            <L7p:EncodeJsonWebToken>
+                <L7p:ContentEncryptionAlgorithm stringValue="A256CBC-HS512"/>
+                <L7p:EncryptPayload booleanValue="true"/>
+                <L7p:EncryptionSecret stringValue="D1A3C2D624DD2EE606152BC94B041940ECB20F3F846E4251E95E9972C6F5E228"/>
+                <L7p:KeyManagementAlgorithm stringValue="dir"/>
+                <L7p:SignPayload booleanValue="true"/>
+                <L7p:SignatureAlgorithm stringValue="HS256"/>
+                <L7p:SignatureSecretKey stringValue="D1A3C2D624DD2EE606152BC94B041940ECB20F3F846E4251E95E9972C6F5E228"/>
+                <L7p:SourceVariable stringValue="${token}"/>
+                <L7p:TargetVariable stringValue="encoded_token"/>
+            </L7p:EncodeJsonWebToken>
+            <L7p:DecodeJsonWebToken>
+                <L7p:SignatureSecret stringValue="D1A3C2D624DD2EE606152BC94B041940ECB20F3F846E4251E95E9972C6F5E228"/>
+                <L7p:SourcePayload stringValue="${encoded_token.compact}"/>
+                <L7p:TargetVariablePrefix stringValue="decoded_token"/>
+                <L7p:ValidationType stringValue="Using Secret"/>
+            </L7p:DecodeJsonWebToken>
+            <L7p:Split>
+                <L7p:InputVariable stringValue="decoded_token.plaintext"/>
+                <L7p:OutputVariable stringValue="parts"/>
+                <L7p:SplitPattern stringValue="."/>
+                <L7p:SplitPatternRegEx booleanValue="false"/>
+            </L7p:Split>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="JHtwYXJ0c1sxXX0="/>
+                <L7p:VariableToSet stringValue="json"/>
+            </L7p:SetVariable>
+            <L7p:EncodeDecode>
+                <L7p:SourceVariableName stringValue="json"/>
+                <L7p:TargetDataType variableDataType="string"/>
+                <L7p:TargetVariableName stringValue="json"/>
+                <L7p:TransformType transformType="BASE64_DECODE"/>
+            </L7p:EncodeDecode>
+            <L7p:HardcodedResponse>
+                <L7p:Base64ResponseBody stringValue="RW5jb2RlZDoKCiR7ZW5jb2RlZF90b2tlbi5jb21wYWN0fQoKRGVjb2RlZDoKCiR7ZGVjb2RlZF90b2tlbi5wbGFpbnRleHR9Cgoke2RlY29kZWRfdG9rZW4udmFsaWR9Cgoke2pzb259"/>
+                <L7p:ResponseContentType stringValue="text/plain; charset=UTF-8"/>
+            </L7p:HardcodedResponse>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

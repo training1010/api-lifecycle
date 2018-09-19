@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References>
+        <EncapsulatedAssertionReference RefType="com.l7tech.console.policy.exporter.EncapsulatedAssertionReference">
+            <Name>MSSO Require Registered Device - Mutual SSL</Name>
+            <Guid>ce9faafc-7d76-4818-9c56-0bb9a4b68e9c</Guid>
+        </EncapsulatedAssertionReference>
+        <EncapsulatedAssertionReference RefType="com.l7tech.console.policy.exporter.EncapsulatedAssertionReference">
+            <Name>OTK Require OAuth 2.0 Token</Name>
+            <Guid>393bcb93-82ad-4b55-8333-1119f607a560</Guid>
+        </EncapsulatedAssertionReference>
+    </exp:References>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="************************************************************"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API :- &lt;Enter the API Name>"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API Group :- &lt;Enter the API Group>"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API TYPE :- &lt;REST/SOAP/DATA>"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="Author: Balaji Radhakrishnan"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="************************************************************"/>
+            </L7p:CommentAssertion>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:Encapsulated>
+                        <L7p:EncapsulatedAssertionConfigGuid stringValue="ce9faafc-7d76-4818-9c56-0bb9a4b68e9c"/>
+                        <L7p:EncapsulatedAssertionConfigName stringValue="MSSO Require Registered Device - Mutual SSL"/>
+                        <L7p:Parameters mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="lookupDevice"/>
+                                <L7p:value stringValue="true"/>
+                            </L7p:entry>
+                        </L7p:Parameters>
+                    </L7p:Encapsulated>
+                    <L7p:Encapsulated>
+                        <L7p:EncapsulatedAssertionConfigGuid stringValue="393bcb93-82ad-4b55-8333-1119f607a560"/>
+                        <L7p:EncapsulatedAssertionConfigName stringValue="OTK Require OAuth 2.0 Token"/>
+                        <L7p:Parameters mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="cache_lifetime"/>
+                                <L7p:value stringValue="30"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="given_access_token"/>
+                                <L7p:value stringValue=""/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="onetime"/>
+                                <L7p:value stringValue="false"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="scope_fail"/>
+                                <L7p:value stringValue="false"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="scope_required"/>
+                                <L7p:value stringValue=""/>
+                            </L7p:entry>
+                        </L7p:Parameters>
+                    </L7p:Encapsulated>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:TrueAssertion/>
+                </wsp:All>
+            </wsp:OneOrMore>
+            <L7p:HttpRoutingAssertion>
+                <L7p:ProtectedServiceUrl stringValue="http://${gateway.lac.hostname}:8080/http/default/empl/spa"/>
+                <L7p:ProxyPassword stringValueNull="null"/>
+                <L7p:ProxyUsername stringValueNull="null"/>
+                <L7p:RequestHeaderRules httpPassthroughRuleSet="included">
+                    <L7p:ForwardAll booleanValue="true"/>
+                    <L7p:Rules httpPassthroughRules="included">
+                        <L7p:item httpPassthroughRule="included">
+                            <L7p:Name stringValue="Cookie"/>
+                        </L7p:item>
+                        <L7p:item httpPassthroughRule="included">
+                            <L7p:Name stringValue="SOAPAction"/>
+                        </L7p:item>
+                    </L7p:Rules>
+                </L7p:RequestHeaderRules>
+                <L7p:RequestParamRules httpPassthroughRuleSet="included">
+                    <L7p:ForwardAll booleanValue="true"/>
+                    <L7p:Rules httpPassthroughRules="included"/>
+                </L7p:RequestParamRules>
+                <L7p:ResponseHeaderRules httpPassthroughRuleSet="included">
+                    <L7p:ForwardAll booleanValue="true"/>
+                    <L7p:Rules httpPassthroughRules="included">
+                        <L7p:item httpPassthroughRule="included">
+                            <L7p:Name stringValue="Set-Cookie"/>
+                        </L7p:item>
+                    </L7p:Rules>
+                </L7p:ResponseHeaderRules>
+                <L7p:SamlAssertionVersion intValue="2"/>
+            </L7p:HttpRoutingAssertion>
+            <L7p:HardcodedResponse>
+                <L7p:Base64ResponseBody stringValue="JHtyZXNwb25zZS5tYWlucGFydH0="/>
+                <L7p:ResponseContentType stringValue="text/html; charset=UTF-8"/>
+            </L7p:HardcodedResponse>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

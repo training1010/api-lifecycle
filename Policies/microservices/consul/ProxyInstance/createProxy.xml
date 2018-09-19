@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References>
+        <PrivateKeyReference RefType="com.l7tech.console.policy.exporter.PrivateKeyReference">
+            <IsDefaultKey>false</IsDefaultKey>
+            <KeystoreOID>00000000000000000000000000000002</KeystoreOID>
+            <KeyAlias>restman</KeyAlias>
+        </PrivateKeyReference>
+    </exp:References>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="************************************************************"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API :- Proxy Creation using restman"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API Group :- &lt;Enter the API Group>"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API TYPE :- &lt;REST/SOAP/DATA>"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="Author: Balaji Radhakrishnan"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="************************************************************"/>
+            </L7p:CommentAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:CustomizeErrorResponse>
+                    <L7p:Content stringValue="${errorMsg}"/>
+                    <L7p:ContentType stringValue="${content-type}"/>
+                    <L7p:ExtraHeaders nameValuePairArray="included">
+                        <L7p:item nameValuePair="included">
+                            <L7p:Key stringValue="Pragma"/>
+                            <L7p:Value stringValue="no-cache"/>
+                        </L7p:item>
+                        <L7p:item nameValuePair="included">
+                            <L7p:Key stringValue="Cache-Control"/>
+                            <L7p:Value stringValue="no-store"/>
+                        </L7p:item>
+                        <L7p:item nameValuePair="included">
+                            <L7p:Key stringValue="x-ca-err"/>
+                            <L7p:Value stringValue="${errorCode}"/>
+                        </L7p:item>
+                    </L7p:ExtraHeaders>
+                    <L7p:HttpStatus stringValue="${status}"/>
+                </L7p:CustomizeErrorResponse>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="NDAw"/>
+                    <L7p:VariableToSet stringValue="status"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="eyJlcnJvciI6IkludmFsaWRfcmVxdWVzdCIsICJlcnJvcl9kZXNjcmlwdGlvbiI6IlRoZSBnaXZlbiBSZXF1ZXN0IGlzIEludmFsaWQifQ=="/>
+                    <L7p:VariableToSet stringValue="errorMsg"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="MDAwMA=="/>
+                    <L7p:VariableToSet stringValue="errorCode"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="YXBwbGljYXRpb24vanNvbg=="/>
+                    <L7p:VariableToSet stringValue="content-type"/>
+                </L7p:SetVariable>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="0. EXCEPTION "/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="//   Exception Handling block"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtyZXF1ZXN0Lmh0dHAucGFyYW1ldGVyLmZyYWd9"/>
+                    <L7p:VariableToSet stringValue="fragment"/>
+                </L7p:SetVariable>
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:ComparisonAssertion>
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Expression1 stringValue="${request.http.parameter.path}"/>
+                            <L7p:Operator operatorNull="null"/>
+                            <L7p:Predicates predicates="included">
+                                <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="string"/>
+                                </L7p:item>
+                                <L7p:item binary="included">
+                                    <L7p:Negated booleanValue="true"/>
+                                    <L7p:Operator operator="EMPTY"/>
+                                    <L7p:RightValue stringValue=""/>
+                                </L7p:item>
+                            </L7p:Predicates>
+                        </L7p:ComparisonAssertion>
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="LyR7cmVxdWVzdC5odHRwLnBhcmFtZXRlci5wYXRofS8ke3JlcXVlc3QuaHR0cC5wYXJhbWV0ZXIucHJveHlOYW1lfSo="/>
+                            <L7p:VariableToSet stringValue="path"/>
+                        </L7p:SetVariable>
+                    </wsp:All>
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="LyR7cmVxdWVzdC5odHRwLnBhcmFtZXRlci5wcm94eU5hbWV9Kg=="/>
+                            <L7p:VariableToSet stringValue="path"/>
+                        </L7p:SetVariable>
+                    </wsp:All>
+                </wsp:OneOrMore>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtyZXF1ZXN0Lmh0dHAucGFyYW1ldGVyLnNlcnZpY2VwcmVmaXh9OiR7cmVxdWVzdC5odHRwLnBhcmFtZXRlci5wcm94eU5hbWV9"/>
+                    <L7p:VariableToSet stringValue="table"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="aHR0cHM6Ly8ke2dhdGV3YXkuY2x1c3Rlci5ob3N0bmFtZX06ODQ0My8ke2ZyYWdtZW50fS92MS8ke3RhYmxlfQ=="/>
+                    <L7p:VariableToSet stringValue="backendUrl"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/Pg0KPGw3OlNlcnZpY2UgIHZlcnNpb249IjIiIHhtbG5zOmw3PSJodHRwOi8vbnMubDd0ZWNoLmNvbS8yMDEwLzA0L2dhdGV3YXktbWFuYWdlbWVudCI+DQogICAgPGw3OlNlcnZpY2VEZXRhaWwgZm9sZGVySWQ9IjAwMDAwMDAwMDAwMDAwMDBmZmZmZmZmZmZmZmZlYzc2IiBpZD0iZTQ3YzA5MjliMTg1NzczMWUzNDA5M2IyYTk4MjA1NGQiIHZlcnNpb249IjIiPg0KICAgICAgICA8bDc6TmFtZT5BUElQcm94eTwvbDc6TmFtZT4NCiAgICAgICAgPGw3OkVuYWJsZWQ+dHJ1ZTwvbDc6RW5hYmxlZD4NCiAgICAgICAgPGw3OlNlcnZpY2VNYXBwaW5ncz4NCiAgICAgICAgICAgIDxsNzpIdHRwTWFwcGluZz4NCiAgICAgICAgICAgICAgICA8bDc6VXJsUGF0dGVybj4ke3BhdGh9PC9sNzpVcmxQYXR0ZXJuPg0KICAgICAgICAgICAgICAgIDxsNzpWZXJicz4NCiAgICAgICAgICAgICAgICAgICAgPGw3OlZlcmI+R0VUPC9sNzpWZXJiPg0KICAgICAgICAgICAgICAgICAgICA8bDc6VmVyYj5QT1NUPC9sNzpWZXJiPg0KICAgICAgICAgICAgICAgICAgICA8bDc6VmVyYj5QVVQ8L2w3OlZlcmI+DQogICAgICAgICAgICAgICAgICAgIDxsNzpWZXJiPkRFTEVURTwvbDc6VmVyYj4NCiAgICAgICAgICAgICAgICA8L2w3OlZlcmJzPg0KICAgICAgICAgICAgPC9sNzpIdHRwTWFwcGluZz4NCiAgICAgICAgPC9sNzpTZXJ2aWNlTWFwcGluZ3M+DQogICAgICAgIDxsNzpQcm9wZXJ0aWVzPg0KICAgICAgICAgICAgPGw3OlByb3BlcnR5IGtleT0iaW50ZXJuYWwiPg0KICAgICAgICAgICAgICAgIDxsNzpCb29sZWFuVmFsdWU+ZmFsc2U8L2w3OkJvb2xlYW5WYWx1ZT4NCiAgICAgICAgICAgIDwvbDc6UHJvcGVydHk+DQogICAgICAgICAgICA8bDc6UHJvcGVydHkga2V5PSJwb2xpY3lSZXZpc2lvbiI+DQogICAgICAgICAgICAgICAgPGw3OkxvbmdWYWx1ZT4yPC9sNzpMb25nVmFsdWU+DQogICAgICAgICAgICA8L2w3OlByb3BlcnR5Pg0KICAgICAgICAgICAgPGw3OlByb3BlcnR5IGtleT0ic29hcCI+DQogICAgICAgICAgICAgICAgPGw3OkJvb2xlYW5WYWx1ZT5mYWxzZTwvbDc6Qm9vbGVhblZhbHVlPg0KICAgICAgICAgICAgPC9sNzpQcm9wZXJ0eT4NCiAgICAgICAgICAgIDxsNzpQcm9wZXJ0eSBrZXk9InRyYWNpbmdFbmFibGVkIj4NCiAgICAgICAgICAgICAgICA8bDc6Qm9vbGVhblZhbHVlPmZhbHNlPC9sNzpCb29sZWFuVmFsdWU+DQogICAgICAgICAgICA8L2w3OlByb3BlcnR5Pg0KICAgICAgICAgICAgPGw3OlByb3BlcnR5IGtleT0id3NzUHJvY2Vzc2luZ0VuYWJsZWQiPg0KICAgICAgICAgICAgICAgIDxsNzpCb29sZWFuVmFsdWU+ZmFsc2U8L2w3OkJvb2xlYW5WYWx1ZT4NCiAgICAgICAgICAgIDwvbDc6UHJvcGVydHk+DQogICAgICAgIDwvbDc6UHJvcGVydGllcz4NCiAgICA8L2w3OlNlcnZpY2VEZXRhaWw+DQogICAgICA8bDc6UmVzb3VyY2VzPg0KICAgICAgICA8bDc6UmVzb3VyY2VTZXQgdGFnPSJwb2xpY3kiPg0KICAgICAgICAgICAgPGw3OlJlc291cmNlIHR5cGU9InBvbGljeSIgdmVyc2lvbj0iMSI+DQo8IVtDREFUQVs8P3htbCB2ZXJzaW9uPSIxLjAiIGVuY29kaW5nPSJVVEYtOCI/Pg0KPHdzcDpQb2xpY3kgeG1sbnM6TDdwPSJodHRwOi8vd3d3LmxheWVyN3RlY2guY29tL3dzL3BvbGljeSIgeG1sbnM6d3NwPSJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDAyLzEyL3BvbGljeSI+DQogICAgPHdzcDpBbGwgd3NwOlVzYWdlPSJSZXF1aXJlZCI+DQogICAgICAgICA8TDdwOkluY2x1ZGU+DQogICAgICAgICAgICA8TDdwOlBvbGljeUd1aWQgc3RyaW5nVmFsdWU9ImFiNDQ0NTI2LTQwODEtNGYwOC04YzIzLWExM2Y4NTMzYWRlNCIvPg0KICAgICAgICA8L0w3cDpJbmNsdWRlPg0KICAgICAgICA8TDdwOkluY2x1ZGU+DQogICAgICAgICAgICA8TDdwOlBvbGljeUd1aWQgc3RyaW5nVmFsdWU9ImM1ZTUyZGJlLWY1MDktNDUzZS04OGFkLTY2YzA3ZDM1MTAzYyIvPg0KICAgICAgICA8L0w3cDpJbmNsdWRlPg0KICAgICAgICA8TDdwOkluY2x1ZGU+DQogICAgICAgICAgICA8TDdwOlBvbGljeUd1aWQgc3RyaW5nVmFsdWU9IjRlZmNiYTAxLWIzZTAtNDI1OS1iMTk2LTdkMGQ3NjNjYjU4YSIvPg0KICAgICAgICA8L0w3cDpJbmNsdWRlPg0KICAgICAgICA8TDdwOkluY2x1ZGU+DQogICAgICAgICAgICA8TDdwOlBvbGljeUd1aWQgc3RyaW5nVmFsdWU9IjI4ODljYzY5LTUyNTgtNDFlZC04MmIyLWNhZjA5N2UzMjMzZiIvPg0KICAgICAgICA8L0w3cDpJbmNsdWRlPg0KICAgICAgICA8d3NwOk9uZU9yTW9yZSB3c3A6VXNhZ2U9IlJlcXVpcmVkIj4NCiAgICAgICAgICAgIDx3c3A6QWxsIHdzcDpVc2FnZT0iUmVxdWlyZWQiPg0KICAgICAgICAgICAgICAgIDxMN3A6Q2FjaGVMb29rdXA+DQogICAgICAgICAgICAgICAgICAgIDxMN3A6Q2FjaGVJZCBzdHJpbmdWYWx1ZT0iYXBpbUNhY2hlIi8+DQogICAgICAgICAgICAgICAgICAgIDxMN3A6Q29udGVudFR5cGVPdmVycmlkZSBzdHJpbmdWYWx1ZT0iIi8+DQogICAgICAgICAgICAgICAgICAgIDxMN3A6TWF4RW50cnlBZ2VTZWNvbmRzIHN0cmluZ1ZhbHVlPSIzMCIvPg0KICAgICAgICAgICAgICAgIDwvTDdwOkNhY2hlTG9va3VwPg0KICAgICAgICAgICAgICAgIDxMN3A6YXNzZXJ0aW9uQ29tbWVudD4NCiAgICAgICAgICAgICAgICAgICAgPEw3cDpQcm9wZXJ0aWVzIG1hcFZhbHVlPSJpbmNsdWRlZCI+DQogICAgICAgICAgICAgICAgICAgICAgICA8TDdwOmVudHJ5Pg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxMN3A6a2V5IHN0cmluZ1ZhbHVlPSJMRUZULkNPTU1FTlQiLz4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8TDdwOnZhbHVlIHN0cmluZ1ZhbHVlPSJDQUNIRSIvPg0KICAgICAgICAgICAgICAgICAgICAgICAgPC9MN3A6ZW50cnk+DQogICAgICAgICAgICAgICAgICAgICAgICA8TDdwOmVudHJ5Pg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxMN3A6a2V5IHN0cmluZ1ZhbHVlPSJSSUdIVC5DT01NRU5UIi8+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgPEw3cDp2YWx1ZSBzdHJpbmdWYWx1ZT0iLy8gQ2FjaGUgTG9vayB1cCBmaXJzdCIvPg0KICAgICAgICAgICAgICAgICAgICAgICAgPC9MN3A6ZW50cnk+DQogICAgICAgICAgICAgICAgICAgIDwvTDdwOlByb3BlcnRpZXM+DQogICAgICAgICAgICAgICAgPC9MN3A6YXNzZXJ0aW9uQ29tbWVudD4NCiAgICAgICAgICAgIDwvd3NwOkFsbD4NCiAgICAgICAgICAgIDx3c3A6QWxsIHdzcDpVc2FnZT0iUmVxdWlyZWQiPg0KICAgICAgICAgICAgICAgIDxMN3A6U2V0VmFyaWFibGU+DQogICAgICAgICAgICAgICAgICAgIDxMN3A6QmFzZTY0RXhwcmVzc2lvbiBzdHJpbmdWYWx1ZT0iZXlKbGNuSnZjaUk2SWxKdmRYUnBibWNnUm1GcGJHVmtJaXdnSW1WeWNtOXlYMlJsYzJOeWFYQjBhVzl1SWpvaVNXNTJZV3hwWkNCVlVrd2dMU0JPYjNRZ1lTQldZV3hwWkNCQlVFa2lmUT09Ii8+DQogICAgICAgICAgICAgICAgICAgIDxMN3A6VmFyaWFibGVUb1NldCBzdHJpbmdWYWx1ZT0iZXJyb3JNc2ciLz4NCiAgICAgICAgICAgICAgICA8L0w3cDpTZXRWYXJpYWJsZT4NCiAgICAgICAgICAgICAgICA8TDdwOkh0dHBSb3V0aW5nQXNzZXJ0aW9uPg0KICAgICAgICAgICAgICAgICAgICA8TDdwOktleUFsaWFzIHN0cmluZ1ZhbHVlPSJ0cnVzdGVkIi8+DQogICAgICAgICAgICAgICAgICAgIDxMN3A6Tm9uRGVmYXVsdEtleXN0b3JlSWQgZ29pZFZhbHVlPSIwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMiIvPg0KICAgICAgICAgICAgICAgICAgICA8TDdwOlByb3RlY3RlZFNlcnZpY2VVcmwgc3RyaW5nVmFsdWU9Imh0dHBzOi8vc3NnLmRldi5jb206ODQ0My8ke2ZyYWdtZW50fS92MS8ke3RhYmxlfSIvPg0KICAgICAgICAgICAgICAgICAgICA8TDdwOlByb3h5UGFzc3dvcmQgc3RyaW5nVmFsdWVOdWxsPSJudWxsIi8+DQogICAgICAgICAgICAgICAgICAgIDxMN3A6UHJveHlVc2VybmFtZSBzdHJpbmdWYWx1ZU51bGw9Im51bGwiLz4NCiAgICAgICAgICAgICAgICAgICAgPEw3cDpSZXF1ZXN0SGVhZGVyUnVsZXMgaHR0cFBhc3N0aHJvdWdoUnVsZVNldD0iaW5jbHVkZWQiPg0KICAgICAgICAgICAgICAgICAgICAgICAgPEw3cDpGb3J3YXJkQWxsIGJvb2xlYW5WYWx1ZT0idHJ1ZSIvPg0KICAgICAgICAgICAgICAgICAgICAgICAgPEw3cDpSdWxlcyBodHRwUGFzc3Rocm91Z2hSdWxlcz0iaW5jbHVkZWQiPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxMN3A6aXRlbSBodHRwUGFzc3Rocm91Z2hSdWxlPSJpbmNsdWRlZCI+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxMN3A6TmFtZSBzdHJpbmdWYWx1ZT0iQ29va2llIi8+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgPC9MN3A6aXRlbT4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8TDdwOml0ZW0gaHR0cFBhc3N0aHJvdWdoUnVsZT0iaW5jbHVkZWQiPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8TDdwOk5hbWUgc3RyaW5nVmFsdWU9IlNPQVBBY3Rpb24iLz4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L0w3cDppdGVtPg0KICAgICAgICAgICAgICAgICAgICAgICAgPC9MN3A6UnVsZXM+DQogICAgICAgICAgICAgICAgICAgIDwvTDdwOlJlcXVlc3RIZWFkZXJSdWxlcz4NCiAgICAgICAgICAgICAgICAgICAgPEw3cDpSZXF1ZXN0UGFyYW1SdWxlcyBodHRwUGFzc3Rocm91Z2hSdWxlU2V0PSJpbmNsdWRlZCI+DQogICAgICAgICAgICAgICAgICAgICAgICA8TDdwOkZvcndhcmRBbGwgYm9vbGVhblZhbHVlPSJ0cnVlIi8+DQogICAgICAgICAgICAgICAgICAgICAgICA8TDdwOlJ1bGVzIGh0dHBQYXNzdGhyb3VnaFJ1bGVzPSJpbmNsdWRlZCIvPg0KICAgICAgICAgICAgICAgICAgICA8L0w3cDpSZXF1ZXN0UGFyYW1SdWxlcz4NCiAgICAgICAgICAgICAgICAgICAgPEw3cDpSZXNwb25zZUhlYWRlclJ1bGVzIGh0dHBQYXNzdGhyb3VnaFJ1bGVTZXQ9ImluY2x1ZGVkIj4NCiAgICAgICAgICAgICAgICAgICAgICAgIDxMN3A6Rm9yd2FyZEFsbCBib29sZWFuVmFsdWU9InRydWUiLz4NCiAgICAgICAgICAgICAgICAgICAgICAgIDxMN3A6UnVsZXMgaHR0cFBhc3N0aHJvdWdoUnVsZXM9ImluY2x1ZGVkIj4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8TDdwOml0ZW0gaHR0cFBhc3N0aHJvdWdoUnVsZT0iaW5jbHVkZWQiPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8TDdwOk5hbWUgc3RyaW5nVmFsdWU9IlNldC1Db29raWUiLz4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L0w3cDppdGVtPg0KICAgICAgICAgICAgICAgICAgICAgICAgPC9MN3A6UnVsZXM+DQogICAgICAgICAgICAgICAgICAgIDwvTDdwOlJlc3BvbnNlSGVhZGVyUnVsZXM+DQogICAgICAgICAgICAgICAgICAgIDxMN3A6U2FtbEFzc2VydGlvblZlcnNpb24gaW50VmFsdWU9IjIiLz4NCiAgICAgICAgICAgICAgICA8L0w3cDpIdHRwUm91dGluZ0Fzc2VydGlvbj4NCiAgICAgICAgICAgICAgICA8TDdwOkNhY2hlU3RvcmFnZT4NCiAgICAgICAgICAgICAgICAgICAgPEw3cDpDYWNoZUlkIHN0cmluZ1ZhbHVlPSJhcGltQ2FjaGUiLz4NCiAgICAgICAgICAgICAgICAgICAgPEw3cDpNYXhFbnRyeUFnZVNlY29uZHMgc3RyaW5nVmFsdWU9IjMwIi8+DQogICAgICAgICAgICAgICAgPC9MN3A6Q2FjaGVTdG9yYWdlPg0KICAgICAgICAgICAgPC93c3A6QWxsPg0KICAgICAgICAgICAgPHdzcDpBbGwgd3NwOlVzYWdlPSJSZXF1aXJlZCI+DQogICAgICAgICAgICAgICAgPEw3cDpTZXRWYXJpYWJsZT4NCiAgICAgICAgICAgICAgICAgICAgPEw3cDpCYXNlNjRFeHByZXNzaW9uIHN0cmluZ1ZhbHVlPSJNREF3TWc9PSIvPg0KICAgICAgICAgICAgICAgICAgICA8TDdwOlZhcmlhYmxlVG9TZXQgc3RyaW5nVmFsdWU9ImVycm9yQ29kZSIvPg0KICAgICAgICAgICAgICAgIDwvTDdwOlNldFZhcmlhYmxlPg0KICAgICAgICAgICAgICAgIDxMN3A6U2V0VmFyaWFibGU+DQogICAgICAgICAgICAgICAgICAgIDxMN3A6QmFzZTY0RXhwcmVzc2lvbiBzdHJpbmdWYWx1ZT0iTkRBeSIvPg0KICAgICAgICAgICAgICAgICAgICA8TDdwOlZhcmlhYmxlVG9TZXQgc3RyaW5nVmFsdWU9InN0YXR1cyIvPg0KICAgICAgICAgICAgICAgIDwvTDdwOlNldFZhcmlhYmxlPg0KICAgICAgICAgICAgICAgIDxMN3A6QXVkaXREZXRhaWxBc3NlcnRpb24+DQogICAgICAgICAgICAgICAgICAgIDxMN3A6Q3VzdG9tTG9nZ2VyU3VmZml4IHN0cmluZ1ZhbHVlPSJoY2EiLz4NCiAgICAgICAgICAgICAgICAgICAgPEw3cDpEZXRhaWwgc3RyaW5nVmFsdWU9IiA6LSAgd2l0aCByZXNwb25zZSAiLz4NCiAgICAgICAgICAgICAgICA8L0w3cDpBdWRpdERldGFpbEFzc2VydGlvbj4NCiAgICAgICAgICAgICAgICA8TDdwOlJhaXNlRXJyb3IvPg0KICAgICAgICAgICAgPC93c3A6QWxsPg0KICAgICAgICAgICAgPEw3cDphc3NlcnRpb25Db21tZW50Pg0KICAgICAgICAgICAgICAgIDxMN3A6UHJvcGVydGllcyBtYXBWYWx1ZT0iaW5jbHVkZWQiPg0KICAgICAgICAgICAgICAgICAgICA8TDdwOmVudHJ5Pg0KICAgICAgICAgICAgICAgICAgICAgICAgPEw3cDprZXkgc3RyaW5nVmFsdWU9IkxFRlQuQ09NTUVOVCIvPg0KICAgICAgICAgICAgICAgICAgICAgICAgPEw3cDp2YWx1ZSBzdHJpbmdWYWx1ZT0iUk9VVElORyIvPg0KICAgICAgICAgICAgICAgICAgICA8L0w3cDplbnRyeT4NCiAgICAgICAgICAgICAgICAgICAgPEw3cDplbnRyeT4NCiAgICAgICAgICAgICAgICAgICAgICAgIDxMN3A6a2V5IHN0cmluZ1ZhbHVlPSJSSUdIVC5DT01NRU5UIi8+DQogICAgICAgICAgICAgICAgICAgICAgICA8TDdwOnZhbHVlIHN0cmluZ1ZhbHVlPSIvLyBSZXF1ZXN0IChIVFRQKSByb3V0aW5nIHRvIFRydXN0ZWQgWk9ORSIvPg0KICAgICAgICAgICAgICAgICAgICA8L0w3cDplbnRyeT4NCiAgICAgICAgICAgICAgICA8L0w3cDpQcm9wZXJ0aWVzPg0KICAgICAgICAgICAgPC9MN3A6YXNzZXJ0aW9uQ29tbWVudD4NCiAgICAgICAgPC93c3A6T25lT3JNb3JlPg0KICAgIDwvd3NwOkFsbD4NCjwvd3NwOlBvbGljeT5dXT4NCjwvbDc6UmVzb3VyY2U+DQogICAgICAgIDwvbDc6UmVzb3VyY2VTZXQ+DQogICAgPC9sNzpSZXNvdXJjZXM+DQo8L2w3OlNlcnZpY2U+"/>
+                    <L7p:ContentType stringValue="text/xml; charset=utf-8"/>
+                    <L7p:DataType variableDataType="message"/>
+                    <L7p:Enabled booleanValue="false"/>
+                    <L7p:VariableToSet stringValue="request"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/Pg0KPGw3OlNlcnZpY2UgIHZlcnNpb249IjIiIHhtbG5zOmw3PSJodHRwOi8vbnMubDd0ZWNoLmNvbS8yMDEwLzA0L2dhdGV3YXktbWFuYWdlbWVudCI+DQogICAgPGw3OlNlcnZpY2VEZXRhaWwgZm9sZGVySWQ9IjAwMDAwMDAwMDAwMDAwMDBmZmZmZmZmZmZmZmZlYzc2IiBpZD0iZTQ3YzA5MjliMTg1NzczMWUzNDA5M2IyYTk4MjA1NGQiIHZlcnNpb249IjIiPg0KICAgICAgICA8bDc6TmFtZT5BUElQcm94eTwvbDc6TmFtZT4NCiAgICAgICAgPGw3OkVuYWJsZWQ+dHJ1ZTwvbDc6RW5hYmxlZD4NCiAgICAgICAgPGw3OlNlcnZpY2VNYXBwaW5ncz4NCiAgICAgICAgICAgIDxsNzpIdHRwTWFwcGluZz4NCiAgICAgICAgICAgICAgICA8bDc6VXJsUGF0dGVybj4ke3BhdGh9PC9sNzpVcmxQYXR0ZXJuPg0KICAgICAgICAgICAgICAgIDxsNzpWZXJicz4NCiAgICAgICAgICAgICAgICAgICAgPGw3OlZlcmI+R0VUPC9sNzpWZXJiPg0KICAgICAgICAgICAgICAgICAgICA8bDc6VmVyYj5QT1NUPC9sNzpWZXJiPg0KICAgICAgICAgICAgICAgICAgICA8bDc6VmVyYj5QVVQ8L2w3OlZlcmI+DQogICAgICAgICAgICAgICAgICAgIDxsNzpWZXJiPkRFTEVURTwvbDc6VmVyYj4NCiAgICAgICAgICAgICAgICA8L2w3OlZlcmJzPg0KICAgICAgICAgICAgPC9sNzpIdHRwTWFwcGluZz4NCiAgICAgICAgPC9sNzpTZXJ2aWNlTWFwcGluZ3M+DQogICAgICAgIDxsNzpQcm9wZXJ0aWVzPg0KICAgICAgICAgICAgPGw3OlByb3BlcnR5IGtleT0iaW50ZXJuYWwiPg0KICAgICAgICAgICAgICAgIDxsNzpCb29sZWFuVmFsdWU+ZmFsc2U8L2w3OkJvb2xlYW5WYWx1ZT4NCiAgICAgICAgICAgIDwvbDc6UHJvcGVydHk+DQogICAgICAgICAgICA8bDc6UHJvcGVydHkga2V5PSJwb2xpY3lSZXZpc2lvbiI+DQogICAgICAgICAgICAgICAgPGw3OkxvbmdWYWx1ZT4yPC9sNzpMb25nVmFsdWU+DQogICAgICAgICAgICA8L2w3OlByb3BlcnR5Pg0KICAgICAgICAgICAgPGw3OlByb3BlcnR5IGtleT0ic29hcCI+DQogICAgICAgICAgICAgICAgPGw3OkJvb2xlYW5WYWx1ZT5mYWxzZTwvbDc6Qm9vbGVhblZhbHVlPg0KICAgICAgICAgICAgPC9sNzpQcm9wZXJ0eT4NCiAgICAgICAgICAgIDxsNzpQcm9wZXJ0eSBrZXk9InRyYWNpbmdFbmFibGVkIj4NCiAgICAgICAgICAgICAgICA8bDc6Qm9vbGVhblZhbHVlPmZhbHNlPC9sNzpCb29sZWFuVmFsdWU+DQogICAgICAgICAgICA8L2w3OlByb3BlcnR5Pg0KICAgICAgICAgICAgPGw3OlByb3BlcnR5IGtleT0id3NzUHJvY2Vzc2luZ0VuYWJsZWQiPg0KICAgICAgICAgICAgICAgIDxsNzpCb29sZWFuVmFsdWU+ZmFsc2U8L2w3OkJvb2xlYW5WYWx1ZT4NCiAgICAgICAgICAgIDwvbDc6UHJvcGVydHk+DQogICAgICAgIDwvbDc6UHJvcGVydGllcz4NCiAgICA8L2w3OlNlcnZpY2VEZXRhaWw+DQogICAgICA8bDc6UmVzb3VyY2VzPg0KICAgICAgICA8bDc6UmVzb3VyY2VTZXQgdGFnPSJwb2xpY3kiPg0KICAgICAgICAgICAgPGw3OlJlc291cmNlIHR5cGU9InBvbGljeSIgdmVyc2lvbj0iMSI+DQogICAgICAgICAgICA8IVtDREFUQVs8P3htbCB2ZXJzaW9uPSIxLjAiIGVuY29kaW5nPSJVVEYtOCI/Pg0KPHdzcDpQb2xpY3kgeG1sbnM6TDdwPSJodHRwOi8vd3d3LmxheWVyN3RlY2guY29tL3dzL3BvbGljeSIgeG1sbnM6d3NwPSJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDAyLzEyL3BvbGljeSI+DQogICAgPHdzcDpBbGwgd3NwOlVzYWdlPSJSZXF1aXJlZCI+DQogICAgICAgIDxMN3A6Q29tbWVudEFzc2VydGlvbj4NCiAgICAgICAgICAgIDxMN3A6Q29tbWVudCBzdHJpbmdWYWx1ZT0iKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqIi8+DQogICAgICAgIDwvTDdwOkNvbW1lbnRBc3NlcnRpb24+DQogICAgICAgIDxMN3A6Q29tbWVudEFzc2VydGlvbj4NCiAgICAgICAgICAgIDxMN3A6Q29tbWVudCBzdHJpbmdWYWx1ZT0iQVBJIDotICZsdDtFbnRlciB0aGUgQVBJIE5hbWU+Ii8+DQogICAgICAgIDwvTDdwOkNvbW1lbnRBc3NlcnRpb24+DQogICAgICAgIDxMN3A6Q29tbWVudEFzc2VydGlvbj4NCiAgICAgICAgICAgIDxMN3A6Q29tbWVudCBzdHJpbmdWYWx1ZT0iQVBJIEdyb3VwIDotICZsdDtFbnRlciB0aGUgQVBJIEdyb3VwPiIvPg0KICAgICAgICA8L0w3cDpDb21tZW50QXNzZXJ0aW9uPg0KICAgICAgICA8TDdwOkNvbW1lbnRBc3NlcnRpb24+DQogICAgICAgICAgICA8TDdwOkNvbW1lbnQgc3RyaW5nVmFsdWU9IkFQSSBUWVBFIDotICZsdDtSRVNUL1NPQVAvREFUQT4iLz4NCiAgICAgICAgPC9MN3A6Q29tbWVudEFzc2VydGlvbj4NCiAgICAgICAgPEw3cDpDb21tZW50QXNzZXJ0aW9uPg0KICAgICAgICAgICAgPEw3cDpDb21tZW50IHN0cmluZ1ZhbHVlPSJBdXRob3I6IEJhbGFqaSBSYWRoYWtyaXNobmFuIi8+DQogICAgICAgIDwvTDdwOkNvbW1lbnRBc3NlcnRpb24+DQogICAgICAgIDxMN3A6Q29tbWVudEFzc2VydGlvbj4NCiAgICAgICAgICAgIDxMN3A6Q29tbWVudCBzdHJpbmdWYWx1ZT0iKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqIi8+DQogICAgICAgIDwvTDdwOkNvbW1lbnRBc3NlcnRpb24+DQogICAgICAgIDxMN3A6SW5jbHVkZT4NCiAgICAgICAgICAgIDxMN3A6UG9saWN5R3VpZCBzdHJpbmdWYWx1ZT0iYzVlNTJkYmUtZjUwOS00NTNlLTg4YWQtNjZjMDdkMzUxMDNjIi8+DQogICAgICAgIDwvTDdwOkluY2x1ZGU+DQogICAgICAgIDxMN3A6SW5jbHVkZT4NCiAgICAgICAgICAgIDxMN3A6UG9saWN5R3VpZCBzdHJpbmdWYWx1ZT0iNGVmY2JhMDEtYjNlMC00MjU5LWIxOTYtN2QwZDc2M2NiNThhIi8+DQogICAgICAgIDwvTDdwOkluY2x1ZGU+DQogICAgICAgIDxMN3A6SW5jbHVkZT4NCiAgICAgICAgICAgIDxMN3A6UG9saWN5R3VpZCBzdHJpbmdWYWx1ZT0iMjg4OWNjNjktNTI1OC00MWVkLTgyYjItY2FmMDk3ZTMyMzNmIi8+DQogICAgICAgIDwvTDdwOkluY2x1ZGU+DQogICAgICAgIDx3c3A6T25lT3JNb3JlIHdzcDpVc2FnZT0iUmVxdWlyZWQiPg0KICAgICAgICAgICAgPHdzcDpBbGwgd3NwOlVzYWdlPSJSZXF1aXJlZCI+DQogICAgICAgICAgICAgICAgPEw3cDpJbmNsdWRlPg0KICAgICAgICAgICAgICAgICAgICA8TDdwOlBvbGljeUd1aWQgc3RyaW5nVmFsdWU9ImFiNDQ0NTI2LTQwODEtNGYwOC04YzIzLWExM2Y4NTMzYWRlNCIvPg0KICAgICAgICAgICAgICAgIDwvTDdwOkluY2x1ZGU+DQogICAgICAgICAgICA8L3dzcDpBbGw+DQogICAgICAgICAgICA8d3NwOkFsbCB3c3A6VXNhZ2U9IlJlcXVpcmVkIj4NCiAgICAgICAgICAgICAgICA8TDdwOkNhY2hlTG9va3VwPg0KICAgICAgICAgICAgICAgICAgICA8TDdwOkNhY2hlSWQgc3RyaW5nVmFsdWU9ImFwaW1DYWNoZSIvPg0KICAgICAgICAgICAgICAgICAgICA8TDdwOkNvbnRlbnRUeXBlT3ZlcnJpZGUgc3RyaW5nVmFsdWU9IiIvPg0KICAgICAgICAgICAgICAgICAgICA8TDdwOk1heEVudHJ5QWdlU2Vjb25kcyBzdHJpbmdWYWx1ZT0iMzAiLz4NCiAgICAgICAgICAgICAgICA8L0w3cDpDYWNoZUxvb2t1cD4NCiAgICAgICAgICAgICAgICA8TDdwOmFzc2VydGlvbkNvbW1lbnQ+DQogICAgICAgICAgICAgICAgICAgIDxMN3A6UHJvcGVydGllcyBtYXBWYWx1ZT0iaW5jbHVkZWQiPg0KICAgICAgICAgICAgICAgICAgICAgICAgPEw3cDplbnRyeT4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8TDdwOmtleSBzdHJpbmdWYWx1ZT0iTEVGVC5DT01NRU5UIi8+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgPEw3cDp2YWx1ZSBzdHJpbmdWYWx1ZT0iQ0FDSEUiLz4NCiAgICAgICAgICAgICAgICAgICAgICAgIDwvTDdwOmVudHJ5Pg0KICAgICAgICAgICAgICAgICAgICAgICAgPEw3cDplbnRyeT4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8TDdwOmtleSBzdHJpbmdWYWx1ZT0iUklHSFQuQ09NTUVOVCIvPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxMN3A6dmFsdWUgc3RyaW5nVmFsdWU9Ii8vIENhY2hlIExvb2sgdXAgZmlyc3QiLz4NCiAgICAgICAgICAgICAgICAgICAgICAgIDwvTDdwOmVudHJ5Pg0KICAgICAgICAgICAgICAgICAgICA8L0w3cDpQcm9wZXJ0aWVzPg0KICAgICAgICAgICAgICAgIDwvTDdwOmFzc2VydGlvbkNvbW1lbnQ+DQogICAgICAgICAgICA8L3dzcDpBbGw+DQogICAgICAgICAgICA8d3NwOkFsbCB3c3A6VXNhZ2U9IlJlcXVpcmVkIj4NCiAgICAgICAgICAgICAgICA8TDdwOlNldFZhcmlhYmxlPg0KICAgICAgICAgICAgICAgICAgICA8TDdwOkJhc2U2NEV4cHJlc3Npb24gc3RyaW5nVmFsdWU9ImV5Smxjbkp2Y2lJNklsSnZkWFJwYm1jZ1JtRnBiR1ZrSWl3Z0ltVnljbTl5WDJSbGMyTnlhWEIwYVc5dUlqb2lTVzUyWVd4cFpDQlZVa3dnTFNCT2IzUWdZU0JXWVd4cFpDQkJVRWtpZlE9PSIvPg0KICAgICAgICAgICAgICAgICAgICA8TDdwOlZhcmlhYmxlVG9TZXQgc3RyaW5nVmFsdWU9ImVycm9yTXNnIi8+DQogICAgICAgICAgICAgICAgPC9MN3A6U2V0VmFyaWFibGU+DQogICAgICAgICAgICAgICAgPEw3cDpIdHRwUm91dGluZ0Fzc2VydGlvbj4NCiAgICAgICAgICAgICAgICAgICAgPEw3cDpLZXlBbGlhcyBzdHJpbmdWYWx1ZT0idHJ1c3RlZCIvPg0KICAgICAgICAgICAgICAgICAgICA8TDdwOk5vbkRlZmF1bHRLZXlzdG9yZUlkIGdvaWRWYWx1ZT0iMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDIiLz4NCiAgICAgICAgICAgICAgICAgICAgPEw3cDpQcm90ZWN0ZWRTZXJ2aWNlVXJsIHN0cmluZ1ZhbHVlPSIke2JhY2tlbmRVcmx9Ii8+DQogICAgICAgICAgICAgICAgICAgIDxMN3A6UHJveHlQYXNzd29yZCBzdHJpbmdWYWx1ZU51bGw9Im51bGwiLz4NCiAgICAgICAgICAgICAgICAgICAgPEw3cDpQcm94eVVzZXJuYW1lIHN0cmluZ1ZhbHVlTnVsbD0ibnVsbCIvPg0KICAgICAgICAgICAgICAgICAgICA8TDdwOlJlcXVlc3RIZWFkZXJSdWxlcyBodHRwUGFzc3Rocm91Z2hSdWxlU2V0PSJpbmNsdWRlZCI+DQogICAgICAgICAgICAgICAgICAgICAgICA8TDdwOkZvcndhcmRBbGwgYm9vbGVhblZhbHVlPSJ0cnVlIi8+DQogICAgICAgICAgICAgICAgICAgICAgICA8TDdwOlJ1bGVzIGh0dHBQYXNzdGhyb3VnaFJ1bGVzPSJpbmNsdWRlZCI+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgPEw3cDppdGVtIGh0dHBQYXNzdGhyb3VnaFJ1bGU9ImluY2x1ZGVkIj4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPEw3cDpOYW1lIHN0cmluZ1ZhbHVlPSJDb29raWUiLz4NCiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L0w3cDppdGVtPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxMN3A6aXRlbSBodHRwUGFzc3Rocm91Z2hSdWxlPSJpbmNsdWRlZCI+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxMN3A6TmFtZSBzdHJpbmdWYWx1ZT0iU09BUEFjdGlvbiIvPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvTDdwOml0ZW0+DQogICAgICAgICAgICAgICAgICAgICAgICA8L0w3cDpSdWxlcz4NCiAgICAgICAgICAgICAgICAgICAgPC9MN3A6UmVxdWVzdEhlYWRlclJ1bGVzPg0KICAgICAgICAgICAgICAgICAgICA8TDdwOlJlcXVlc3RQYXJhbVJ1bGVzIGh0dHBQYXNzdGhyb3VnaFJ1bGVTZXQ9ImluY2x1ZGVkIj4NCiAgICAgICAgICAgICAgICAgICAgICAgIDxMN3A6Rm9yd2FyZEFsbCBib29sZWFuVmFsdWU9InRydWUiLz4NCiAgICAgICAgICAgICAgICAgICAgICAgIDxMN3A6UnVsZXMgaHR0cFBhc3N0aHJvdWdoUnVsZXM9ImluY2x1ZGVkIi8+DQogICAgICAgICAgICAgICAgICAgIDwvTDdwOlJlcXVlc3RQYXJhbVJ1bGVzPg0KICAgICAgICAgICAgICAgICAgICA8TDdwOlJlc3BvbnNlSGVhZGVyUnVsZXMgaHR0cFBhc3N0aHJvdWdoUnVsZVNldD0iaW5jbHVkZWQiPg0KICAgICAgICAgICAgICAgICAgICAgICAgPEw3cDpGb3J3YXJkQWxsIGJvb2xlYW5WYWx1ZT0idHJ1ZSIvPg0KICAgICAgICAgICAgICAgICAgICAgICAgPEw3cDpSdWxlcyBodHRwUGFzc3Rocm91Z2hSdWxlcz0iaW5jbHVkZWQiPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxMN3A6aXRlbSBodHRwUGFzc3Rocm91Z2hSdWxlPSJpbmNsdWRlZCI+DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxMN3A6TmFtZSBzdHJpbmdWYWx1ZT0iU2V0LUNvb2tpZSIvPg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvTDdwOml0ZW0+DQogICAgICAgICAgICAgICAgICAgICAgICA8L0w3cDpSdWxlcz4NCiAgICAgICAgICAgICAgICAgICAgPC9MN3A6UmVzcG9uc2VIZWFkZXJSdWxlcz4NCiAgICAgICAgICAgICAgICAgICAgPEw3cDpTYW1sQXNzZXJ0aW9uVmVyc2lvbiBpbnRWYWx1ZT0iMiIvPg0KICAgICAgICAgICAgICAgIDwvTDdwOkh0dHBSb3V0aW5nQXNzZXJ0aW9uPg0KICAgICAgICAgICAgICAgIDxMN3A6Q2FjaGVTdG9yYWdlPg0KICAgICAgICAgICAgICAgICAgICA8TDdwOkNhY2hlSWQgc3RyaW5nVmFsdWU9ImFwaW1DYWNoZSIvPg0KICAgICAgICAgICAgICAgICAgICA8TDdwOk1heEVudHJ5QWdlU2Vjb25kcyBzdHJpbmdWYWx1ZT0iMzAiLz4NCiAgICAgICAgICAgICAgICA8L0w3cDpDYWNoZVN0b3JhZ2U+DQogICAgICAgICAgICA8L3dzcDpBbGw+DQogICAgICAgICAgICA8d3NwOkFsbCB3c3A6VXNhZ2U9IlJlcXVpcmVkIj4NCiAgICAgICAgICAgICAgICA8TDdwOlNldFZhcmlhYmxlPg0KICAgICAgICAgICAgICAgICAgICA8TDdwOkJhc2U2NEV4cHJlc3Npb24gc3RyaW5nVmFsdWU9Ik1EQXdNZz09Ii8+DQogICAgICAgICAgICAgICAgICAgIDxMN3A6VmFyaWFibGVUb1NldCBzdHJpbmdWYWx1ZT0iZXJyb3JDb2RlIi8+DQogICAgICAgICAgICAgICAgPC9MN3A6U2V0VmFyaWFibGU+DQogICAgICAgICAgICAgICAgPEw3cDpTZXRWYXJpYWJsZT4NCiAgICAgICAgICAgICAgICAgICAgPEw3cDpCYXNlNjRFeHByZXNzaW9uIHN0cmluZ1ZhbHVlPSJOREF5Ii8+DQogICAgICAgICAgICAgICAgICAgIDxMN3A6VmFyaWFibGVUb1NldCBzdHJpbmdWYWx1ZT0ic3RhdHVzIi8+DQogICAgICAgICAgICAgICAgPC9MN3A6U2V0VmFyaWFibGU+DQogICAgICAgICAgICAgICAgPEw3cDpBdWRpdERldGFpbEFzc2VydGlvbj4NCiAgICAgICAgICAgICAgICAgICAgPEw3cDpDdXN0b21Mb2dnZXJTdWZmaXggc3RyaW5nVmFsdWU9ImhjYSIvPg0KICAgICAgICAgICAgICAgICAgICA8TDdwOkRldGFpbCBzdHJpbmdWYWx1ZT0iIDotICB3aXRoIHJlc3BvbnNlICIvPg0KICAgICAgICAgICAgICAgIDwvTDdwOkF1ZGl0RGV0YWlsQXNzZXJ0aW9uPg0KICAgICAgICAgICAgICAgIDxMN3A6UmFpc2VFcnJvci8+DQogICAgICAgICAgICA8L3dzcDpBbGw+DQogICAgICAgICAgICA8TDdwOmFzc2VydGlvbkNvbW1lbnQ+DQogICAgICAgICAgICAgICAgPEw3cDpQcm9wZXJ0aWVzIG1hcFZhbHVlPSJpbmNsdWRlZCI+DQogICAgICAgICAgICAgICAgICAgIDxMN3A6ZW50cnk+DQogICAgICAgICAgICAgICAgICAgICAgICA8TDdwOmtleSBzdHJpbmdWYWx1ZT0iTEVGVC5DT01NRU5UIi8+DQogICAgICAgICAgICAgICAgICAgICAgICA8TDdwOnZhbHVlIHN0cmluZ1ZhbHVlPSJST1VUSU5HIi8+DQogICAgICAgICAgICAgICAgICAgIDwvTDdwOmVudHJ5Pg0KICAgICAgICAgICAgICAgICAgICA8TDdwOmVudHJ5Pg0KICAgICAgICAgICAgICAgICAgICAgICAgPEw3cDprZXkgc3RyaW5nVmFsdWU9IlJJR0hULkNPTU1FTlQiLz4NCiAgICAgICAgICAgICAgICAgICAgICAgIDxMN3A6dmFsdWUgc3RyaW5nVmFsdWU9Ii8vIFJlcXVlc3QgKEhUVFApIHJvdXRpbmcgdG8gVHJ1c3RlZCBaT05FIi8+DQogICAgICAgICAgICAgICAgICAgIDwvTDdwOmVudHJ5Pg0KICAgICAgICAgICAgICAgIDwvTDdwOlByb3BlcnRpZXM+DQogICAgICAgICAgICA8L0w3cDphc3NlcnRpb25Db21tZW50Pg0KICAgICAgICA8L3dzcDpPbmVPck1vcmU+DQogICAgPC93c3A6QWxsPg0KPC93c3A6UG9saWN5Pl1dPg0KPC9sNzpSZXNvdXJjZT4NCiAgICAgICAgPC9sNzpSZXNvdXJjZVNldD4NCiAgICA8L2w3OlJlc291cmNlcz4NCjwvbDc6U2VydmljZT4="/>
+                    <L7p:ContentType stringValue="text/xml; charset=utf-8"/>
+                    <L7p:DataType variableDataType="message"/>
+                    <L7p:VariableToSet stringValue="request"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtnYXRld2F5Lm1pY3Jvc2VydmljZXMucHJveHljb25maWd1cmF0aW9ufQ=="/>
+                    <L7p:ContentType stringValue="text/xml; charset=utf-8"/>
+                    <L7p:DataType variableDataType="message"/>
+                    <L7p:Enabled booleanValue="false"/>
+                    <L7p:VariableToSet stringValue="request"/>
+                </L7p:SetVariable>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="1. VARIABLES"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="// Variable Preparation for Proxy [restman]"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="eyJlcnJvciI6IlJvdXRpbmcgRmFpbHVyZSIsICJlcnJvcl9kZXNjcmlwdGlvbiI6IlRoZSBnaXZlbiBSZXF1ZXN0IGlzIEludmFsaWQgb3IgRHVwbGljYXRlIn0="/>
+                        <L7p:VariableToSet stringValue="errorMsg"/>
+                    </L7p:SetVariable>
+                    <L7p:HttpRoutingAssertion>
+                        <L7p:HttpMethod httpMethod="POST"/>
+                        <L7p:KeyAlias stringValue="restman"/>
+                        <L7p:NonDefaultKeystoreId goidValue="00000000000000000000000000000002"/>
+                        <L7p:ProtectedServiceUrl stringValue="https://${gateway.cluster.hostname}:9443/restman/1.0/services"/>
+                        <L7p:ProxyPassword stringValueNull="null"/>
+                        <L7p:ProxyUsername stringValueNull="null"/>
+                        <L7p:RequestHeaderRules httpPassthroughRuleSet="included">
+                            <L7p:ForwardAll booleanValue="true"/>
+                            <L7p:Rules httpPassthroughRules="included">
+                                <L7p:item httpPassthroughRule="included">
+                                    <L7p:Name stringValue="Cookie"/>
+                                </L7p:item>
+                                <L7p:item httpPassthroughRule="included">
+                                    <L7p:Name stringValue="SOAPAction"/>
+                                </L7p:item>
+                            </L7p:Rules>
+                        </L7p:RequestHeaderRules>
+                        <L7p:RequestMsgSrc stringValue="request"/>
+                        <L7p:RequestParamRules httpPassthroughRuleSet="included">
+                            <L7p:ForwardAll booleanValue="true"/>
+                            <L7p:Rules httpPassthroughRules="included"/>
+                        </L7p:RequestParamRules>
+                        <L7p:ResponseHeaderRules httpPassthroughRuleSet="included">
+                            <L7p:ForwardAll booleanValue="true"/>
+                            <L7p:Rules httpPassthroughRules="included">
+                                <L7p:item httpPassthroughRule="included">
+                                    <L7p:Name stringValue="Set-Cookie"/>
+                                </L7p:item>
+                            </L7p:Rules>
+                        </L7p:ResponseHeaderRules>
+                        <L7p:SamlAssertionVersion intValue="2"/>
+                        <L7p:UsesDefaultKeyStore booleanValue="false"/>
+                    </L7p:HttpRoutingAssertion>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="NDAy"/>
+                        <L7p:VariableToSet stringValue="status"/>
+                    </L7p:SetVariable>
+                    <L7p:RaiseError/>
+                </wsp:All>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="2. PROXY "/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="// Proxy creation for registered Service [restman]"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:OneOrMore>
+            <L7p:HardcodedResponse>
+                <L7p:Base64ResponseBody stringValue="JHtyZXNwb25zZS5tYWlucGFydH0="/>
+            </L7p:HardcodedResponse>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

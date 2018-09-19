@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References>
+        <FederatedIDProviderReference RefType="com.l7tech.console.policy.exporter.FederatedIdProviderReference">
+            <GOID>8ecd22cdc6bc2b695ba41b6178beec79</GOID>
+            <Name>Trusted X.509 Certificates</Name>
+            <Props>PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPGphdmEgdmVyc2lvbj0iMS44&#xd;
+LjBfNTEiIGNsYXNzPSJqYXZhLmJlYW5zLlhNTERlY29kZXIiPgogPG9iamVjdCBjbGFzcz0iamF2&#xd;
+YS51dGlsLkhhc2hNYXAiPgogIDx2b2lkIG1ldGhvZD0icHV0Ij4KICAgPHN0cmluZz54NTA5U3Vw&#xd;
+cG9ydGVkPC9zdHJpbmc+CiAgIDxib29sZWFuPnRydWU8L2Jvb2xlYW4+CiAgPC92b2lkPgogIDx2&#xd;
+b2lkIG1ldGhvZD0icHV0Ij4KICAgPHN0cmluZz5zYW1sU3VwcG9ydGVkPC9zdHJpbmc+CiAgIDxi&#xd;
+b29sZWFuPmZhbHNlPC9ib29sZWFuPgogIDwvdm9pZD4KIDwvb2JqZWN0Pgo8L2phdmE+Cg==</Props>
+            <TypeVal>3</TypeVal>
+            <Users>
+                <User>
+                    <GOID>8ecd22cdc6bc2b695ba41b6178beec98</GOID>
+                    <Name>demo_trusted</Name>
+                    <SubjectDn>cn=demo_trusted</SubjectDn>
+                </User>
+            </Users>
+        </FederatedIDProviderReference>
+    </exp:References>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <wsse:SecurityToken xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+                <wsse:TokenType>http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-x509-token-profile-1.0#X509v3</wsse:TokenType>
+                <L7p:Properties/>
+            </wsse:SecurityToken>
+            <L7p:Authentication>
+                <L7p:IdentityProviderOid goidValue="8ecd22cdc6bc2b695ba41b6178beec79"/>
+            </L7p:Authentication>
+            <L7p:HttpRoutingAssertion>
+                <L7p:ProtectedServiceUrl stringValue="http://backend.apim.ca:8080/ACMEWarehouse/services/WarehouseSoap"/>
+                <L7p:RequestHeaderRules httpPassthroughRuleSet="included">
+                    <L7p:Rules httpPassthroughRules="included">
+                        <L7p:item httpPassthroughRule="included">
+                            <L7p:Name stringValue="Cookie"/>
+                        </L7p:item>
+                        <L7p:item httpPassthroughRule="included">
+                            <L7p:Name stringValue="SOAPAction"/>
+                        </L7p:item>
+                    </L7p:Rules>
+                </L7p:RequestHeaderRules>
+                <L7p:RequestParamRules httpPassthroughRuleSet="included">
+                    <L7p:ForwardAll booleanValue="true"/>
+                    <L7p:Rules httpPassthroughRules="included"/>
+                </L7p:RequestParamRules>
+                <L7p:ResponseHeaderRules httpPassthroughRuleSet="included">
+                    <L7p:Rules httpPassthroughRules="included">
+                        <L7p:item httpPassthroughRule="included">
+                            <L7p:Name stringValue="Set-Cookie"/>
+                        </L7p:item>
+                    </L7p:Rules>
+                </L7p:ResponseHeaderRules>
+            </L7p:HttpRoutingAssertion>
+            <L7p:WssSignElement>
+                <L7p:XpathExpression xpathExpressionValue="included">
+                    <L7p:Expression stringValue="/s:Envelope/s:Body"/>
+                    <L7p:Namespaces mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="s"/>
+                            <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                        </L7p:entry>
+                    </L7p:Namespaces>
+                </L7p:XpathExpression>
+            </L7p:WssSignElement>
+            <L7p:WsSecurity>
+                <L7p:Target target="RESPONSE"/>
+            </L7p:WsSecurity>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

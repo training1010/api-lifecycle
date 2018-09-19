@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References>
+        <EncapsulatedAssertionReference RefType="com.l7tech.console.policy.exporter.EncapsulatedAssertionReference">
+            <Name>MAG OTP Configuration</Name>
+            <Guid>ae2e93d4-1acf-4931-b01a-8f52407756d6</Guid>
+        </EncapsulatedAssertionReference>
+        <EncapsulatedAssertionReference RefType="com.l7tech.console.policy.exporter.EncapsulatedAssertionReference">
+            <Name>OTK Require SSL (with Client Certificate)</Name>
+            <Guid>47f768f4-b478-472b-a1ee-10f4b6e76f99</Guid>
+        </EncapsulatedAssertionReference>
+        <EncapsulatedAssertionReference RefType="com.l7tech.console.policy.exporter.EncapsulatedAssertionReference">
+            <Name>MSSO Require Registered Device - Mutual SSL</Name>
+            <Guid>ce9faafc-7d76-4818-9c56-0bb9a4b68e9c</Guid>
+        </EncapsulatedAssertionReference>
+        <EncapsulatedAssertionReference RefType="com.l7tech.console.policy.exporter.EncapsulatedAssertionReference">
+            <Name>OTK Require OAuth 2.0 Token</Name>
+            <Guid>393bcb93-82ad-4b55-8333-1119f607a560</Guid>
+        </EncapsulatedAssertionReference>
+    </exp:References>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="************************************************************"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API :- GET CONTRACT - REST to SOAP CALL"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API Group :- XSM"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API TYPE :- REST"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="Author: Balaji Radhakrishnan"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="************************************************************"/>
+            </L7p:CommentAssertion>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:Encapsulated>
+                        <L7p:EncapsulatedAssertionConfigGuid stringValue="ae2e93d4-1acf-4931-b01a-8f52407756d6"/>
+                        <L7p:EncapsulatedAssertionConfigName stringValue="MAG OTP Configuration"/>
+                    </L7p:Encapsulated>
+                    <L7p:Encapsulated>
+                        <L7p:EncapsulatedAssertionConfigGuid stringValue="47f768f4-b478-472b-a1ee-10f4b6e76f99"/>
+                        <L7p:EncapsulatedAssertionConfigName stringValue="OTK Require SSL (with Client Certificate)"/>
+                        <L7p:Parameters mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="apiPrefix"/>
+                                <L7p:value stringValue=""/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="requireClientCert"/>
+                                <L7p:value stringValue="false"/>
+                            </L7p:entry>
+                        </L7p:Parameters>
+                    </L7p:Encapsulated>
+                    <L7p:Encapsulated>
+                        <L7p:EncapsulatedAssertionConfigGuid stringValue="ce9faafc-7d76-4818-9c56-0bb9a4b68e9c"/>
+                        <L7p:EncapsulatedAssertionConfigName stringValue="MSSO Require Registered Device - Mutual SSL"/>
+                        <L7p:Parameters mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="lookupDevice"/>
+                                <L7p:value stringValue="true"/>
+                            </L7p:entry>
+                        </L7p:Parameters>
+                    </L7p:Encapsulated>
+                    <L7p:Encapsulated>
+                        <L7p:EncapsulatedAssertionConfigGuid stringValue="393bcb93-82ad-4b55-8333-1119f607a560"/>
+                        <L7p:EncapsulatedAssertionConfigName stringValue="OTK Require OAuth 2.0 Token"/>
+                        <L7p:Parameters mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="cache_lifetime"/>
+                                <L7p:value stringValue="30"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="given_access_token"/>
+                                <L7p:value stringValue=""/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="onetime"/>
+                                <L7p:value stringValue="false"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="scope_fail"/>
+                                <L7p:value stringValue="false"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="scope_required"/>
+                                <L7p:value stringValue=""/>
+                            </L7p:entry>
+                        </L7p:Parameters>
+                    </L7p:Encapsulated>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="LEFT.COMMENT"/>
+                                <L7p:value stringValue="MOBILE VALIDATION"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="//Validate Trust for Mobile Channel"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:Encapsulated>
+                        <L7p:EncapsulatedAssertionConfigGuid stringValue="393bcb93-82ad-4b55-8333-1119f607a560"/>
+                        <L7p:EncapsulatedAssertionConfigName stringValue="OTK Require OAuth 2.0 Token"/>
+                        <L7p:Parameters mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="cache_lifetime"/>
+                                <L7p:value stringValue="30"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="given_access_token"/>
+                                <L7p:value stringValue=""/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="onetime"/>
+                                <L7p:value stringValue="false"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="scope_fail"/>
+                                <L7p:value stringValue="false"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="scope_required"/>
+                                <L7p:value stringValue=""/>
+                            </L7p:entry>
+                        </L7p:Parameters>
+                    </L7p:Encapsulated>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="LEFT.COMMENT"/>
+                                <L7p:value stringValue="WEB CHANNEL"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="//web channel OTLK Validation"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:CustomizeErrorResponse>
+                        <L7p:Content stringValueReference="inline"><![CDATA[{
+	"Exception" : "Authentication Failed",
+	"Description": "OAuth Token missing or User not found"
+}]]></L7p:Content>
+                        <L7p:ExtraHeaders nameValuePairArray="included"/>
+                    </L7p:CustomizeErrorResponse>
+                    <L7p:RaiseError/>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="LEFT.COMMENT"/>
+                                <L7p:value stringValue="EXCEPTION"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="//Authentication Failed."/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:All>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="MSSO PROTECTION"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="// Mobile Protection, validate trust"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:OneOrMore>
+            <wsp:All wsp:Usage="Required">
+                <L7p:EvaluateJsonPathExpression>
+                    <L7p:Expression stringValue="$.device.make"/>
+                    <L7p:VariablePrefix stringValue="make"/>
+                </L7p:EvaluateJsonPathExpression>
+                <L7p:EvaluateJsonPathExpression>
+                    <L7p:Expression stringValue="$.device.model"/>
+                    <L7p:VariablePrefix stringValue="model"/>
+                </L7p:EvaluateJsonPathExpression>
+                <L7p:EvaluateJsonPathExpression>
+                    <L7p:Expression stringValue="$.device.serial"/>
+                    <L7p:VariablePrefix stringValue="serial"/>
+                </L7p:EvaluateJsonPathExpression>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOmRldj0iaHR0cDovL3htbG5zLm9yYWNsZS5jb20vcGNicGVsL2FkYXB0ZXIvZGIvdG9wL2RldmljZXMiPg0KICAgPHNvYXBlbnY6SGVhZGVyLz4NCiAgIDxzb2FwZW52OkJvZHk+DQogICAgICA8ZGV2OmRldmljZXM+DQogICAgICAgICA8ZGV2OnNlYXJjaEZsYWc+PzwvZGV2OnNlYXJjaEZsYWc+DQogICAgICAgICA8ZGV2OmxpbmVUeXBlPj88L2RldjpsaW5lVHlwZT4NCiAgICAgICAgIDxkZXY6bGluZVN0YXR1cz4/PC9kZXY6bGluZVN0YXR1cz4NCiAgICAgICAgIDwhLS1aZXJvIG9yIG1vcmUgcmVwZXRpdGlvbnM6LS0+DQogICAgICAgICA8ZGV2OmRldmljZV9pbnB1dD4NCiAgICAgICAgICAgIDxkZXY6bW9kZWw+JHttb2RlbC5yZXN1bHR9PC9kZXY6bW9kZWw+DQogICAgICAgICAgICA8ZGV2Om1ha2U+JHttYWtlLnJlc3VsdH08L2RldjptYWtlPg0KICAgICAgICAgICAgPGRldjpzZXJpYWw+JHtzZXJpYWwucmVzdWx0fTwvZGV2OnNlcmlhbD4NCiAgICAgICAgIDwvZGV2OmRldmljZV9pbnB1dD4NCiAgICAgIDwvZGV2OmRldmljZXM+DQogICA8L3NvYXBlbnY6Qm9keT4NCjwvc29hcGVudjpFbnZlbG9wZT4="/>
+                    <L7p:ContentType stringValue="text/xml; charset=utf-8"/>
+                    <L7p:DataType variableDataType="message"/>
+                    <L7p:VariableToSet stringValue="soapMsg"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="cHJvY2Vzcw=="/>
+                    <L7p:VariableToSet stringValue="soapAction"/>
+                </L7p:SetVariable>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="JSON-TO-XML"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="//Variable association and Transformation"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:HttpRoutingAssertion>
+                        <L7p:ProtectedServiceUrl stringValue="https://dev.ca.com:8443/soap/contract"/>
+                        <L7p:ProxyPassword stringValueNull="null"/>
+                        <L7p:ProxyUsername stringValueNull="null"/>
+                        <L7p:RequestHeaderRules httpPassthroughRuleSet="included">
+                            <L7p:Rules httpPassthroughRules="included">
+                                <L7p:item httpPassthroughRule="included">
+                                    <L7p:Name stringValue="Cookie"/>
+                                </L7p:item>
+                                <L7p:item httpPassthroughRule="included">
+                                    <L7p:CustomizeValue stringValue="${soapAction}"/>
+                                    <L7p:Name stringValue="SOAPAction"/>
+                                    <L7p:UsesCustomizedValue booleanValue="true"/>
+                                </L7p:item>
+                            </L7p:Rules>
+                        </L7p:RequestHeaderRules>
+                        <L7p:RequestMsgSrc stringValue="soapMsg"/>
+                        <L7p:RequestParamRules httpPassthroughRuleSet="included">
+                            <L7p:ForwardAll booleanValue="true"/>
+                            <L7p:Rules httpPassthroughRules="included"/>
+                        </L7p:RequestParamRules>
+                        <L7p:ResponseHeaderRules httpPassthroughRuleSet="included">
+                            <L7p:ForwardAll booleanValue="true"/>
+                            <L7p:Rules httpPassthroughRules="included">
+                                <L7p:item httpPassthroughRule="included">
+                                    <L7p:Name stringValue="Set-Cookie"/>
+                                </L7p:item>
+                            </L7p:Rules>
+                        </L7p:ResponseHeaderRules>
+                        <L7p:SamlAssertionVersion intValue="2"/>
+                    </L7p:HttpRoutingAssertion>
+                    <L7p:ResponseXpathAssertion>
+                        <L7p:VariablePrefix stringValue="device"/>
+                        <L7p:XpathExpression xpathExpressionValue="included">
+                            <L7p:Expression stringValue="/s:Envelope/s:Body/ns1:device_out"/>
+                            <L7p:Namespaces mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="i"/>
+                                    <L7p:value stringValue="http://www.w3.org/2001/XMLSchema-instance"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="s"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="ns"/>
+                                    <L7p:value stringValue="Xerox.XIS.CCPQ"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="ns1"/>
+                                    <L7p:value stringValue="http://xmlns.oracle.com/pcbpel/adapter/db/top/device_out"/>
+                                </L7p:entry>
+                            </L7p:Namespaces>
+                            <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                        </L7p:XpathExpression>
+                    </L7p:ResponseXpathAssertion>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="JHtkZXZpY2UuZWxlbWVudHN9"/>
+                        <L7p:ContentType stringValue="text/xml; charset=utf-8"/>
+                        <L7p:DataType variableDataType="message"/>
+                        <L7p:VariableToSet stringValue="Response"/>
+                    </L7p:SetVariable>
+                    <L7p:JsonTransformation>
+                        <L7p:RootTagString stringValue=""/>
+                    </L7p:JsonTransformation>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:CustomizeErrorResponse>
+                        <L7p:Content stringValueReference="inline"><![CDATA[{
+	"Exception" : "Route Failure",
+	"Description": "Please verify url and specification and try again"
+}]]></L7p:Content>
+                        <L7p:ExtraHeaders nameValuePairArray="included"/>
+                    </L7p:CustomizeErrorResponse>
+                    <L7p:RaiseError/>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="LEFT.COMMENT"/>
+                                <L7p:value stringValue="EXCEPTION"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="//Exception specific to Route"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:All>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="SOAP ROUTE"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="//Routing to SOAP and transforming the response to JSON"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:OneOrMore>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

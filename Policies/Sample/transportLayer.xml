@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References/>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="************************************************************"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API :- &lt;Enter the API Name>"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API Group :- &lt;Enter the API Group>"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API TYPE :- &lt;REST/SOAP/DATA>"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="Author: Balaji Radhakrishnan"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="************************************************************"/>
+            </L7p:CommentAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="PHJlc3BvbnNlPg0KCTxyZXF1ZXN0ZWRIb3N0PiR7cmVxdWVzdC50Y3AucmVtb3RlSVB9PC9yZXF1ZXN0ZWRIb3N0Pg0KCTx1cmw+JHtyZXF1ZXN0LnVybH08L3VybD4NCgk8bWV0aG9kPiR7cmVxdWVzdC5odHRwLm1ldGhvZH08L21ldGhvZD4NCgk8dXJsUmVxdWVzdGVkPiR7cmVxdWVzdC5odHRwLnVyaX08L3VybFJlcXVlc3RlZD4NCgk8cXVlcnk+JHtyZXF1ZXN0LnVybC5xdWVyeX08L3F1ZXJ5Pg0KCTxyZXNwb25zZVN0YXR1cz4ke3Jlc3BvbnNlLmh0dHAuc3RhdHVzfTwvcmVzcG9uc2VTdGF0dXM+IA0KCTxnYXRld2F5PiR7Z2F0ZXdheS5jbHVzdGVyLmhvc3RuYW1lfTwvZ2F0ZXdheT4NCjwvcmVzcG9uc2U+"/>
+                    <L7p:ContentType stringValue="text/xml; charset=utf-8"/>
+                    <L7p:DataType variableDataType="message"/>
+                    <L7p:VariableToSet stringValue="responseMsg"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="dGV4dC94bWw7IGNoYXJzZXQ9dXRmLTg="/>
+                    <L7p:VariableToSet stringValue="contentType"/>
+                </L7p:SetVariable>
+            </wsp:All>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:ComparisonAssertion>
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Expression1 stringValue="${request.http.parameter.format}"/>
+                        <L7p:Operator operatorNull="null"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item dataType="included">
+                                <L7p:Type variableDataType="string"/>
+                            </L7p:item>
+                            <L7p:item binary="included">
+                                <L7p:Operator operator="CONTAINS"/>
+                                <L7p:RightValue stringValue="xml"/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:JsonTransformation>
+                        <L7p:DestinationMessageTarget MessageTarget="included">
+                            <L7p:OtherTargetMessageVariable stringValue="responseMsg"/>
+                            <L7p:Target target="OTHER"/>
+                            <L7p:TargetModifiedByGateway booleanValue="true"/>
+                        </L7p:DestinationMessageTarget>
+                        <L7p:OtherTargetMessageVariable stringValue="responseMsg"/>
+                        <L7p:RootTagString stringValue=""/>
+                        <L7p:Target target="OTHER"/>
+                    </L7p:JsonTransformation>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="YXBwbGljYXRpb24vanNvbjsgY2hhcnNldD11dGYtOA=="/>
+                        <L7p:VariableToSet stringValue="contentType"/>
+                    </L7p:SetVariable>
+                </wsp:All>
+            </wsp:OneOrMore>
+            <L7p:HardcodedResponse>
+                <L7p:Base64ResponseBody stringValue="JHtyZXNwb25zZU1zZy5tYWlucGFydH0="/>
+                <L7p:ResponseContentType stringValue="${contentType}"/>
+            </L7p:HardcodedResponse>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

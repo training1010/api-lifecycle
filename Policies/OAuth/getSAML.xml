@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References>
+        <IDProviderReference RefType="com.l7tech.console.policy.exporter.IdProviderReference">
+            <GOID>0000000000000000fffffffffffffffe</GOID>
+            <Name>Internal Identity Provider</Name>
+            <Props>PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPGphdmEgdmVyc2lvbj0iMS44&#xd;
+LjBfNTEiIGNsYXNzPSJqYXZhLmJlYW5zLlhNTERlY29kZXIiPgogPG9iamVjdCBjbGFzcz0iamF2&#xd;
+YS51dGlsLkhhc2hNYXAiPgogIDx2b2lkIG1ldGhvZD0icHV0Ij4KICAgPHN0cmluZz5hZG1pbkVu&#xd;
+YWJsZWQ8L3N0cmluZz4KICAgPGJvb2xlYW4+dHJ1ZTwvYm9vbGVhbj4KICA8L3ZvaWQ+CiA8L29i&#xd;
+amVjdD4KPC9qYXZhPgo=</Props>
+            <TypeVal>1</TypeVal>
+        </IDProviderReference>
+    </exp:References>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="************************************************************"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API :- Get SAML Token"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API Group :- Security"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API TYPE :- &lt;REST>"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="Author: Balaji Radhakrishnan"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="************************************************************"/>
+            </L7p:CommentAssertion>
+            <L7p:SslAssertion/>
+            <L7p:HttpBasic/>
+            <L7p:Authentication>
+                <L7p:IdentityProviderOid goidValue="0000000000000000fffffffffffffffe"/>
+            </L7p:Authentication>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="JHtyZXF1ZXN0LnVybC5wcm90b2NvbH06Ly8ke3JlcXVlc3QudXJsLmhvc3R9"/>
+                <L7p:VariableToSet stringValue="audience_reception_restriction"/>
+            </L7p:SetVariable>
+            <L7p:SamlIssuer>
+                <L7p:AudienceRestriction stringValue="${audience_reception_restriction}"/>
+                <L7p:AuthenticationStatement samlAuthenticationInfo="included">
+                    <L7p:AuthenticationMethods stringArrayValue="included"/>
+                    <L7p:IncludeAuthenticationContextDeclaration booleanValue="false"/>
+                </L7p:AuthenticationStatement>
+                <L7p:NameQualifier stringValue=""/>
+                <L7p:SubjectConfirmationDataRecipient stringValue="${audience_reception_restriction}"/>
+                <L7p:SubjectConfirmationMethodUri stringValue="urn:oasis:names:tc:SAML:1.0:cm:bearer"/>
+                <L7p:Version boxedIntegerValue="2"/>
+            </L7p:SamlIssuer>
+            <L7p:EncodeDecode>
+                <L7p:SourceVariableName stringValue="issuedSamlAssertion"/>
+                <L7p:TargetDataType variableDataType="string"/>
+                <L7p:TargetVariableName stringValue="b64.saml"/>
+                <L7p:TransformType transformType="BASE64_ENCODE"/>
+            </L7p:EncodeDecode>
+            <L7p:EncodeDecode>
+                <L7p:SourceVariableName stringValue="b64.saml"/>
+                <L7p:TargetDataType variableDataType="string"/>
+                <L7p:TargetVariableName stringValue="url.saml"/>
+                <L7p:TransformType transformType="URL_ENCODE"/>
+            </L7p:EncodeDecode>
+            <L7p:HardcodedResponse>
+                <L7p:Base64ResponseBody stringValue="SXNzdWVkIFNBTUwgVG9rZW46ICR7aXNzdWVkU2FtbEFzc2VydGlvbn0KQmFzZSA2NCBFbmNvZGVkIFRva2VuIDogJHtiNjQuc2FtbH0KVVJMIEVuY29kZWQ6ICR7dXJsLnNhbWx9CkF1ZGllbmNlIFJlc3RyaWN0aW9uIGFwcGxpZWQ6ICR7YXVkaWVuY2VfcmVjZXB0aW9uX3Jlc3RyaWN0aW9ufQo="/>
+            </L7p:HardcodedResponse>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

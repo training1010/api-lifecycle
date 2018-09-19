@@ -1,0 +1,1628 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References/>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:AuditAssertion>
+                <L7p:SaveRequest booleanValue="true"/>
+                <L7p:SaveResponse booleanValue="true"/>
+            </L7p:AuditAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="************************************************************************************************************************"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="************************************************************************************************************************"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="***  Soap Service that responds to 4 different operations.                                                                                                       "/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="***   http://gateway_URL:8080/reservation"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="***  "/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="***********************************************************************************************************************"/>
+            </L7p:CommentAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtyZXF1ZXN0LnVybH0="/>
+                    <L7p:VariableToSet stringValue="url"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtyZXF1ZXN0Lmh0dHAudXJpfQ=="/>
+                    <L7p:VariableToSet stringValue="uri"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtyZXF1ZXN0LnVybC5xdWVyeX0="/>
+                    <L7p:VariableToSet stringValue="query"/>
+                </L7p:SetVariable>
+            </wsp:All>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:WSDLOperation>
+                        <L7p:OperationName stringValue="voonairreservations"/>
+                    </L7p:WSDLOperation>
+                    <L7p:RequestXpathAssertion>
+                        <L7p:VariablePrefix stringValue="rates"/>
+                        <L7p:XpathExpression xpathExpressionValue="included">
+                            <L7p:Expression stringValue="/s:Envelope/s:Body/s0:voonairreservations/s0:startingpoint"/>
+                            <L7p:Namespaces mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="s0"/>
+                                    <L7p:value stringValue="http://voonair.com/ws"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="soapenv"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="s"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="ws"/>
+                                    <L7p:value stringValue="http://voonair.com/ws"/>
+                                </L7p:entry>
+                            </L7p:Namespaces>
+                            <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                        </L7p:XpathExpression>
+                    </L7p:RequestXpathAssertion>
+                    <wsp:OneOrMore wsp:Usage="Required">
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${rates.result}"/>
+                                <L7p:Expression2 stringValue="vancouver"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="vancouver"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:HardcodedResponse>
+                                <L7p:Base64ResponseBody stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiPgogICA8c29hcGVudjpCb2R5PgogICAgICA8dm9vbmFpcnJlc2VydmF0aW9uUmVzcG9uc2UgeG1sbnM9Imh0dHA6Ly92b29uYWlyLmNvbS93cyI+CiAgICAgICAgPHZvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICAgICAgICAgPERlc3RpbmF0aW9uPkxvcyBBbmdlbGVzPC9EZXN0aW5hdGlvbj4KICAgICAgICAgICAgICAgPFByaWNlPjE5OS4wMDwvUHJpY2U+CiAgICAgICAgICA8L3Zvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICA8dm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICAgICAgICA8RGVzdGluYXRpb24+TW9udHJlYWw8L0Rlc3RpbmF0aW9uPgogICAgICAgICAgICAgICA8UHJpY2U+MTI5LjAwPC9QcmljZT4KICAgICAgICAgIDwvdm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgIDx2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgICAgIDxEZXN0aW5hdGlvbj5OZXcgWW9yazwvRGVzdGluYXRpb24+CiAgICAgICAgICAgICAgIDxQcmljZT4yMDUuMDA8L1ByaWNlPgogICAgICAgICAgPC92b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgPHZvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICAgICAgICAgPERlc3RpbmF0aW9uPkxvbmRvbjwvRGVzdGluYXRpb24+CiAgICAgICAgICAgICAgIDxQcmljZT40NTAuMDA8L1ByaWNlPgogICAgICAgICAgPC92b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgIDwvdm9vbmFpcnJlc2VydmF0aW9uUmVzcG9uc2U+CiAgIDwvc29hcGVudjpCb2R5Pgo8L3NvYXBlbnY6RW52ZWxvcGU+"/>
+                                <L7p:ResponseContentType stringValue="application/soap+xml; charset=utf-8"/>
+                            </L7p:HardcodedResponse>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="- Vancouver seat sales"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${rates.result}"/>
+                                <L7p:Expression2 stringValue="los angeles"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="los angeles"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:HardcodedResponse>
+                                <L7p:Base64ResponseBody stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiPgogICA8c29hcGVudjpCb2R5PgogICAgICA8dm9vbmFpcnJlc2VydmF0aW9uUmVzcG9uc2UgeG1sbnM9Imh0dHA6Ly92b29uYWlyLmNvbS93cyI+CiAgICAgICAgIDx2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgICAgIDxEZXN0aW5hdGlvbj5Ub3JvbnRvPC9EZXN0aW5hdGlvbj4KICAgICAgICAgICAgICAgPFByaWNlPjE1OS4wMDwvUHJpY2U+CiAgICAgICAgIDwvdm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICA8dm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICAgICAgICA8RGVzdGluYXRpb24+Qm9zdG9uPC9EZXN0aW5hdGlvbj4KICAgICAgICAgICAgICAgPFByaWNlPjIyOS4wMDwvUHJpY2U+CiAgICAgICAgIDwvdm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICA8dm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICAgICAgICA8RGVzdGluYXRpb24+T3JsYW5kbzwvRGVzdGluYXRpb24+CiAgICAgICAgICAgICAgIDxQcmljZT4zMDUuMDA8L1ByaWNlPgogICAgICAgICA8L3Zvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICAgPHZvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICAgICAgICAgPERlc3RpbmF0aW9uPkJydXNzZWxzPC9EZXN0aW5hdGlvbj4KICAgICAgICAgICAgICAgPFByaWNlPjU1MC4wMDwvUHJpY2U+CiAgICAgICAgIDwvdm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICA8L3Zvb25haXJyZXNlcnZhdGlvblJlc3BvbnNlPgogICA8L3NvYXBlbnY6Qm9keT4KPC9zb2FwZW52OkVudmVsb3BlPgo="/>
+                                <L7p:ResponseContentType stringValue="application/soap+xml; charset=utf-8"/>
+                            </L7p:HardcodedResponse>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="los angeles seat sales"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${rates.result}"/>
+                                <L7p:Expression2 stringValue="montreal"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="montreal"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:HardcodedResponse>
+                                <L7p:Base64ResponseBody stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiPgogICA8c29hcGVudjpCb2R5PgogICAgICA8dm9vbmFpcnJlc2VydmF0aW9uUmVzcG9uc2UgeG1sbnM9Imh0dHA6Ly92b29uYWlyLmNvbS93cyI+CiAgICAgICAgPHZvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICAgICAgPERlc3RpbmF0aW9uPkNhbGdhcnk8L0Rlc3RpbmF0aW9uPgogICAgICAgICAgICA8UHJpY2U+OTkuMDA8L1ByaWNlPgogICAgICAgIDwvdm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgIDx2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgIDxEZXN0aW5hdGlvbj5TYW4gRGllZ288L0Rlc3RpbmF0aW9uPgogICAgICAgICAgICA8UHJpY2U+MjM5LjAwPC9QcmljZT4KICAgICAgICA8L3Zvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICA8dm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICAgICA8RGVzdGluYXRpb24+TGFzIFZlZ2FzPC9EZXN0aW5hdGlvbj4KICAgICAgICAgICAgPFByaWNlPjE5OS4wMDwvUHJpY2U+CiAgICAgICAgPC92b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgPHZvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICAgICAgPERlc3RpbmF0aW9uPlBhcmlzPC9EZXN0aW5hdGlvbj4KICAgICAgICAgICAgPFByaWNlPjU5OS4wMDwvUHJpY2U+CiAgICAgICAgPC92b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgIDwvdm9vbmFpcnJlc2VydmF0aW9uUmVzcG9uc2U+CiAgIDwvc29hcGVudjpCb2R5Pgo8L3NvYXBlbnY6RW52ZWxvcGU+"/>
+                                <L7p:ResponseContentType stringValue="application/soap+xml; charset=utf-8"/>
+                            </L7p:HardcodedResponse>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="montreal seat sales"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${rates.result}"/>
+                                <L7p:Expression2 stringValue="toronto"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="toronto"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:HardcodedResponse>
+                                <L7p:Base64ResponseBody stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiPgogICA8c29hcGVudjpCb2R5PgogICAgICA8dm9vbmFpcnJlc2VydmF0aW9uUmVzcG9uc2UgeG1sbnM9Imh0dHA6Ly92b29uYWlyLmNvbS93cyI+CiAgICAgICAgPHZvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICAgICAgPERlc3RpbmF0aW9uPlNhbiBGcmFuY2lzY288L0Rlc3RpbmF0aW9uPgogICAgICAgICAgICA8UHJpY2U+MTk5LjAwPC9QcmljZT4KICAgICAgICA8L3Zvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICA8dm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICAgICA8RGVzdGluYXRpb24+Q2hpY2FnbzwvRGVzdGluYXRpb24+CiAgICAgICAgICAgIDxQcmljZT4xMjkuMDA8L1ByaWNlPgogICAgICAgIDwvdm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgIDx2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgIDxEZXN0aW5hdGlvbj5EZXRyb2l0PC9EZXN0aW5hdGlvbj4KICAgICAgICAgICAgPFByaWNlPjIwNS4wMDwvUHJpY2U+CiAgICAgICAgPC92b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgPHZvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICAgICAgPERlc3RpbmF0aW9uPk1hdWk8L0Rlc3RpbmF0aW9uPgogICAgICAgICAgICA8UHJpY2U+MjUwLjAwPC9QcmljZT4KICAgICAgICA8L3Zvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgPC92b29uYWlycmVzZXJ2YXRpb25SZXNwb25zZT4KICAgPC9zb2FwZW52OkJvZHk+Cjwvc29hcGVudjpFbnZlbG9wZT4="/>
+                                <L7p:ResponseContentType stringValue="application/soap+xml; charset=utf-8"/>
+                            </L7p:HardcodedResponse>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Toronto seat sales"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${rates.result}"/>
+                                <L7p:Operator operatorNull="null"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="int"/>
+                                    </L7p:item>
+                                    <L7p:item cardinality="included">
+                                    <L7p:Max intValue="120"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:HardcodedResponse>
+                                <L7p:Base64ResponseBody stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiPgogICA8c29hcGVudjpCb2R5PgogICAgPHZvb25haXJyZXNlcnZhdGlvblJlc3BvbnNlIHhtbG5zPSJodHRwOi8vdm9vbmFpci5jb20vd3MiPgogICAgICAgIDx2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgIDxzdGFydGluZ3BvaW50PiR7cmF0ZXMucmVzdWx0fTwvc3RhcnRpbmdwb2ludD4KICAgICAgICAgICAgPFByaWNlPk5vdCBhIFZhbGlkIHN0YXJ0aW5nIHBvaW50PC9QcmljZT4KICAgICAgICA8L3Zvb25haXJyZXNlcnZhdGlvblJlc3VsdD4gCiAgICA8L3Zvb25haXJyZXNlcnZhdGlvblJlc3BvbnNlPgogICA8L3NvYXBlbnY6Qm9keT4KPC9zb2FwZW52OkVudmVsb3BlPg=="/>
+                                <L7p:ResponseContentType stringValue="application/soap+xml; charset=utf-8"/>
+                            </L7p:HardcodedResponse>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Wrong data input"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                        <L7p:HardcodedResponse>
+                            <L7p:AssertionComment assertionComment="included">
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="All Seats sales"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:AssertionComment>
+                            <L7p:Base64ResponseBody stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiPgogICA8c29hcGVudjpCb2R5PgogICAgPHZvb25haXJyZXNlcnZhdGlvblJlc3BvbnNlIHhtbG5zPSJodHRwOi8vdm9vbmFpci5jb20vd3MiPgogICAgICAgIDx2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgIDxEZXN0aW5hdGlvbj5Mb3MgQW5nZWxlczwvRGVzdGluYXRpb24+CiAgICAgICAgICAgIDxQcmljZT4xOTkuMDA8L1ByaWNlPgogICAgICAgIDwvdm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgIDx2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgIDxEZXN0aW5hdGlvbj5Nb250cmVhbDwvRGVzdGluYXRpb24+CiAgICAgICAgICAgIDxQcmljZT4xMjkuMDA8L1ByaWNlPgogICAgICAgIDwvdm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgIDx2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgIDxEZXN0aW5hdGlvbj5OZXcgWW9yazwvRGVzdGluYXRpb24+CiAgICAgICAgICAgIDxQcmljZT4yMDUuMDA8L1ByaWNlPgogICAgICAgIDwvdm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgIDx2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgIDxEZXN0aW5hdGlvbj5Mb25kb248L0Rlc3RpbmF0aW9uPgogICAgICAgICAgICA8UHJpY2U+NDUwLjAwPC9QcmljZT4KICAgICAgICA8L3Zvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KCQk8dm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICAgICA8RGVzdGluYXRpb24+VG9yb250bzwvRGVzdGluYXRpb24+CiAgICAgICAgICAgIDxQcmljZT4xNTkuMDA8L1ByaWNlPgogICAgICAgIDwvdm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgIDx2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgIDxEZXN0aW5hdGlvbj5Cb3N0b248L0Rlc3RpbmF0aW9uPgogICAgICAgICAgICA8UHJpY2U+MjI5LjAwPC9QcmljZT4KICAgICAgICA8L3Zvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICA8dm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICAgICA8RGVzdGluYXRpb24+T3JsYW5kbzwvRGVzdGluYXRpb24+CiAgICAgICAgICAgIDxQcmljZT4zMDUuMDA8L1ByaWNlPgogICAgICAgIDwvdm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgIDx2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgIDxEZXN0aW5hdGlvbj5CcnVzc2VsczwvRGVzdGluYXRpb24+CiAgICAgICAgICAgIDxQcmljZT41NTAuMDA8L1ByaWNlPgogICAgICAgIDwvdm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgoJCTx2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgIDxEZXN0aW5hdGlvbj5DYWxnYXJ5PC9EZXN0aW5hdGlvbj4KICAgICAgICAgICAgPFByaWNlPjk5LjAwPC9QcmljZT4KICAgICAgICA8L3Zvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICA8dm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICAgICA8RGVzdGluYXRpb24+U2FuIERpZWdvPC9EZXN0aW5hdGlvbj4KICAgICAgICAgICAgPFByaWNlPjIzOS4wMDwvUHJpY2U+CiAgICAgICAgPC92b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgPHZvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICAgICAgPERlc3RpbmF0aW9uPkxhcyBWZWdhczwvRGVzdGluYXRpb24+CiAgICAgICAgICAgIDxQcmljZT4xOTkuMDA8L1ByaWNlPgogICAgICAgIDwvdm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgIDx2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgIDxEZXN0aW5hdGlvbj5QYXJpczwvRGVzdGluYXRpb24+CiAgICAgICAgICAgIDxQcmljZT41OTkuMDA8L1ByaWNlPgogICAgICAgIDwvdm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgoJICAgIDx2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgIDxEZXN0aW5hdGlvbj5TYW4gRnJhbmNpc2NvPC9EZXN0aW5hdGlvbj4KICAgICAgICAgICAgPFByaWNlPjE5OS4wMDwvUHJpY2U+CiAgICAgICAgPC92b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgPHZvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICAgICAgPERlc3RpbmF0aW9uPkNoaWNhZ288L0Rlc3RpbmF0aW9uPgogICAgICAgICAgICA8UHJpY2U+MTI5LjAwPC9QcmljZT4KICAgICAgICA8L3Zvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICA8dm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICAgICA8RGVzdGluYXRpb24+RGV0cm9pdDwvRGVzdGluYXRpb24+CiAgICAgICAgICAgIDxQcmljZT4yMDUuMDA8L1ByaWNlPgogICAgICAgIDwvdm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgIDx2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgIDxEZXN0aW5hdGlvbj5NYXVpPC9EZXN0aW5hdGlvbj4KICAgICAgICAgICAgPFByaWNlPjI1MC4wMDwvUHJpY2U+CiAgICAgICAgPC92b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICA8L3Zvb25haXJyZXNlcnZhdGlvblJlc3BvbnNlPgogICA8L3NvYXBlbnY6Qm9keT4KPC9zb2FwZW52OkVudmVsb3BlPg=="/>
+                            <L7p:ResponseContentType stringValue="application/soap+xml; charset=utf-8"/>
+                        </L7p:HardcodedResponse>
+                    </wsp:OneOrMore>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue=" -- Seat Sales from certain cities - vancouver, toronto, montreal, los angeles"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:WSDLOperation>
+                        <L7p:OperationName stringValue="voonairreservationDetails"/>
+                    </L7p:WSDLOperation>
+                    <L7p:RequestXpathAssertion>
+                        <L7p:VariablePrefix stringValue="startingpoint"/>
+                        <L7p:XpathExpression xpathExpressionValue="included">
+                            <L7p:Expression stringValue="/s:Envelope/s:Body/s0:voonairreservationDetails/s0:startingpoint"/>
+                            <L7p:Namespaces mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="s0"/>
+                                    <L7p:value stringValue="http://voonair.com/ws"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="soapenv"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="s"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="ws"/>
+                                    <L7p:value stringValue="http://voonair.com/ws"/>
+                                </L7p:entry>
+                            </L7p:Namespaces>
+                            <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                        </L7p:XpathExpression>
+                    </L7p:RequestXpathAssertion>
+                    <L7p:RequestXpathAssertion>
+                        <L7p:VariablePrefix stringValue="destination"/>
+                        <L7p:XpathExpression xpathExpressionValue="included">
+                            <L7p:Expression stringValue="/s:Envelope/s:Body/s0:voonairreservationDetails/s0:Destination"/>
+                            <L7p:Namespaces mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="s0"/>
+                                    <L7p:value stringValue="http://voonair.com/ws"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="soapenv"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="s"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="ws"/>
+                                    <L7p:value stringValue="http://voonair.com/ws"/>
+                                </L7p:entry>
+                            </L7p:Namespaces>
+                            <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                        </L7p:XpathExpression>
+                    </L7p:RequestXpathAssertion>
+                    <wsp:OneOrMore wsp:Usage="Required">
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${startingpoint.result}"/>
+                                <L7p:Expression2 stringValue="vancouver"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="vancouver"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${destination.result}"/>
+                                <L7p:Expression2 stringValue="vancouver"/>
+                                <L7p:Negate booleanValue="true"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Negated booleanValue="true"/>
+                                    <L7p:RightValue stringValue="vancouver"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:HardcodedResponse>
+                                <L7p:Base64ResponseBody stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiPgogICA8c29hcGVudjpCb2R5PgogICAgPHZvb25haXJyZXNlcnZhdGlvbkRldGFpbHNSZXNwb25zZSB4bWxucz0iaHR0cDovL3Zvb25haXIuY29tL3dzIj4KICAgICAgICA8dm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICAgPERlc3RpbmF0aW9uPiR7ZGVzdGluYXRpb24ucmVzdWx0fTwvRGVzdGluYXRpb24+CgkJICA8c3RhcnRpbmdwb2ludD4ke3N0YXJ0aW5ncG9pbnQucmVzdWx0fTwvc3RhcnRpbmdwb2ludD4KICAgICAgICAgIDxQcmljZT4xOTkuMDA8L1ByaWNlPgogICAgICAgIDwvdm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgPC92b29uYWlycmVzZXJ2YXRpb25EZXRhaWxzUmVzcG9uc2U+CiAgIDwvc29hcGVudjpCb2R5Pgo8L3NvYXBlbnY6RW52ZWxvcGU+"/>
+                                <L7p:ResponseContentType stringValue="application/soap+xml; charset=utf-8"/>
+                            </L7p:HardcodedResponse>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Starting Point = Vancouver"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${startingpoint.result}"/>
+                                <L7p:Expression2 stringValue="los angeles"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="los angeles"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${destination.result}"/>
+                                <L7p:Expression2 stringValue="los angeles"/>
+                                <L7p:Negate booleanValue="true"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Negated booleanValue="true"/>
+                                    <L7p:RightValue stringValue="los angeles"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:HardcodedResponse>
+                                <L7p:Base64ResponseBody stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiPgogICA8c29hcGVudjpCb2R5PgogICAgICA8dm9vbmFpcnJlc2VydmF0aW9uRGV0YWlsc1Jlc3BvbnNlIHhtbG5zPSJodHRwOi8vdm9vbmFpci5jb20vd3MiPgogICAgICAgIDx2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICA8RGVzdGluYXRpb24+JHtkZXN0aW5hdGlvbi5yZXN1bHR9PC9EZXN0aW5hdGlvbj4KCQkgIDxzdGFydGluZ3BvaW50PiR7c3RhcnRpbmdwb2ludC5yZXN1bHR9PC9zdGFydGluZ3BvaW50PgogICAgICAgICAgPFByaWNlPjQ1OS4wMDwvUHJpY2U+CiAgICAgICAgPC92b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgIDwvdm9vbmFpcnJlc2VydmF0aW9uRGV0YWlsc1Jlc3BvbnNlPgogICA8L3NvYXBlbnY6Qm9keT4KPC9zb2FwZW52OkVudmVsb3BlPg=="/>
+                                <L7p:ResponseContentType stringValue="application/soap+xml; charset=utf-8"/>
+                            </L7p:HardcodedResponse>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Starting point = Los Angeles"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${startingpoint.result}"/>
+                                <L7p:Expression2 stringValue="montreal"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="montreal"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${destination.result}"/>
+                                <L7p:Expression2 stringValue="montreal"/>
+                                <L7p:Negate booleanValue="true"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Negated booleanValue="true"/>
+                                    <L7p:RightValue stringValue="montreal"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:HardcodedResponse>
+                                <L7p:Base64ResponseBody stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiPgogICA8c29hcGVudjpCb2R5PgogICAgICA8dm9vbmFpcnJlc2VydmF0aW9uRGV0YWlsc1Jlc3BvbnNlIHhtbG5zPSJodHRwOi8vdm9vbmFpci5jb20vd3MiPgogICAgICAgIDx2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICA8RGVzdGluYXRpb24+JHtkZXN0aW5hdGlvbi5yZXN1bHR9PC9EZXN0aW5hdGlvbj4KCQkgIDxTdGFydGluZ3BvaW50PiR7c3RhcnRpbmdwb2ludC5yZXN1bHR9PC9TdGFydGluZ3BvaW50PgogICAgICAgICAgPFByaWNlPjc5OS4wMDwvUHJpY2U+CiAgICAgICAgPC92b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgIDwvdm9vbmFpcnJlc2VydmF0aW9uRGV0YWlsc1Jlc3BvbnNlPgogICA8L3NvYXBlbnY6Qm9keT4KPC9zb2FwZW52OkVudmVsb3BlPg=="/>
+                                <L7p:ResponseContentType stringValue="application/soap+xml; charset=utf-8"/>
+                            </L7p:HardcodedResponse>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Startingpoint = Montreal"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${startingpoint.result}"/>
+                                <L7p:Expression2 stringValue="toronto"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="toronto"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${destination.result}"/>
+                                <L7p:Expression2 stringValue="toronto"/>
+                                <L7p:Negate booleanValue="true"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Negated booleanValue="true"/>
+                                    <L7p:RightValue stringValue="toronto"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:HardcodedResponse>
+                                <L7p:Base64ResponseBody stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiPgogICA8c29hcGVudjpCb2R5PgogICAgICA8dm9vbmFpcnJlc2VydmF0aW9uRGV0YWlsc1Jlc3BvbnNlIHhtbG5zPSJodHRwOi8vdm9vbmFpci5jb20vd3MiPgogICAgICAgIDx2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgIDxEZXN0aW5hdGlvbj4ke2Rlc3RpbmF0aW9uLnJlc3VsdH08L0Rlc3RpbmF0aW9uPgoJCSAgICA8c3RhcnRpbmdwb2ludD4ke3N0YXJ0aW5ncG9pbnQucmVzdWx0fTwvc3RhcnRpbmdwb2ludD4KICAgICAgICAgICAgPFByaWNlPjU5OS4wMDwvUHJpY2U+CiAgICAgICAgPC92b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgIDwvdm9vbmFpcnJlc2VydmF0aW9uRGV0YWlsc1Jlc3BvbnNlPgogICA8L3NvYXBlbnY6Qm9keT4KPC9zb2FwZW52OkVudmVsb3BlPg=="/>
+                                <L7p:ResponseContentType stringValue="application/soap+xml; charset=utf-8"/>
+                            </L7p:HardcodedResponse>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="startingpoint = Toronto "/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${destination.result}"/>
+                                <L7p:Operator operatorNull="null"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="int"/>
+                                    </L7p:item>
+                                    <L7p:item cardinality="included">
+                                    <L7p:Max intValue="120"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${startingpoint.result}"/>
+                                <L7p:Operator operatorNull="null"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="int"/>
+                                    </L7p:item>
+                                    <L7p:item cardinality="included">
+                                    <L7p:Max intValue="120"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:HardcodedResponse>
+                                <L7p:Base64ResponseBody stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiPgogICA8c29hcGVudjpCb2R5PgogICAgICA8dm9vbmFpcnJlc2VydmF0aW9uRGV0YWlsc1Jlc3BvbnNlIHhtbG5zPSJodHRwOi8vdm9vbmFpci5jb20vd3MiPgogICAgICAgIDx2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgIDxEZXN0aW5hdGlvbj4ke2Rlc3RpbmF0aW9uLnJlc3VsdH08L0Rlc3RpbmF0aW9uPgoJCSAgICA8c3RhcnRpbmdwb2ludD4ke3N0YXJ0aW5ncG9pbnQucmVzdWx0fTwvc3RhcnRpbmdwb2ludD4KICAgICAgICAgICAgPEVycm9yPkludmFsaWQgRGVzdGluYXRpb24gYW5kIG9yIHN0YXJ0aW5nIHBvaW50PC9FcnJvcj4KICAgICAgICA8L3Zvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgPC92b29uYWlycmVzZXJ2YXRpb25EZXRhaWxzUmVzcG9uc2U+CiAgIDwvc29hcGVudjpCb2R5Pgo8L3NvYXBlbnY6RW52ZWxvcGU+"/>
+                                <L7p:ResponseContentType stringValue="application/soap+xml; charset=utf-8"/>
+                            </L7p:HardcodedResponse>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Wrong data input"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${destination.result}"/>
+                                <L7p:Expression2 stringValue="${startingpoint.result}"/>
+                                <L7p:Negate booleanValue="true"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Negated booleanValue="true"/>
+                                    <L7p:RightValue stringValue="${startingpoint.result}"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:HardcodedResponse>
+                                <L7p:Base64ResponseBody stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiPgogICA8c29hcGVudjpCb2R5PgogICAgICA8dm9vbmFpcnJlc2VydmF0aW9uRGV0YWlsc1Jlc3BvbnNlIHhtbG5zPSJodHRwOi8vdm9vbmFpci5jb20vd3MiPgogICAgICAgIDx2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgIDxEZXN0aW5hdGlvbj4ke2Rlc3RpbmF0aW9uLnJlc3VsdH08L0Rlc3RpbmF0aW9uPgoJICAgIDxzdGFydGluZ3BvaW50PiR7c3RhcnRpbmdwb2ludC5yZXN1bHR9PC9zdGFydGluZ3BvaW50PgogICAgICAgICAgICA8RXJyb3I+Vm9vbmFpciBEb2VzbnQgZmx5IHRvIG9yIGZyb20gdGhhdCBsb2NhdGlvbjwvRXJyb3I+CiAgICAgICAgPC92b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgIDwvdm9vbmFpcnJlc2VydmF0aW9uRGV0YWlsc1Jlc3BvbnNlPgogICA8L3NvYXBlbnY6Qm9keT4KPC9zb2FwZW52OkVudmVsb3BlPg=="/>
+                                <L7p:ResponseContentType stringValue="application/soap+xml; charset=utf-8"/>
+                            </L7p:HardcodedResponse>
+                        </wsp:All>
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:FaultLevel>
+                                <L7p:LevelInfo soapFaultLevel="included">
+                                    <L7p:FaultTemplate stringValueReference="inline"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Body>
+        <soapenv:Fault>
+            <faultcode>${destination.result}</faultcode>
+            <faultstring>${startingpoint.result}</faultstring>
+            <faultactor>Invalid request</faultactor>
+            <detail>Invalid request because the destination and startingpoint are the same</detail>
+        </soapenv:Fault>
+    </soapenv:Body>
+</soapenv:Envelope>]]></L7p:FaultTemplate>
+                                    <L7p:Level intValue="1"/>
+                                </L7p:LevelInfo>
+                            </L7p:FaultLevel>
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${destination.result}"/>
+                                <L7p:Expression2 stringValue="${startingpoint.result}"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="${startingpoint.result}"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:FalseAssertion/>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Destination and straing point are the same"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                    </wsp:OneOrMore>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="--  Price check on flights"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:WSDLOperation>
+                        <L7p:OperationName stringValue="Purchaseflight"/>
+                    </L7p:WSDLOperation>
+                    <L7p:RequestXpathAssertion>
+                        <L7p:VariablePrefix stringValue="destination"/>
+                        <L7p:XpathExpression xpathExpressionValue="included">
+                            <L7p:Expression stringValue="/s:Envelope/s:Body/s0:Purchaseflight/s0:Destination"/>
+                            <L7p:Namespaces mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="s0"/>
+                                    <L7p:value stringValue="http://voonair.com/ws"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="soapenv"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="s"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="ws"/>
+                                    <L7p:value stringValue="http://voonair.com/ws"/>
+                                </L7p:entry>
+                            </L7p:Namespaces>
+                            <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                        </L7p:XpathExpression>
+                    </L7p:RequestXpathAssertion>
+                    <L7p:RequestXpathAssertion>
+                        <L7p:VariablePrefix stringValue="seats"/>
+                        <L7p:XpathExpression xpathExpressionValue="included">
+                            <L7p:Expression stringValue="/s:Envelope/s:Body/s0:Purchaseflight/s0:seats"/>
+                            <L7p:Namespaces mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="s0"/>
+                                    <L7p:value stringValue="http://voonair.com/ws"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="soapenv"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="s"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="ws"/>
+                                    <L7p:value stringValue="http://voonair.com/ws"/>
+                                </L7p:entry>
+                            </L7p:Namespaces>
+                            <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                        </L7p:XpathExpression>
+                    </L7p:RequestXpathAssertion>
+                    <L7p:RequestXpathAssertion>
+                        <L7p:VariablePrefix stringValue="price"/>
+                        <L7p:XpathExpression xpathExpressionValue="included">
+                            <L7p:Expression stringValue="/s:Envelope/s:Body/s0:Purchaseflight/s0:Price"/>
+                            <L7p:Namespaces mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="s0"/>
+                                    <L7p:value stringValue="http://voonair.com/ws"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="soapenv"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="s"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="ws"/>
+                                    <L7p:value stringValue="http://voonair.com/ws"/>
+                                </L7p:entry>
+                            </L7p:Namespaces>
+                            <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                        </L7p:XpathExpression>
+                    </L7p:RequestXpathAssertion>
+                    <L7p:RequestXpathAssertion>
+                        <L7p:VariablePrefix stringValue="startingpoint"/>
+                        <L7p:XpathExpression xpathExpressionValue="included">
+                            <L7p:Expression stringValue="/s:Envelope/s:Body/s0:Purchaseflight/s0:startingpoint"/>
+                            <L7p:Namespaces mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="s0"/>
+                                    <L7p:value stringValue="http://voonair.com/ws"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="soapenv"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="s"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="ws"/>
+                                    <L7p:value stringValue="http://voonair.com/ws"/>
+                                </L7p:entry>
+                            </L7p:Namespaces>
+                            <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                        </L7p:XpathExpression>
+                    </L7p:RequestXpathAssertion>
+                    <L7p:RequestXpathAssertion>
+                        <L7p:VariablePrefix stringValue="account"/>
+                        <L7p:XpathExpression xpathExpressionValue="included">
+                            <L7p:Expression stringValue="/s:Envelope/s:Body/s0:Purchaseflight/s0:accountid"/>
+                            <L7p:Namespaces mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="s0"/>
+                                    <L7p:value stringValue="http://voonair.com/ws"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="soapenv"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="s"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="ws"/>
+                                    <L7p:value stringValue="http://voonair.com/ws"/>
+                                </L7p:entry>
+                            </L7p:Namespaces>
+                            <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                        </L7p:XpathExpression>
+                    </L7p:RequestXpathAssertion>
+                    <wsp:OneOrMore wsp:Usage="Required">
+                        <wsp:All wsp:Usage="Required">
+                            <wsp:OneOrMore wsp:Usage="Required">
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${startingpoint.result}"/>
+                                    <L7p:Operator operatorNull="null"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="int"/>
+                                    </L7p:item>
+                                    <L7p:item cardinality="included">
+                                    <L7p:Max intValue="120"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiPgogICA8c29hcGVudjpCb2R5PgogICAgICA8dm9vbmFpcnJlc2VydmF0aW9uRGV0YWlsc1Jlc3BvbnNlIHhtbG5zPSJodHRwOi8vdm9vbmFpci5jb20vd3MiPgogICAgICAgIDx2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgIDxEZXN0aW5hdGlvbj4ke2Rlc3RpbmF0aW9uLnJlc3VsdH08L0Rlc3RpbmF0aW9uPgogICAgICAgICAgICA8U3RhcnRpbmdwb2ludD4ke3N0YXJ0aW5ncG9pbnQucmVzdWx0fTwvU3RhcnRpbmdwb2ludD4KICAgICAgICAgICAgPEVycm9yPkludmFsaWQgRGVzdGluYXRpb24gYW5kIG9yIHN0YXJ0aW5nIHBvaW50PC9FcnJvcj4KICAgICAgICAgIDwvdm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICA8L3Zvb25haXJyZXNlcnZhdGlvbkRldGFpbHNSZXNwb25zZT4KICAgPC9zb2FwZW52OkJvZHk+Cjwvc29hcGVudjpFbnZlbG9wZT4="/>
+                                    <L7p:ResponseContentType stringValue="application/soap+xml; charset=utf-8"/>
+                                    </L7p:HardcodedResponse>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="- no startingpoint"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                </wsp:All>
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${price.result}"/>
+                                    <L7p:Operator operatorNull="null"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="string"/>
+                                    </L7p:item>
+                                    <L7p:item binary="included">
+                                    <L7p:Operator operator="EMPTY"/>
+                                    <L7p:RightValue stringValue=""/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiPgogICA8c29hcGVudjpCb2R5PgogICAgICA8dm9vbmFpcnJlc2VydmF0aW9uRGV0YWlsc1Jlc3BvbnNlIHhtbG5zPSJodHRwOi8vdm9vbmFpci5jb20vd3MiPgogICAgICAgIDx2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgPERlc3RpbmF0aW9uPiR7ZGVzdGluYXRpb24ucmVzdWx0fTwvRGVzdGluYXRpb24+CgkJICAgPHN0YXJ0aW5ncG9pbnQ+JHtzdGFydGluZ3BvaW50LnJlc3VsdH08L3N0YXJ0aW5ncG9pbnQ+CiAgICAgICAgICAgPEVycm9yPk5vIHByaWNlIGFzc29jaWF0ZWQgdG8gdGhlIHB1cmNoYXNlPC9FcnJvcj4KICAgICAgICA8L3Zvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgPC92b29uYWlycmVzZXJ2YXRpb25EZXRhaWxzUmVzcG9uc2U+CiAgIDwvc29hcGVudjpCb2R5Pgo8L3NvYXBlbnY6RW52ZWxvcGU+"/>
+                                    <L7p:ResponseContentType stringValue="application/soap+xml; charset=utf-8"/>
+                                    </L7p:HardcodedResponse>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue=" - No Price associated"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                </wsp:All>
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${seats.result}"/>
+                                    <L7p:Operator operatorNull="null"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="string"/>
+                                    </L7p:item>
+                                    <L7p:item binary="included">
+                                    <L7p:Operator operator="EMPTY"/>
+                                    <L7p:RightValue stringValue=""/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiPgogICA8c29hcGVudjpCb2R5PgogICAgICA8dm9vbmFpcnJlc2VydmF0aW9uRGV0YWlsc1Jlc3BvbnNlIHhtbG5zPSJodHRwOi8vdm9vbmFpci5jb20vd3MiPgogICAgICAgIDx2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgIDxEZXN0aW5hdGlvbj4ke2Rlc3RpbmF0aW9uLnJlc3VsdH08L0Rlc3RpbmF0aW9uPgoJCSAgICA8U3RhcnRpbmdwb2ludD4ke3N0YXJ0aW5ncG9pbnQucmVzdWx0fTwvU3RhcnRpbmdwb2ludD4KICAgICAgICAgICAgPEVycm9yPk5vIHNlYXRzIHNlbGVjdGVkPC9FcnJvcj4KICAgICAgICA8L3Zvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgPC92b29uYWlycmVzZXJ2YXRpb25EZXRhaWxzUmVzcG9uc2U+CiAgIDwvc29hcGVudjpCb2R5Pgo8L3NvYXBlbnY6RW52ZWxvcGU+"/>
+                                    <L7p:ResponseContentType stringValue="application/soap+xml; charset=utf-8"/>
+                                    </L7p:HardcodedResponse>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="- Number of seats not selected"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                </wsp:All>
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${account.result}"/>
+                                    <L7p:Operator operatorNull="null"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="string"/>
+                                    </L7p:item>
+                                    <L7p:item binary="included">
+                                    <L7p:Operator operator="EMPTY"/>
+                                    <L7p:RightValue stringValue=""/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiPgogICA8c29hcGVudjpCb2R5PgogICAgICA8dm9vbmFpcnJlc2VydmF0aW9uRGV0YWlsc1Jlc3BvbnNlIHhtbG5zPSJodHRwOi8vdm9vbmFpci5jb20vd3MiPgogICAgICAgICA8dm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICAgIDxEZXN0aW5hdGlvbj4ke2Rlc3RpbmF0aW9uLnJlc3VsdH08L0Rlc3RpbmF0aW9uPgoJCSAgIDxTdGFydGluZ3BvaW50PiR7c3RhcnRpbmdwb2ludC5yZXN1bHR9PC9TdGFydGluZ3BvaW50PgogICAgICAgICAgIDxFcnJvcj5QbGVhc2UgcGxhY2UgeW91ciBhY2NvdW50IGluZm9ybWF0aW9uIGluIHRoZSByZXF1ZXN0PC9FcnJvcj4KICAgICAgICAgPC92b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgIDwvdm9vbmFpcnJlc2VydmF0aW9uRGV0YWlsc1Jlc3BvbnNlPgogICA8L3NvYXBlbnY6Qm9keT4KPC9zb2FwZW52OkVudmVsb3BlPg=="/>
+                                    <L7p:ResponseContentType stringValue="application/soap+xml; charset=utf-8"/>
+                                    </L7p:HardcodedResponse>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue=" -  No account id information"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                </wsp:All>
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${destination.result}"/>
+                                    <L7p:Operator operatorNull="null"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="int"/>
+                                    </L7p:item>
+                                    <L7p:item cardinality="included">
+                                    <L7p:Max intValue="120"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiPgogICA8c29hcGVudjpCb2R5PgogICAgICA8dm9vbmFpcnJlc2VydmF0aW9uRGV0YWlsc1Jlc3BvbnNlIHhtbG5zPSJodHRwOi8vdm9vbmFpci5jb20vd3MiPgogICAgICAgIDx2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgIDxEZXN0aW5hdGlvbj4ke2Rlc3RpbmF0aW9uLnJlc3VsdH08L0Rlc3RpbmF0aW9uPgoJCSAgICA8U3RhcnRpbmdwb2ludD4ke3N0YXJ0aW5ncG9pbnQucmVzdWx0fTwvU3RhcnRpbmdwb2ludD4KICAgICAgICAgICAgPEVycm9yPkludmFsaWQgRGVzdGluYXRpb24gYW5kIG9yIHN0YXJ0aW5nIHBvaW50PC9FcnJvcj4KICAgICAgICA8L3Zvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgPC92b29uYWlycmVzZXJ2YXRpb25EZXRhaWxzUmVzcG9uc2U+CiAgIDwvc29hcGVudjpCb2R5Pgo8L3NvYXBlbnY6RW52ZWxvcGU+"/>
+                                    <L7p:ResponseContentType stringValue="application/soap+xml; charset=utf-8"/>
+                                    </L7p:HardcodedResponse>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="- No destination"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                </wsp:All>
+                            </wsp:OneOrMore>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Wrong data input"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                        <wsp:All wsp:Usage="Required">
+                            <wsp:OneOrMore wsp:Usage="Required">
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${startingpoint.result}"/>
+                                    <L7p:Expression2 stringValue="vancouver"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="vancouver"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${destination.result}"/>
+                                    <L7p:Expression2 stringValue="vancouver"/>
+                                    <L7p:Negate booleanValue="true"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Negated booleanValue="true"/>
+                                    <L7p:RightValue stringValue="vancouver"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <wsp:OneOrMore wsp:Usage="Required">
+                                    <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${seats.result}"/>
+                                    <L7p:Expression2 stringValue="1"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="1"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:UUIDGenerator>
+                                    <L7p:TargetVariable stringValue="accountid"/>
+                                    </L7p:UUIDGenerator>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOndzPSJodHRwOi8vdm9vbmFpci5jb20vd3MiPgogICA8c29hcGVudjpIZWFkZXIvPgogICAgIDxzb2FwZW52OkJvZHk+CiAgICAgIDxQdXJjaGFzZWZsaWdodFJlc3BvbnNlPgogICAgICAgIDxEZXN0aW5hdGlvbj4ke2Rlc3RpbmF0aW9uLnJlc3VsdH08L0Rlc3RpbmF0aW9uPgogICAgICAgIDxzZWF0cz4ke3NlYXRzLnJlc3VsdH08L3NlYXRzPgogICAgICAgIDxQcmljZT4ke3ByaWNlLnJlc3VsdH08L1ByaWNlPgoJICAgIDxhY2NvdW50aWQ+JHthY2NvdW50LnJlc3VsdH08L2FjY291bnRpZD4KICAgICAgICA8cmVmZXJlbmNlbnVtYmVyPiR7YWNjb3VudGlkfTwvcmVmZXJlbmNlbnVtYmVyPgogICAgICAgIDxzdGFydGluZ3BvaW50PiR7c3RhcnRpbmdwb2ludC5yZXN1bHR9PC9zdGFydGluZ3BvaW50PgogICAgICA8L1B1cmNoYXNlZmxpZ2h0UmVzcG9uc2U+CiAgICAgPC9zb2FwZW52OkJvZHk+Cjwvc29hcGVudjpFbnZlbG9wZT4="/>
+                                    <L7p:ResponseContentType stringValue="application/soap+xml; charset=utf-8"/>
+                                    </L7p:HardcodedResponse>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="seat for 1"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                    </wsp:All>
+                                    <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${seats.result}"/>
+                                    <L7p:Expression2 stringValue="2"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="2"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:UUIDGenerator>
+                                    <L7p:TargetVariable stringValue="accountid"/>
+                                    </L7p:UUIDGenerator>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOndzPSJodHRwOi8vdm9vbmFpci5jb20vd3MiPgogICA8c29hcGVudjpIZWFkZXIvPgogICA8c29hcGVudjpCb2R5PgogICAgICA8UHVyY2hhc2VmbGlnaHRSZXNwb25zZT4KICAgICAgICAgPERlc3RpbmF0aW9uPiR7ZGVzdGluYXRpb24ucmVzdWx0fTwvRGVzdGluYXRpb24+CiAgICAgICAgIDxzZWF0cz4ke3NlYXRzLnJlc3VsdH08L3NlYXRzPgogICAgICAgICA8UHJpY2U+MTA5OS4wMDwvUHJpY2U+CiAgICAgICAgIDxhY2NvdW50aWQ+JHthY2NvdW50LnJlc3VsdH08L2FjY291bnRpZD4KICAgICAgICAgPHJlZmVyZW5jZW51bWJlcj4ke2FjY291bnRpZH08L3JlZmVyZW5jZW51bWJlcj4KICAgICAgICAgPHN0YXJ0aW5ncG9pbnQ+JHtzdGFydGluZ3BvaW50LnJlc3VsdH08L3N0YXJ0aW5ncG9pbnQ+CiAgICAgIDwvUHVyY2hhc2VmbGlnaHRSZXNwb25zZT4KICAgPC9zb2FwZW52OkJvZHk+Cjwvc29hcGVudjpFbnZlbG9wZT4="/>
+                                    <L7p:ResponseContentType stringValue="application/soap+xml; charset=utf-8"/>
+                                    </L7p:HardcodedResponse>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Seat for 2"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                    </wsp:All>
+                                    <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${seats.result}"/>
+                                    <L7p:Expression2 stringValue="2"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="2"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOndzPSJodHRwOi8vdm9vbmFpci5jb20vd3MiPgogICA8c29hcGVudjpIZWFkZXIvPgogICAgPHNvYXBlbnY6Qm9keT4KICAgICAgPFB1cmNoYXNlZmxpZ2h0UmVzcG9uc2U+CiAgICAgICAgPERlc3RpbmF0aW9uPiR7ZGVzdGluYXRpb24ucmVzdWx0fTwvRGVzdGluYXRpb24+CiAgICAgICAgPHNlYXRzPiR7c2VhdHMucmVzdWx0fTwvc2VhdHM+CiAgICAgICAgPFByaWNlPlB1cmNoYXNlIGRpZCBub3QgZ28gdGhyb3VnaCBiZWNhdXNlIHdlIG9ubHkgaGF2ZSAyIHNlYXRzIGF2YWlsYWJsZTwvUHJpY2U+CiAgICAgICAgPHN0YXJ0aW5ncG9pbnQ+JHtzdGFydGluZ3BvaW50LnJlc3VsdH08L3N0YXJ0aW5ncG9pbnQ+CiAgICAgIDwvUHVyY2hhc2VmbGlnaHRSZXNwb25zZT4KICAgIDwvc29hcGVudjpCb2R5Pgo8L3NvYXBlbnY6RW52ZWxvcGU+"/>
+                                    <L7p:ResponseContentType stringValue="application/soap+xml; charset=utf-8"/>
+                                    </L7p:HardcodedResponse>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="- greater than 3"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                    </wsp:All>
+                                    </wsp:OneOrMore>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Starting point = Vancouver"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                </wsp:All>
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${startingpoint.result}"/>
+                                    <L7p:Expression2 stringValue="los angeles"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="los angeles"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${destination.result}"/>
+                                    <L7p:Expression2 stringValue="los angeles"/>
+                                    <L7p:Negate booleanValue="true"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Negated booleanValue="true"/>
+                                    <L7p:RightValue stringValue="los angeles"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <wsp:OneOrMore wsp:Usage="Required">
+                                    <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${seats.result}"/>
+                                    <L7p:Expression2 stringValue="1"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="1"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:UUIDGenerator>
+                                    <L7p:TargetVariable stringValue="accountid"/>
+                                    </L7p:UUIDGenerator>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOndzPSJodHRwOi8vdm9vbmFpci5jb20vd3MiPgogIDxzb2FwZW52OkhlYWRlci8+CiAgIDxzb2FwZW52OkJvZHk+CiAgICAgPFB1cmNoYXNlZmxpZ2h0UmVzcG9uc2U+CiAgICAgICAgIDxEZXN0aW5hdGlvbj4ke2Rlc3RpbmF0aW9uLnJlc3VsdH08L0Rlc3RpbmF0aW9uPgogICAgICAgICA8c2VhdHM+JHtzZWF0cy5yZXN1bHR9PC9zZWF0cz4KICAgICAgICAgPFByaWNlPiR7cHJpY2UucmVzdWx0fTwvUHJpY2U+CiAgICAgICAgIDxyZWZlcmVuY2VudW1iZXI+JHthY2NvdW50aWR9PC9yZWZlcmVuY2VudW1iZXI+CiAgICAgICAgIDxzdGFydGluZ3BvaW50PiR7c3RhcnRpbmdwb2ludC5yZXN1bHR9PC9zdGFydGluZ3BvaW50PgogICAgIDwvUHVyY2hhc2VmbGlnaHRSZXNwb25zZT4KICAgPC9zb2FwZW52OkJvZHk+Cjwvc29hcGVudjpFbnZlbG9wZT4="/>
+                                    <L7p:ResponseContentType stringValue="application/soap+xml; charset=utf-8"/>
+                                    </L7p:HardcodedResponse>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="seat for 1"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                    </wsp:All>
+                                    <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${seats.result}"/>
+                                    <L7p:Expression2 stringValue="2"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="2"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:UUIDGenerator>
+                                    <L7p:TargetVariable stringValue="accountid"/>
+                                    </L7p:UUIDGenerator>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOndzPSJodHRwOi8vdm9vbmFpci5jb20vd3MiPgogICA8c29hcGVudjpIZWFkZXIvPgogICAgPHNvYXBlbnY6Qm9keT4KICAgICA8UHVyY2hhc2VmbGlnaHRSZXNwb25zZT4KICAgICAgICAgPERlc3RpbmF0aW9uPiR7ZGVzdGluYXRpb24ucmVzdWx0fTwvRGVzdGluYXRpb24+CiAgICAgICAgIDxzZWF0cz4ke3NlYXRzLnJlc3VsdH08L3NlYXRzPgogICAgICAgICA8UHJpY2U+NTUwLjAwPC9QcmljZT4KICAgICAgICAgPHJlZmVyZW5jZW51bWJlcj4ke2FjY291bnRpZH08L3JlZmVyZW5jZW51bWJlcj4KICAgICAgICAgPHN0YXJ0aW5ncG9pbnQ+JHtzdGFydGluZ3BvaW50LnJlc3VsdH08L3N0YXJ0aW5ncG9pbnQ+CiAgICAgPC9QdXJjaGFzZWZsaWdodFJlc3BvbnNlPgogICAgPC9zb2FwZW52OkJvZHk+Cjwvc29hcGVudjpFbnZlbG9wZT4="/>
+                                    <L7p:ResponseContentType stringValue="application/soap+xml; charset=utf-8"/>
+                                    </L7p:HardcodedResponse>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Seat for 2"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                    </wsp:All>
+                                    <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${seat.result}"/>
+                                    <L7p:Expression2 stringValue="2"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="2"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOndzPSJodHRwOi8vdm9vbmFpci5jb20vd3MiPgogICA8c29hcGVudjpIZWFkZXIvPgogICAgPHNvYXBlbnY6Qm9keT4KICAgICAgPFB1cmNoYXNlZmxpZ2h0UmVzcG9uc2U+CiAgICAgICAgPERlc3RpbmF0aW9uPiR7ZGVzdGluYXRpb24ucmVzdWx0fTwvRGVzdGluYXRpb24+CiAgICAgICAgPHNlYXRzPiR7c2VhdHMucmVzdWx0fTwvc2VhdHM+CiAgICAgICAgPFByaWNlPlB1cmNoYXNlIGRpZCBub3QgZ28gdGhyb3VnaCBiZWNhdXNlIHdlIG9ubHkgaGF2ZSAyIHNlYXRzIGF2YWlsYWJsZTwvUHJpY2U+CiAgICAgICAgPHN0YXJ0aW5ncG9pbnQ+JHtzdGFydGluZ3BvaW50LnJlc3VsdH08L3N0YXJ0aW5ncG9pbnQ+CiAgICAgIDwvUHVyY2hhc2VmbGlnaHRSZXNwb25zZT4KICAgIDwvc29hcGVudjpCb2R5Pgo8L3NvYXBlbnY6RW52ZWxvcGU+"/>
+                                    <L7p:ResponseContentType stringValue="application/soap+xml; charset=utf-8"/>
+                                    </L7p:HardcodedResponse>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="- greater than 3"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                    </wsp:All>
+                                    </wsp:OneOrMore>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Starting point = Los Angeles"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                </wsp:All>
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${startingpoint.result}"/>
+                                    <L7p:Expression2 stringValue="montreal"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="montreal"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${destination.result}"/>
+                                    <L7p:Expression2 stringValue="montreal"/>
+                                    <L7p:Negate booleanValue="true"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Negated booleanValue="true"/>
+                                    <L7p:RightValue stringValue="montreal"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <wsp:OneOrMore wsp:Usage="Required">
+                                    <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${seats.result}"/>
+                                    <L7p:Expression2 stringValue="1"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="1"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:UUIDGenerator>
+                                    <L7p:TargetVariable stringValue="accountid"/>
+                                    </L7p:UUIDGenerator>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOndzPSJodHRwOi8vdm9vbmFpci5jb20vd3MiPgogICA8c29hcGVudjpCb2R5PgogICAgICA8UHVyY2hhc2VmbGlnaHRSZXNwb25zZT4KICAgICAgICAgPERlc3RpbmF0aW9uPiR7ZGVzdGluYXRpb24ucmVzdWx0fTwvRGVzdGluYXRpb24+CiAgICAgICAgIDxzZWF0cz4ke3NlYXRzLnJlc3VsdH08L3NlYXRzPgogICAgICAgICA8UHJpY2U+JHtwcmljZS5yZXN1bHR9PC9QcmljZT4KICAgICAgICAgPHJlZmVyZW5jZW51bWJlcj4ke2FjY291bnRpZH08L3JlZmVyZW5jZW51bWJlcj4KICAgICAgICAgPHN0YXJ0aW5ncG9pbnQ+JHtzdGFydGluZ3BvaW50LnJlc3VsdH08L3N0YXJ0aW5ncG9pbnQ+CiAgICAgIDwvUHVyY2hhc2VmbGlnaHRSZXNwb25zZT4KICAgPC9zb2FwZW52OkJvZHk+Cjwvc29hcGVudjpFbnZlbG9wZT4="/>
+                                    <L7p:ResponseContentType stringValue="application/soap+xml; charset=utf-8"/>
+                                    </L7p:HardcodedResponse>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="seat for 1"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                    </wsp:All>
+                                    <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${seats.result}"/>
+                                    <L7p:Expression2 stringValue="2"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="2"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:UUIDGenerator>
+                                    <L7p:TargetVariable stringValue="accountid"/>
+                                    </L7p:UUIDGenerator>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOndzPSJodHRwOi8vdm9vbmFpci5jb20vd3MiPgogICA8c29hcGVudjpCb2R5PgogICAgICA8UHVyY2hhc2VmbGlnaHRSZXNwb25zZT4KICAgICAgICAgPERlc3RpbmF0aW9uPiR7ZGVzdGluYXRpb24ucmVzdWx0fTwvRGVzdGluYXRpb24+CiAgICAgICAgIDxzZWF0cz4ke3NlYXRzLnJlc3VsdH08L3NlYXRzPgogICAgICAgICA8UHJpY2U+Njk4LjAwPC9QcmljZT4KICAgICAgICAgPHJlZmVyZW5jZW51bWJlcj4ke2FjY291bnRpZH08L3JlZmVyZW5jZW51bWJlcj4KICAgICAgICAgPHN0YXJ0aW5ncG9pbnQ+JHtzdGFydGluZ3BvaW50LnJlc3VsdH08L3N0YXJ0aW5ncG9pbnQ+CiAgICAgIDwvUHVyY2hhc2VmbGlnaHRSZXNwb25zZT4KICAgPC9zb2FwZW52OkJvZHk+Cjwvc29hcGVudjpFbnZlbG9wZT4="/>
+                                    <L7p:ResponseContentType stringValue="application/soap+xml; charset=utf-8"/>
+                                    </L7p:HardcodedResponse>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Seat for 2"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                    </wsp:All>
+                                    <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${seats.result}"/>
+                                    <L7p:Expression2 stringValue="2"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="2"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOndzPSJodHRwOi8vdm9vbmFpci5jb20vd3MiPgogICA8c29hcGVudjpCb2R5PgogICAgICA8UHVyY2hhc2VmbGlnaHRSZXNwb25zZT4KICAgICAgICAgPERlc3RpbmF0aW9uPiR7ZGVzdGluYXRpb24ucmVzdWx0fTwvRGVzdGluYXRpb24+CiAgICAgICAgIDxzZWF0cz4ke3NlYXRzLnJlc3VsdH08L3NlYXRzPgogICAgICAgICA8UHJpY2U+UHVyY2hhc2UgZGlkIG5vdCBnbyB0aHJvdWdoIGJlY2F1c2Ugd2Ugb25seSBoYXZlIDIgc2VhdHMgYXZhaWxhYmxlPC9QcmljZT4KICAgICAgICAgPHN0YXJ0aW5ncG9pbnQ+JHtzdGFydGluZ3BvaW50LnJlc3VsdH08L3N0YXJ0aW5ncG9pbnQ+CiAgICAgIDwvUHVyY2hhc2VmbGlnaHRSZXNwb25zZT4KICAgPC9zb2FwZW52OkJvZHk+Cjwvc29hcGVudjpFbnZlbG9wZT4="/>
+                                    <L7p:ResponseContentType stringValue="application/soap+xml; charset=utf-8"/>
+                                    </L7p:HardcodedResponse>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="- greater than 3"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                    </wsp:All>
+                                    </wsp:OneOrMore>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Starting point = Montreal"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                </wsp:All>
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${startingpoint.result}"/>
+                                    <L7p:Expression2 stringValue="toronto"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="toronto"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${destination.result}"/>
+                                    <L7p:Expression2 stringValue="toronto"/>
+                                    <L7p:Negate booleanValue="true"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Negated booleanValue="true"/>
+                                    <L7p:RightValue stringValue="toronto"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <wsp:OneOrMore wsp:Usage="Required">
+                                    <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${seats.result}"/>
+                                    <L7p:Expression2 stringValue="1"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="1"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:UUIDGenerator>
+                                    <L7p:TargetVariable stringValue="accountid"/>
+                                    </L7p:UUIDGenerator>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOndzPSJodHRwOi8vdm9vbmFpci5jb20vd3MiPgogICA8c29hcGVudjpCb2R5PgogICAgICA8UHVyY2hhc2VmbGlnaHRSZXNwb25zZT4KICAgICAgICAgPERlc3RpbmF0aW9uPiR7ZGVzdGluYXRpb24ucmVzdWx0fTwvRGVzdGluYXRpb24+CiAgICAgICAgIDxzZWF0cz4ke3NlYXRzLnJlc3VsdH08L3NlYXRzPgogICAgICAgICA8UHJpY2U+JHtwcmljZS5yZXN1bHR9PC9QcmljZT4KICAgICAgICAgPHJlZmVyZW5jZW51bWJlcj4ke2FjY291bnRpZH08L3JlZmVyZW5jZW51bWJlcj4KICAgICAgICAgPHdzOnN0YXJ0aW5ncG9pbnQ+JHtzdGFydGluZ3BvaW50LnJlc3VsdH08L3dzOnN0YXJ0aW5ncG9pbnQ+CiAgICAgIDwvUHVyY2hhc2VmbGlnaHRSZXNwb25zZT4KICAgPC9zb2FwZW52OkJvZHk+Cjwvc29hcGVudjpFbnZlbG9wZT4="/>
+                                    <L7p:ResponseContentType stringValue="application/soap+xml; charset=utf-8"/>
+                                    </L7p:HardcodedResponse>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="seat for 1"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                    </wsp:All>
+                                    <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${seats.result}"/>
+                                    <L7p:Expression2 stringValue="2"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="2"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:UUIDGenerator>
+                                    <L7p:TargetVariable stringValue="accountid"/>
+                                    </L7p:UUIDGenerator>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOndzPSJodHRwOi8vdm9vbmFpci5jb20vd3MiPgogICA8c29hcGVudjpCb2R5PgogICAgICA8UHVyY2hhc2VmbGlnaHRSZXNwb25zZT4KICAgICAgICAgPERlc3RpbmF0aW9uPiR7ZGVzdGluYXRpb24ucmVzdWx0fTwvRGVzdGluYXRpb24+CiAgICAgICAgIDxzZWF0cz4ke3NlYXRzLnJlc3VsdH08L3NlYXRzPgogICAgICAgICA8UHJpY2U+OTkwLjAwPC9QcmljZT4KICAgICAgICAgPHJlZmVyZW5jZW51bWJlcj4ke2FjY291bnRpZH08L3JlZmVyZW5jZW51bWJlcj4KICAgICAgICAgPHN0YXJ0aW5ncG9pbnQ+JHtzdGFydGluZ3BvaW50LnJlc3VsdH08L3N0YXJ0aW5ncG9pbnQ+CiAgICAgIDwvUHVyY2hhc2VmbGlnaHRSZXNwb25zZT4KICAgPC9zb2FwZW52OkJvZHk+Cjwvc29hcGVudjpFbnZlbG9wZT4="/>
+                                    <L7p:ResponseContentType stringValue="application/soap+xml; charset=utf-8"/>
+                                    </L7p:HardcodedResponse>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Seat for 2"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                    </wsp:All>
+                                    <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${seats.result}"/>
+                                    <L7p:Expression2 stringValue="2"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="2"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOndzPSJodHRwOi8vdm9vbmFpci5jb20vd3MiPgogICA8c29hcGVudjpCb2R5PgogICAgICA8UHVyY2hhc2VmbGlnaHRSZXNwb25zZT4KICAgICAgICAgPERlc3RpbmF0aW9uPiR7ZGVzdGluYXRpb24ucmVzdWx0fTwvRGVzdGluYXRpb24+CiAgICAgICAgIDxzZWF0cz4ke3NlYXRzLnJlc3VsdH08L3NlYXRzPgogICAgICAgICA8UHJpY2U+UHVyY2hhc2UgZGlkIG5vdCBnbyB0aHJvdWdoIGJlY2F1c2Ugd2Ugb25seSBoYXZlIDIgc2VhdHMgYXZhaWxhYmxlPC9QcmljZT4KICAgICAgICAgPHN0YXJ0aW5ncG9pbnQ+JHtzdGFydGluZ3BvaW50LnJlc3VsdH08L3N0YXJ0aW5ncG9pbnQ+CiAgICAgIDwvUHVyY2hhc2VmbGlnaHRSZXNwb25zZT4KICAgPC9zb2FwZW52OkJvZHk+Cjwvc29hcGVudjpFbnZlbG9wZT4="/>
+                                    <L7p:ResponseContentType stringValue="application/soap+xml; charset=utf-8"/>
+                                    </L7p:HardcodedResponse>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="- greater than 3"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                    </wsp:All>
+                                    </wsp:OneOrMore>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Starting point = Toronto"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                </wsp:All>
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:FaultLevel>
+                                    <L7p:LevelInfo soapFaultLevel="included">
+                                    <L7p:FaultTemplate stringValueReference="inline"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Body>
+        <soapenv:Fault>
+            <faultcode>123354</faultcode>
+            <faultstring>Invalide request</faultstring>
+            <faultactor>${startingpoint.result} and ${destination.result}</faultactor>
+            <detail>Invalid Request because voonair doesnt have a flight route "from or to" these locations</detail>
+        </soapenv:Fault>
+    </soapenv:Body>
+</soapenv:Envelope>]]></L7p:FaultTemplate>
+                                    <L7p:Level intValue="1"/>
+                                    </L7p:LevelInfo>
+                                    </L7p:FaultLevel>
+                                    <L7p:FalseAssertion/>
+                                </wsp:All>
+                            </wsp:OneOrMore>
+                        </wsp:All>
+                    </wsp:OneOrMore>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="-- Purchase flight"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:WSDLOperation>
+                        <L7p:OperationName stringValue="traveldocuments"/>
+                    </L7p:WSDLOperation>
+                    <L7p:RequestXpathAssertion>
+                        <L7p:VariablePrefix stringValue="tkt"/>
+                        <L7p:XpathExpression xpathExpressionValue="included">
+                            <L7p:Expression stringValue="/s:Envelope/s:Body/s0:traveldocuments/s0:accountid"/>
+                            <L7p:Namespaces mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="s0"/>
+                                    <L7p:value stringValue="http://voonair.com/ws"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="s"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                </L7p:entry>
+                            </L7p:Namespaces>
+                            <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                        </L7p:XpathExpression>
+                    </L7p:RequestXpathAssertion>
+                    <L7p:RequestXpathAssertion>
+                        <L7p:VariablePrefix stringValue="destination"/>
+                        <L7p:XpathExpression xpathExpressionValue="included">
+                            <L7p:Expression stringValue="/s:Envelope/s:Body/s0:traveldocuments/s0:Destination"/>
+                            <L7p:Namespaces mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="s0"/>
+                                    <L7p:value stringValue="http://voonair.com/ws"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="s"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                </L7p:entry>
+                            </L7p:Namespaces>
+                            <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                        </L7p:XpathExpression>
+                    </L7p:RequestXpathAssertion>
+                    <L7p:HardcodedResponse>
+                        <L7p:Base64ResponseBody stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOndzPSJodHRwOi8vdm9vbmFpci5jb20vd3MiPgogICA8c29hcGVudjpIZWFkZXIvPgogICAgPHNvYXBlbnY6Qm9keT4KICAgICAgPHZvb25haXJUcmF2ZWxEb2N1bWVudFJlc3BvbnNlIHhtbG5zPSJodHRwOi8vdm9vbmFpci5jb20vd3MiPgogICAgICAgPHZvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICA8RGVzdGluYXRpb24+JHtkZXN0aW5hdGlvbi5yZXN1bHR9PC9EZXN0aW5hdGlvbj4KCTxhY2NvdW50aWQ+JHt0a3QucmVzdWx0fTwvYWNjb3VudGlkPgogICAgICAgIDxFcnJvcj5BdCB0aGUgbW9tZW50IHZvb25haXIgd2Vic2l0ZSBpc250IGFibGUgdG8gdmlldyB5b3VyIGl0aW5lcmFyeSwgcGxlYXNlIGNhbGwgdGhlIHJlc2VydmF0aW9ucyBvZmZpY2UgdG8gYWNjZXNzIHlvdXIgZmxpZ2h0IGluZm8uPC9FcnJvcj4KICAgICAgIDwvdm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICA8L3Zvb25haXJUcmF2ZWxEb2N1bWVudFJlc3BvbnNlPgogICAgPC9zb2FwZW52OkJvZHk+Cjwvc29hcGVudjpFbnZlbG9wZT4="/>
+                        <L7p:ResponseContentType stringValue="application/soap+xml; charset=utf-8"/>
+                    </L7p:HardcodedResponse>
+                    <wsp:OneOrMore L7p:Enabled="false" wsp:Usage="Required">
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${startingpoint.result}"/>
+                                <L7p:Expression2 stringValue="vancouver"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="vancouver"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${destination.result}"/>
+                                <L7p:Expression2 stringValue="vancouver"/>
+                                <L7p:Negate booleanValue="true"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Negated booleanValue="true"/>
+                                    <L7p:RightValue stringValue="vancouver"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:HardcodedResponse>
+                                <L7p:Base64ResponseBody stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiPgogICA8c29hcGVudjpCb2R5PgogICAgICA8dm9vbmFpcnJlc2VydmF0aW9uRGV0YWlsc1Jlc3BvbnNlIHhtbG5zPSJodHRwOi8vdm9vbmFpci5jb20vd3MiPgogICAgICAgICA8dm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICAgICAgICA8RGVzdGluYXRpb24+JHtkZXN0aW5hdGlvbi5yZXN1bHR9PC9EZXN0aW5hdGlvbj4KCQk8c3RhcnRpbmdwb2ludD4ke3N0YXJ0aW5ncG9pbnQucmVzdWx0fTwvc3RhcnRpbmdwb2ludD4KICAgICAgICAgICAgICAgPFByaWNlPjE5OS4wMDwvUHJpY2U+CiAgICAgICAgICA8L3Zvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICAgPC92b29uYWlycmVzZXJ2YXRpb25EZXRhaWxzUmVzcG9uc2U+CiAgIDwvc29hcGVudjpCb2R5"/>
+                                <L7p:ResponseContentType stringValue="application/soap+xml; charset=utf-8"/>
+                            </L7p:HardcodedResponse>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Starting Point = Vancouver"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${startingpoint.result}"/>
+                                <L7p:Expression2 stringValue="los angeles"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="los angeles"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${destination.result}"/>
+                                <L7p:Expression2 stringValue="los angeles"/>
+                                <L7p:Negate booleanValue="true"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Negated booleanValue="true"/>
+                                    <L7p:RightValue stringValue="los angeles"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:HardcodedResponse>
+                                <L7p:Base64ResponseBody stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiPgogICA8c29hcGVudjpCb2R5PgogICAgICA8dm9vbmFpcnJlc2VydmF0aW9uRGV0YWlsc1Jlc3BvbnNlIHhtbG5zPSJodHRwOi8vdm9vbmFpci5jb20vd3MiPgogICAgICAgICA8dm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICAgICAgICA8RGVzdGluYXRpb24+JHtkZXN0aW5hdGlvbi5yZXN1bHR9PC9EZXN0aW5hdGlvbj4KCQk8c3RhcnRpbmdwb2ludD4ke3N0YXJ0aW5ncG9pbnQucmVzdWx0fTwvc3RhcnRpbmdwb2ludD4KICAgICAgICAgICAgICAgPFByaWNlPjQ1OS4wMDwvUHJpY2U+CiAgICAgICAgICA8L3Zvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICAgPC92b29uYWlycmVzZXJ2YXRpb25EZXRhaWxzUmVzcG9uc2U+CiAgIDwvc29hcGVudjpCb2R5"/>
+                                <L7p:ResponseContentType stringValue="application/soap+xml; charset=utf-8"/>
+                            </L7p:HardcodedResponse>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Starting point = Los Angeles"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${startingpoint.result}"/>
+                                <L7p:Expression2 stringValue="montreal"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="montreal"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${destination.result}"/>
+                                <L7p:Expression2 stringValue="montreal"/>
+                                <L7p:Negate booleanValue="true"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Negated booleanValue="true"/>
+                                    <L7p:RightValue stringValue="montreal"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:HardcodedResponse>
+                                <L7p:Base64ResponseBody stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiPgogICA8c29hcGVudjpCb2R5PgogICAgICA8dm9vbmFpcnJlc2VydmF0aW9uRGV0YWlsc1Jlc3BvbnNlIHhtbG5zPSJodHRwOi8vdm9vbmFpci5jb20vd3MiPgogICAgICAgICA8dm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICAgICAgICA8RGVzdGluYXRpb24+JHtkZXN0aW5hdGlvbi5yZXN1bHR9PC9EZXN0aW5hdGlvbj4KCQk8c3RhcnRpbmdwb2ludD4ke3N0YXJ0aW5ncG9pbnQucmVzdWx0fTwvc3RhcnRpbmdwb2ludD4KICAgICAgICAgICAgICAgPFByaWNlPjc5OS4wMDwvUHJpY2U+CiAgICAgICAgICA8L3Zvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICAgPC92b29uYWlycmVzZXJ2YXRpb25EZXRhaWxzUmVzcG9uc2U+CiAgIDwvc29hcGVudjpCb2R5"/>
+                                <L7p:ResponseContentType stringValue="application/soap+xml; charset=utf-8"/>
+                            </L7p:HardcodedResponse>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Startingpoint = Montreal"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${startingpoint.result}"/>
+                                <L7p:Expression2 stringValue="toronto"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="toronto"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${destination.result}"/>
+                                <L7p:Expression2 stringValue="toronto"/>
+                                <L7p:Negate booleanValue="true"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Negated booleanValue="true"/>
+                                    <L7p:RightValue stringValue="toronto"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:HardcodedResponse>
+                                <L7p:Base64ResponseBody stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiPgogICA8c29hcGVudjpCb2R5PgogICAgICA8dm9vbmFpcnJlc2VydmF0aW9uRGV0YWlsc1Jlc3BvbnNlIHhtbG5zPSJodHRwOi8vdm9vbmFpci5jb20vd3MiPgogICAgICAgICA8dm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICAgICAgICA8RGVzdGluYXRpb24+JHtkZXN0aW5hdGlvbi5yZXN1bHR9PC9EZXN0aW5hdGlvbj4KCQk8c3RhcnRpbmdwb2ludD4ke3N0YXJ0aW5ncG9pbnQucmVzdWx0fTwvc3RhcnRpbmdwb2ludD4KICAgICAgICAgICAgICAgPFByaWNlPjU5OS4wMDwvUHJpY2U+CiAgICAgICAgICA8L3Zvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICAgPC92b29uYWlycmVzZXJ2YXRpb25EZXRhaWxzUmVzcG9uc2U+CiAgIDwvc29hcGVudjpCb2R5"/>
+                                <L7p:ResponseContentType stringValue="application/soap+xml; charset=utf-8"/>
+                            </L7p:HardcodedResponse>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="startingpoint = Toronto "/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${destination.result}"/>
+                                <L7p:Operator operatorNull="null"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="int"/>
+                                    </L7p:item>
+                                    <L7p:item cardinality="included">
+                                    <L7p:Max intValue="120"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${startingpoint.result}"/>
+                                <L7p:Operator operatorNull="null"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="int"/>
+                                    </L7p:item>
+                                    <L7p:item cardinality="included">
+                                    <L7p:Max intValue="120"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:HardcodedResponse>
+                                <L7p:Base64ResponseBody stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiPgogICA8c29hcGVudjpCb2R5PgogICAgICA8dm9vbmFpcnJlc2VydmF0aW9uRGV0YWlsc1Jlc3BvbnNlIHhtbG5zPSJodHRwOi8vdm9vbmFpci5jb20vd3MiPgogICAgICAgICA8dm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICAgICAgICA8RGVzdGluYXRpb24+JHtkZXN0aW5hdGlvbi5yZXN1bHR9PC9EZXN0aW5hdGlvbj4KCQk8c3RhcnRpbmdwb2ludD4ke3N0YXJ0aW5ncG9pbnQucmVzdWx0fTwvc3RhcnRpbmdwb2ludD4KICAgICAgICAgICAgICAgPEVycm9yPkludmFsaWQgRGVzdGluYXRpb24gYW5kIG9yIHN0YXJ0aW5nIHBvaW50PC9FcnJvcj4KICAgICAgICAgIDwvdm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICA8L3Zvb25haXJyZXNlcnZhdGlvbkRldGFpbHNSZXNwb25zZT4KICAgPC9zb2FwZW52OkJvZHk="/>
+                                <L7p:ResponseContentType stringValue="application/soap+xml; charset=utf-8"/>
+                            </L7p:HardcodedResponse>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Wrong data input"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${destination.result}"/>
+                                <L7p:Expression2 stringValue="${startingpoint.result}"/>
+                                <L7p:Negate booleanValue="true"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Negated booleanValue="true"/>
+                                    <L7p:RightValue stringValue="${startingpoint.result}"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:HardcodedResponse>
+                                <L7p:Base64ResponseBody stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiPgogICA8c29hcGVudjpCb2R5PgogICAgICA8dm9vbmFpcnJlc2VydmF0aW9uRGV0YWlsc1Jlc3BvbnNlIHhtbG5zPSJodHRwOi8vdm9vbmFpci5jb20vd3MiPgogICAgICAgICA8dm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICAgICAgICA8RGVzdGluYXRpb24+JHtkZXN0aW5hdGlvbi5yZXN1bHR9PC9EZXN0aW5hdGlvbj4KCQk8c3RhcnRpbmdwb2ludD4ke3N0YXJ0aW5ncG9pbnQucmVzdWx0fTwvc3RhcnRpbmdwb2ludD4KICAgICAgICAgICAgICAgPEVycm9yPlZvb25haXIgRG9lc250IGZseSB0byBvciBmcm9tIHRoYXQgbG9jYXRpb248L0Vycm9yPgogICAgICAgICAgPC92b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgIDwvdm9vbmFpcnJlc2VydmF0aW9uRGV0YWlsc1Jlc3BvbnNlPgogICA8L3NvYXBlbnY6Qm9keQ=="/>
+                                <L7p:ResponseContentType stringValue="application/soap+xml; charset=utf-8"/>
+                            </L7p:HardcodedResponse>
+                        </wsp:All>
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:FaultLevel>
+                                <L7p:LevelInfo soapFaultLevel="included">
+                                    <L7p:FaultTemplate stringValueReference="inline"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Body>
+        <soapenv:Fault>
+            <faultcode>${destination.result}</faultcode>
+            <faultstring>${startingpoint.result}</faultstring>
+            <faultactor>Invalid request</faultactor>
+            <detail>Invalid request because the destination and startingpoint are the same</detail>
+        </soapenv:Fault>
+    </soapenv:Body>
+</soapenv:Envelope>]]></L7p:FaultTemplate>
+                                    <L7p:Level intValue="1"/>
+                                </L7p:LevelInfo>
+                            </L7p:FaultLevel>
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${destination.result}"/>
+                                <L7p:Expression2 stringValue="${startingpoint.result}"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="${startingpoint.result}"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:FalseAssertion/>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Destination and straing point are the same"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                    </wsp:OneOrMore>
+                </wsp:All>
+            </wsp:OneOrMore>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

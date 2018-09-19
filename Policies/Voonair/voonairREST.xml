@@ -1,0 +1,1284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References/>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="************************************************************************************************************************"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="************************************************************************************************************************"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="***  Rest Service that responds to 4 different request.                                                                                                       "/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="***   http://gateway_URL:8080/voonair/Purchaseflight?startingpoint=montreal&amp;destination=toronto&amp;seats=2&amp;accountid=123456&amp;Price=4999.00"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="***   http://gateway_URL:8080/voonair/voonairreservations?startingpoint=montreal                                          "/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="***   http://gateway_URL:8080/voonair/voonairreservationDetails?startingpoint=montreal&amp;destination=toronto                                       "/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="***  http://gateway_url:8080/voonair/traveldocuments?purchaseid=1234556"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="***   Service accepts any of the above urls and parses the query for the request to formulate the response                                             "/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="***  "/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="***********************************************************************************************************************"/>
+            </L7p:CommentAssertion>
+            <L7p:AuditAssertion/>
+            <wsp:All wsp:Usage="Required">
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtyZXF1ZXN0LnVybH0="/>
+                    <L7p:VariableToSet stringValue="url"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtyZXF1ZXN0Lmh0dHAudXJpfQ=="/>
+                    <L7p:VariableToSet stringValue="uri"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtyZXF1ZXN0LnVybC5xdWVyeX0="/>
+                    <L7p:VariableToSet stringValue="query"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtyZXF1ZXN0LmNvbnRlbnRUeXBlfQ=="/>
+                    <L7p:VariableToSet stringValue="contenttype"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtyZXF1ZXN0Lmh0dHAuaGVhZGVyLkFjY2VwdH0="/>
+                    <L7p:VariableToSet stringValue="accept"/>
+                </L7p:SetVariable>
+            </wsp:All>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:ComparisonAssertion>
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Expression1 stringValue="${contenttype}"/>
+                        <L7p:Expression2 stringValue="json"/>
+                        <L7p:Operator operator="CONTAINS"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item binary="included">
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Operator operator="CONTAINS"/>
+                                <L7p:RightValue stringValue="json"/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <L7p:AuditDetailAssertion>
+                        <L7p:Detail stringValueReference="inline"><![CDATA[contenttype = ${contenttype}
+accept = ${accept}]]></L7p:Detail>
+                    </L7p:AuditDetailAssertion>
+                    <wsp:OneOrMore wsp:Usage="Required">
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:Expression1 stringValue="${uri}"/>
+                                <L7p:Expression2 stringValue="/voonair/voonairreservations"/>
+                                <L7p:Operator operator="CONTAINS"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="/voonair/voonairreservations"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:Regex>
+                                <L7p:AutoTarget booleanValue="false"/>
+                                <L7p:CaptureVar stringValue="startingpoint"/>
+                                <L7p:IncludeEntireExpressionCapture booleanValue="false"/>
+                                <L7p:OtherTargetMessageVariable stringValue="query"/>
+                                <L7p:Regex stringValue="(=\w+)"/>
+                                <L7p:RegexName stringValue="startingpoint"/>
+                                <L7p:Replacement stringValue=""/>
+                                <L7p:Target target="OTHER"/>
+                            </L7p:Regex>
+                            <L7p:Regex>
+                                <L7p:AutoTarget booleanValue="false"/>
+                                <L7p:CaptureVar stringValue="test"/>
+                                <L7p:IncludeEntireExpressionCapture booleanValue="false"/>
+                                <L7p:OtherTargetMessageVariable stringValue="startingpoint"/>
+                                <L7p:Regex stringValue="="/>
+                                <L7p:RegexName stringValue="startingpoint"/>
+                                <L7p:Replace booleanValue="true"/>
+                                <L7p:Replacement stringValue=""/>
+                                <L7p:Target target="OTHER"/>
+                            </L7p:Regex>
+                            <wsp:OneOrMore wsp:Usage="Required">
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${startingpoint}"/>
+                                    <L7p:Expression2 stringValue="montreal"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="montreal"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="eyJ2b29uYWlycmVzZXJ2YXRpb25SZXNwb25zZSI6CXsKICAgICJ2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQiOlsKCXsiUHJpY2UiOiIxOTkuMDAiLCJEZXN0aW5hdGlvbiI6IkxvcyBBbmdlbGVzIn0sCgl7IlByaWNlIjoiMTI5LjAwIiwiRGVzdGluYXRpb24iOiJNb250cmVhbCJ9LAoJeyJQcmljZSI6IjIwNS4wMCIsIkRlc3RpbmF0aW9uIjoiTmV3IFlvcmsifSwKCXsiUHJpY2UiOiI0NTAuMDAiLCJEZXN0aW5hdGlvbiI6IkxvbmRvbiJ9CgldCgl9Cn0="/>
+                                    <L7p:ResponseContentType stringValue="application/json"/>
+                                    </L7p:HardcodedResponse>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="-- Starting point = Montreal"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                </wsp:All>
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${startingpoint}"/>
+                                    <L7p:Expression2 stringValue="vancouver"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="vancouver"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="eyJ2b29uYWlycmVzZXJ2YXRpb25SZXNwb25zZSI6CXsKICAgICJ2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQiOlsKCXsiUHJpY2UiOiI5OS4wMCIsIkRlc3RpbmF0aW9uIjoiQ2FsZ2FyeSJ9LAoJeyJQcmljZSI6IjIzOS4wMCIsIkRlc3RpbmF0aW9uIjoiU2FuIERpZWdvIn0sCgl7IlByaWNlIjoiMTk5LjAwIiwiRGVzdGluYXRpb24iOiJMYXMgVmVnYXMifSwKCXsiUHJpY2UiOiI1OTkuMDAiLCJEZXN0aW5hdGlvbiI6IlBhcmlzIn0KCV0KCX0KfQ=="/>
+                                    <L7p:ResponseContentType stringValue="application/json"/>
+                                    </L7p:HardcodedResponse>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="-- Starting point = Vancouver"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                </wsp:All>
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${startingpoint}"/>
+                                    <L7p:Expression2 stringValue="Toronto"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="Toronto"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="eyJ2b29uYWlycmVzZXJ2YXRpb25SZXNwb25zZSI6CXsKICAgICJ2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQiOlsKCXsiUHJpY2UiOiIxNTkuMDAiLCJEZXN0aW5hdGlvbiI6Ik90dGF3YSJ9LAoJeyJQcmljZSI6IjIyOS4wMCIsIkRlc3RpbmF0aW9uIjoiQm9zdG9uIn0sCgl7IlByaWNlIjoiMzA1LjAwIiwiRGVzdGluYXRpb24iOiJPcmxhbmRvIn0sCgl7IlByaWNlIjoiNTUwLjAwIiwiRGVzdGluYXRpb24iOiJCcnVzc2VscyJ9CgldCgl9Cn0="/>
+                                    <L7p:ResponseContentType stringValue="application/json"/>
+                                    </L7p:HardcodedResponse>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="-- Starting point = Toronto"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                </wsp:All>
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${startingpoint}"/>
+                                    <L7p:Expression2 stringValue="losangeles"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="losangeles"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="eyJ2b29uYWlycmVzZXJ2YXRpb25SZXNwb25zZSI6CXsKICAgICJ2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQiOlsKCXsiUHJpY2UiOiIxMjkuMDAiLCJEZXN0aW5hdGlvbiI6IkNoaWNhZ28ifSwKCXsiUHJpY2UiOiIyMDUuMDAiLCJEZXN0aW5hdGlvbiI6IkRldHJvaXQifSwKCXsiUHJpY2UiOiI1NTAuMDAiLCJEZXN0aW5hdGlvbiI6Ik1hdWkifQoJXQoJfQp9"/>
+                                    <L7p:ResponseContentType stringValue="application/json"/>
+                                    </L7p:HardcodedResponse>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Starting Point = Los Angeles"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                </wsp:All>
+                                <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="eyJ2b29uYWlycmVzZXJ2YXRpb25SZXNwb25zZSI6CXsKICAgICJ2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQiOlsKCXsiUHJpY2UiOiIxOTkuMDAiLCJEZXN0aW5hdGlvbiI6IkxvcyBBbmdlbGVzIn0sCgl7IlByaWNlIjoiMTI5LjAwIiwiRGVzdGluYXRpb24iOiJNb250cmVhbCJ9LAoJeyJQcmljZSI6IjIwNS4wMCIsIkRlc3RpbmF0aW9uIjoiTmV3IFlvcmsifSwKCXsiUHJpY2UiOiI0NTAuMDAiLCJEZXN0aW5hdGlvbiI6IkxvbmRvbiJ9LAoJeyJQcmljZSI6IjE1OS4wMCIsIkRlc3RpbmF0aW9uIjoiVG9yb250byJ9LAoJeyJQcmljZSI6IjIyOS4wMCIsIkRlc3RpbmF0aW9uIjoiQm9zdG9uIn0sCgl7IlByaWNlIjoiMzA1LjAwIiwiRGVzdGluYXRpb24iOiJPcmxhbmRvIn0sCgl7IlByaWNlIjoiNTUwLjAwIiwiRGVzdGluYXRpb24iOiJCcnVzc2VscyJ9LAoJeyJQcmljZSI6Ijk5LjAwIiwiRGVzdGluYXRpb24iOiJDYWxnYXJ5In0sCgl7IlByaWNlIjoiMjM5LjAwIiwiRGVzdGluYXRpb24iOiJTYW4gRGllZ28ifSwKCXsiUHJpY2UiOiIxOTkuMDAiLCJEZXN0aW5hdGlvbiI6IkxhcyBWZWdhcyJ9LAoJeyJQcmljZSI6IjU5OS4wMCIsIkRlc3RpbmF0aW9uIjoiUGFyaXMifSwKCXsiUHJpY2UiOiIxOTkuMDAiLCJEZXN0aW5hdGlvbiI6IlNhbiBGcmFuY2lzY28ifSwKCXsiUHJpY2UiOiIxMjkuMDAiLCJEZXN0aW5hdGlvbiI6IkNoaWNhZ28ifSwKCXsiUHJpY2UiOiIyMDUuMDAiLCJEZXN0aW5hdGlvbiI6IkRldHJvaXQifSwKCXsiUHJpY2UiOiIyNTAuMDAiLCJEZXN0aW5hdGlvbiI6Ik1hdWkifSwKCV0KCX0KfQ=="/>
+                                    <L7p:ResponseContentType stringValue="application/json"/>
+                                </L7p:HardcodedResponse>
+                            </wsp:OneOrMore>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Seat Sale"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:Expression1 stringValue="${uri}"/>
+                                <L7p:Expression2 stringValue="/voonair/voonairreservationDetails"/>
+                                <L7p:Operator operator="CONTAINS"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="/voonair/voonairreservationDetails"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:Regex>
+                                <L7p:AutoTarget booleanValue="false"/>
+                                <L7p:CaptureVar stringValue="startingpoint"/>
+                                <L7p:FindAll booleanValue="true"/>
+                                <L7p:IncludeEntireExpressionCapture booleanValue="false"/>
+                                <L7p:OtherTargetMessageVariable stringValue="query"/>
+                                <L7p:Regex stringValue="(=\w+)"/>
+                                <L7p:RegexName stringValue="startingpoint"/>
+                                <L7p:Replacement stringValue=""/>
+                                <L7p:Target target="OTHER"/>
+                            </L7p:Regex>
+                            <L7p:Regex>
+                                <L7p:AutoTarget booleanValue="false"/>
+                                <L7p:CaptureVar stringValue="test"/>
+                                <L7p:IncludeEntireExpressionCapture booleanValue="false"/>
+                                <L7p:OtherTargetMessageVariable stringValue="startingpoint"/>
+                                <L7p:Regex stringValue="="/>
+                                <L7p:RegexName stringValue="startingpoint"/>
+                                <L7p:Replace booleanValue="true"/>
+                                <L7p:Replacement stringValue=""/>
+                                <L7p:Target target="OTHER"/>
+                            </L7p:Regex>
+                            <L7p:Regex>
+                                <L7p:AutoTarget booleanValue="false"/>
+                                <L7p:CaptureVar stringValue="test"/>
+                                <L7p:IncludeEntireExpressionCapture booleanValue="false"/>
+                                <L7p:OtherTargetMessageVariable stringValue="startingpoint"/>
+                                <L7p:Regex stringValue="[^0-9a-zA-Z/?().,' +-]"/>
+                                <L7p:RegexName stringValue="startingpoint"/>
+                                <L7p:Replace booleanValue="true"/>
+                                <L7p:Replacement stringValue=""/>
+                                <L7p:Target target="OTHER"/>
+                            </L7p:Regex>
+                            <L7p:Split>
+                                <L7p:InputVariable stringValue="startingpoint"/>
+                                <L7p:OutputVariable stringValue="source"/>
+                                <L7p:SplitPattern stringValue=", "/>
+                            </L7p:Split>
+                            <L7p:AuditDetailAssertion>
+                                <L7p:Detail stringValueReference="inline"><![CDATA[${startingpoint}
+
+${source}
+
+${source[0]}
+${source[1]}]]></L7p:Detail>
+                            </L7p:AuditDetailAssertion>
+                            <wsp:OneOrMore wsp:Usage="Required">
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${source[0]}"/>
+                                    <L7p:Expression2 stringValue="vancouver"/>
+                                    <L7p:MultivaluedComparison multivaluedComparison="ANY"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="vancouver"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${source[1]}"/>
+                                    <L7p:Expression2 stringValue="vancouver"/>
+                                    <L7p:Negate booleanValue="true"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Negated booleanValue="true"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="vancouver"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="eyJ2b29uYWlycmVzZXJ2YXRpb25EZXRhaWxzUmVzcG9uc2UiOgl7CiAgICAidm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0IjpbCgl7InN0YXJ0aW5ncG9pbnQ6IiR7c291cmNlWzFdfSIiUHJpY2UiOiI0NTkuMDAiLCJEZXN0aW5hdGlvbiI6IiR7c291cmNlWzBdfSJ9CgldCgl9Cn0KICAg"/>
+                                    <L7p:ResponseContentType stringValue="application/json"/>
+                                    </L7p:HardcodedResponse>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Starting Point = Vancouver"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                </wsp:All>
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${source[0]}"/>
+                                    <L7p:Expression2 stringValue="losangeles"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="losangeles"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${source[1]}"/>
+                                    <L7p:Expression2 stringValue="losangeles"/>
+                                    <L7p:Negate booleanValue="true"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Negated booleanValue="true"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="losangeles"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="eyJ2b29uYWlycmVzZXJ2YXRpb25EZXRhaWxzUmVzcG9uc2UiOgl7CiAgICAidm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0IjpbCgl7InN0YXJ0aW5ncG9pbnQ6IiR7c291cmNlWzFdfSIiUHJpY2UiOiIzOTkuMDAiLCJEZXN0aW5hdGlvbiI6IiR7c291cmNlWzBdfSJ9CgldCgl9Cn0="/>
+                                    <L7p:ResponseContentType stringValue="application/json"/>
+                                    </L7p:HardcodedResponse>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Starting point = Los Angeles"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                </wsp:All>
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${source[0]}"/>
+                                    <L7p:Expression2 stringValue="montreal"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="montreal"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${source[1]}"/>
+                                    <L7p:Expression2 stringValue="montreal"/>
+                                    <L7p:Negate booleanValue="true"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Negated booleanValue="true"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="montreal"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="eyJ2b29uYWlycmVzZXJ2YXRpb25EZXRhaWxzUmVzcG9uc2UiOgl7CiAgICAidm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0IjpbCgl7InN0YXJ0aW5ncG9pbnQ6IiR7c291cmNlWzFdfSIiUHJpY2UiOiI2NTkuMDAiLCJEZXN0aW5hdGlvbiI6IiR7c291cmNlWzBdfSJ9CgldCgl9Cn0KICAg"/>
+                                    <L7p:ResponseContentType stringValue="application/json"/>
+                                    </L7p:HardcodedResponse>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Startingpoint = Montreal"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                </wsp:All>
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${source[0]}"/>
+                                    <L7p:Expression2 stringValue="toronto"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="toronto"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${source[1]}"/>
+                                    <L7p:Expression2 stringValue="toronto"/>
+                                    <L7p:Negate booleanValue="true"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Negated booleanValue="true"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="toronto"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="eyJ2b29uYWlycmVzZXJ2YXRpb25EZXRhaWxzUmVzcG9uc2UiOgl7CiAgICAidm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0IjpbCgl7InN0YXJ0aW5ncG9pbnQ6IiR7c291cmNlWzFdfSIiUHJpY2UiOiI0NTkuMDAiLCJEZXN0aW5hdGlvbiI6IiR7c291cmNlWzBdfSJ9CgldCgl9Cn0="/>
+                                    <L7p:ResponseContentType stringValue="application/json"/>
+                                    </L7p:HardcodedResponse>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="startingpoint = Toronto "/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                </wsp:All>
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${source[0]}"/>
+                                    <L7p:MultivaluedComparison multivaluedComparison="ANY"/>
+                                    <L7p:Operator operatorNull="null"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="int"/>
+                                    </L7p:item>
+                                    <L7p:item cardinality="included">
+                                    <L7p:Max intValue="120"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${source[1]}"/>
+                                    <L7p:MultivaluedComparison multivaluedComparison="ANY"/>
+                                    <L7p:Operator operatorNull="null"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="int"/>
+                                    </L7p:item>
+                                    <L7p:item cardinality="included">
+                                    <L7p:Max intValue="120"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="eyJ2b29uYWlycmVzZXJ2YXRpb25EZXRhaWxzUmVzcG9uc2UiOgl7CiAgICAidm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0IjpbCgl7InN0YXJ0aW5ncG9pbnQ6IiR7c291cmNlWzFdfSIsIkRlc3RpbmF0aW9uIjoiJHtzb3VyY2VbMF19IiwiRXJyb3IiOiJJbnZhbGlkIERlc3RpbmF0aW9uIGFuZCBvciBzdGFydGluZyBwb2ludCJ9CgldCgl9Cn0="/>
+                                    <L7p:ResponseContentType stringValue="application/json"/>
+                                    </L7p:HardcodedResponse>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Wrong data input"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                </wsp:All>
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:CustomizeErrorResponse>
+                                    <L7p:Content stringValueReference="inline"><![CDATA[{"voonairreservationDetailsResponse":	{
+    "voonairreservationResult":[
+	{"startingpoint:"${source[1]}","Destination":"${source[0]}","Error":"Invalid Destination and or starting point"}
+	]
+	}
+}]]></L7p:Content>
+                                    <L7p:ContentType stringValue="application/json"/>
+                                    <L7p:ExtraHeaders nameValuePairArray="included"/>
+                                    </L7p:CustomizeErrorResponse>
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:Expression1 stringValue="${source[0]}"/>
+                                    <L7p:Expression2 stringValue="${source[1]}"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="${source[1]}"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:FalseAssertion/>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Destination and straing point are the same"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                </wsp:All>
+                            </wsp:OneOrMore>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue=" Reservation Details"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:Expression1 stringValue="${uri}"/>
+                                <L7p:Expression2 stringValue="/voonair/traveldocuments"/>
+                                <L7p:Operator operator="CONTAINS"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="/voonair/traveldocuments"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:HardcodedResponse>
+                                <L7p:Base64ResponseBody stringValue="eyJ0cmF2ZWxkb2N1bWVudHNSZXNwb25zZSI6CXsKICAgICJ2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQiOlsKCXsiRXJyb3IiOiJXZWJzaXRlIGl0IGRvd24sIHBsZWFzZSBjb25maXJtIHlvdXIgcmVzZXJ2YXRpb24gYnkgY2FsbGluZyAxLTg4OC05ODctNjU0MyJ9CgldCgl9Cn0="/>
+                                <L7p:ResponseContentType stringValue="application/json"/>
+                            </L7p:HardcodedResponse>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="travel documents"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:Expression1 stringValue="${uri}"/>
+                                <L7p:Expression2 stringValue="/voonair/Purchaseflight"/>
+                                <L7p:Operator operator="CONTAINS"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="/voonair/Purchaseflight"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:Regex>
+                                <L7p:AutoTarget booleanValue="false"/>
+                                <L7p:CaptureVar stringValue="startingpoint"/>
+                                <L7p:IncludeEntireExpressionCapture booleanValue="false"/>
+                                <L7p:OtherTargetMessageVariable stringValue="url"/>
+                                <L7p:Regex stringValue="startingpoint=(.+?)&amp;"/>
+                                <L7p:RegexVar stringValue="test2"/>
+                                <L7p:Replacement stringValue=""/>
+                                <L7p:Target target="OTHER"/>
+                            </L7p:Regex>
+                            <L7p:Regex>
+                                <L7p:AutoTarget booleanValue="false"/>
+                                <L7p:CaptureVar stringValue="destination"/>
+                                <L7p:IncludeEntireExpressionCapture booleanValue="false"/>
+                                <L7p:OtherTargetMessageVariable stringValue="url"/>
+                                <L7p:Regex stringValue="destination=(.+?)&amp;"/>
+                                <L7p:RegexVar stringValue="test2"/>
+                                <L7p:Replacement stringValue=""/>
+                                <L7p:Target target="OTHER"/>
+                            </L7p:Regex>
+                            <L7p:Regex>
+                                <L7p:AutoTarget booleanValue="false"/>
+                                <L7p:CaptureVar stringValue="seats"/>
+                                <L7p:IncludeEntireExpressionCapture booleanValue="false"/>
+                                <L7p:OtherTargetMessageVariable stringValue="url"/>
+                                <L7p:Regex stringValue="seats=(.+?)&amp;"/>
+                                <L7p:RegexVar stringValue="test2"/>
+                                <L7p:Replacement stringValue=""/>
+                                <L7p:Target target="OTHER"/>
+                            </L7p:Regex>
+                            <L7p:Regex>
+                                <L7p:AutoTarget booleanValue="false"/>
+                                <L7p:CaptureVar stringValue="accountid"/>
+                                <L7p:IncludeEntireExpressionCapture booleanValue="false"/>
+                                <L7p:OtherTargetMessageVariable stringValue="url"/>
+                                <L7p:Regex stringValue="accountid=(.+?)&amp;"/>
+                                <L7p:RegexVar stringValue="test2"/>
+                                <L7p:Replacement stringValue=""/>
+                                <L7p:Target target="OTHER"/>
+                            </L7p:Regex>
+                            <L7p:Regex>
+                                <L7p:AutoTarget booleanValue="false"/>
+                                <L7p:CaptureVar stringValue="price"/>
+                                <L7p:IncludeEntireExpressionCapture booleanValue="false"/>
+                                <L7p:OtherTargetMessageVariable stringValue="url"/>
+                                <L7p:Regex stringValue="Price=([^\s]+)"/>
+                                <L7p:RegexVar stringValue="test2"/>
+                                <L7p:Replacement stringValue=""/>
+                                <L7p:Target target="OTHER"/>
+                            </L7p:Regex>
+                            <L7p:AuditDetailAssertion>
+                                <L7p:Detail stringValueReference="inline"><![CDATA[startingpoint = ${startingpoint}
+
+destination = ${destination}
+
+seats = ${seats}
+
+accountid = ${accountid}
+
+price = ${price}]]></L7p:Detail>
+                            </L7p:AuditDetailAssertion>
+                            <L7p:UUIDGenerator>
+                                <L7p:TargetVariable stringValue="reference"/>
+                            </L7p:UUIDGenerator>
+                            <L7p:HardcodedResponse>
+                                <L7p:Base64ResponseBody stringValue="eyJQdXJjaGFzZWZsaWdodFJlc3BvbnNlIjoJewogICAgIlZvb25haXJmbGlnaHRpbmZvIjogWwogICAgICB7InN0YXJ0aW5ncG9pbnQiOiAiJHtzdGFydGluZ3BvaW50fSJ9LAogICAgICB7IkRlc3RpbmF0aW9uIjogIiR7ZGVzdGluYXRpb259In0sCiAgICAgIHsic2VhdHMiOiAiJHtzZWF0c30ifSwKICAgICAgeyJQcmljZSI6ICIke3ByaWNlfSJ9LAogICAgICB7InJlZmVyZW5jZW51bWJlciI6ICIke3JlZmVyZW5jZX0ifSwKICAgICAgeyJBY2NvdW50aWQiOiAiJHthY2NvdW50aWR9In0KICAgICBdCn19"/>
+                                <L7p:ResponseContentType stringValue="application/json"/>
+                            </L7p:HardcodedResponse>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="flight purchase"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                    </wsp:OneOrMore>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="- - Content-Type = JSON"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <wsp:OneOrMore wsp:Usage="Required">
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:Expression1 stringValue="${uri}"/>
+                                <L7p:Expression2 stringValue="/voonair/voonairreservations"/>
+                                <L7p:Operator operator="CONTAINS"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="/voonair/voonairreservations"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:Regex>
+                                <L7p:AutoTarget booleanValue="false"/>
+                                <L7p:CaptureVar stringValue="startingpoint"/>
+                                <L7p:IncludeEntireExpressionCapture booleanValue="false"/>
+                                <L7p:OtherTargetMessageVariable stringValue="query"/>
+                                <L7p:Regex stringValue="(=\w+)"/>
+                                <L7p:RegexName stringValue="startingpoint"/>
+                                <L7p:Replacement stringValue=""/>
+                                <L7p:Target target="OTHER"/>
+                            </L7p:Regex>
+                            <L7p:Regex>
+                                <L7p:AutoTarget booleanValue="false"/>
+                                <L7p:CaptureVar stringValue="test"/>
+                                <L7p:IncludeEntireExpressionCapture booleanValue="false"/>
+                                <L7p:OtherTargetMessageVariable stringValue="startingpoint"/>
+                                <L7p:Regex stringValue="="/>
+                                <L7p:RegexName stringValue="startingpoint"/>
+                                <L7p:Replace booleanValue="true"/>
+                                <L7p:Replacement stringValue=""/>
+                                <L7p:Target target="OTHER"/>
+                            </L7p:Regex>
+                            <wsp:OneOrMore wsp:Usage="Required">
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${startingpoint}"/>
+                                    <L7p:Expression2 stringValue="montreal"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="montreal"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="PHZvb25haXJyZXNlcnZhdGlvblJlc3BvbnNlPiAKICAgICAgICAgICAgPHZvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICAgICAgICAgPERlc3RpbmF0aW9uPkxvcyBBbmdlbGVzPC9EZXN0aW5hdGlvbj4KICAgICAgICAgICAgICAgPFByaWNlPjE5OS4wMDwvUHJpY2U+CiAgICAgICAgICAgIDwvdm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICAgICA8dm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICAgICAgICA8RGVzdGluYXRpb24+TW9udHJlYWw8L0Rlc3RpbmF0aW9uPgogICAgICAgICAgICAgICA8UHJpY2U+MTI5LjAwPC9QcmljZT4KICAgICAgICAgICAgPC92b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgIDx2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgICAgIDxEZXN0aW5hdGlvbj5OZXcgWW9yazwvRGVzdGluYXRpb24+CiAgICAgICAgICAgICAgIDxQcmljZT4yMDUuMDA8L1ByaWNlPgogICAgICAgICAgICA8L3Zvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICAgICAgPHZvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICAgICAgICAgPERlc3RpbmF0aW9uPkxvbmRvbjwvRGVzdGluYXRpb24+CiAgICAgICAgICAgICAgIDxQcmljZT40NTAuMDA8L1ByaWNlPgogICAgICAgICAgICA8L3Zvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KPC92b29uYWlycmVzZXJ2YXRpb25SZXNwb25zZT4J"/>
+                                    </L7p:HardcodedResponse>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="-- Starting point = Montreal"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                </wsp:All>
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${startingpoint}"/>
+                                    <L7p:Expression2 stringValue="vancouver"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="vancouver"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="PHZvb25haXJyZXNlcnZhdGlvblJlc3BvbnNlPgogICAgICAgICAgICA8dm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICAgICAgICA8RGVzdGluYXRpb24+Q2FsZ2FyeTwvRGVzdGluYXRpb24+CiAgICAgICAgICAgICAgIDxQcmljZT45OS4wMDwvUHJpY2U+CiAgICAgICAgICAgIDwvdm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICAgICA8dm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICAgICAgICA8RGVzdGluYXRpb24+U2FuIERpZWdvPC9EZXN0aW5hdGlvbj4KICAgICAgICAgICAgICAgPFByaWNlPjIzOS4wMDwvUHJpY2U+CiAgICAgICAgICAgIDwvdm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICAgICA8dm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICAgICAgICA8RGVzdGluYXRpb24+TGFzIFZlZ2FzPC9EZXN0aW5hdGlvbj4KICAgICAgICAgICAgICAgPFByaWNlPjE5OS4wMDwvUHJpY2U+CiAgICAgICAgICAgIDwvdm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICAgICA8dm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICAgICAgICA8RGVzdGluYXRpb24+UGFyaXM8L0Rlc3RpbmF0aW9uPgogICAgICAgICAgICAgICA8UHJpY2U+NTk5LjAwPC9QcmljZT4KICAgICAgICAgICAgPC92b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CgkJCTx2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgICAgIDxEZXN0aW5hdGlvbj5TYW4gRnJhbmNpc2NvPC9EZXN0aW5hdGlvbj4KICAgICAgICAgICAgICAgPFByaWNlPjE5OS4wMDwvUHJpY2U+CiAgICAgICAgICAgIDwvdm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0Pgo8L3Zvb25haXJyZXNlcnZhdGlvblJlc3BvbnNlPg=="/>
+                                    </L7p:HardcodedResponse>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="-- Starting point = Vancouver"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                </wsp:All>
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${startingpoint}"/>
+                                    <L7p:Expression2 stringValue="Toronto"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="Toronto"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="PHZvb25haXJyZXNlcnZhdGlvblJlc3BvbnNlPgkJCQoJICAgIDx2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgICAgIDxEZXN0aW5hdGlvbj5PdHRhd2E8L0Rlc3RpbmF0aW9uPgogICAgICAgICAgICAgICA8UHJpY2U+MTU5LjAwPC9QcmljZT4KICAgICAgICAgICAgPC92b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgIDx2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgICAgIDxEZXN0aW5hdGlvbj5Cb3N0b248L0Rlc3RpbmF0aW9uPgogICAgICAgICAgICAgICA8UHJpY2U+MjI5LjAwPC9QcmljZT4KICAgICAgICAgICAgPC92b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgIDx2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgICAgIDxEZXN0aW5hdGlvbj5PcmxhbmRvPC9EZXN0aW5hdGlvbj4KICAgICAgICAgICAgICAgPFByaWNlPjMwNS4wMDwvUHJpY2U+CiAgICAgICAgICAgIDwvdm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICAgICA8dm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICAgICAgICA8RGVzdGluYXRpb24+QnJ1c3NlbHM8L0Rlc3RpbmF0aW9uPgogICAgICAgICAgICAgICA8UHJpY2U+NTUwLjAwPC9QcmljZT4KICAgICAgICAgICAgPC92b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+Cjwvdm9vbmFpcnJlc2VydmF0aW9uUmVzcG9uc2U+"/>
+                                    </L7p:HardcodedResponse>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="-- Starting point = Toronto"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                </wsp:All>
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${startingpoint}"/>
+                                    <L7p:Expression2 stringValue="losangeles"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="losangeles"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="PHZvb25haXJyZXNlcnZhdGlvblJlc3BvbnNlPgogICAgICAgICAgICA8dm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICAgICAgICA8RGVzdGluYXRpb24+Q2hpY2FnbzwvRGVzdGluYXRpb24+CiAgICAgICAgICAgICAgIDxQcmljZT4xMjkuMDA8L1ByaWNlPgogICAgICAgICAgICA8L3Zvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICAgICAgPHZvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICAgICAgICAgPERlc3RpbmF0aW9uPkRldHJvaXQ8L0Rlc3RpbmF0aW9uPgogICAgICAgICAgICAgICA8UHJpY2U+MjA1LjAwPC9QcmljZT4KICAgICAgICAgICAgPC92b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgIDx2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgICAgIDxEZXN0aW5hdGlvbj5NYXVpPC9EZXN0aW5hdGlvbj4KICAgICAgICAgICAgICAgPFByaWNlPjI1MC4wMDwvUHJpY2U+CiAgICAgICAgICAgIDwvdm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0Pgo8L3Zvb25haXJyZXNlcnZhdGlvblJlc3BvbnNlPg=="/>
+                                    </L7p:HardcodedResponse>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Starting Point = Los Angeles"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                </wsp:All>
+                                <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="PHZvb25haXJyZXNlcnZhdGlvblJlc3BvbnNlPiAKICAgICAgICAgICAgPHZvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICAgICAgICAgPERlc3RpbmF0aW9uPkxvcyBBbmdlbGVzPC9EZXN0aW5hdGlvbj4KICAgICAgICAgICAgICAgPFByaWNlPjE5OS4wMDwvUHJpY2U+CiAgICAgICAgICAgIDwvdm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICAgICA8dm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICAgICAgICA8RGVzdGluYXRpb24+TW9udHJlYWw8L0Rlc3RpbmF0aW9uPgogICAgICAgICAgICAgICA8UHJpY2U+MTI5LjAwPC9QcmljZT4KICAgICAgICAgICAgPC92b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgIDx2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgICAgIDxEZXN0aW5hdGlvbj5OZXcgWW9yazwvRGVzdGluYXRpb24+CiAgICAgICAgICAgICAgIDxQcmljZT4yMDUuMDA8L1ByaWNlPgogICAgICAgICAgICA8L3Zvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICAgICAgPHZvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICAgICAgICAgPERlc3RpbmF0aW9uPkxvbmRvbjwvRGVzdGluYXRpb24+CiAgICAgICAgICAgICAgIDxQcmljZT40NTAuMDA8L1ByaWNlPgogICAgICAgICAgICA8L3Zvb25haXJyZXNlcnZhdGlvblJlc3VsdD4JCQoJCQk8dm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICAgICAgICA8RGVzdGluYXRpb24+VG9yb250bzwvRGVzdGluYXRpb24+CiAgICAgICAgICAgICAgIDxQcmljZT4xNTkuMDA8L1ByaWNlPgogICAgICAgICAgICA8L3Zvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICAgICAgPHZvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICAgICAgICAgPERlc3RpbmF0aW9uPkJvc3RvbjwvRGVzdGluYXRpb24+CiAgICAgICAgICAgICAgIDxQcmljZT4yMjkuMDA8L1ByaWNlPgogICAgICAgICAgICA8L3Zvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICAgICAgPHZvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICAgICAgICAgPERlc3RpbmF0aW9uPk9ybGFuZG88L0Rlc3RpbmF0aW9uPgogICAgICAgICAgICAgICA8UHJpY2U+MzA1LjAwPC9QcmljZT4KICAgICAgICAgICAgPC92b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgIDx2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgICAgIDxEZXN0aW5hdGlvbj5CcnVzc2VsczwvRGVzdGluYXRpb24+CiAgICAgICAgICAgICAgIDxQcmljZT41NTAuMDA8L1ByaWNlPgogICAgICAgICAgICA8L3Zvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICAgICAgPHZvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICAgICAgICAgPERlc3RpbmF0aW9uPkNhbGdhcnk8L0Rlc3RpbmF0aW9uPgogICAgICAgICAgICAgICA8UHJpY2U+OTkuMDA8L1ByaWNlPgogICAgICAgICAgICA8L3Zvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICAgICAgPHZvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICAgICAgICAgPERlc3RpbmF0aW9uPlNhbiBEaWVnbzwvRGVzdGluYXRpb24+CiAgICAgICAgICAgICAgIDxQcmljZT4yMzkuMDA8L1ByaWNlPgogICAgICAgICAgICA8L3Zvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICAgICAgPHZvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICAgICAgICAgPERlc3RpbmF0aW9uPkxhcyBWZWdhczwvRGVzdGluYXRpb24+CiAgICAgICAgICAgICAgIDxQcmljZT4xOTkuMDA8L1ByaWNlPgogICAgICAgICAgICA8L3Zvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICAgICAgPHZvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICAgICAgICAgPERlc3RpbmF0aW9uPlBhcmlzPC9EZXN0aW5hdGlvbj4KICAgICAgICAgICAgICAgPFByaWNlPjU5OS4wMDwvUHJpY2U+CiAgICAgICAgICAgIDwvdm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgoJCQk8dm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICAgICAgICA8RGVzdGluYXRpb24+U2FuIEZyYW5jaXNjbzwvRGVzdGluYXRpb24+CiAgICAgICAgICAgICAgIDxQcmljZT4xOTkuMDA8L1ByaWNlPgogICAgICAgICAgICA8L3Zvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICAgICAgPHZvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICAgICAgICAgPERlc3RpbmF0aW9uPkNoaWNhZ288L0Rlc3RpbmF0aW9uPgogICAgICAgICAgICAgICA8UHJpY2U+MTI5LjAwPC9QcmljZT4KICAgICAgICAgICAgPC92b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgIDx2b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+CiAgICAgICAgICAgICAgIDxEZXN0aW5hdGlvbj5EZXRyb2l0PC9EZXN0aW5hdGlvbj4KICAgICAgICAgICAgICAgPFByaWNlPjIwNS4wMDwvUHJpY2U+CiAgICAgICAgICAgIDwvdm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICAgICA8dm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgICAgICAgICA8RGVzdGluYXRpb24+TWF1aTwvRGVzdGluYXRpb24+CiAgICAgICAgICAgICAgIDxQcmljZT4yNTAuMDA8L1ByaWNlPgogICAgICAgICAgICA8L3Zvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KPC92b29uYWlycmVzZXJ2YXRpb25SZXNwb25zZT4="/>
+                                </L7p:HardcodedResponse>
+                            </wsp:OneOrMore>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Seat Sale"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:Expression1 stringValue="${uri}"/>
+                                <L7p:Expression2 stringValue="/voonair/voonairreservationDetails"/>
+                                <L7p:Operator operator="CONTAINS"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="/voonair/voonairreservationDetails"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:Regex>
+                                <L7p:AutoTarget booleanValue="false"/>
+                                <L7p:CaptureVar stringValue="startingpoint"/>
+                                <L7p:FindAll booleanValue="true"/>
+                                <L7p:IncludeEntireExpressionCapture booleanValue="false"/>
+                                <L7p:OtherTargetMessageVariable stringValue="query"/>
+                                <L7p:Regex stringValue="(=\w+)"/>
+                                <L7p:RegexName stringValue="startingpoint"/>
+                                <L7p:Replacement stringValue=""/>
+                                <L7p:Target target="OTHER"/>
+                            </L7p:Regex>
+                            <L7p:Regex>
+                                <L7p:AutoTarget booleanValue="false"/>
+                                <L7p:CaptureVar stringValue="test"/>
+                                <L7p:IncludeEntireExpressionCapture booleanValue="false"/>
+                                <L7p:OtherTargetMessageVariable stringValue="startingpoint"/>
+                                <L7p:Regex stringValue="="/>
+                                <L7p:RegexName stringValue="startingpoint"/>
+                                <L7p:Replace booleanValue="true"/>
+                                <L7p:Replacement stringValue=""/>
+                                <L7p:Target target="OTHER"/>
+                            </L7p:Regex>
+                            <L7p:Regex>
+                                <L7p:AutoTarget booleanValue="false"/>
+                                <L7p:CaptureVar stringValue="test"/>
+                                <L7p:IncludeEntireExpressionCapture booleanValue="false"/>
+                                <L7p:OtherTargetMessageVariable stringValue="startingpoint"/>
+                                <L7p:Regex stringValue="[^0-9a-zA-Z/?().,' +-]"/>
+                                <L7p:RegexName stringValue="startingpoint"/>
+                                <L7p:Replace booleanValue="true"/>
+                                <L7p:Replacement stringValue=""/>
+                                <L7p:Target target="OTHER"/>
+                            </L7p:Regex>
+                            <L7p:Split>
+                                <L7p:InputVariable stringValue="startingpoint"/>
+                                <L7p:OutputVariable stringValue="source"/>
+                                <L7p:SplitPattern stringValue=", "/>
+                            </L7p:Split>
+                            <L7p:AuditDetailAssertion>
+                                <L7p:Detail stringValueReference="inline"><![CDATA[${startingpoint}
+
+${source}
+
+${source[0]}
+${source[1]}]]></L7p:Detail>
+                            </L7p:AuditDetailAssertion>
+                            <wsp:OneOrMore wsp:Usage="Required">
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${source[0]}"/>
+                                    <L7p:Expression2 stringValue="vancouver"/>
+                                    <L7p:MultivaluedComparison multivaluedComparison="ANY"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="vancouver"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${source[1]}"/>
+                                    <L7p:Expression2 stringValue="vancouver"/>
+                                    <L7p:Negate booleanValue="true"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Negated booleanValue="true"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="vancouver"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="PHZvb25haXJyZXNlcnZhdGlvbkRldGFpbHNSZXNwb25zZT4KICAgICAgICA8dm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgIAk8RGVzdGluYXRpb24+JHtzb3VyY2VbMV19PC9EZXN0aW5hdGlvbj4KCQk8c3RhcnRpbmdwb2ludD4ke3NvdXJjZVswXX08L3N0YXJ0aW5ncG9pbnQ+CgkJPFByaWNlPjQ1OS4wMDwvUHJpY2U+CiAgICAgICAgPC92b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+Cjwvdm9vbmFpcnJlc2VydmF0aW9uRGV0YWlsc1Jlc3BvbnNlPgogICA="/>
+                                    <L7p:ResponseContentType stringValue="text/xml; charset=utf-8"/>
+                                    </L7p:HardcodedResponse>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Starting Point = Vancouver"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                </wsp:All>
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${source[0]}"/>
+                                    <L7p:Expression2 stringValue="losangeles"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="losangeles"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${source[1]}"/>
+                                    <L7p:Expression2 stringValue="losangeles"/>
+                                    <L7p:Negate booleanValue="true"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Negated booleanValue="true"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="losangeles"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="PHZvb25haXJyZXNlcnZhdGlvbkRldGFpbHNSZXNwb25zZT4KICAgICAgICA8dm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgIAk8RGVzdGluYXRpb24+JHtzb3VyY2VbMV19PC9EZXN0aW5hdGlvbj4KCQk8c3RhcnRpbmdwb2ludD4ke3NvdXJjZVswXX08L3N0YXJ0aW5ncG9pbnQ+CgkJPFByaWNlPjM5OS4wMDwvUHJpY2U+CiAgICAgICAgPC92b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+Cjwvdm9vbmFpcnJlc2VydmF0aW9uRGV0YWlsc1Jlc3BvbnNlPgogICA="/>
+                                    <L7p:ResponseContentType stringValue="text/xml; charset=utf-8"/>
+                                    </L7p:HardcodedResponse>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Starting point = Los Angeles"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                </wsp:All>
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${source[0]}"/>
+                                    <L7p:Expression2 stringValue="montreal"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="montreal"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${source[1]}"/>
+                                    <L7p:Expression2 stringValue="montreal"/>
+                                    <L7p:Negate booleanValue="true"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Negated booleanValue="true"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="montreal"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="PHZvb25haXJyZXNlcnZhdGlvbkRldGFpbHNSZXNwb25zZT4KICAgICAgICA8dm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgIAk8RGVzdGluYXRpb24+JHtzb3VyY2VbMV19PC9EZXN0aW5hdGlvbj4KCQk8c3RhcnRpbmdwb2ludD4ke3NvdXJjZVswXX08L3N0YXJ0aW5ncG9pbnQ+CgkJPFByaWNlPjY1OS4wMDwvUHJpY2U+CiAgICAgICAgPC92b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+Cjwvdm9vbmFpcnJlc2VydmF0aW9uRGV0YWlsc1Jlc3BvbnNlPgogICA="/>
+                                    <L7p:ResponseContentType stringValue="text/xml; charset=utf-8"/>
+                                    </L7p:HardcodedResponse>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Startingpoint = Montreal"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                </wsp:All>
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${source[0]}"/>
+                                    <L7p:Expression2 stringValue="toronto"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="toronto"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${source[1]}"/>
+                                    <L7p:Expression2 stringValue="toronto"/>
+                                    <L7p:Negate booleanValue="true"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Negated booleanValue="true"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="toronto"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="PHZvb25haXJyZXNlcnZhdGlvbkRldGFpbHNSZXNwb25zZT4KICAgICAgICA8dm9vbmFpcnJlc2VydmF0aW9uUmVzdWx0PgogICAgICAgIAk8RGVzdGluYXRpb24+JHtzb3VyY2VbMV19PC9EZXN0aW5hdGlvbj4KCQk8c3RhcnRpbmdwb2ludD4ke3NvdXJjZVswXX08L3N0YXJ0aW5ncG9pbnQ+CgkJPFByaWNlPjQ1OS4wMDwvUHJpY2U+CiAgICAgICAgPC92b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+Cjwvdm9vbmFpcnJlc2VydmF0aW9uRGV0YWlsc1Jlc3BvbnNlPgogICA="/>
+                                    <L7p:ResponseContentType stringValue="text/xml; charset=utf-8"/>
+                                    </L7p:HardcodedResponse>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="startingpoint = Toronto "/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                </wsp:All>
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${source[0]}"/>
+                                    <L7p:MultivaluedComparison multivaluedComparison="ANY"/>
+                                    <L7p:Operator operatorNull="null"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="int"/>
+                                    </L7p:item>
+                                    <L7p:item cardinality="included">
+                                    <L7p:Max intValue="120"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${source[1]}"/>
+                                    <L7p:MultivaluedComparison multivaluedComparison="ANY"/>
+                                    <L7p:Operator operatorNull="null"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="int"/>
+                                    </L7p:item>
+                                    <L7p:item cardinality="included">
+                                    <L7p:Max intValue="120"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="PHZvb25haXJyZXNlcnZhdGlvbkRldGFpbHNSZXNwb25zZT4KICAgICAgICAgPHZvb25haXJyZXNlcnZhdGlvblJlc3VsdD4KICAgICAgICAgICAgICAgPERlc3RpbmF0aW9uPiR7c291cmNlWzFdfTwvRGVzdGluYXRpb24+CgkJPHN0YXJ0aW5ncG9pbnQ+JHtzb3VyY2VbMF19PC9zdGFydGluZ3BvaW50PgogICAgICAgICAgICAgICA8RXJyb3I+SW52YWxpZCBEZXN0aW5hdGlvbiBhbmQgb3Igc3RhcnRpbmcgcG9pbnQ8L0Vycm9yPgogICAgICAgICAgPC92b29uYWlycmVzZXJ2YXRpb25SZXN1bHQ+Cjwvdm9vbmFpcnJlc2VydmF0aW9uRGV0YWlsc1Jlc3BvbnNlPgog"/>
+                                    <L7p:ResponseContentType stringValue="text/xml; charset=utf-8"/>
+                                    </L7p:HardcodedResponse>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Wrong data input"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                </wsp:All>
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:CustomizeErrorResponse>
+                                    <L7p:Content stringValueReference="inline"><![CDATA[<voonairreservationDetailsResponse>
+         <voonairreservationResult>
+               	<Destination>${source[1]}</Destination>
+	<startingpoint>${source[0]}</startingpoint>
+	<Error>Invalid Request for the Destination and or starting point</Error>
+          </voonairreservationResult>
+</voonairreservationDetailsResponse>]]></L7p:Content>
+                                    <L7p:ContentType stringValue="text/xml; charset=UTF-8"/>
+                                    <L7p:ExtraHeaders nameValuePairArray="included"/>
+                                    </L7p:CustomizeErrorResponse>
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:Expression1 stringValue="${source[0]}"/>
+                                    <L7p:Expression2 stringValue="${source[1]}"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="${source[1]}"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:FalseAssertion/>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Destination and straing point are the same"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                </wsp:All>
+                            </wsp:OneOrMore>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Query  Reservation Details"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:Expression1 stringValue="${uri}"/>
+                                <L7p:Expression2 stringValue="/voonair/traveldocuments"/>
+                                <L7p:Operator operator="CONTAINS"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="/voonair/traveldocuments"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:Regex>
+                                <L7p:AutoTarget booleanValue="false"/>
+                                <L7p:CaptureVar stringValue="purchaseid"/>
+                                <L7p:IncludeEntireExpressionCapture booleanValue="false"/>
+                                <L7p:OtherTargetMessageVariable stringValue="url"/>
+                                <L7p:Regex stringValue="purchaseid=(.*)"/>
+                                <L7p:RegexName stringValue="purchaseid"/>
+                                <L7p:Replacement stringValue=""/>
+                                <L7p:Target target="OTHER"/>
+                            </L7p:Regex>
+                            <L7p:AuditDetailAssertion>
+                                <L7p:Detail stringValueReference="inline"><![CDATA[url = ${url}
+id = ${purchaseid}]]></L7p:Detail>
+                            </L7p:AuditDetailAssertion>
+                            <L7p:HardcodedResponse>
+                                <L7p:Base64ResponseBody stringValue="PEVycm9yPgo8VHJhdmVsRG9jdW1lbnRzPgpOb3QgcmVjb2duaXplZCwgcGxlYXNlIGNhbGwgMS04MDAtMTIzLTQ1NjcgdG8gZ2V0IHlvdXIgZGV0YWlscyBvZiB5b3VyIHVwY29taW5nIGZsaWdodC4KPC9UcmF2ZWxEb2N1bWVudHM+CjwvRXJyb3I+"/>
+                            </L7p:HardcodedResponse>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="travel documents"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:Expression1 stringValue="${uri}"/>
+                                <L7p:Expression2 stringValue="/voonair/Purchaseflight"/>
+                                <L7p:Operator operator="CONTAINS"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="/voonair/Purchaseflight"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:Regex>
+                                <L7p:AutoTarget booleanValue="false"/>
+                                <L7p:CaptureVar stringValue="startingpoint"/>
+                                <L7p:IncludeEntireExpressionCapture booleanValue="false"/>
+                                <L7p:OtherTargetMessageVariable stringValue="url"/>
+                                <L7p:Regex stringValue="startingpoint=(.+?)&amp;"/>
+                                <L7p:RegexVar stringValue="test2"/>
+                                <L7p:Replacement stringValue=""/>
+                                <L7p:Target target="OTHER"/>
+                            </L7p:Regex>
+                            <L7p:Regex>
+                                <L7p:AutoTarget booleanValue="false"/>
+                                <L7p:CaptureVar stringValue="destination"/>
+                                <L7p:IncludeEntireExpressionCapture booleanValue="false"/>
+                                <L7p:OtherTargetMessageVariable stringValue="url"/>
+                                <L7p:Regex stringValue="destination=(.+?)&amp;"/>
+                                <L7p:RegexVar stringValue="test2"/>
+                                <L7p:Replacement stringValue=""/>
+                                <L7p:Target target="OTHER"/>
+                            </L7p:Regex>
+                            <L7p:Regex>
+                                <L7p:AutoTarget booleanValue="false"/>
+                                <L7p:CaptureVar stringValue="seats"/>
+                                <L7p:IncludeEntireExpressionCapture booleanValue="false"/>
+                                <L7p:OtherTargetMessageVariable stringValue="url"/>
+                                <L7p:Regex stringValue="seats=(.+?)&amp;"/>
+                                <L7p:RegexVar stringValue="test2"/>
+                                <L7p:Replacement stringValue=""/>
+                                <L7p:Target target="OTHER"/>
+                            </L7p:Regex>
+                            <L7p:Regex>
+                                <L7p:AutoTarget booleanValue="false"/>
+                                <L7p:CaptureVar stringValue="accountid"/>
+                                <L7p:IncludeEntireExpressionCapture booleanValue="false"/>
+                                <L7p:OtherTargetMessageVariable stringValue="url"/>
+                                <L7p:Regex stringValue="accountid=(.+?)&amp;"/>
+                                <L7p:RegexVar stringValue="test2"/>
+                                <L7p:Replacement stringValue=""/>
+                                <L7p:Target target="OTHER"/>
+                            </L7p:Regex>
+                            <L7p:Regex>
+                                <L7p:AutoTarget booleanValue="false"/>
+                                <L7p:CaptureVar stringValue="price"/>
+                                <L7p:IncludeEntireExpressionCapture booleanValue="false"/>
+                                <L7p:OtherTargetMessageVariable stringValue="url"/>
+                                <L7p:Regex stringValue="Price=([^\s]+)"/>
+                                <L7p:RegexVar stringValue="test2"/>
+                                <L7p:Replacement stringValue=""/>
+                                <L7p:Target target="OTHER"/>
+                            </L7p:Regex>
+                            <L7p:AuditDetailAssertion>
+                                <L7p:Detail stringValueReference="inline"><![CDATA[startingpoint = ${startingpoint}
+
+destination = ${destination}
+
+seats = ${seats}
+
+accountid = ${accountid}
+
+price = ${price}]]></L7p:Detail>
+                            </L7p:AuditDetailAssertion>
+                            <L7p:UUIDGenerator>
+                                <L7p:TargetVariable stringValue="reference"/>
+                            </L7p:UUIDGenerator>
+                            <L7p:SetVariable>
+                                <L7p:Base64Expression stringValue="PFB1cmNoYXNlZmxpZ2h0UmVzcG9uc2U+DQogICAgICAgIDxEZXN0aW5hdGlvbj4ke2Rlc3RpbmF0aW9ufTwvRGVzdGluYXRpb24+DQogICAgICAgIDxzZWF0cz4ke3NlYXRzfTwvc2VhdHM+DQogICAgICAgIDxQcmljZT4ke3ByaWNlfTwvUHJpY2U+DQoJPGFjY291bnRpZD4ke2FjY291bnRpZH08L2FjY291bnRpZD4NCiAgICAgICAgPHJlZmVyZW5jZW51bWJlcj4ke3JlZmVyZW5jZX08L3JlZmVyZW5jZW51bWJlcj4NCiAgICAgICAgPHN0YXJ0aW5ncG9pbnQ+JHtzdGFydGluZ3BvaW50fTwvc3RhcnRpbmdwb2ludD4NCjwvUHVyY2hhc2VmbGlnaHRSZXNwb25zZT4="/>
+                                <L7p:ContentType stringValue="text/xml; charset=utf-8"/>
+                                <L7p:DataType variableDataType="message"/>
+                                <L7p:VariableToSet stringValue="purchase"/>
+                            </L7p:SetVariable>
+                            <L7p:HardcodedResponse>
+                                <L7p:Base64ResponseBody stringValue="JHtwdXJjaGFzZS5tYWlucGFydH0="/>
+                            </L7p:HardcodedResponse>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="flight purchase"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                    </wsp:OneOrMore>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue=" - - Content Type = XML"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:All>
+            </wsp:OneOrMore>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

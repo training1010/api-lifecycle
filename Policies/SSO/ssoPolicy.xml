@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References>
+        <SiteMinderConfigurationReference RefType="com.l7tech.external.assertions.siteminder.SiteMinderExternalReference">
+            <GOID>9b232f15f3ca5c79191f2bdd39017b02</GOID>
+            <siteMinderConfiguration
+                id="9b232f15f3ca5c79191f2bdd39017b02" version="0" xmlns:ns2="http://ns.l7tech.com/secureSpan/1.0/core">
+                <ns2:name>CASSO</ns2:name>
+                <address>127.0.0.1</address>
+                <clusterThreshold>50</clusterThreshold>
+                <enabled>true</enabled>
+                <fipsmode>1</fipsmode>
+                <hostConfiguration>HCO.External</hostConfiguration>
+                <hostname>ssg.dev.com</hostname>
+                <ipcheck>false</ipcheck>
+                <nonClusterFailover>false</nonClusterFailover>
+                <properties>
+                    <entry>
+                        <key>server.0.0.accounting.port</key>
+                        <value>44441</value>
+                    </entry>
+                    <entry>
+                        <key>server.0.0.timeout</key>
+                        <value>60</value>
+                    </entry>
+                    <entry>
+                        <key>server.0.0.connection.step</key>
+                        <value>1</value>
+                    </entry>
+                    <entry>
+                        <key>server.0.0.authorization.port</key>
+                        <value>44443</value>
+                    </entry>
+                    <entry>
+                        <key>server.0.0.connection.min</key>
+                        <value>1</value>
+                    </entry>
+                    <entry>
+                        <key>server.0.0.connection.max</key>
+                        <value>3</value>
+                    </entry>
+                    <entry>
+                        <key>server.0.0.address</key>
+                        <value>sso.apim.ca</value>
+                    </entry>
+                    <entry>
+                        <key>server.0.0.authentication.port</key>
+                        <value>44442</value>
+                    </entry>
+                </properties>
+                <updateSSOToken>false</updateSSOToken>
+                <userName>siteminder</userName>
+            </siteMinderConfiguration>
+        </SiteMinderConfigurationReference>
+    </exp:References>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="=================================="/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="A policy to use as part of learning how to use SiteMinder integration"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="Publish in a web api at URI /testsm for example"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="To call policy, use browser and GET http://ssg.dev.com:8080/test/siteminder?username=[allmi01]&amp;password=[CAdemo123]"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="=================================="/>
+            </L7p:CommentAssertion>
+            <L7p:SiteMinderCheckProtected>
+                <L7p:Action stringValue="GET"/>
+                <L7p:AgentGoid goidValue="9b232f15f3ca5c79191f2bdd39017b02"/>
+                <L7p:AgentId stringValue="CASSO"/>
+                <L7p:Prefix stringValue="siteminder"/>
+                <L7p:ProtectedResource stringValue="/sm"/>
+                <L7p:SmAgentName stringValue="apim.agent2"/>
+                <L7p:SourceIpAddress stringValue=""/>
+            </L7p:SiteMinderCheckProtected>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:XpathCredentialSource>
+                        <L7p:PasswordExpression xpathExpressionValue="included">
+                            <L7p:Expression stringValue="$request.http.parameter.password"/>
+                            <L7p:Namespaces mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="s"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                </L7p:entry>
+                            </L7p:Namespaces>
+                        </L7p:PasswordExpression>
+                        <L7p:XpathExpression xpathExpressionValue="included">
+                            <L7p:Expression stringValue="$request.http.parameter.username"/>
+                            <L7p:Namespaces mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="s"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                </L7p:entry>
+                            </L7p:Namespaces>
+                        </L7p:XpathExpression>
+                    </L7p:XpathCredentialSource>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="Y3JlZGVudGlhbHMgaW4gcGFyYW1ldGVycw=="/>
+                        <L7p:VariableToSet stringValue="auth_method"/>
+                    </L7p:SetVariable>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="LEFT.COMMENT"/>
+                                <L7p:value stringValue="creds"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:CookieCredentialSource>
+                        <L7p:CookieName stringValue="SMSESSION"/>
+                    </L7p:CookieCredentialSource>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="U01TZXNzaW9uIENvb2tpZQ=="/>
+                        <L7p:VariableToSet stringValue="auth_method"/>
+                    </L7p:SetVariable>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="LEFT.COMMENT"/>
+                                <L7p:value stringValue="cookie"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:HardcodedResponse>
+                        <L7p:Base64ResponseBody stringValue="WW91IG11c3QgZWl0aGVyIHByb3ZpZGUgYSB2YWxpZCBTTVNFU1NJT04gY29va2llIG9yIGNyZWRlbnRpYWxzIGluIHBhcmFtZXRlcnMgc3VjaCBhcwpodHRwOi8vaG9zdDpwb3J0L3Rlc3Qvc2l0ZW1pbmRlcj91c2VybmFtZT1VU0VSTkFNRSZwYXNzd29yZD1QQVNTV09SRA=="/>
+                        <L7p:EarlyResponse booleanValue="true"/>
+                        <L7p:ResponseContentType stringValue="text/plain; charset=UTF-8"/>
+                        <L7p:ResponseStatus stringValue="400"/>
+                    </L7p:HardcodedResponse>
+                    <L7p:FalseAssertion/>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="LEFT.COMMENT"/>
+                                <L7p:value stringValue="error"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:All>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="creds or cookie"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:OneOrMore>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <L7p:SiteMinderAuthenticate>
+                    <L7p:CookieSourceVar stringValue="cookie.SMSESSION"/>
+                    <L7p:NamedUser stringValue=""/>
+                    <L7p:Prefix stringValue="siteminder"/>
+                    <L7p:UseSMCookie booleanValue="true"/>
+                </L7p:SiteMinderAuthenticate>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:HardcodedResponse>
+                        <L7p:Base64ResponseBody stringValue="QXV0aGVudGljYXRpb24gZmFpbGVkLiBSZWFzb246ICR7c2l0ZW1pbmRlci5zbWNvbnRleHQuYXR0cmlidXRlcy5TRVNTX0RFRl9SRUFTT059"/>
+                        <L7p:EarlyResponse booleanValue="true"/>
+                        <L7p:ResponseContentType stringValue="text/plain; charset=UTF-8"/>
+                        <L7p:ResponseStatus stringValue="400"/>
+                    </L7p:HardcodedResponse>
+                    <L7p:FalseAssertion/>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="LEFT.COMMENT"/>
+                                <L7p:value stringValue="error"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:All>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="Authenticate"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:OneOrMore>
+            <L7p:SiteMinderAuthorize>
+                <L7p:CookieComment stringValue=""/>
+                <L7p:CookieDomain stringValue=""/>
+                <L7p:CookieMaxAge stringValue=""/>
+                <L7p:CookieName stringValue="SMSESSION"/>
+                <L7p:CookiePath stringValue=""/>
+                <L7p:CookieSecure stringValue=""/>
+                <L7p:CookieSourceVar stringValue=""/>
+                <L7p:CookieVersion stringValue=""/>
+                <L7p:Prefix stringValue="siteminder"/>
+                <L7p:UseCustomCookieName booleanValue="true"/>
+            </L7p:SiteMinderAuthorize>
+            <L7p:ManageCookie>
+                <L7p:CookieAttributes mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="name"/>
+                        <L7p:value nameValuePair="included">
+                            <L7p:Key stringValue="name"/>
+                            <L7p:Value stringValue="SMSESSION"/>
+                        </L7p:value>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="httpOnly"/>
+                        <L7p:value nameValuePair="included">
+                            <L7p:Key stringValue="httpOnly"/>
+                            <L7p:Value stringValue="false"/>
+                        </L7p:value>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="secure"/>
+                        <L7p:value nameValuePair="included">
+                            <L7p:Key stringValue="secure"/>
+                            <L7p:Value stringValue="false"/>
+                        </L7p:value>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="value"/>
+                        <L7p:value nameValuePair="included">
+                            <L7p:Key stringValue="value"/>
+                            <L7p:Value stringValue="${siteminder.smcontext.ssotoken}"/>
+                        </L7p:value>
+                    </L7p:entry>
+                </L7p:CookieAttributes>
+                <L7p:Operation operation="ADD_OR_REPLACE"/>
+            </L7p:ManageCookie>
+            <L7p:AuditDetailAssertion>
+                <L7p:Detail stringValue="USERNAME: ${request.authenticatedUser}"/>
+            </L7p:AuditDetailAssertion>
+            <L7p:AuditDetailAssertion>
+                <L7p:Detail stringValue="USERNAME ID: ${request.authenticatedUser.id}"/>
+            </L7p:AuditDetailAssertion>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="ew0KIlNNIFNFU1NJT04iOiIke3NpdGVtaW5kZXIuc21jb250ZXh0LnNzb3Rva2VufSIsDQoiVVNFUkROIjoiJHtzaXRlbWluZGVyLnNtY29udGV4dC5hdHRyaWJ1dGVzLkFUVFJfVVNFUkROfSIsDQoiQVVUSF9ESVJfT0lEIjoiJHtzaXRlbWluZGVyLnNtY29udGV4dC5hdHRyaWJ1dGVzLkFUVFJfQVVUSF9ESVJfT0lEfSIsDQoiQVVUSF9ESVJfTkFNRSI6IiR7c2l0ZW1pbmRlci5zbWNvbnRleHQuYXR0cmlidXRlcy5BVFRSX0FVVEhfRElSX05BTUV9IiwNCiJBVVRIX0RJUl9TRVJWRVIiOiIke3NpdGVtaW5kZXIuc21jb250ZXh0LmF0dHJpYnV0ZXMuQVRUUl9BVVRIX0RJUl9TRVJWRVJ9IiwNCiJBVVRIX0RJUl9OQU1FU1BBQ0UiOiIke3NpdGVtaW5kZXIuc21jb250ZXh0LmF0dHJpYnV0ZXMuQVRUUl9BVVRIX0RJUl9OQU1FU1BBQ0V9IiwNCiJVU0VSTkFNRSI6IiR7c2l0ZW1pbmRlci5zbWNvbnRleHQuYXR0cmlidXRlcy5BVFRSX1VTRVJOQU1FfSIsDQoiZGVwYXJ0bWVudCI6IiR7c2l0ZW1pbmRlci5zbWNvbnRleHQuYXR0cmlidXRlcy5kZXBhcnRtZW50fSIsDQoiZW1haWwiOiIke3NpdGVtaW5kZXIuc21jb250ZXh0LmF0dHJpYnV0ZXMuZW1haWx9IiwNCiJmaXJzdE5hbWUiOiIke3NpdGVtaW5kZXIuc21jb250ZXh0LmF0dHJpYnV0ZXMuZmlyc3ROYW1lfSIsDQoibGFzdE5hbWUiOiIke3NpdGVtaW5kZXIuc21jb250ZXh0LmF0dHJpYnV0ZXMubGFzdE5hbWV9Ig0KfQ=="/>
+                <L7p:VariableToSet stringValue="userInfo"/>
+            </L7p:SetVariable>
+            <L7p:EncodeJsonWebToken>
+                <L7p:KeyGoid goidValue="0000000000000000ffffffffffffffff"/>
+                <L7p:SignPayload booleanValue="true"/>
+                <L7p:SignatureAlgorithm stringValue="RS512"/>
+                <L7p:SignatureSourceType intValue="1"/>
+                <L7p:SourceVariable stringValue="${userInfo}"/>
+                <L7p:TargetVariable stringValue="userEncodeInfo"/>
+            </L7p:EncodeJsonWebToken>
+            <L7p:DecodeJsonWebToken>
+                <L7p:KeyGoid goidValue="0000000000000000ffffffffffffffff"/>
+                <L7p:SourcePayload stringValue="${userEncodeInfo.compact}"/>
+                <L7p:TargetVariablePrefix stringValue="userDecodeInfo"/>
+                <L7p:ValidationType stringValue="Using Recipient Key From List"/>
+            </L7p:DecodeJsonWebToken>
+            <L7p:HardcodedResponse>
+                <L7p:Base64ResponseBody stringValue="T0sKCkF1dGhlbnRpY2F0aW9uIG1ldGhvZDogJHthdXRoX21ldGhvZH0KVG90YWwgbnVtYmVyIG9mIGF0dHJpYnR1ZXM6ICR7c2l0ZW1pbmRlci5zbWNvbnRleHQuYXR0cmlidXRlcy5sZW5ndGh9CgpTZXQgYnkgQ2hlY2sgcHJvdGVjdGVkIHJlc291cmNlCj09PT09PT09ClRyYW5zYWN0aW9uIGlkIGNyZWF0ZWQ6ICR7c2l0ZW1pbmRlci5zbWNvbnRleHQudHJhbnNhY3Rpb25pZH0KTnVtYmVyIG9mIGF1dGggc2NoZW1lczogJHtzaXRlbWluZGVyLnNtY29udGV4dC5hdXRoc2NoZW1lcy5sZW5ndGh9CkF1dGggc2NoZW1lOiAke3NpdGVtaW5kZXIuc21jb250ZXh0LmF1dGhzY2hlbWVzWzBdfQoKU2V0IGJ5IEF1dGhlbnRpY2F0ZSBBZ2FpbnN0IFNpdGVNaW5kZXIKPT09PT09PT0KVVNFUkROID0gJHtzaXRlbWluZGVyLnNtY29udGV4dC5hdHRyaWJ1dGVzLkFUVFJfVVNFUkROfQpBVVRIX0RJUl9PSUQgPSAke3NpdGVtaW5kZXIuc21jb250ZXh0LmF0dHJpYnV0ZXMuQVRUUl9BVVRIX0RJUl9PSUR9CkFVVEhfRElSX05BTUUgPSAke3NpdGVtaW5kZXIuc21jb250ZXh0LmF0dHJpYnV0ZXMuQVRUUl9BVVRIX0RJUl9OQU1FfQpBVVRIX0RJUl9TRVJWRVIgPSAke3NpdGVtaW5kZXIuc21jb250ZXh0LmF0dHJpYnV0ZXMuQVRUUl9BVVRIX0RJUl9TRVJWRVJ9CkFVVEhfRElSX05BTUVTUEFDRSA9ICR7c2l0ZW1pbmRlci5zbWNvbnRleHQuYXR0cmlidXRlcy5BVFRSX0FVVEhfRElSX05BTUVTUEFDRX0KVVNFUk5BTUUgPSAke3NpdGVtaW5kZXIuc21jb250ZXh0LmF0dHJpYnV0ZXMuQVRUUl9VU0VSTkFNRX0KU1NPIFRva2VuID0gJHtzaXRlbWluZGVyLnNtY29udGV4dC5zc290b2tlbn0KU1NPIFNNU0VTU0lPTiA9ICR7c2l0ZW1pbmRlci5zbXNlc3Npb259CgpTZXQgYnkgQXV0aG9yaXplIEFnYWluc3QgU2l0ZU1pbmRlcgo9PT09PT09PQpkZXBhcnRtZW50ID0gJHtzaXRlbWluZGVyLnNtY29udGV4dC5hdHRyaWJ1dGVzLmRlcGFydG1lbnR9CmVtYWlsID0gJHtzaXRlbWluZGVyLnNtY29udGV4dC5hdHRyaWJ1dGVzLmVtYWlsfQpmaXJzdE5hbWUgPSAke3NpdGVtaW5kZXIuc21jb250ZXh0LmF0dHJpYnV0ZXMuZmlyc3ROYW1lfQpsYXN0TmFtZSA9ICR7c2l0ZW1pbmRlci5zbWNvbnRleHQuYXR0cmlidXRlcy5sYXN0TmFtZX0KQVRUUl9ERVZJQ0VOQU1FID0gJHtzaXRlbWluZGVyLnNtY29udGV4dC5hdHRyaWJ1dGVzLkFUVFJfREVWSUNFTkFNRX0KQVRUUl9TRVNTSU9OSUQgPSAke3NpdGVtaW5kZXIuc21jb250ZXh0LmF0dHJpYnV0ZXMuQVRUUl9TRVNTSU9OSUR9CkFUVFJfU0VTU0lPTlNQRUMgPSAke3NpdGVtaW5kZXIuc21jb250ZXh0LmF0dHJpYnV0ZXMuQVRUUl9TRVNTSU9OU1BFQ30KQVRUUl9TVEFSVFNFU1NJT05USU1FID0gJHtzaXRlbWluZGVyLnNtY29udGV4dC5hdHRyaWJ1dGVzLkFUVFJfU1RBUlRTRVNTSU9OVElNRX0KQVRUUl9MQVNUU0VTU0lPTlRJTUUgPSAke3NpdGVtaW5kZXIuc21jb250ZXh0LmF0dHJpYnV0ZXMuQVRUUl9MQVNUU0VTU0lPTlRJTUV9CkFUVFJfSURMRVNFU1NJT05USU1FT1VUID0gJHtzaXRlbWluZGVyLnNtY29udGV4dC5hdHRyaWJ1dGVzLkFUVFJfSURMRVNFU1NJT05USU1FT1VUfQpBVFRSX01BWFNFU1NJT05USU1FT1VUID0gJHtzaXRlbWluZGVyLnNtY29udGV4dC5hdHRyaWJ1dGVzLkFUVFJfTUFYU0VTU0lPTlRJTUVPVVR9ClNFU1NfREVGX1JFQVNPTiA9ICR7c2l0ZW1pbmRlci5zbWNvbnRleHQuYXR0cmlidXRlcy5TRVNTX0RFRl9SRUFTT059CgpKV1QgVG9rZW4gRGV0YWlscwo9PT09PT09PT09PT09ClVzZXIgSW5mb3JtYXRpb246ICR7dXNlckluZm99Cgo9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CgpFbmNvZGU6ICR7dXNlckVuY29kZUluZm8uY29tcGFjdH0KCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KCkRlY29kZTogJHt1c2VyRGVjb2RlSW5mby5wYXlsb2FkfQo="/>
+                <L7p:ResponseContentType stringValue="text/plain; charset=UTF-8"/>
+            </L7p:HardcodedResponse>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

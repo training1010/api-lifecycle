@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References>
+        <JMSConnectionReference RefType="com.l7tech.console.policy.exporter.JMSEndpointReference">
+            <GOID>552acadd71a75046b0c76cd004da4a82</GOID>
+            <ConnectionTemplate>false</ConnectionTemplate>
+            <EndpointTemplate>false</EndpointTemplate>
+            <InitialContextFactoryClassname>org.apache.activemq.jndi.ActiveMQInitialContextFactory</InitialContextFactoryClassname>
+            <JndiUrl>tcp://myMacHost.com:61616</JndiUrl>
+            <QueueFactoryUrl>ConnectionFactory</QueueFactoryUrl>
+            <TopicFactoryUrl/>
+            <DestinationFactoryUrl/>
+            <Name>myJMSLocalReq(CATech)</Name>
+            <DestinationName>dynamicQueues/CATech</DestinationName>
+            <Type>Queue</Type>
+        </JMSConnectionReference>
+    </exp:References>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:AuditAssertion>
+                <L7p:SaveRequest booleanValue="true"/>
+                <L7p:SaveResponse booleanValue="true"/>
+            </L7p:AuditAssertion>
+            <L7p:AuditDetailAssertion>
+                <L7p:Detail stringValue="Received Message: ${request.mainpart}"/>
+            </L7p:AuditDetailAssertion>
+            <L7p:JmsRoutingAssertion>
+                <L7p:EndpointName stringValue="myJMSLocalReq(CATech)"/>
+                <L7p:EndpointOid goidValue="552acadd71a75046b0c76cd004da4a82"/>
+                <L7p:RequestJmsMessagePropertyRuleSet jmsMessagePropertyRuleSet="included">
+                    <L7p:Rules jmsMessagePropertyRuleArray="included"/>
+                </L7p:RequestJmsMessagePropertyRuleSet>
+                <L7p:ResponseJmsMessagePropertyRuleSet jmsMessagePropertyRuleSet="included">
+                    <L7p:Rules jmsMessagePropertyRuleArray="included"/>
+                </L7p:ResponseJmsMessagePropertyRuleSet>
+            </L7p:JmsRoutingAssertion>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

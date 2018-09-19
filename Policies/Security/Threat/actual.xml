@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References/>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="************************************************************"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API :- &lt;Enter the API Name>"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API Group :- &lt;Enter the API Group>"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API TYPE :- &lt;REST/SOAP/DATA>"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="Author: Balaji Radhakrishnan"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="************************************************************"/>
+            </L7p:CommentAssertion>
+            <L7p:HardcodedResponse>
+                <L7p:Base64ResponseBody stringValue="PCFET0NUWVBFIGh0bWw+CjxodG1sPgo8aGVhZD4KPHN0eWxlPgpib2R5IHtiYWNrZ3JvdW5kLWNvbG9yOiNkMGQwZTE7fQpoMSB7CiAgICBib3JkZXI6IDJweCBzb2xpZCBncmV5OwogICAgcGFkZGluZzogOHB4Owp9Cjwvc3R5bGU+CjwvaGVhZD4KPGJvZHk+CjxoMSBzdHlsZT0iY29sb3I6IzMzNjZmZjsiPjxiPlRoaXMgaXMgYSBBQ1RVQUwgU2VydmljZTwvYj48L2gxPgo8cD5NZXNzYWdlIFN1Y2Nlc3NmdWxseSBwcm9jZXNzZWQgYnkgcG9ydCAke3JlcXVlc3QudGNwLmxvY2FsUG9ydH0gISEhPC9wPgo8cCBzdHlsZT0iY29sb3I6cmVkOyI+PGI+U3VjY2Vzc2Z1bHkgZG9uZSB0aGUgMiBmYWN0b3IgQXV0aGVudGljYXRpb24gYW5kIFRocmVhdCBQcm90ZWN0aW9uISEhPGI+PC9wPgo8L2JvZHk+CjwvaHRtbD4="/>
+                <L7p:ResponseContentType stringValue="text/html; charset=UTF-8"/>
+            </L7p:HardcodedResponse>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

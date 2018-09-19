@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References>
+        <SiteMinderConfigurationReference RefType="com.l7tech.external.assertions.siteminder.SiteMinderExternalReference">
+            <GOID>559f4652fe9c1400800cfa7c103de157</GOID>
+            <siteMinderConfiguration
+                id="559f4652fe9c1400800cfa7c103de157" version="0" xmlns:ns2="http://ns.l7tech.com/secureSpan/1.0/core">
+                <ns2:name>CASSO</ns2:name>
+                <address>127.0.0.1</address>
+                <clusterThreshold>50</clusterThreshold>
+                <enabled>true</enabled>
+                <fipsmode>1</fipsmode>
+                <hostConfiguration>hco.apim</hostConfiguration>
+                <hostname>mag.rasdemo.apim.ca.com</hostname>
+                <ipcheck>false</ipcheck>
+                <nonClusterFailover>false</nonClusterFailover>
+                <properties>
+                    <entry>
+                        <key>server.0.0.accounting.port</key>
+                        <value>44441</value>
+                    </entry>
+                    <entry>
+                        <key>server.0.0.timeout</key>
+                        <value>60</value>
+                    </entry>
+                    <entry>
+                        <key>server.0.0.connection.step</key>
+                        <value>1</value>
+                    </entry>
+                    <entry>
+                        <key>server.0.0.authorization.port</key>
+                        <value>44443</value>
+                    </entry>
+                    <entry>
+                        <key>server.0.0.connection.min</key>
+                        <value>1</value>
+                    </entry>
+                    <entry>
+                        <key>server.0.0.connection.max</key>
+                        <value>3</value>
+                    </entry>
+                    <entry>
+                        <key>server.0.0.address</key>
+                        <value>sso.rasdemo.apim.ca.com</value>
+                    </entry>
+                    <entry>
+                        <key>server.0.0.authentication.port</key>
+                        <value>44442</value>
+                    </entry>
+                </properties>
+                <updateSSOToken>false</updateSSOToken>
+                <userName>siteminder</userName>
+            </siteMinderConfiguration>
+        </SiteMinderConfigurationReference>
+        <EncapsulatedAssertionReference RefType="com.l7tech.console.policy.exporter.EncapsulatedAssertionReference">
+            <Name>OTK Require OAuth 2.0 Token</Name>
+            <Guid>393bcb93-82ad-4b55-8333-1119f607a560</Guid>
+        </EncapsulatedAssertionReference>
+    </exp:References>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="This API is the protected Resource that will get called with SSO JWT Token"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="************************************************************"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API :- /rest/mymortgage"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API Group :- RAS-DEMO"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API TYPE :- &lt;REST/SOAP/DATA>"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="Author: Balaji Radhakrishnan"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="************************************************************"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="REST CALL: https://magw.ras.apim.ca.com:8443/rest/mymortgage?username=allmi01&amp;password=CAdemo123"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="*******************OR**************************"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="REST CALL: https://magw.ras.apim.ca.com:8443/rest/mymortgage with BEAR TOKEN header"/>
+            </L7p:CommentAssertion>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="ew0KCSJFcnJvciI6IlNTTyBGYWlsdXJlIiwNCgkiRGVzY3JpcHRpb24iOiAiVW5hYmxlIHRvIGdldCBQcm90ZWN0ZWQgcmVzb3VyY2UgdmFsaWRhdGVkIHdpdGggU1NPIg=="/>
+                        <L7p:VariableToSet stringValue="error"/>
+                    </L7p:SetVariable>
+                    <L7p:SiteMinderCheckProtected>
+                        <L7p:Action stringValue="GET"/>
+                        <L7p:AgentGoid goidValue="559f4652fe9c1400800cfa7c103de157"/>
+                        <L7p:AgentId stringValue="CASSO"/>
+                        <L7p:Prefix stringValue="siteminder"/>
+                        <L7p:ProtectedResource stringValue="/jwt"/>
+                        <L7p:SmAgentName stringValue="agent.apim"/>
+                        <L7p:SourceIpAddress stringValue=""/>
+                    </L7p:SiteMinderCheckProtected>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:CustomizeErrorResponse>
+                        <L7p:Content stringValue="${error}"/>
+                        <L7p:ExtraHeaders nameValuePairArray="included"/>
+                    </L7p:CustomizeErrorResponse>
+                    <L7p:RaiseError/>
+                </wsp:All>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="CHECK PROTECTED RESOURCE"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="//Siteminder check protected resource"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:OneOrMore>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="JHtnYXRld2F5LnRpbWUuc2Vjb25kc30="/>
+                        <L7p:DataType variableDataType="dateTime"/>
+                        <L7p:DateOffsetExpression stringValue="${jwt.age}"/>
+                        <L7p:VariableToSet stringValue="jwt.exp"/>
+                    </L7p:SetVariable>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="MzYwMA=="/>
+                        <L7p:VariableToSet stringValue="jwt.age"/>
+                    </L7p:SetVariable>
+                    <L7p:AuditDetailAssertion>
+                        <L7p:CustomLoggerSuffix stringValue="BalaSSO"/>
+                        <L7p:Detail stringValue="==> JWT=${jwt.payload}"/>
+                        <L7p:Level stringValue="FINE"/>
+                        <L7p:LoggingOnly booleanValue="true"/>
+                    </L7p:AuditDetailAssertion>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="ew0KICAic3ViIjogIiR7cmVxdWVzdC5odHRwLnBhcmFtZXRlci51c2VybmFtZX0iLA0KICAiZXhwIjogJHtqd3QuZXhwLnNlY29uZHN9LA0KICAiaWF0IjogJHtnYXRld2F5LnRpbWUuc2Vjb25kc30NCn0="/>
+                        <L7p:VariableToSet stringValue="jwt.payload"/>
+                    </L7p:SetVariable>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="LEFT.COMMENT"/>
+                                <L7p:value stringValue="BASIC AUTH"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="// user credential check&#x9;"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:Encapsulated>
+                        <L7p:EncapsulatedAssertionConfigGuid stringValue="393bcb93-82ad-4b55-8333-1119f607a560"/>
+                        <L7p:EncapsulatedAssertionConfigName stringValue="OTK Require OAuth 2.0 Token"/>
+                        <L7p:Parameters mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="cache_lifetime"/>
+                                <L7p:value stringValue="30"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="given_access_token"/>
+                                <L7p:value stringValue=""/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="onetime"/>
+                                <L7p:value stringValue="false"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="scope_fail"/>
+                                <L7p:value stringValue="false"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="scope_required"/>
+                                <L7p:value stringValue=""/>
+                            </L7p:entry>
+                        </L7p:Parameters>
+                    </L7p:Encapsulated>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="JHtnYXRld2F5LnRpbWUuc2Vjb25kc30="/>
+                        <L7p:DataType variableDataType="dateTime"/>
+                        <L7p:DateOffsetExpression stringValue="${jwt.age}"/>
+                        <L7p:VariableToSet stringValue="jwt.exp"/>
+                    </L7p:SetVariable>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="MzYwMA=="/>
+                        <L7p:VariableToSet stringValue="jwt.age"/>
+                    </L7p:SetVariable>
+                    <L7p:AuditDetailAssertion>
+                        <L7p:CustomLoggerSuffix stringValue="BalaSSO"/>
+                        <L7p:Detail stringValue="==> JWT=${jwt.payload}"/>
+                        <L7p:Level stringValue="FINE"/>
+                        <L7p:LoggingOnly booleanValue="true"/>
+                    </L7p:AuditDetailAssertion>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="ew0KICAic3ViIjogIiR7c2Vzc2lvbi5zdWJzY3JpYmVyX2lkfSIsDQogICJleHAiOiAke2p3dC5leHAuc2Vjb25kc30sDQogICJpYXQiOiAke2dhdGV3YXkudGltZS5zZWNvbmRzfQ0KfQ=="/>
+                        <L7p:VariableToSet stringValue="jwt.payload"/>
+                    </L7p:SetVariable>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="LEFT.COMMENT"/>
+                                <L7p:value stringValue="OAUTH Check"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="// OTK Token Check"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="ew0KCSJFcnJvciI6IlJlcXVlc3QgRmFpbGVkIiwNCgkiRGVzY3JpcHRpb24iOiAiTWlzc2luZyBTU08gSldULCBQbHMgcHJvdmlkZSByZXF1aXJlZCBzc28gand0IGZvciB1c2VyIEF1dGhlbnRpY2F0aW9uIg0KfQ=="/>
+                        <L7p:VariableToSet stringValue="error"/>
+                    </L7p:SetVariable>
+                    <L7p:CustomizeErrorResponse>
+                        <L7p:Content stringValue="${error}"/>
+                        <L7p:ExtraHeaders nameValuePairArray="included"/>
+                    </L7p:CustomizeErrorResponse>
+                    <L7p:RaiseError/>
+                </wsp:All>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="SECURITY"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="// user credential or OAUTH Token verfication"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:OneOrMore>
+            <wsp:All wsp:Usage="Required">
+                <L7p:EncodeJsonWebToken>
+                    <L7p:SignPayload booleanValue="true"/>
+                    <L7p:SignatureAlgorithm stringValue="HS256"/>
+                    <L7p:SignatureSecretKey stringValue="vsXnPImtUebQocspYqAZAR1fKlMjB9EG"/>
+                    <L7p:SourceVariable stringValue="${jwt.payload}"/>
+                    <L7p:TargetVariable stringValue="jwt.token"/>
+                </L7p:EncodeJsonWebToken>
+                <L7p:AuditDetailAssertion>
+                    <L7p:CustomLoggerSuffix stringValue="BalaSSO"/>
+                    <L7p:Detail stringValue="JWT: ${jwt.token.compact}"/>
+                    <L7p:LoggingOnly booleanValue="true"/>
+                </L7p:AuditDetailAssertion>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="JWT"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="//jwt encoding"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:SiteMinderAuthenticate>
+                        <L7p:CookieSourceVar stringValue="cookie.SMSESSION"/>
+                        <L7p:LastCredential booleanValue="false"/>
+                        <L7p:NamedCertificate stringValue=""/>
+                        <L7p:NamedJsonWebToken stringValue="${jwt.token.compact}"/>
+                        <L7p:NamedUser stringValue=""/>
+                        <L7p:Prefix stringValue="siteminder"/>
+                        <L7p:SendJWT booleanValue="true"/>
+                        <L7p:SendUsernamePasswordCredential booleanValue="false"/>
+                    </L7p:SiteMinderAuthenticate>
+                    <L7p:AuditDetailAssertion>
+                        <L7p:CustomLoggerSuffix stringValue="BalaSSO"/>
+                        <L7p:Detail stringValue="SMContext: ${siteminder.smcontext.mainpart}"/>
+                    </L7p:AuditDetailAssertion>
+                    <L7p:SiteMinderAuthorize>
+                        <L7p:CookieComment stringValue=""/>
+                        <L7p:CookieDomain stringValue=""/>
+                        <L7p:CookieMaxAge stringValue=""/>
+                        <L7p:CookieName stringValue="SMSESSION"/>
+                        <L7p:CookiePath stringValue=""/>
+                        <L7p:CookieSecure stringValue=""/>
+                        <L7p:CookieSourceVar stringValue=""/>
+                        <L7p:CookieVersion stringValue=""/>
+                        <L7p:Prefix stringValue="siteminder"/>
+                        <L7p:UseCustomCookieName booleanValue="true"/>
+                    </L7p:SiteMinderAuthorize>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="ew0KCSJFcnJvciI6IkF1dGhlbnRpY2F0aW9uIEZhaWxlZCB3aXRoIFNTTyIsDQoJIkRlc2NyaXB0aW9uIjogIlVzZXIgbm90IGZvdW5kLCBwbHMgY29udGFjdCBhZG1pbiINCn0="/>
+                        <L7p:VariableToSet stringValue="error"/>
+                    </L7p:SetVariable>
+                    <L7p:CustomizeErrorResponse>
+                        <L7p:Content stringValue="${error}"/>
+                        <L7p:ExtraHeaders nameValuePairArray="included"/>
+                    </L7p:CustomizeErrorResponse>
+                    <L7p:RaiseError/>
+                </wsp:All>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="SSO AuthN/AuthZ"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="// user authentication/authorization"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:OneOrMore>
+            <L7p:HardcodedResponse>
+                <L7p:Base64ResponseBody stringValue="JHtqd3QudG9rZW4uY29tcGFjdH0KCg=="/>
+                <L7p:ResponseContentType stringValue="text/plain; charset=UTF-8"/>
+            </L7p:HardcodedResponse>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

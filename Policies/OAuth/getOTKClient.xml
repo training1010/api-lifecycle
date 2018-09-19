@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References>
+        <IDProviderReference RefType="com.l7tech.console.policy.exporter.IdProviderReference">
+            <GOID>0000000000000000fffffffffffffffe</GOID>
+            <Name>Internal Identity Provider</Name>
+            <Props>PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPGphdmEgdmVyc2lvbj0iMS44&#xd;
+LjBfNTEiIGNsYXNzPSJqYXZhLmJlYW5zLlhNTERlY29kZXIiPgogPG9iamVjdCBjbGFzcz0iamF2&#xd;
+YS51dGlsLkhhc2hNYXAiPgogIDx2b2lkIG1ldGhvZD0icHV0Ij4KICAgPHN0cmluZz5hZG1pbkVu&#xd;
+YWJsZWQ8L3N0cmluZz4KICAgPGJvb2xlYW4+dHJ1ZTwvYm9vbGVhbj4KICA8L3ZvaWQ+CiA8L29i&#xd;
+amVjdD4KPC9qYXZhPgo=</Props>
+            <TypeVal>1</TypeVal>
+        </IDProviderReference>
+        <EncapsulatedAssertionReference RefType="com.l7tech.console.policy.exporter.EncapsulatedAssertionReference">
+            <Name>OTK Client GET</Name>
+            <Guid>290511a8-b775-47a7-98ab-7be386da2105</Guid>
+        </EncapsulatedAssertionReference>
+    </exp:References>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="************************************************************"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API :- Get OTK Client"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API Group :- API Security"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API TYPE :- &lt;REST/SOAP/DATA>"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="Author: Balaji Radhakrishnan"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="************************************************************"/>
+            </L7p:CommentAssertion>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="JHtyZXF1ZXN0Lmh0dHAuaGVhZGVyLmNsaWVudF9rZXl9"/>
+                <L7p:VariableToSet stringValue="client_key"/>
+            </L7p:SetVariable>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="JHtyZXF1ZXN0Lmh0dHAuaGVhZGVyLmtleXN0YXR1c30="/>
+                <L7p:VariableToSet stringValue="key.status"/>
+            </L7p:SetVariable>
+            <L7p:SslAssertion/>
+            <L7p:HttpBasic/>
+            <L7p:Authentication>
+                <L7p:IdentityProviderOid goidValue="0000000000000000fffffffffffffffe"/>
+            </L7p:Authentication>
+            <L7p:Encapsulated>
+                <L7p:EncapsulatedAssertionConfigGuid stringValue="290511a8-b775-47a7-98ab-7be386da2105"/>
+                <L7p:EncapsulatedAssertionConfigName stringValue="OTK Client GET"/>
+                <L7p:Parameters mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="client_ident"/>
+                        <L7p:value stringValue=""/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="client_key"/>
+                        <L7p:value stringValue="${client_key}"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="environment"/>
+                        <L7p:value stringValue=""/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="filterStatus"/>
+                        <L7p:value stringValue=""/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="format"/>
+                        <L7p:value stringValue=""/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="name"/>
+                        <L7p:value stringValue=""/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="operation"/>
+                        <L7p:value stringValue="getKey"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="org"/>
+                        <L7p:value stringValue=""/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="queryOffset"/>
+                        <L7p:value stringValue="0"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="registered_by"/>
+                        <L7p:value stringValue=""/>
+                    </L7p:entry>
+                </L7p:Parameters>
+            </L7p:Encapsulated>
+            <L7p:HardcodedResponse>
+                <L7p:Base64ResponseBody stringValue="JHtyZXNwLm1haW5wYXJ0fQo="/>
+            </L7p:HardcodedResponse>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

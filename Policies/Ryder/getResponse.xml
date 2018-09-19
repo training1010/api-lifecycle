@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References/>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="************************************************************"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API :- &lt;Enter the API Name>"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API Group :- &lt;Enter the API Group>"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API TYPE :- &lt;REST/SOAP/DATA>"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="Author: Balaji Radhakrishnan"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="************************************************************"/>
+            </L7p:CommentAssertion>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="ew0KCSJFcnJvciBDb2RlIjogIjUwMCIsDQoJIkV4Y2VwdGlvbiI6ICJBUEkgRmFpbGVkIiwNCgkiRGV0YWlsIERlc2NyaXB0aW9uIiA6ICJSZXF1aXJlZCBRdWVyeSBQYXJhbWV0ZXIgbWlzc2luZyINCn0="/>
+                        <L7p:VariableToSet stringValue="errorMsg"/>
+                    </L7p:SetVariable>
+                    <L7p:ComparisonAssertion>
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Expression1 stringValue="${request.http.parameter.requestedInfo}"/>
+                        <L7p:Operator operatorNull="null"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item dataType="included">
+                                <L7p:Type variableDataType="string"/>
+                            </L7p:item>
+                            <L7p:item binary="included">
+                                <L7p:Negated booleanValue="true"/>
+                                <L7p:Operator operator="EMPTY"/>
+                                <L7p:RightValue stringValue=""/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="JHtyZXF1ZXN0Lmh0dHAucGFyYW1ldGVyLnJlcXVlc3RlZEluZm99"/>
+                        <L7p:VariableToSet stringValue="info"/>
+                    </L7p:SetVariable>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:CustomizeErrorResponse>
+                        <L7p:Content stringValue="${errorMsg}"/>
+                        <L7p:ContentType stringValue="application/json; charset=UTF-8"/>
+                        <L7p:ExtraHeaders nameValuePairArray="included">
+                            <L7p:item nameValuePair="included">
+                                <L7p:Key stringValue="exceptionType"/>
+                                <L7p:Value stringValue="Gateway"/>
+                            </L7p:item>
+                        </L7p:ExtraHeaders>
+                    </L7p:CustomizeErrorResponse>
+                    <L7p:RaiseError/>
+                </wsp:All>
+            </wsp:OneOrMore>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:ComparisonAssertion>
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Expression1 stringValue="${info}"/>
+                        <L7p:Operator operatorNull="null"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item dataType="included">
+                                <L7p:Type variableDataType="string"/>
+                            </L7p:item>
+                            <L7p:item binary="included">
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:RightValue stringValue="solutions"/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <L7p:HardcodedResponse>
+                        <L7p:Base64ResponseBody stringValue="eyAiSW5mb3JtYXRpb24iOlsKeyAiaW5mb19pZCI6ICIxMDAiLCAKCSAgImRlc2NyaXB0aW9uIjogIkRlZGljYXRlZCBUcmFuc3BvcnRhdGlvbiBjb21iaW5lcyB0aGUgYmVzdCBvZiBSeWRlcuKAmXMgbGVhc2luZyBhbmQgbWFpbnRlbmFuY2UgY2FwYWJpbGl0aWVzIHdpdGggdGhlIHNhZmVzdCBhbmQgbW9zdCBwcm9mZXNzaW9uYWwgZHJpdmVycyBpbiB0aGUgaW5kdXN0cnksIHRpZWQgdG9nZXRoZXIgdGhyb3VnaCBpbm5vdmF0aXZlIElUIGVuZ2luZWVyaW5nIGZvciBjb21wbGV0ZSBuZXR3b3JrIG9wdGltaXphdGlvbi4gV2l0aCBhIGRlZGljYXRlZCB0cmFuc3BvcnRhdGlvbiBzb2x1dGlvbiwgeW91IGNhbiBrZWVwIHlvdXIgYnVzaW5lc3MgbW92aW5nIGZvcndhcmQgd2l0aG91dCBoYXZpbmcgdG8gaW52ZXN0IHRpbWUgaW4gbWFuYWdpbmcgeW91ciBvd24gZmxlZXQuIiwKCSAgImRpc3BsYXlfbmFtZSI6ICJEZWRpY2F0ZWQgVHJhbnNwb3J0YXRpb24iLAoJICAidHlwZSIgOiAiU29sdXRpb25zIn0sCnsgImluZm9faWQiOiAiMTAxIiwgCgkgICJkZXNjcmlwdGlvbiI6ICJXZSBrbm93IHRoYXQgbm8gdHdvIGJ1c2luZXNzZXMgYXJlIHRoZSBzYW1lLCBzbyB3aGVuIGl0IGNvbWVzIHRvIHlvdXIgZmxlZXQsIHlvdSBzaG91bGQgaGF2ZSBvcHRpb25zLiBXZSBoYXZlIG9uZSBvZiB0aGUgbW9zdCBmbGV4aWJsZSBsZWFzaW5nIG9wdGlvbnMgaW4gdGhlIGluZHVzdHJ5IHRvIG1lZXQgYWxsIG9mIHlvdXIgdHJhbnNwb3J0YXRpb24gbmVlZHMsIHJlZ2FyZGxlc3Mgb2YgeW91ciBzaXplIG9yIGJ1c2luZXNzLiIsCgkgICJkaXNwbGF5X25hbWUiOiAiRmxlZXQgTGVhc2luZyIsCgkgICJ0eXBlIiA6ICJTb2x1dGlvbnMifSwKeyAiaW5mb19pZCI6ICIxMDIiLCAKCSAgImRlc2NyaXB0aW9uIjogIk5vIG1hdHRlciB3aGF0IHR5cGUgb2YgZnVlbCB5b3UgdXNlLCB3ZSBoYXZlIHRoZSBwcm9kdWN0cywgcGFja2FnZXMsIGxvY2F0aW9ucywgbWV0aG9kcyBvZiBmdWVsaW5nLCBhbmQgYSBkaXZlcnNlIHJhbmdlIG9mIHZlaGljbGVzIHRoYXQgY29ycmVzcG9uZCBkaXJlY3RseSB0byB5b3VyIG5lZWRzLiBBbGwgb2Ygd2hhdCB3ZSBvZmZlciBpcyBkZXNpZ25lZCB0byBwcm92aWRlIHlvdSB3aXRoIHRoZSBmbGV4aWJpbGl0eSB5b3UgbmVlZCBpbiBhIHJhcGlkbHkgY2hhbmdpbmcgYnVzaW5lc3MgZW52aXJvbm1lbnQuIiwKCSAgImRpc3BsYXlfbmFtZSI6ICJGdWVsIFNlcnZpY2VzIiwKCSAgInR5cGUiIDogIlNvbHV0aW9ucyJ9LAp7ICJpbmZvX2lkIjogIjEwMyIsIAoJICAiZGVzY3JpcHRpb24iOiAiV2l0aCBSeWRlU21hcnQsIFJ5ZGVy4oCZcyB0dXJua2V5IHRlbGVtYXRpY3MgcHJvZ3JhbSwgeW91IGJlbmVmaXQgZnJvbSBjaG9pY2UgYW5kIGZsZXhpYmlsaXR5IGFzIHdlbGwgYXMgaW5jcmVhc2VkIHJlYWwtdGltZSB2aXNpYmlsaXR5IGFuZCBjb250cm9sLiBNb3N0IGltcG9ydGFudGx5LCBSeWRlU21hcnQgc29sdXRpb25zIGhlbHAgeW91ciBmbGVldCBlbnN1cmUgY29tcGxpYW5jZSB0byBmZWRlcmFsIHJlZ3VsYXRpb25zLCBpbmNsdWRpbmcgdGhlIEVsZWN0cm9uaWMgTG9nZ2luZyBEZXZpY2UgKEVMRCkgbWFuZGF0ZSBhbmQgZHJpdmVyIHZlaGljbGUgaW5zcGVjdGlvbiByZXBvcnRzLiIsCgkgICJkaXNwbGF5X25hbWUiOiAiUnlkZVNtYXJ0IiwKCSAgInR5cGUiIDogIlNvbHV0aW9ucyJ9CgoKCSAKXX0K"/>
+                        <L7p:ResponseContentType stringValue="application/json; charset=UTF-8"/>
+                    </L7p:HardcodedResponse>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:ComparisonAssertion>
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Expression1 stringValue="${info}"/>
+                        <L7p:Operator operatorNull="null"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item dataType="included">
+                                <L7p:Type variableDataType="string"/>
+                            </L7p:item>
+                            <L7p:item binary="included">
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:RightValue stringValue="industry"/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <L7p:HardcodedResponse>
+                        <L7p:Base64ResponseBody stringValue="eyAiSW5mb3JtYXRpb24iOlsKeyAiaW5mb19pZCI6ICIyMDAiLCAKCSAgImRlc2NyaXB0aW9uIjogIkFuIGVmZmljaWVudCwgZmxleGlibGUgYW5kIHJlc3BvbnNpdmUgc3VwcGx5IGNoYWluIGlzIGNyaXRpY2FsIHRvIHRvZGF54oCZcyBjb21wbGV4IGFuZCBmYXN0IG1vdmluZyBhdXRvbW90aXZlIG1hbnVmYWN0dXJpbmcgb3BlcmF0aW9uLiBSeWRlciBpcyB0aGUgbGVhZGVyIGluIGxvZ2lzdGljcyBzb2x1dGlvbnMgZm9yIHRoZSBhdXRvbW90aXZlIGluZHVzdHJ5IGFuZCBoYXMgb3BlcmF0ZWQgYmVoaW5kIHRoZSBzY2VuZXMgZm9yIG5lYXJseSA0MCB5ZWFycyBoZWxwaW5nIHRoZSB3b3JsZOKAmXMgdG9wIG1hbnVmYWN0dXJlcnMgaW1wcm92ZSBzcGVlZCB0byBtYXJrZXQgYW5kIHJlZHVjZSBjb3N0cy4gSW4gZmFjdCwgd2UgaW1wbGVtZW50ZWQgTm9ydGggQW1lcmljYeKAmXMgZmlyc3QgbGFyZ2Ugc2NhbGUganVzdC1pbi10aW1lIHN1cHBseSBkZWxpdmVyeSBzeXN0ZW0gc3VwcG9ydGluZyBhIHN0YXRlLW9mLXRoZS1hcnQgYXV0b21vdGl2ZSBtYW51ZmFjdHVyaW5nIHBsYW50LiIsCgkgICJkaXNwbGF5X25hbWUiOiAiQXV0b21hdGl2ZSIsCgkgICJ0eXBlIiA6ICJJbmR1c3RyeSJ9LAp7ICJpbmZvX2lkIjogIjIwMSIsIAoJICAiZGVzY3JpcHRpb24iOiAiUnlkZXIgaXMgdXNpbmcgaXRzIGVuZXJneSBpbmR1c3RyeSBleHBlcnRpc2UgYW5kIG5ldyB0ZWNobm9sb2d5IHRvIGhlbHAgY3JlYXRlIGEgY29ubmVjdGlvbiBiZXR3ZWVuIHRoZSBsb2dpc3RpY3MgZnVuY3Rpb24gYW5kIHNpdGUgb3BlcmF0aW9ucywgcmVzdWx0aW5nIGluIGV4dGVuZGVkIGxlYWQgdGltZXMgYW5kIGltcHJvdmVkIHBsYW5uaW5nLiBXaXRoIGluY3JlYXNlZCBsZWFkIHRpbWUsIGFuZCBiZXR0ZXIgcGxhbm5pbmcsIFJ5ZGVyIGNhbiBoZWxwIHV0aWxpdHkgYW5kIGVuZXJneSBjb21wYW5pZXMgb3BlcmF0ZSBtb3JlIGVmZmljaWVudGx5LCBzYXZlIG1vbmV5LCBhbmQgaW1wcm92ZSBzYWZldHkuIiwKCSAgImRpc3BsYXlfbmFtZSI6ICJFbmVyZ3kiLAoJICAidHlwZSIgOiAiU29sdXRpb25zIn0sCnsgImluZm9faWQiOiAiMjAyIiwgCgkgICJkZXNjcmlwdGlvbiI6ICJUaGUgaW5mbHV4IG9mIHBhdGllbnRzIGRyaXZpbmcgaGlnaGVyIGRlbWFuZCBmb3Igc3VwcGxpZXMsIGF0IGEgdGltZSB3aGVuIHRoZSBpbmR1c3RyeSBpcyBleHBlcmllbmNpbmcgZGVjbGluaW5nIHJlaW1idXJzZW1lbnRzLCBjcmVhdGVzIGFuIGVudmlyb25tZW50IHRoYXQgaXMgcmlwZSBmb3Igc3VwcGx5IGNoYWluIHRyYW5zZm9ybWF0aW9uLiBSeWRlciBpcyBhbiBleHBlcnQgaW4gaGVscGluZyBidXNpbmVzc2VzIHJldGhpbmsgdGhlaXIgc3VwcGx5IGNoYWluIHN0cmF0ZWdpZXMgYW5kIGNhbiBicmluZyBpdHMgaW4tZGVwdGggZXhwZXJ0aXNlIGFuZCBwcm92ZW4gZXhwZXJpZW5jZSB0byB5b3Vycy4gQnkgaW50cm9kdWNpbmcgTEVBTiBwcm9jZXNzZXMgdGhhdCBoYXZlIGFscmVhZHkgdHJhbnNmb3JtZWQgc3VwcGx5IGNoYWlucyBmcm9tIGF1dG9tb3RpdmUgdG8gcmV0YWlsLCBSeWRlciBjYW4gaW1wcm92ZSB0aGUgaGVhbHRoIG9mIHlvdXIgbG9naXN0aWNzIGZ1bmN0aW9uIGFuZCBnZXQgaXQgb3BlcmF0aW5nIGF0IHBlYWsgcGVyZm9ybWFuY2UuIiwKCSAgImRpc3BsYXlfbmFtZSI6ICJIZWFsdGhjYXJlIiwKCSAgInR5cGUiIDogIlNvbHV0aW9ucyJ9LAp7ICJpbmZvX2lkIjogIjIwMyIsIAoJICAiZGVzY3JpcHRpb24iOiAiV2l0aCByZWd1bGF0aW9ucywgbGlhYmlsaXR5LCBhbmQgbGFib3IgY2hhbGxlbmdlcywgZ2V0dGluZyB5b3VyIGZyZWlnaHQgdG8gaXRzIGRlc3RpbmF0aW9uIHNhZmVseSBhbmQgb24gdGltZSBpcyBhIGNhdXNlIGZvciBjb25jZXJuLiBBcyBhIHJlc3VsdCwgeW91IGFyZSBzcGVuZGluZyBtb3JlIHRpbWUgd29ycmllZCBhYm91dCB5b3VyIHRyYW5zcG9ydGF0aW9uIG5ldHdvcmsgdGhhbiBvbiB5b3VyIGJ1c2luZXNzLCBhbmQgaXQgbWF5IGJlIGNvc3RpbmcgeW91IG1vcmUgdGhhbiB5b3Uga25vdy4gV2hldGhlciB5b3UgYXJlIGRlYWxpbmcgd2l0aCB0aWdodCBkZWxpdmVyeSB3aW5kb3dzLCBjb21wbGV4IHJvdXRlcywgbG9hZCBzZWN1cml0eSwgb3IgaGF2ZSBzcGVjaWFsaXplZCBlcXVpcG1lbnQgYW5kIGhhbmRsaW5nIG5lZWRzLCBSeWRlciBoYXMgdGhlIHNlcnZpY2VzIGFuZCBzYWZldHkgZm9jdXMgeW91IG5lZWQgdG8gb3B0aW1pemUgeW91ciB0cmFuc3BvcnRhdGlvbi4iLAoJICAiZGlzcGxheV9uYW1lIjogIk1ldGFscyIsCgkgICJ0eXBlIiA6ICJTb2x1dGlvbnMifSwKeyAiaW5mb19pZCI6ICIyMDQiLCAKCSAgImRlc2NyaXB0aW9uIjogIlRvZGF54oCZcyBkaWdpdGFsbHkgc2F2dnksIGltcGF0aWVudCBjb25zdW1lciBjcmF2ZXMsIGFuZCBpcyB1c2VkIHRvLCBpbnN0YW50IGdyYXRpZmljYXRpb24uIFRoaXMgbmV3IGNvbnN1bWVyIGJ1eWluZyBiZWhhdmlvciBpcyBjaGFuZ2luZyB0aGUgd2F5IHJldGFpbGVycyBtYXJrZXQsIHNlbGwgYW5kIGRlbGl2ZXIgZ29vZHMuIFRoYXQgbWVhbnMgYSB3ZWxsLXJ1biBmbGVldCBhbmQgc3VwcGx5IGNoYWluIGFyZSBtb3JlIGNyaXRpY2FsIHRoYW4gZXZlci4gV2l0aCBkZWNhZGVzIG9mIGV4cGVyaWVuY2UgaW4gdGhlIHJldGFpbCBpbmR1c3RyeSwgd2Uga25vdyBleGFjdGx5IGhvdyB0byBoYW5kbGUgdGhpcyBwcmVzc3VyZS4iLAoJICAiZGlzcGxheV9uYW1lIjogIlJldGFpbCIsCgkgICJ0eXBlIiA6ICJTb2x1dGlvbnMifQoKCgkgCl19Cg=="/>
+                        <L7p:ResponseContentType stringValue="application/json; charset=UTF-8"/>
+                    </L7p:HardcodedResponse>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="ew0KCSJFcnJvciBDb2RlIjogIjUwMSIsDQoJIkV4Y2VwdGlvbiI6ICJBUEkgRmFpbGVkIiwNCgkiRGV0YWlsIERlc2NyaXB0aW9uIiA6ICJJbnZhbGlkIFF1ZXJ5IFBhcmFtZXRlciINCn0="/>
+                        <L7p:VariableToSet stringValue="errorMsg"/>
+                    </L7p:SetVariable>
+                    <L7p:CustomizeErrorResponse>
+                        <L7p:Content stringValue="${errorMsg}"/>
+                        <L7p:ContentType stringValue="application/json; charset=UTF-8"/>
+                        <L7p:ExtraHeaders nameValuePairArray="included">
+                            <L7p:item nameValuePair="included">
+                                <L7p:Key stringValue="exceptionType"/>
+                                <L7p:Value stringValue="Gateway"/>
+                            </L7p:item>
+                        </L7p:ExtraHeaders>
+                    </L7p:CustomizeErrorResponse>
+                    <L7p:RaiseError/>
+                </wsp:All>
+            </wsp:OneOrMore>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

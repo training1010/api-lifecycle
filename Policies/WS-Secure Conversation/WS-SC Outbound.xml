@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References>
+        <IDProviderReference RefType="com.l7tech.console.policy.exporter.IdProviderReference">
+            <GOID>5e01bbac0eb2c760c346c2a6aff1d382</GOID>
+            <Name>LDAP</Name>
+            <Props>PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPGphdmEgdmVyc2lvbj0iMS44&#xd;
+LjBfNTEiIGNsYXNzPSJqYXZhLmJlYW5zLlhNTERlY29kZXIiPgogPG9iamVjdCBjbGFzcz0iamF2&#xd;
+YS51dGlsLkhhc2hNYXAiPgogIDx2b2lkIG1ldGhvZD0icHV0Ij4KICAgPHN0cmluZz5yZXR1cm5p&#xd;
+bmdBdHRyaWJ1dGVzPC9zdHJpbmc+CiAgIDxhcnJheSBjbGFzcz0iamF2YS5sYW5nLlN0cmluZyIg&#xd;
+bGVuZ3RoPSIwIi8+CiAgPC92b2lkPgogIDx2b2lkIG1ldGhvZD0icHV0Ij4KICAgPHN0cmluZz51&#xd;
+c3JtYXBwaW5nczwvc3RyaW5nPgogICA8b2JqZWN0IGNsYXNzPSJqYXZhLnV0aWwuSGFzaE1hcCI+&#xd;
+CiAgICA8dm9pZCBtZXRob2Q9InB1dCI+CiAgICAgPHN0cmluZz5pbmV0b3JncGVyc29uPC9zdHJp&#xd;
+bmc+CiAgICAgPG9iamVjdCBjbGFzcz0iY29tLmw3dGVjaC5pZGVudGl0eS5sZGFwLlVzZXJNYXBw&#xd;
+aW5nQ29uZmlnIj4KICAgICAgPHZvaWQgcHJvcGVydHk9ImVtYWlsTmFtZUF0dHJOYW1lIj4KICAg&#xd;
+ICAgIDxzdHJpbmc+bWFpbDwvc3RyaW5nPgogICAgICA8L3ZvaWQ+CiAgICAgIDx2b2lkIHByb3Bl&#xd;
+cnR5PSJmaXJzdE5hbWVBdHRyTmFtZSI+CiAgICAgICA8c3RyaW5nPmdpdmVuTmFtZTwvc3RyaW5n&#xd;
+PgogICAgICA8L3ZvaWQ+CiAgICAgIDx2b2lkIHByb3BlcnR5PSJrZXJiZXJvc0F0dHJOYW1lIj4K&#xd;
+ICAgICAgIDxzdHJpbmc+dWlkPC9zdHJpbmc+CiAgICAgIDwvdm9pZD4KICAgICAgPHZvaWQgcHJv&#xd;
+cGVydHk9Imxhc3ROYW1lQXR0ck5hbWUiPgogICAgICAgPHN0cmluZz5zbjwvc3RyaW5nPgogICAg&#xd;
+ICA8L3ZvaWQ+CiAgICAgIDx2b2lkIHByb3BlcnR5PSJsb2dpbkF0dHJOYW1lIj4KICAgICAgIDxz&#xd;
+dHJpbmc+dWlkPC9zdHJpbmc+CiAgICAgIDwvdm9pZD4KICAgICAgPHZvaWQgcHJvcGVydHk9Im5h&#xd;
+bWVBdHRyTmFtZSI+CiAgICAgICA8c3RyaW5nPmNuPC9zdHJpbmc+CiAgICAgIDwvdm9pZD4KICAg&#xd;
+ICAgPHZvaWQgcHJvcGVydHk9Im9iakNsYXNzIj4KICAgICAgIDxzdHJpbmc+aW5ldE9yZ1BlcnNv&#xd;
+bjwvc3RyaW5nPgogICAgICA8L3ZvaWQ+CiAgICAgIDx2b2lkIHByb3BlcnR5PSJwYXNzd2RBdHRy&#xd;
+TmFtZSI+CiAgICAgICA8c3RyaW5nPnVzZXJQYXNzd29yZDwvc3RyaW5nPgogICAgICA8L3ZvaWQ+&#xd;
+CiAgICAgIDx2b2lkIHByb3BlcnR5PSJwYXNzd2RUeXBlIj4KICAgICAgIDxvYmplY3QgY2xhc3M9&#xd;
+ImNvbS5sN3RlY2guaWRlbnRpdHkubGRhcC5QYXNzd2RTdHJhdGVneSIvPgogICAgICA8L3ZvaWQ+&#xd;
+CiAgICAgIDx2b2lkIHByb3BlcnR5PSJ1c2VyQ2VydEF0dHJOYW1lIj4KICAgICAgIDxzdHJpbmc+&#xd;
+dXNlckNlcnRpZmljYXRlO2JpbmFyeTwvc3RyaW5nPgogICAgICA8L3ZvaWQ+CiAgICAgPC9vYmpl&#xd;
+Y3Q+CiAgICA8L3ZvaWQ+CiAgIDwvb2JqZWN0PgogIDwvdm9pZD4KICA8dm9pZCBtZXRob2Q9InB1&#xd;
+dCI+CiAgIDxzdHJpbmc+bGRhcHNlYXJjaGJhc2U8L3N0cmluZz4KICAgPHN0cmluZz5vdT1wZW9w&#xd;
+bGUsZGM9YXBpbSxkYz1jYTwvc3RyaW5nPgogIDwvdm9pZD4KICA8dm9pZCBtZXRob2Q9InB1dCI+&#xd;
+CiAgIDxzdHJpbmc+bGRhcEJpbmRETjwvc3RyaW5nPgogICA8c3RyaW5nPmNuPU1hbmFnZXIsZGM9&#xd;
+YXBpbSxkYz1jYTwvc3RyaW5nPgogIDwvdm9pZD4KICA8dm9pZCBtZXRob2Q9InB1dCI+CiAgIDxz&#xd;
+dHJpbmc+Z3JvdXBDYWNoZVNpemU8L3N0cmluZz4KICAgPGludD4xMDA8L2ludD4KICA8L3ZvaWQ+&#xd;
+CiAgPHZvaWQgbWV0aG9kPSJwdXQiPgogICA8c3RyaW5nPmdyb3VwTWF4TmVzdGluZzwvc3RyaW5n&#xd;
+PgogICA8aW50PjU8L2ludD4KICA8L3ZvaWQ+CiAgPHZvaWQgbWV0aG9kPSJwdXQiPgogICA8c3Ry&#xd;
+aW5nPmdycG1hcHBpbmdzPC9zdHJpbmc+CiAgIDxvYmplY3QgY2xhc3M9ImphdmEudXRpbC5IYXNo&#xd;
+TWFwIj4KICAgIDx2b2lkIG1ldGhvZD0icHV0Ij4KICAgICA8c3RyaW5nPnBvc2l4Z3JvdXA8L3N0&#xd;
+cmluZz4KICAgICA8b2JqZWN0IGNsYXNzPSJjb20ubDd0ZWNoLmlkZW50aXR5LmxkYXAuR3JvdXBN&#xd;
+YXBwaW5nQ29uZmlnIj4KICAgICAgPHZvaWQgcHJvcGVydHk9Im1lbWJlckF0dHJOYW1lIj4KICAg&#xd;
+ICAgIDxzdHJpbmc+bWVtYmVyVWlkPC9zdHJpbmc+CiAgICAgIDwvdm9pZD4KICAgICAgPHZvaWQg&#xd;
+cHJvcGVydHk9Im1lbWJlclN0cmF0ZWd5Ij4KICAgICAgIDxvYmplY3QgY2xhc3M9ImNvbS5sN3Rl&#xd;
+Y2guaWRlbnRpdHkubGRhcC5NZW1iZXJTdHJhdGVneSI+CiAgICAgICAgPHZvaWQgcHJvcGVydHk9&#xd;
+InZhbCI+CiAgICAgICAgIDxpbnQ+MTwvaW50PgogICAgICAgIDwvdm9pZD4KICAgICAgIDwvb2Jq&#xd;
+ZWN0PgogICAgICA8L3ZvaWQ+CiAgICAgIDx2b2lkIHByb3BlcnR5PSJuYW1lQXR0ck5hbWUiPgog&#xd;
+ICAgICAgPHN0cmluZz5jbjwvc3RyaW5nPgogICAgICA8L3ZvaWQ+CiAgICAgIDx2b2lkIHByb3Bl&#xd;
+cnR5PSJvYmpDbGFzcyI+CiAgICAgICA8c3RyaW5nPnBvc2l4R3JvdXA8L3N0cmluZz4KICAgICAg&#xd;
+PC92b2lkPgogICAgIDwvb2JqZWN0PgogICAgPC92b2lkPgogICAgPHZvaWQgbWV0aG9kPSJwdXQi&#xd;
+PgogICAgIDxzdHJpbmc+Z3JvdXBvZnVuaXF1ZW5hbWVzPC9zdHJpbmc+CiAgICAgPG9iamVjdCBj&#xd;
+bGFzcz0iY29tLmw3dGVjaC5pZGVudGl0eS5sZGFwLkdyb3VwTWFwcGluZ0NvbmZpZyI+CiAgICAg&#xd;
+IDx2b2lkIHByb3BlcnR5PSJtZW1iZXJBdHRyTmFtZSI+CiAgICAgICA8c3RyaW5nPnVuaXF1ZU1l&#xd;
+bWJlcjwvc3RyaW5nPgogICAgICA8L3ZvaWQ+CiAgICAgIDx2b2lkIHByb3BlcnR5PSJtZW1iZXJT&#xd;
+dHJhdGVneSI+CiAgICAgICA8b2JqZWN0IGNsYXNzPSJjb20ubDd0ZWNoLmlkZW50aXR5LmxkYXAu&#xd;
+TWVtYmVyU3RyYXRlZ3kiPgogICAgICAgIDx2b2lkIHByb3BlcnR5PSJ2YWwiPgogICAgICAgICA8&#xd;
+aW50PjI8L2ludD4KICAgICAgICA8L3ZvaWQ+CiAgICAgICA8L29iamVjdD4KICAgICAgPC92b2lk&#xd;
+PgogICAgICA8dm9pZCBwcm9wZXJ0eT0ibmFtZUF0dHJOYW1lIj4KICAgICAgIDxzdHJpbmc+Y248&#xd;
+L3N0cmluZz4KICAgICAgPC92b2lkPgogICAgICA8dm9pZCBwcm9wZXJ0eT0ib2JqQ2xhc3MiPgog&#xd;
+ICAgICAgPHN0cmluZz5ncm91cE9mVW5pcXVlTmFtZXM8L3N0cmluZz4KICAgICAgPC92b2lkPgog&#xd;
+ICAgIDwvb2JqZWN0PgogICAgPC92b2lkPgogICAgPHZvaWQgbWV0aG9kPSJwdXQiPgogICAgIDxz&#xd;
+dHJpbmc+b3JnYW5pemF0aW9uYWx1bml0PC9zdHJpbmc+CiAgICAgPG9iamVjdCBjbGFzcz0iY29t&#xd;
+Lmw3dGVjaC5pZGVudGl0eS5sZGFwLkdyb3VwTWFwcGluZ0NvbmZpZyI+CiAgICAgIDx2b2lkIHBy&#xd;
+b3BlcnR5PSJtZW1iZXJBdHRyTmFtZSI+CiAgICAgICA8c3RyaW5nPjwvc3RyaW5nPgogICAgICA8&#xd;
+L3ZvaWQ+CiAgICAgIDx2b2lkIHByb3BlcnR5PSJtZW1iZXJTdHJhdGVneSI+CiAgICAgICA8b2Jq&#xd;
+ZWN0IGNsYXNzPSJjb20ubDd0ZWNoLmlkZW50aXR5LmxkYXAuTWVtYmVyU3RyYXRlZ3kiPgogICAg&#xd;
+ICAgIDx2b2lkIHByb3BlcnR5PSJ2YWwiPgogICAgICAgICA8aW50PjM8L2ludD4KICAgICAgICA8&#xd;
+L3ZvaWQ+CiAgICAgICA8L29iamVjdD4KICAgICAgPC92b2lkPgogICAgICA8dm9pZCBwcm9wZXJ0&#xd;
+eT0ibmFtZUF0dHJOYW1lIj4KICAgICAgIDxzdHJpbmc+b3U8L3N0cmluZz4KICAgICAgPC92b2lk&#xd;
+PgogICAgICA8dm9pZCBwcm9wZXJ0eT0ib2JqQ2xhc3MiPgogICAgICAgPHN0cmluZz5vcmdhbml6&#xd;
+YXRpb25hbFVuaXQ8L3N0cmluZz4KICAgICAgPC92b2lkPgogICAgIDwvb2JqZWN0PgogICAgPC92&#xd;
+b2lkPgogICA8L29iamVjdD4KICA8L3ZvaWQ+CiAgPHZvaWQgbWV0aG9kPSJwdXQiPgogICA8c3Ry&#xd;
+aW5nPm9yaWdpbmFsVGVtcGxhdGVOYW1lPC9zdHJpbmc+CiAgIDxzdHJpbmc+R2VuZXJpY0xEQVA8&#xd;
+L3N0cmluZz4KICA8L3ZvaWQ+CiAgPHZvaWQgbWV0aG9kPSJwdXQiPgogICA8c3RyaW5nPmFkbWlu&#xd;
+RW5hYmxlZDwvc3RyaW5nPgogICA8Ym9vbGVhbj50cnVlPC9ib29sZWFuPgogIDwvdm9pZD4KICA8&#xd;
+dm9pZCBtZXRob2Q9InB1dCI+CiAgIDxzdHJpbmc+bGRhcHVybDwvc3RyaW5nPgogICA8YXJyYXkg&#xd;
+Y2xhc3M9ImphdmEubGFuZy5TdHJpbmciIGxlbmd0aD0iMSI+CiAgICA8dm9pZCBpbmRleD0iMCI+&#xd;
+CiAgICAgPHN0cmluZz5sZGFwOi8vYmFja2VuZC5hcGltLmNhOjM4OTwvc3RyaW5nPgogICAgPC92&#xd;
+b2lkPgogICA8L2FycmF5PgogIDwvdm9pZD4KICA8dm9pZCBtZXRob2Q9InB1dCI+CiAgIDxzdHJp&#xd;
+bmc+Y2xpZW50QXV0aDwvc3RyaW5nPgogICA8Ym9vbGVhbj5mYWxzZTwvYm9vbGVhbj4KICA8L3Zv&#xd;
+aWQ+CiA8L29iamVjdD4KPC9qYXZhPgo=</Props>
+            <TypeVal>2</TypeVal>
+        </IDProviderReference>
+    </exp:References>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:HttpBasic/>
+            <L7p:Authentication>
+                <L7p:IdentityProviderOid goidValue="5e01bbac0eb2c760c346c2a6aff1d382"/>
+            </L7p:Authentication>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:LookupOutboundSecureConversationSession>
+                        <L7p:ServiceUrl stringValue="http://explore.apim.ca:8080/wssc/inbound"/>
+                    </L7p:LookupOutboundSecureConversationSession>
+                    <L7p:AddWssSecurityToken>
+                        <L7p:KeyReference stringValueNull="null"/>
+                        <L7p:Target target="REQUEST"/>
+                        <wsse:TokenType xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">http://schemas.xmlsoap.org/ws/2004/04/security/sc/sct</wsse:TokenType>
+                        <L7p:WsscSessionVariable stringValue="scLookup.session"/>
+                    </L7p:AddWssSecurityToken>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:BuildRstSoapRequest>
+                        <L7p:IncludeClientEntropy booleanValue="true"/>
+                        <L7p:SoapVersion soapVersion="SOAP_1_2"/>
+                        <wsse:TokenType xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">http://schemas.xmlsoap.org/ws/2004/04/security/sc/sct</wsse:TokenType>
+                        <L7p:WsTrustNamespace stringValue="http://docs.oasis-open.org/ws-sx/ws-trust/200512"/>
+                    </L7p:BuildRstSoapRequest>
+                    <L7p:AddWsAddressing>
+                        <L7p:Action stringValue="http://schemas.xmlsoap.org/ws/2004/04/security/trust/RST/SCT"/>
+                        <L7p:MessageId stringValue="&lt;auto>"/>
+                        <L7p:OtherTargetMessageVariable stringValue="requestBuilder.rstRequest"/>
+                        <L7p:Target target="OTHER"/>
+                        <L7p:WsaNamespaceUri stringValue="http://www.w3.org/2005/08/addressing"/>
+                    </L7p:AddWsAddressing>
+                    <L7p:WsSecurity>
+                        <L7p:OtherTargetMessageVariable stringValue="requestBuilder.rstRequest"/>
+                        <L7p:Target target="OTHER"/>
+                    </L7p:WsSecurity>
+                    <L7p:HttpRoutingAssertion>
+                        <L7p:PassthroughHttpAuthentication booleanValue="true"/>
+                        <L7p:ProtectedServiceUrl stringValue="https://explore.apim.ca:8443/tokenservice"/>
+                        <L7p:ProxyPassword stringValueNull="null"/>
+                        <L7p:ProxyUsername stringValueNull="null"/>
+                        <L7p:RequestHeaderRules httpPassthroughRuleSet="included">
+                            <L7p:Rules httpPassthroughRules="included">
+                                <L7p:item httpPassthroughRule="included">
+                                    <L7p:Name stringValue="Cookie"/>
+                                </L7p:item>
+                                <L7p:item httpPassthroughRule="included">
+                                    <L7p:Name stringValue="SOAPAction"/>
+                                </L7p:item>
+                            </L7p:Rules>
+                        </L7p:RequestHeaderRules>
+                        <L7p:RequestMsgSrc stringValue="requestBuilder.rstRequest"/>
+                        <L7p:RequestParamRules httpPassthroughRuleSet="included">
+                            <L7p:ForwardAll booleanValue="true"/>
+                            <L7p:Rules httpPassthroughRules="included"/>
+                        </L7p:RequestParamRules>
+                        <L7p:ResponseHeaderRules httpPassthroughRuleSet="included">
+                            <L7p:Rules httpPassthroughRules="included">
+                                <L7p:item httpPassthroughRule="included">
+                                    <L7p:Name stringValue="Set-Cookie"/>
+                                </L7p:item>
+                            </L7p:Rules>
+                        </L7p:ResponseHeaderRules>
+                        <L7p:ResponseMsgDest stringValue="rstrResponse"/>
+                    </L7p:HttpRoutingAssertion>
+                    <L7p:ProcessRstrSoapResponse>
+                        <L7p:OtherTargetMessageVariable stringValue="rstrResponse"/>
+                        <L7p:Target target="OTHER"/>
+                        <wsse:TokenType xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">http://schemas.xmlsoap.org/ws/2004/04/security/sc/sct</wsse:TokenType>
+                    </L7p:ProcessRstrSoapResponse>
+                    <L7p:EstablishOutboundSecureConversation>
+                        <L7p:ServiceUrl stringValue="http://explore.apim.ca:8080/wssc/inbound"/>
+                    </L7p:EstablishOutboundSecureConversation>
+                    <L7p:AddWssSecurityToken>
+                        <L7p:IncludeCreated booleanValue="false"/>
+                        <L7p:IncludeNonce booleanValue="false"/>
+                        <L7p:KeyReference stringValueNull="null"/>
+                        <L7p:Target target="REQUEST"/>
+                        <wsse:TokenType xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">http://schemas.xmlsoap.org/ws/2004/04/security/sc/sct</wsse:TokenType>
+                        <L7p:WsscSessionVariable stringValue="outboundSC.session"/>
+                    </L7p:AddWssSecurityToken>
+                </wsp:All>
+            </wsp:OneOrMore>
+            <L7p:WssEncryptElement>
+                <L7p:Target target="REQUEST"/>
+                <L7p:XpathExpression xpathExpressionValue="included">
+                    <L7p:Expression stringValue="/s:Envelope/s:Body"/>
+                    <L7p:Namespaces mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="s"/>
+                            <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                        </L7p:entry>
+                    </L7p:Namespaces>
+                </L7p:XpathExpression>
+            </L7p:WssEncryptElement>
+            <L7p:WssConfiguration>
+                <L7p:EncryptionAlgorithmUri stringValue="http://www.w3.org/2001/04/xmlenc#tripledes-cbc"/>
+                <L7p:EncryptionKeyReference stringValue="SubjectKeyIdentifier"/>
+                <L7p:KeyWrappingAlgorithmUri stringValue="http://www.w3.org/2001/04/xmlenc#rsa-1_5"/>
+                <L7p:SecureConversationNamespace stringValue="http://docs.oasis-open.org/ws-sx/ws-secureconversation/200512"/>
+                <L7p:Target target="REQUEST"/>
+                <L7p:UseDerivedKeys booleanValue="true"/>
+            </L7p:WssConfiguration>
+            <L7p:WsSecurity/>
+            <L7p:HttpRoutingAssertion>
+                <L7p:CurrentSecurityHeaderHandling intValue="3"/>
+                <L7p:ProtectedServiceUrl stringValue="http://explore.apim.ca:8080/wssc/inbound"/>
+                <L7p:ProxyPassword stringValueNull="null"/>
+                <L7p:ProxyUsername stringValueNull="null"/>
+                <L7p:RequestHeaderRules httpPassthroughRuleSet="included">
+                    <L7p:Rules httpPassthroughRules="included">
+                        <L7p:item httpPassthroughRule="included">
+                            <L7p:Name stringValue="Cookie"/>
+                        </L7p:item>
+                        <L7p:item httpPassthroughRule="included">
+                            <L7p:Name stringValue="SOAPAction"/>
+                        </L7p:item>
+                    </L7p:Rules>
+                </L7p:RequestHeaderRules>
+                <L7p:RequestParamRules httpPassthroughRuleSet="included">
+                    <L7p:ForwardAll booleanValue="true"/>
+                    <L7p:Rules httpPassthroughRules="included"/>
+                </L7p:RequestParamRules>
+                <L7p:ResponseHeaderRules httpPassthroughRuleSet="included">
+                    <L7p:Rules httpPassthroughRules="included">
+                        <L7p:item httpPassthroughRule="included">
+                            <L7p:Name stringValue="Set-Cookie"/>
+                        </L7p:item>
+                    </L7p:Rules>
+                </L7p:ResponseHeaderRules>
+            </L7p:HttpRoutingAssertion>
+            <L7p:RequireWssEncryptedElement>
+                <L7p:Target target="RESPONSE"/>
+                <L7p:XpathExpression xpathExpressionValue="included">
+                    <L7p:Expression stringValue="/s:Envelope/s:Body"/>
+                    <L7p:Namespaces mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="s"/>
+                            <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                        </L7p:entry>
+                    </L7p:Namespaces>
+                </L7p:XpathExpression>
+            </L7p:RequireWssEncryptedElement>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References/>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOnRucz0iaHR0cDovL3NlcnZpY2VzLnByaW1lcmljYS5jb20vdG5zLyI+DQogICA8c29hcGVudjpIZWFkZXIvPg0KICAgPHNvYXBlbnY6Qm9keT4NCiAgICAgIDx0bnM6UG9saWN5TW9kZUNoYW5nZVJlcXVlc3Q+DQogICAgICAgICA8dG5zOlBvbGljeU51bWJlcj4/PC90bnM6UG9saWN5TnVtYmVyPg0KICAgICAgICAgPHRuczpCaWxsaW5nTW9kZS8+DQogICAgICAgICA8dG5zOkJpbGxpbmdGb3JtLz4NCiAgICAgICAgIDx0bnM6QmlsbGluZ0R1ZURheT4wPC90bnM6QmlsbGluZ0R1ZURheT4NCiAgICAgICAgIDx0bnM6QmlsbGluZ1N1c3BlbmRDb2RlLz4NCiAgICAgICAgIDx0bnM6QmlsbGluZ1dJUERlc2tDb2RlLz4NCiAgICAgICAgIDx0bnM6QmlsbGluZ1dJUENsZXJrTmFtZS8+DQogICAgICAgICA8dG5zOlVwZGF0ZVBNUj5mYWxzZTwvdG5zOlVwZGF0ZVBNUj4NCiAgICAgICAgIDx0bnM6VXBkYXRlUE5EPmZhbHNlPC90bnM6VXBkYXRlUE5EPg0KICAgICAgPC90bnM6UG9saWN5TW9kZUNoYW5nZVJlcXVlc3Q+DQogICA8L3NvYXBlbnY6Qm9keT4NCjwvc29hcGVudjpFbnZlbG9wZT4="/>
+                <L7p:ContentType stringValue="text/xml; charset=utf-8"/>
+                <L7p:DataType variableDataType="message"/>
+                <L7p:VariableToSet stringValue="varXML"/>
+            </L7p:SetVariable>
+            <L7p:ResponseXpathAssertion>
+                <L7p:VariablePrefix stringValue="varRootNode"/>
+                <L7p:XmlMsgSrc stringValue="varXML"/>
+                <L7p:XpathExpression xpathExpressionValue="included">
+                    <L7p:Expression stringValue="/soapenv:Envelope/soapenv:Body/tns:PolicyModeChangeRequest"/>
+                    <L7p:Namespaces mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="tns"/>
+                            <L7p:value stringValue="http://services.primerica.com/tns/"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="s"/>
+                            <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="soapenv"/>
+                            <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                        </L7p:entry>
+                    </L7p:Namespaces>
+                    <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                </L7p:XpathExpression>
+            </L7p:ResponseXpathAssertion>
+            <L7p:ResponseXpathAssertion>
+                <L7p:VariablePrefix stringValue="varSoap"/>
+                <L7p:XmlMsgSrc stringValue="varXML"/>
+                <L7p:XpathExpression xpathExpressionValue="included">
+                    <L7p:Expression stringValue="/soapenv:Envelope"/>
+                    <L7p:Namespaces mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="tns"/>
+                            <L7p:value stringValue="http://services.primerica.com/tns/"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="s"/>
+                            <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="soapenv"/>
+                            <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                        </L7p:entry>
+                    </L7p:Namespaces>
+                    <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                </L7p:XpathExpression>
+            </L7p:ResponseXpathAssertion>
+            <L7p:ResponseXpathAssertion>
+                <L7p:VariablePrefix stringValue="varSoapHeader"/>
+                <L7p:XmlMsgSrc stringValue="varXML"/>
+                <L7p:XpathExpression xpathExpressionValue="included">
+                    <L7p:Expression stringValue="/soapenv:Envelope/soapenv:Header"/>
+                    <L7p:Namespaces mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="tns"/>
+                            <L7p:value stringValue="http://services.primerica.com/tns/"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="s"/>
+                            <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="soapenv"/>
+                            <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                        </L7p:entry>
+                    </L7p:Namespaces>
+                    <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                </L7p:XpathExpression>
+            </L7p:ResponseXpathAssertion>
+            <L7p:ResponseXpathAssertion>
+                <L7p:VariablePrefix stringValue="varSoapBody"/>
+                <L7p:XmlMsgSrc stringValue="varXML"/>
+                <L7p:XpathExpression xpathExpressionValue="included">
+                    <L7p:Expression stringValue="/soapenv:Envelope/soapenv:Body"/>
+                    <L7p:Namespaces mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="tns"/>
+                            <L7p:value stringValue="http://services.primerica.com/tns/"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="s"/>
+                            <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="soapenv"/>
+                            <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                        </L7p:entry>
+                    </L7p:Namespaces>
+                    <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                </L7p:XpathExpression>
+            </L7p:ResponseXpathAssertion>
+            <L7p:AuditDetailAssertion>
+                <L7p:Detail stringValueReference="inline"><![CDATA[Root Node Results: ${varRootNode.results}
+Root Node Elements: ${varRootNode.elements}
+Root Node Element: ${varRootNode.element}
+soap Node Results: ${varSoap.results}
+soap Node Elements: ${varSoap.elements}
+soap Node Element: ${varSoap.element}]]></L7p:Detail>
+            </L7p:AuditDetailAssertion>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="JHt2YXJSb290Tm9kZS5lbGVtZW50c30="/>
+                <L7p:VariableToSet stringValue="varXMLString"/>
+            </L7p:SetVariable>
+            <L7p:Regex>
+                <L7p:AutoTarget booleanValue="false"/>
+                <L7p:OtherTargetMessageVariable stringValue="varXMLString"/>
+                <L7p:Regex stringValue="tns:"/>
+                <L7p:RegexName stringValue="Replace tns: with nothing"/>
+                <L7p:Replace booleanValue="true"/>
+                <L7p:Replacement stringValue=""/>
+                <L7p:Target target="OTHER"/>
+            </L7p:Regex>
+            <L7p:AuditDetailAssertion>
+                <L7p:Detail stringValue="varXMLString: ${varXMLString}"/>
+            </L7p:AuditDetailAssertion>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="JHt2YXJYTUxTdHJpbmd9"/>
+                <L7p:ContentType stringValue="text/xml; charset=utf-8"/>
+                <L7p:DataType variableDataType="message"/>
+                <L7p:VariableToSet stringValue="varXMLContent"/>
+            </L7p:SetVariable>
+            <L7p:JsonTransformation>
+                <L7p:DestinationMessageTarget MessageTarget="included">
+                    <L7p:OtherTargetMessageVariable stringValue="varJSON"/>
+                    <L7p:Target target="OTHER"/>
+                    <L7p:TargetModifiedByGateway booleanValue="true"/>
+                </L7p:DestinationMessageTarget>
+                <L7p:OtherTargetMessageVariable stringValue="varXMLContent"/>
+                <L7p:RootTagString stringValue=""/>
+                <L7p:Target target="OTHER"/>
+            </L7p:JsonTransformation>
+            <L7p:JsonTransformation>
+                <L7p:DestinationMessageTarget MessageTarget="included">
+                    <L7p:OtherTargetMessageVariable stringValue="varOriginalJSON"/>
+                    <L7p:Target target="OTHER"/>
+                    <L7p:TargetModifiedByGateway booleanValue="true"/>
+                </L7p:DestinationMessageTarget>
+                <L7p:OtherTargetMessageVariable stringValue="varXML"/>
+                <L7p:RootTagString stringValue=""/>
+                <L7p:Target target="OTHER"/>
+            </L7p:JsonTransformation>
+            <L7p:AuditDetailAssertion>
+                <L7p:Detail stringValue="JSON Output: ${varJson.mainpart}"/>
+            </L7p:AuditDetailAssertion>
+            <L7p:JsonTransformation>
+                <L7p:DestinationMessageTarget MessageTarget="included">
+                    <L7p:OtherTargetMessageVariable stringValue="varNewXML"/>
+                    <L7p:Target target="OTHER"/>
+                    <L7p:TargetModifiedByGateway booleanValue="true"/>
+                </L7p:DestinationMessageTarget>
+                <L7p:OtherTargetMessageVariable stringValue="varJson"/>
+                <L7p:RootTagString stringValue="Test"/>
+                <L7p:Target target="OTHER"/>
+                <L7p:Transformation transformation="JSON_to_XML"/>
+            </L7p:JsonTransformation>
+            <L7p:AuditDetailAssertion>
+                <L7p:Detail stringValue="New XML: ${varNewXml.mainpart}"/>
+            </L7p:AuditDetailAssertion>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="JHt2YXJOZXdYbWwubWFpbnBhcnR9"/>
+                <L7p:VariableToSet stringValue="varTemp"/>
+            </L7p:SetVariable>
+            <L7p:Regex>
+                <L7p:AutoTarget booleanValue="false"/>
+                <L7p:OtherTargetMessageVariable stringValue="varTemp"/>
+                <L7p:Regex stringValue="&lt;Test>"/>
+                <L7p:RegexName stringValue="Remove &lt;Test> element"/>
+                <L7p:Replace booleanValue="true"/>
+                <L7p:Replacement stringValue=""/>
+                <L7p:Target target="OTHER"/>
+            </L7p:Regex>
+            <L7p:Regex>
+                <L7p:AutoTarget booleanValue="false"/>
+                <L7p:OtherTargetMessageVariable stringValue="varTemp"/>
+                <L7p:Regex stringValue="&lt;/Test>"/>
+                <L7p:RegexName stringValue="Remote &lt;/Test>"/>
+                <L7p:Replace booleanValue="true"/>
+                <L7p:Replacement stringValue=""/>
+                <L7p:Target target="OTHER"/>
+            </L7p:Regex>
+            <L7p:Regex>
+                <L7p:AutoTarget booleanValue="false"/>
+                <L7p:OtherTargetMessageVariable stringValue="varTemp"/>
+                <L7p:Regex stringValue="&lt;"/>
+                <L7p:RegexName stringValue="Replace &lt; with tns:"/>
+                <L7p:Replace booleanValue="true"/>
+                <L7p:Replacement stringValue="&lt;tns:"/>
+                <L7p:Target target="OTHER"/>
+            </L7p:Regex>
+            <L7p:AuditDetailAssertion>
+                <L7p:Detail stringValue="VarTemp after replacing &lt; with &lt;tns: ${varTemp} "/>
+            </L7p:AuditDetailAssertion>
+            <L7p:Regex>
+                <L7p:AutoTarget booleanValue="false"/>
+                <L7p:OtherTargetMessageVariable stringValue="varTemp"/>
+                <L7p:Regex stringValue="&lt;tns:/"/>
+                <L7p:RegexName stringValue="Replace &lt;/ with &lt;/tns:"/>
+                <L7p:Replace booleanValue="true"/>
+                <L7p:Replacement stringValue="&lt;/tns:"/>
+                <L7p:Target target="OTHER"/>
+            </L7p:Regex>
+            <L7p:AuditDetailAssertion>
+                <L7p:Detail stringValue="VarTemp after replacing &lt;/ with &lt;/tns: ${varTemp} "/>
+            </L7p:AuditDetailAssertion>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="JHt2YXJUZW1wfQ=="/>
+                <L7p:ContentType stringValue="text/xml; charset=utf-8"/>
+                <L7p:DataType variableDataType="message"/>
+                <L7p:VariableToSet stringValue="varNewXMLNode"/>
+            </L7p:SetVariable>
+            <L7p:HardcodedResponse>
+                <L7p:Base64ResponseBody stringValue="LS0tLS0tLS0tLS0tLS0tT3JpZ2luYWwgU09BUCB0byBKU09OLS0tLS0tLS0tLS0tLS0tLS0KJHt2YXJPcmlnaW5hbEpTT04ubWFpbnBhcnR9CgotLS0tLS0tLS0tLS0tLS1Nb2RpZmllZCBKU09OLS0tLS0tLS0tLS0tLS0tLS0KJHt2YXJKc29uLm1haW5wYXJ0fQoKLS0tLS0tLS0tLS0tLS0tTW9kaWZpZWQgWE1MLS0tLS0tLS0tLS0tLS0tLS0KJHt2YXJOZXdYbWwubWFpbnBhcnR9CgotLS0tLS0tLS0tLS0tLS1UcmFuc2xhdGlvbiBiYWNrIHRvIG9yaWdpbmFsIFhNTCAtLS0tLS0tLQoK"/>
+                <L7p:ResponseContentType stringValue="text/plain; charset=UTF-8"/>
+            </L7p:HardcodedResponse>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

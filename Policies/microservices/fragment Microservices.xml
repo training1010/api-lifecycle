@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References>
+        <IDProviderReference RefType="com.l7tech.console.policy.exporter.IdProviderReference">
+            <GOID>cf6c409e0f5b0b4177066d116ed6904f</GOID>
+            <Name>Local</Name>
+            <Props>PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPGphdmEgdmVyc2lvbj0iMS44&#xd;
+LjBfNTEiIGNsYXNzPSJqYXZhLmJlYW5zLlhNTERlY29kZXIiPgogPG9iamVjdCBjbGFzcz0iamF2&#xd;
+YS51dGlsLkhhc2hNYXAiPgogIDx2b2lkIG1ldGhvZD0icHV0Ij4KICAgPHN0cmluZz5yZXR1cm5p&#xd;
+bmdBdHRyaWJ1dGVzPC9zdHJpbmc+CiAgIDxhcnJheSBjbGFzcz0iamF2YS5sYW5nLlN0cmluZyIg&#xd;
+bGVuZ3RoPSIwIi8+CiAgPC92b2lkPgogIDx2b2lkIG1ldGhvZD0icHV0Ij4KICAgPHN0cmluZz51&#xd;
+c3JtYXBwaW5nczwvc3RyaW5nPgogICA8b2JqZWN0IGNsYXNzPSJqYXZhLnV0aWwuSGFzaE1hcCI+&#xd;
+CiAgICA8dm9pZCBtZXRob2Q9InB1dCI+CiAgICAgPHN0cmluZz5pbmV0b3JncGVyc29uPC9zdHJp&#xd;
+bmc+CiAgICAgPG9iamVjdCBjbGFzcz0iY29tLmw3dGVjaC5pZGVudGl0eS5sZGFwLlVzZXJNYXBw&#xd;
+aW5nQ29uZmlnIj4KICAgICAgPHZvaWQgcHJvcGVydHk9ImVtYWlsTmFtZUF0dHJOYW1lIj4KICAg&#xd;
+ICAgIDxzdHJpbmc+bWFpbDwvc3RyaW5nPgogICAgICA8L3ZvaWQ+CiAgICAgIDx2b2lkIHByb3Bl&#xd;
+cnR5PSJmaXJzdE5hbWVBdHRyTmFtZSI+CiAgICAgICA8c3RyaW5nPmdpdmVuTmFtZTwvc3RyaW5n&#xd;
+PgogICAgICA8L3ZvaWQ+CiAgICAgIDx2b2lkIHByb3BlcnR5PSJrZXJiZXJvc0F0dHJOYW1lIj4K&#xd;
+ICAgICAgIDxzdHJpbmc+dWlkPC9zdHJpbmc+CiAgICAgIDwvdm9pZD4KICAgICAgPHZvaWQgcHJv&#xd;
+cGVydHk9Imxhc3ROYW1lQXR0ck5hbWUiPgogICAgICAgPHN0cmluZz5zbjwvc3RyaW5nPgogICAg&#xd;
+ICA8L3ZvaWQ+CiAgICAgIDx2b2lkIHByb3BlcnR5PSJsb2dpbkF0dHJOYW1lIj4KICAgICAgIDxz&#xd;
+dHJpbmc+dWlkPC9zdHJpbmc+CiAgICAgIDwvdm9pZD4KICAgICAgPHZvaWQgcHJvcGVydHk9Im5h&#xd;
+bWVBdHRyTmFtZSI+CiAgICAgICA8c3RyaW5nPmNuPC9zdHJpbmc+CiAgICAgIDwvdm9pZD4KICAg&#xd;
+ICAgPHZvaWQgcHJvcGVydHk9Im9iakNsYXNzIj4KICAgICAgIDxzdHJpbmc+aW5ldE9yZ1BlcnNv&#xd;
+bjwvc3RyaW5nPgogICAgICA8L3ZvaWQ+CiAgICAgIDx2b2lkIHByb3BlcnR5PSJwYXNzd2RBdHRy&#xd;
+TmFtZSI+CiAgICAgICA8c3RyaW5nPnVzZXJQYXNzd29yZDwvc3RyaW5nPgogICAgICA8L3ZvaWQ+&#xd;
+CiAgICAgIDx2b2lkIHByb3BlcnR5PSJwYXNzd2RUeXBlIj4KICAgICAgIDxvYmplY3QgY2xhc3M9&#xd;
+ImNvbS5sN3RlY2guaWRlbnRpdHkubGRhcC5QYXNzd2RTdHJhdGVneSIvPgogICAgICA8L3ZvaWQ+&#xd;
+CiAgICAgIDx2b2lkIHByb3BlcnR5PSJ1c2VyQ2VydEF0dHJOYW1lIj4KICAgICAgIDxzdHJpbmc+&#xd;
+dXNlckNlcnRpZmljYXRlO2JpbmFyeTwvc3RyaW5nPgogICAgICA8L3ZvaWQ+CiAgICAgPC9vYmpl&#xd;
+Y3Q+CiAgICA8L3ZvaWQ+CiAgIDwvb2JqZWN0PgogIDwvdm9pZD4KICA8dm9pZCBtZXRob2Q9InB1&#xd;
+dCI+CiAgIDxzdHJpbmc+bGRhcHNlYXJjaGJhc2U8L3N0cmluZz4KICAgPHN0cmluZz5kYz1sN3Rl&#xd;
+Y2gsIGRjPWNvbTwvc3RyaW5nPgogIDwvdm9pZD4KICA8dm9pZCBtZXRob2Q9InB1dCI+CiAgIDxz&#xd;
+dHJpbmc+bGRhcEJpbmRETjwvc3RyaW5nPgogICA8c3RyaW5nPjwvc3RyaW5nPgogIDwvdm9pZD4K&#xd;
+ICA8dm9pZCBtZXRob2Q9InB1dCI+CiAgIDxzdHJpbmc+Z3JvdXBDYWNoZVNpemU8L3N0cmluZz4K&#xd;
+ICAgPGludD4xMDA8L2ludD4KICA8L3ZvaWQ+CiAgPHZvaWQgbWV0aG9kPSJwdXQiPgogICA8c3Ry&#xd;
+aW5nPmdyb3VwTWF4TmVzdGluZzwvc3RyaW5nPgogICA8aW50PjU8L2ludD4KICA8L3ZvaWQ+CiAg&#xd;
+PHZvaWQgbWV0aG9kPSJwdXQiPgogICA8c3RyaW5nPmdycG1hcHBpbmdzPC9zdHJpbmc+CiAgIDxv&#xd;
+YmplY3QgY2xhc3M9ImphdmEudXRpbC5IYXNoTWFwIj4KICAgIDx2b2lkIG1ldGhvZD0icHV0Ij4K&#xd;
+ICAgICA8c3RyaW5nPnBvc2l4Z3JvdXA8L3N0cmluZz4KICAgICA8b2JqZWN0IGNsYXNzPSJjb20u&#xd;
+bDd0ZWNoLmlkZW50aXR5LmxkYXAuR3JvdXBNYXBwaW5nQ29uZmlnIj4KICAgICAgPHZvaWQgcHJv&#xd;
+cGVydHk9Im1lbWJlckF0dHJOYW1lIj4KICAgICAgIDxzdHJpbmc+bWVtYmVyVWlkPC9zdHJpbmc+&#xd;
+CiAgICAgIDwvdm9pZD4KICAgICAgPHZvaWQgcHJvcGVydHk9Im1lbWJlclN0cmF0ZWd5Ij4KICAg&#xd;
+ICAgIDxvYmplY3QgY2xhc3M9ImNvbS5sN3RlY2guaWRlbnRpdHkubGRhcC5NZW1iZXJTdHJhdGVn&#xd;
+eSI+CiAgICAgICAgPHZvaWQgcHJvcGVydHk9InZhbCI+CiAgICAgICAgIDxpbnQ+MTwvaW50Pgog&#xd;
+ICAgICAgIDwvdm9pZD4KICAgICAgIDwvb2JqZWN0PgogICAgICA8L3ZvaWQ+CiAgICAgIDx2b2lk&#xd;
+IHByb3BlcnR5PSJuYW1lQXR0ck5hbWUiPgogICAgICAgPHN0cmluZz5jbjwvc3RyaW5nPgogICAg&#xd;
+ICA8L3ZvaWQ+CiAgICAgIDx2b2lkIHByb3BlcnR5PSJvYmpDbGFzcyI+CiAgICAgICA8c3RyaW5n&#xd;
+PnBvc2l4R3JvdXA8L3N0cmluZz4KICAgICAgPC92b2lkPgogICAgIDwvb2JqZWN0PgogICAgPC92&#xd;
+b2lkPgogICAgPHZvaWQgbWV0aG9kPSJwdXQiPgogICAgIDxzdHJpbmc+Z3JvdXBvZnVuaXF1ZW5h&#xd;
+bWVzPC9zdHJpbmc+CiAgICAgPG9iamVjdCBjbGFzcz0iY29tLmw3dGVjaC5pZGVudGl0eS5sZGFw&#xd;
+Lkdyb3VwTWFwcGluZ0NvbmZpZyI+CiAgICAgIDx2b2lkIHByb3BlcnR5PSJtZW1iZXJBdHRyTmFt&#xd;
+ZSI+CiAgICAgICA8c3RyaW5nPnVuaXF1ZU1lbWJlcjwvc3RyaW5nPgogICAgICA8L3ZvaWQ+CiAg&#xd;
+ICAgIDx2b2lkIHByb3BlcnR5PSJtZW1iZXJTdHJhdGVneSI+CiAgICAgICA8b2JqZWN0IGNsYXNz&#xd;
+PSJjb20ubDd0ZWNoLmlkZW50aXR5LmxkYXAuTWVtYmVyU3RyYXRlZ3kiPgogICAgICAgIDx2b2lk&#xd;
+IHByb3BlcnR5PSJ2YWwiPgogICAgICAgICA8aW50PjI8L2ludD4KICAgICAgICA8L3ZvaWQ+CiAg&#xd;
+ICAgICA8L29iamVjdD4KICAgICAgPC92b2lkPgogICAgICA8dm9pZCBwcm9wZXJ0eT0ibmFtZUF0&#xd;
+dHJOYW1lIj4KICAgICAgIDxzdHJpbmc+Y248L3N0cmluZz4KICAgICAgPC92b2lkPgogICAgICA8&#xd;
+dm9pZCBwcm9wZXJ0eT0ib2JqQ2xhc3MiPgogICAgICAgPHN0cmluZz5ncm91cE9mVW5pcXVlTmFt&#xd;
+ZXM8L3N0cmluZz4KICAgICAgPC92b2lkPgogICAgIDwvb2JqZWN0PgogICAgPC92b2lkPgogICAg&#xd;
+PHZvaWQgbWV0aG9kPSJwdXQiPgogICAgIDxzdHJpbmc+b3JnYW5pemF0aW9uYWx1bml0PC9zdHJp&#xd;
+bmc+CiAgICAgPG9iamVjdCBjbGFzcz0iY29tLmw3dGVjaC5pZGVudGl0eS5sZGFwLkdyb3VwTWFw&#xd;
+cGluZ0NvbmZpZyI+CiAgICAgIDx2b2lkIHByb3BlcnR5PSJtZW1iZXJBdHRyTmFtZSI+CiAgICAg&#xd;
+ICA8c3RyaW5nPjwvc3RyaW5nPgogICAgICA8L3ZvaWQ+CiAgICAgIDx2b2lkIHByb3BlcnR5PSJt&#xd;
+ZW1iZXJTdHJhdGVneSI+CiAgICAgICA8b2JqZWN0IGNsYXNzPSJjb20ubDd0ZWNoLmlkZW50aXR5&#xd;
+LmxkYXAuTWVtYmVyU3RyYXRlZ3kiPgogICAgICAgIDx2b2lkIHByb3BlcnR5PSJ2YWwiPgogICAg&#xd;
+ICAgICA8aW50PjM8L2ludD4KICAgICAgICA8L3ZvaWQ+CiAgICAgICA8L29iamVjdD4KICAgICAg&#xd;
+PC92b2lkPgogICAgICA8dm9pZCBwcm9wZXJ0eT0ibmFtZUF0dHJOYW1lIj4KICAgICAgIDxzdHJp&#xd;
+bmc+b3U8L3N0cmluZz4KICAgICAgPC92b2lkPgogICAgICA8dm9pZCBwcm9wZXJ0eT0ib2JqQ2xh&#xd;
+c3MiPgogICAgICAgPHN0cmluZz5vcmdhbml6YXRpb25hbFVuaXQ8L3N0cmluZz4KICAgICAgPC92&#xd;
+b2lkPgogICAgIDwvb2JqZWN0PgogICAgPC92b2lkPgogICA8L29iamVjdD4KICA8L3ZvaWQ+CiAg&#xd;
+PHZvaWQgbWV0aG9kPSJwdXQiPgogICA8c3RyaW5nPm9yaWdpbmFsVGVtcGxhdGVOYW1lPC9zdHJp&#xd;
+bmc+CiAgIDxzdHJpbmc+R2VuZXJpY0xEQVA8L3N0cmluZz4KICA8L3ZvaWQ+CiAgPHZvaWQgbWV0&#xd;
+aG9kPSJwdXQiPgogICA8c3RyaW5nPmFkbWluRW5hYmxlZDwvc3RyaW5nPgogICA8Ym9vbGVhbj5m&#xd;
+YWxzZTwvYm9vbGVhbj4KICA8L3ZvaWQ+CiAgPHZvaWQgbWV0aG9kPSJwdXQiPgogICA8c3RyaW5n&#xd;
+PmxkYXB1cmw8L3N0cmluZz4KICAgPGFycmF5IGNsYXNzPSJqYXZhLmxhbmcuU3RyaW5nIiBsZW5n&#xd;
+dGg9IjEiPgogICAgPHZvaWQgaW5kZXg9IjAiPgogICAgIDxzdHJpbmc+bGRhcDovLzE5Mi4xNjgu&#xd;
+MS4yMDI6Mzg5PC9zdHJpbmc+CiAgICA8L3ZvaWQ+CiAgIDwvYXJyYXk+CiAgPC92b2lkPgogIDx2&#xd;
+b2lkIG1ldGhvZD0icHV0Ij4KICAgPHN0cmluZz5jbGllbnRBdXRoPC9zdHJpbmc+CiAgIDxib29s&#xd;
+ZWFuPmZhbHNlPC9ib29sZWFuPgogIDwvdm9pZD4KIDwvb2JqZWN0Pgo8L2phdmE+Cg==</Props>
+            <TypeVal>2</TypeVal>
+        </IDProviderReference>
+    </exp:References>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="Check for SSL"/>
+            </L7p:CommentAssertion>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <L7p:SslAssertion/>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:CustomizeErrorResponse>
+                        <L7p:Content stringValue="Must Upgrade to SSL"/>
+                        <L7p:ExtraHeaders nameValuePairArray="included"/>
+                        <L7p:HttpStatus stringValue="429"/>
+                    </L7p:CustomizeErrorResponse>
+                    <L7p:FalseAssertion/>
+                </wsp:All>
+            </wsp:OneOrMore>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="Check for Login and Retrieve Details"/>
+            </L7p:CommentAssertion>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:HttpBasic/>
+                    <L7p:MemberOfGroup>
+                        <L7p:GroupId stringValue="ou=apim,dc=l7tech,dc=com"/>
+                        <L7p:GroupName stringValue="apim"/>
+                        <L7p:IdentityProviderOid goidValue="cf6c409e0f5b0b4177066d116ed6904f"/>
+                    </L7p:MemberOfGroup>
+                    <L7p:IdentityAttributes>
+                        <L7p:IdentityProviderOid goidValue="cf6c409e0f5b0b4177066d116ed6904f"/>
+                        <L7p:LookupAttributes identityMappingArray="included">
+                            <L7p:item ldapAttributeMapping="included">
+                                <L7p:AttributeConfig attributeConfig="included">
+                                    <L7p:Header header="included">
+                                    <L7p:Name stringValue="Unique ID"/>
+                                    <L7p:Type variableDataType="string"/>
+                                    <L7p:UsersOrGroups usersOrGroups="BOTH"/>
+                                    <L7p:VariableName stringValue="id"/>
+                                    </L7p:Header>
+                                    <L7p:VariableName stringValue="id"/>
+                                </L7p:AttributeConfig>
+                                <L7p:ProviderOid goidValue="cf6c409e0f5b0b4177066d116ed6904f"/>
+                            </L7p:item>
+                            <L7p:item ldapAttributeMapping="included">
+                                <L7p:AttributeConfig attributeConfig="included">
+                                    <L7p:Header header="included">
+                                    <L7p:Name stringValue="User Login"/>
+                                    <L7p:Type variableDataType="string"/>
+                                    <L7p:UsersOrGroups usersOrGroups="USERS"/>
+                                    <L7p:VariableName stringValue="login"/>
+                                    </L7p:Header>
+                                    <L7p:VariableName stringValue="login"/>
+                                </L7p:AttributeConfig>
+                                <L7p:ProviderOid goidValue="cf6c409e0f5b0b4177066d116ed6904f"/>
+                            </L7p:item>
+                        </L7p:LookupAttributes>
+                    </L7p:IdentityAttributes>
+                    <L7p:LDAPQuery>
+                        <L7p:AttrNames stringArrayValue="included">
+                            <L7p:item stringValue="entitlement"/>
+                            <L7p:item stringValue="businessCategory"/>
+                        </L7p:AttrNames>
+                        <L7p:CacheSize intValue="100"/>
+                        <L7p:LdapProviderOid goidValue="cf6c409e0f5b0b4177066d116ed6904f"/>
+                        <L7p:QueryMappings queryAttributeMappings="included">
+                            <L7p:item mapping="included">
+                                <L7p:AttributeName stringValue="entitlement"/>
+                                <L7p:JoinMultivalued booleanValue="false"/>
+                                <L7p:MatchingContextVariableName stringValue="entitlement"/>
+                            </L7p:item>
+                            <L7p:item mapping="included">
+                                <L7p:AttributeName stringValue="businessCategory"/>
+                                <L7p:JoinMultivalued booleanValue="false"/>
+                                <L7p:MatchingContextVariableName stringValue="category"/>
+                            </L7p:item>
+                        </L7p:QueryMappings>
+                        <L7p:SearchFilter stringValue="uid=${authenticatedUser.login}"/>
+                        <L7p:SearchFilterInjectionProtected booleanValue="true"/>
+                    </L7p:LDAPQuery>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:CustomizeErrorResponse>
+                        <L7p:Content stringValue="Must Authenticate"/>
+                        <L7p:ExtraHeaders nameValuePairArray="included"/>
+                        <L7p:HttpStatus stringValue="301"/>
+                    </L7p:CustomizeErrorResponse>
+                    <L7p:FalseAssertion/>
+                </wsp:All>
+            </wsp:OneOrMore>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

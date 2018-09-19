@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="************************************************************"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="API :- Delta Flight Schedule"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="API Group :- FLIGHT"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="API TYPE :- &lt;REST>"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Author: Balaji Radhakrishnan"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="************************************************************"/>
+        </L7p:CommentAssertion>
+        <wsp:All wsp:Usage="Required">
+            <L7p:AuditAssertion>
+                <L7p:SaveRequest booleanValue="true"/>
+                <L7p:SaveResponse booleanValue="true"/>
+            </L7p:AuditAssertion>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxmbGlnaHRTY2hlZHVsZXNSZXF1ZXN0Pg0KICAgPHJlcXVlc3RJbmZvPg0KICAgICAgPGFwcGxpY2F0aW9uVmVyc2lvbj4xLjA8L2FwcGxpY2F0aW9uVmVyc2lvbj4NCiAgICAgIDxjaGFubmVsPm1vYmlsZTwvY2hhbm5lbD4NCiAgICAgIDxkZXZpY2VOYW1lPmlvczwvZGV2aWNlTmFtZT4NCiAgICAgIDxvc05hbWU+aW9zPC9vc05hbWU+DQogICAgICA8b3NWZXJzaW9uPjEuMDwvb3NWZXJzaW9uPg0KICAgICAgPHRyYW5zYWN0aW9uSWQgLz4NCiAgICAgIDxidWlsZCAvPg0KICAgPC9yZXF1ZXN0SW5mbz4NCiAgIDxzY2hlZHVsZXM+DQogICAgICA8dG9kYXlEYXRlPiR7dG9kYXl9PC90b2RheURhdGU+DQogICAgICA8ZGVwYXJ0dXJlRGF0ZT4ke2RlcGFydHVyZX08L2RlcGFydHVyZURhdGU+DQogICAgICA8ZGVwYXJ0dXJlQWlycG9ydENvZGU+JHtkZXBDb2RlfTwvZGVwYXJ0dXJlQWlycG9ydENvZGU+DQogICAgICA8YXJyaXZhbEFpcnBvcnRDb2RlPiR7QXJyQ29kZX08L2Fycml2YWxBaXJwb3J0Q29kZT4NCiAgICAgIDxkZXBhcnR1cmVUaW1lPiR7ZGVwVGltZX08L2RlcGFydHVyZVRpbWU+DQogICAgICA8c2tkRW5kUmVjb3JkPkFMTDwvc2tkRW5kUmVjb3JkPg0KICAgPC9zY2hlZHVsZXM+DQo8L2ZsaWdodFNjaGVkdWxlc1JlcXVlc3Q+"/>
+                <L7p:VariableToSet stringValue="deltaReq"/>
+            </L7p:SetVariable>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="COMMON"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="// Common tasks for the policy"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:All>
+        <wsp:All wsp:Usage="Required">
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="NDAw"/>
+                <L7p:VariableToSet stringValue="status"/>
+            </L7p:SetVariable>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="eyJlcnJvciI6IkludmFsaWRfcmVxdWVzdCIsICJlcnJvcl9kZXNjcmlwdGlvbiI6IlRoZSBnaXZlbiBSZXF1ZXN0IGlzIEludmFsaWQifQ=="/>
+                <L7p:VariableToSet stringValue="errorMsg"/>
+            </L7p:SetVariable>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="MDAwMA=="/>
+                <L7p:VariableToSet stringValue="errorCode"/>
+            </L7p:SetVariable>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="YXBwbGljYXRpb24vanNvbg=="/>
+                <L7p:VariableToSet stringValue="content-type"/>
+            </L7p:SetVariable>
+            <L7p:CustomizeErrorResponse>
+                <L7p:Content stringValue="${errorMsg}"/>
+                <L7p:ContentType stringValue="${content-type}"/>
+                <L7p:ExtraHeaders nameValuePairArray="included">
+                    <L7p:item nameValuePair="included">
+                        <L7p:Key stringValue="Pragma"/>
+                        <L7p:Value stringValue="no-cache"/>
+                    </L7p:item>
+                    <L7p:item nameValuePair="included">
+                        <L7p:Key stringValue="Cache-Control"/>
+                        <L7p:Value stringValue="no-store"/>
+                    </L7p:item>
+                    <L7p:item nameValuePair="included">
+                        <L7p:Key stringValue="x-delta-err"/>
+                        <L7p:Value stringValue="${errorCode}"/>
+                    </L7p:item>
+                </L7p:ExtraHeaders>
+                <L7p:HttpStatus stringValue="${status}"/>
+            </L7p:CustomizeErrorResponse>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="//   Exception Handling block"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="ERROR"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:All>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <wsp:All wsp:Usage="Required">
+                <L7p:CacheLookup>
+                    <L7p:CacheId stringValue="deltaCache"/>
+                    <L7p:ContentTypeOverride stringValue=""/>
+                    <L7p:MaxEntryAgeSeconds stringValue="30"/>
+                </L7p:CacheLookup>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="// Cache Look up first"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="CACHE"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="eyJlcnJvciI6IlJvdXRpbmcgRmFpbGVkIiwgImVycm9yX2Rlc2NyaXB0aW9uIjoiSW52YWxpZCBVUkwgLSBOb3QgYSBWYWxpZCBBUEkifQ=="/>
+                    <L7p:VariableToSet stringValue="errorMsg"/>
+                </L7p:SetVariable>
+                <L7p:HttpRoutingAssertion>
+                    <L7p:KeyAlias stringValue="trusted"/>
+                    <L7p:NonDefaultKeystoreId goidValue="00000000000000000000000000000002"/>
+                    <L7p:ProtectedServiceUrl stringValue="https://${gateway.delta.hostname}/api/mobile/getFlightSchedule${request.url.query}"/>
+                    <L7p:ProxyPassword stringValueNull="null"/>
+                    <L7p:ProxyUsername stringValueNull="null"/>
+                    <L7p:RequestHeaderRules httpPassthroughRuleSet="included">
+                        <L7p:ForwardAll booleanValue="true"/>
+                        <L7p:Rules httpPassthroughRules="included">
+                            <L7p:item httpPassthroughRule="included">
+                                <L7p:Name stringValue="Cookie"/>
+                            </L7p:item>
+                            <L7p:item httpPassthroughRule="included">
+                                <L7p:Name stringValue="SOAPAction"/>
+                            </L7p:item>
+                        </L7p:Rules>
+                    </L7p:RequestHeaderRules>
+                    <L7p:RequestParamRules httpPassthroughRuleSet="included">
+                        <L7p:ForwardAll booleanValue="true"/>
+                        <L7p:Rules httpPassthroughRules="included"/>
+                    </L7p:RequestParamRules>
+                    <L7p:ResponseHeaderRules httpPassthroughRuleSet="included">
+                        <L7p:ForwardAll booleanValue="true"/>
+                        <L7p:Rules httpPassthroughRules="included">
+                            <L7p:item httpPassthroughRule="included">
+                                <L7p:Name stringValue="Set-Cookie"/>
+                            </L7p:item>
+                        </L7p:Rules>
+                    </L7p:ResponseHeaderRules>
+                    <L7p:SamlAssertionVersion intValue="2"/>
+                    <L7p:UsesDefaultKeyStore booleanValue="false"/>
+                </L7p:HttpRoutingAssertion>
+                <L7p:CacheStorage>
+                    <L7p:CacheId stringValue="deltaCache"/>
+                    <L7p:MaxEntryAgeSeconds stringValue="30"/>
+                </L7p:CacheStorage>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="MDAwMg=="/>
+                    <L7p:VariableToSet stringValue="errorCode"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="NDAy"/>
+                    <L7p:VariableToSet stringValue="status"/>
+                </L7p:SetVariable>
+                <L7p:AuditDetailAssertion>
+                    <L7p:CustomLoggerSuffix stringValue="delta"/>
+                    <L7p:Detail stringValue="${errorCode} :- ${errorMsg} with response ${response.mainpart}"/>
+                </L7p:AuditDetailAssertion>
+                <L7p:RaiseError/>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="// Request (HTTP) routing to Trusted ZONE"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="ROUTING"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+    </wsp:All>
+</wsp:Policy>

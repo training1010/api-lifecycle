@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References/>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:CookieCredentialSource>
+                        <L7p:CookieName stringValue="allySession"/>
+                    </L7p:CookieCredentialSource>
+                    <L7p:CsrfProtection>
+                        <L7p:CookieName stringValue="allySession"/>
+                        <L7p:ParameterName stringValue="allySession"/>
+                        <L7p:ParameterType httpParameterType="GET_AND_POST"/>
+                    </L7p:CsrfProtection>
+                    <L7p:HardcodedResponse>
+                        <L7p:Base64ResponseBody stringValue="Q29va2llZSBWYWx1ZTA6IC0gJHtjb29raWUuYWxseVNlc3Npb259CkNTUkYgVmFsaWRhdGl0eTogLSAke2NzcmYudmFsaWQudG9rZW59"/>
+                    </L7p:HardcodedResponse>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:UUIDGenerator>
+                        <L7p:TargetVariable stringValue="randamID"/>
+                    </L7p:UUIDGenerator>
+                    <L7p:ManageCookie>
+                        <L7p:CookieAttributes mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="expires"/>
+                                <L7p:value nameValuePair="included">
+                                    <L7p:Key stringValue="expires"/>
+                                    <L7p:Value stringValue="Tue, 28-Feb-17 09:44:34 EST"/>
+                                </L7p:value>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="domain"/>
+                                <L7p:value nameValuePair="included">
+                                    <L7p:Key stringValue="domain"/>
+                                    <L7p:Value stringValue=".com"/>
+                                </L7p:value>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="name"/>
+                                <L7p:value nameValuePair="included">
+                                    <L7p:Key stringValue="name"/>
+                                    <L7p:Value stringValue="allySession"/>
+                                </L7p:value>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="max-age"/>
+                                <L7p:value nameValuePair="included">
+                                    <L7p:Key stringValue="max-age"/>
+                                    <L7p:Value stringValue="0"/>
+                                </L7p:value>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="comment"/>
+                                <L7p:value nameValuePair="included">
+                                    <L7p:Key stringValue="comment"/>
+                                    <L7p:Value stringValue="For Ally Bank"/>
+                                </L7p:value>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="httpOnly"/>
+                                <L7p:value nameValuePair="included">
+                                    <L7p:Key stringValue="httpOnly"/>
+                                    <L7p:Value stringValue="false"/>
+                                </L7p:value>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="secure"/>
+                                <L7p:value nameValuePair="included">
+                                    <L7p:Key stringValue="secure"/>
+                                    <L7p:Value stringValue="false"/>
+                                </L7p:value>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="value"/>
+                                <L7p:value nameValuePair="included">
+                                    <L7p:Key stringValue="value"/>
+                                    <L7p:Value stringValue="${randamID}"/>
+                                </L7p:value>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="version"/>
+                                <L7p:value nameValuePair="included">
+                                    <L7p:Key stringValue="version"/>
+                                    <L7p:Value stringValue="2"/>
+                                </L7p:value>
+                            </L7p:entry>
+                        </L7p:CookieAttributes>
+                        <L7p:Operation operation="ADD_OR_REPLACE"/>
+                    </L7p:ManageCookie>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="JHtyZXF1ZXN0Lmh0dHAuY29va2llc30="/>
+                        <L7p:VariableToSet stringValue="allyCook"/>
+                    </L7p:SetVariable>
+                    <L7p:AddHeader>
+                        <L7p:HeaderName stringValue="Cookiee"/>
+                        <L7p:HeaderValue stringValue="${allyCook}"/>
+                        <L7p:Target target="RESPONSE"/>
+                    </L7p:AddHeader>
+                    <L7p:HardcodedResponse>
+                        <L7p:Base64ResponseBody stringValue="Q29va2llZSBBZGRlZCBTdWNjZXNzZnVsbHkuIC0tICR7YWxseUNvb2t9"/>
+                    </L7p:HardcodedResponse>
+                </wsp:All>
+            </wsp:OneOrMore>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

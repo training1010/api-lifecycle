@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References>
+        <EncapsulatedAssertionReference RefType="com.l7tech.console.policy.exporter.EncapsulatedAssertionReference">
+            <Name>Enforce API Management with API Key</Name>
+            <Guid>d83a0b3c-5b19-4ecb-93f9-fa5fcc235111</Guid>
+        </EncapsulatedAssertionReference>
+    </exp:References>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:ApiPortalIntegration>
+                <L7p:ApiGroup stringValue=""/>
+                <L7p:ApiId stringValue="35b67db3-d430-441e-a539-17e4ee08ae4e"/>
+                <L7p:PortalManagedApiFlag stringValue="L7p:ApiPortalManagedServiceAssertion"/>
+            </L7p:ApiPortalIntegration>
+            <L7p:Encapsulated>
+                <L7p:EncapsulatedAssertionConfigGuid stringValue="d83a0b3c-5b19-4ecb-93f9-fa5fcc235111"/>
+                <L7p:EncapsulatedAssertionConfigName stringValue="Enforce API Management with API Key"/>
+            </L7p:Encapsulated>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:ComparisonAssertion>
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Expression1 stringValue="${request.http.parameter.name}"/>
+                        <L7p:Operator operatorNull="null"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item dataType="included">
+                                <L7p:Type variableDataType="string"/>
+                            </L7p:item>
+                            <L7p:item stringLength="included">
+                                <L7p:Max intValue="-1"/>
+                                <L7p:Min intValue="1"/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="JHtyZXF1ZXN0Lmh0dHAucGFyYW1ldGVyLm5hbWV9"/>
+                        <L7p:VariableToSet stringValue="name"/>
+                    </L7p:SetVariable>
+                </wsp:All>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="Tm9ib2R5"/>
+                    <L7p:VariableToSet stringValue="name"/>
+                </L7p:SetVariable>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="Name Header"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:OneOrMore>
+            <L7p:HardcodedResponse>
+                <L7p:Base64ResponseBody stringValue="SGVsbG8gJHtuYW1lfSBhdCAke2dhdGV3YXkudGltZS5sb2NhbH0="/>
+                <L7p:ResponseContentType stringValue="text/plain; charset=UTF-8"/>
+            </L7p:HardcodedResponse>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References>
+        <EncapsulatedAssertionReference RefType="com.l7tech.console.policy.exporter.EncapsulatedAssertionReference">
+            <Name>Enforce API Management with OAuth 2.0</Name>
+            <Guid>0c8ee39b-f933-41b5-8685-bc926f75b97c</Guid>
+        </EncapsulatedAssertionReference>
+    </exp:References>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:ApiPortalIntegration>
+                <L7p:ApiGroup stringValue=""/>
+                <L7p:ApiId stringValue="de0d98cc-0908-4856-a109-e60f5b990053"/>
+                <L7p:PortalManagedApiFlag stringValue="L7p:ApiPortalManagedServiceAssertion"/>
+            </L7p:ApiPortalIntegration>
+            <L7p:Encapsulated>
+                <L7p:EncapsulatedAssertionConfigGuid stringValue="0c8ee39b-f933-41b5-8685-bc926f75b97c"/>
+                <L7p:EncapsulatedAssertionConfigName stringValue="Enforce API Management with OAuth 2.0"/>
+            </L7p:Encapsulated>
+            <L7p:Split>
+                <L7p:InputVariable stringValue="request.http.uri"/>
+                <L7p:OutputVariable stringValue="uri.parts"/>
+                <L7p:SplitPattern stringValue="/"/>
+            </L7p:Split>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="PGZvcmVjYXN0Pg0KIDxjaXR5PiR7dXJpLnBhcnRzWzJdfTwvY2l0eT4NCiA8ZGF5MT4NCiAgPHRlbXA+MjBDPC90ZW1wPg0KICA8Y29uZGl0aW9ucz5TVU5OWTwvY29uZGl0aW9ucz4NCiAgPFdpbmRTcGVlZD4xNSBNUEg8L1dpbmRTcGVlZD4NCiAgPFdpbmREaXI+RUFTVDwvV2luZERpcj4NCiA8L2RheTE+DQo8L2ZvcmVjYXN0Pg=="/>
+                <L7p:ContentType stringValue="text/xml; charset=utf-8"/>
+                <L7p:DataType variableDataType="message"/>
+                <L7p:VariableToSet stringValue="XMLMSG"/>
+            </L7p:SetVariable>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:ComparisonAssertion>
+                        <L7p:Expression1 stringValue="${request.http.parameter.scale}"/>
+                        <L7p:Expression2 stringValue="C"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item binary="included">
+                                <L7p:RightValue stringValue="C"/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <wsp:OneOrMore wsp:Usage="Required">
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${request.http.parameter.nice}"/>
+                                <L7p:Operator operatorNull="null"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="string"/>
+                                    </L7p:item>
+                                    <L7p:item binary="included">
+                                    <L7p:RightValue stringValue="true"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <wsp:OneOrMore wsp:Usage="Required">
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${request.http.parameter.period}"/>
+                                    <L7p:Operator operatorNull="null"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="int"/>
+                                    </L7p:item>
+                                    <L7p:item binary="included">
+                                    <L7p:RightValue stringValue="5"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="PGZvcmVjYXN0PgogPGNpdHk+JHt1cmkucGFydHNbMl19PC9jaXR5PgogPGRheTE+CiAgPHRlbXA+MjhDPC90ZW1wPgogIDxjb25kaXRpb25zPlNVTk5ZPC9jb25kaXRpb25zPgogIDxXaW5kU3BlZWQ+NSBNUEg8L1dpbmRTcGVlZD4KICA8V2luZERpcj5TT1VUSDwvV2luZERpcj4KIDwvZGF5MT4KIDxkYXkyPgogIDx0ZW1wPjI4QzwvdGVtcD4KICA8Y29uZGl0aW9ucz5TVU5OWTwvY29uZGl0aW9ucz4KICA8V2luZFNwZWVkPjUgTVBIPC9XaW5kU3BlZWQ+CiAgPFdpbmREaXI+U09VVEg8L1dpbmREaXI+CiA8L2RheTI+CiA8ZGF5Mz4KICA8dGVtcD4yOEM8L3RlbXA+CiAgPGNvbmRpdGlvbnM+U1VOTlk8L2NvbmRpdGlvbnM+CiAgPFdpbmRTcGVlZD41IE1QSDwvV2luZFNwZWVkPgogIDxXaW5kRGlyPlNPVVRIPC9XaW5kRGlyPgogPC9kYXkzPgogPGRheTQ+CiAgPHRlbXA+MjhDPC90ZW1wPgogIDxjb25kaXRpb25zPlNVTk5ZPC9jb25kaXRpb25zPgogIDxXaW5kU3BlZWQ+NSBNUEg8L1dpbmRTcGVlZD4KICA8V2luZERpcj5TT1VUSDwvV2luZERpcj4KIDwvZGF5ND4KIDxkYXk1PgogIDx0ZW1wPjI4QzwvdGVtcD4KICA8Y29uZGl0aW9ucz5TVU5OWTwvY29uZGl0aW9ucz4KICA8V2luZFNwZWVkPjUgTVBIPC9XaW5kU3BlZWQ+CiAgPFdpbmREaXI+U09VVEg8L1dpbmREaXI+CiA8L2RheTU+CjwvZm9yZWNhc3Q+"/>
+                                    </L7p:HardcodedResponse>
+                                </wsp:All>
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${request.http.parameter.period}"/>
+                                    <L7p:Operator operatorNull="null"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="int"/>
+                                    </L7p:item>
+                                    <L7p:item binary="included">
+                                    <L7p:Operator operator="LT"/>
+                                    <L7p:RightValue stringValue="5"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="PGZvcmVjYXN0PgogPGNpdHk+JHt1cmkucGFydHNbMl19PC9jaXR5PgogPGRheTE+CiAgPHRlbXA+MjhDPC90ZW1wPgogIDxjb25kaXRpb25zPlNVTk5ZPC9jb25kaXRpb25zPgogIDxXaW5kU3BlZWQ+NSBNUEg8L1dpbmRTcGVlZD4KICA8V2luZERpcj5TT1VUSDwvV2luZERpcj4KIDwvZGF5MT4KPC9mb3JlY2FzdD4="/>
+                                    </L7p:HardcodedResponse>
+                                </wsp:All>
+                            </wsp:OneOrMore>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="*** Nice Weather Only"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                        <wsp:OneOrMore wsp:Usage="Required">
+                            <wsp:All wsp:Usage="Required">
+                                <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${request.http.parameter.period}"/>
+                                    <L7p:Operator operatorNull="null"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="int"/>
+                                    </L7p:item>
+                                    <L7p:item binary="included">
+                                    <L7p:RightValue stringValue="5"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                </L7p:ComparisonAssertion>
+                                <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="PGZvcmVjYXN0PgogPGNpdHk+JHt1cmkucGFydHNbMl19PC9jaXR5PgogPGRheTE+CiAgPHRlbXA+MjBDPC90ZW1wPgogIDxjb25kaXRpb25zPlNVTk5ZPC9jb25kaXRpb25zPgogIDxXaW5kU3BlZWQ+NSBNUEg8L1dpbmRTcGVlZD4KICA8V2luZERpcj5TT1VUSDwvV2luZERpcj4KIDwvZGF5MT4KIDxkYXkyPgogIDx0ZW1wPjE4QzwvdGVtcD4KICA8Y29uZGl0aW9ucz5DTE9VRFk8L2NvbmRpdGlvbnM+CiAgPFdpbmRTcGVlZD4xNSBNUEg8L1dpbmRTcGVlZD4KICA8V2luZERpcj5TT1VUSC1FQVNUPC9XaW5kRGlyPgogPC9kYXkyPgogPGRheTM+CiAgPHRlbXA+MTVDPC90ZW1wPgogIDxjb25kaXRpb25zPlJBSU48L2NvbmRpdGlvbnM+CiAgPFdpbmRTcGVlZD4yNSBNUEg8L1dpbmRTcGVlZD4KICA8V2luZERpcj5TT1VUSDwvV2luZERpcj4KIDwvZGF5Mz4KIDxkYXk0PgogIDx0ZW1wPjEzQzwvdGVtcD4KICA8Y29uZGl0aW9ucz5DTE9VRFk8L2NvbmRpdGlvbnM+CiAgPFdpbmRTcGVlZD4xNSBNUEg8L1dpbmRTcGVlZD4KICA8V2luZERpcj5TT1VUSDwvV2luZERpcj4KIDwvZGF5ND4KIDxkYXk1PgogIDx0ZW1wPjEwQzwvdGVtcD4KICA8Y29uZGl0aW9ucz5SQUlOPC9jb25kaXRpb25zPgogIDxXaW5kU3BlZWQ+NTUgTVBIPC9XaW5kU3BlZWQ+CiAgPFdpbmREaXI+Tk9SVEgtV0VTVDwvV2luZERpcj4KIDwvZGF5NT4KPC9mb3JlY2FzdD4="/>
+                                </L7p:HardcodedResponse>
+                            </wsp:All>
+                            <wsp:All wsp:Usage="Required">
+                                <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${request.http.parameter.period}"/>
+                                    <L7p:Operator operatorNull="null"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="int"/>
+                                    </L7p:item>
+                                    <L7p:item binary="included">
+                                    <L7p:Operator operator="LT"/>
+                                    <L7p:RightValue stringValue="5"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                </L7p:ComparisonAssertion>
+                                <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="PGZvcmVjYXN0PgogPGNpdHk+JHt1cmkucGFydHNbMl19PC9jaXR5PgogPGRheTE+CiAgPHRlbXA+MjBDPC90ZW1wPgogIDxjb25kaXRpb25zPlNVTk5ZPC9jb25kaXRpb25zPgogIDxXaW5kU3BlZWQ+NSBNUEg8L1dpbmRTcGVlZD4KICA8V2luZERpcj5TT1VUSDwvV2luZERpcj4KIDwvZGF5MT4KPC9mb3JlY2FzdD4="/>
+                                </L7p:HardcodedResponse>
+                            </wsp:All>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="*** Not Nice Weather"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:OneOrMore>
+                    </wsp:OneOrMore>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:ComparisonAssertion>
+                        <L7p:Expression1 stringValue="${request.http.parameter.scale}"/>
+                        <L7p:Expression2 stringValue="F"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item binary="included">
+                                <L7p:RightValue stringValue="F"/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <wsp:OneOrMore wsp:Usage="Required">
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${request.http.parameter.nice}"/>
+                                <L7p:Operator operatorNull="null"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="string"/>
+                                    </L7p:item>
+                                    <L7p:item binary="included">
+                                    <L7p:RightValue stringValue="true"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <wsp:OneOrMore wsp:Usage="Required">
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${request.http.parameter.period}"/>
+                                    <L7p:Operator operatorNull="null"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="int"/>
+                                    </L7p:item>
+                                    <L7p:item binary="included">
+                                    <L7p:RightValue stringValue="5"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="PGZvcmVjYXN0PgogPGNpdHk+JHt1cmkucGFydHNbMl19PC9jaXR5PgogPGRheTE+CiAgPHRlbXA+ODJGPC90ZW1wPgogIDxjb25kaXRpb25zPlNVTk5ZPC9jb25kaXRpb25zPgogIDxXaW5kU3BlZWQ+NSBNUEg8L1dpbmRTcGVlZD4KICA8V2luZERpcj5TT1VUSDwvV2luZERpcj4KIDwvZGF5MT4KIDxkYXkyPgogIDx0ZW1wPjgyRjwvdGVtcD4KICA8Y29uZGl0aW9ucz5TVU5OWTwvY29uZGl0aW9ucz4KICA8V2luZFNwZWVkPjUgTVBIPC9XaW5kU3BlZWQ+CiAgPFdpbmREaXI+U09VVEg8L1dpbmREaXI+CiA8L2RheTI+CiA8ZGF5Mz4KICA8dGVtcD44MkY8L3RlbXA+CiAgPGNvbmRpdGlvbnM+U1VOTlk8L2NvbmRpdGlvbnM+CiAgPFdpbmRTcGVlZD41IE1QSDwvV2luZFNwZWVkPgogIDxXaW5kRGlyPlNPVVRIPC9XaW5kRGlyPgogPC9kYXkzPgogPGRheTQ+CiAgPHRlbXA+ODJGPC90ZW1wPgogIDxjb25kaXRpb25zPlNVTk5ZPC9jb25kaXRpb25zPgogIDxXaW5kU3BlZWQ+NSBNUEg8L1dpbmRTcGVlZD4KICA8V2luZERpcj5TT1VUSDwvV2luZERpcj4KIDwvZGF5ND4KIDxkYXk1PgogIDx0ZW1wPjgyRjwvdGVtcD4KICA8Y29uZGl0aW9ucz5TVU5OWTwvY29uZGl0aW9ucz4KICA8V2luZFNwZWVkPjUgTVBIPC9XaW5kU3BlZWQ+CiAgPFdpbmREaXI+U09VVEg8L1dpbmREaXI+CiA8L2RheTU+CjwvZm9yZWNhc3Q+"/>
+                                    </L7p:HardcodedResponse>
+                                </wsp:All>
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${request.http.parameter.period}"/>
+                                    <L7p:Operator operatorNull="null"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="int"/>
+                                    </L7p:item>
+                                    <L7p:item binary="included">
+                                    <L7p:Operator operator="LT"/>
+                                    <L7p:RightValue stringValue="5"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="PGZvcmVjYXN0PgogPGNpdHk+JHt1cmkucGFydHNbMl19PC9jaXR5PgogPGRheTE+CiAgPHRlbXA+ODJGPC90ZW1wPgogIDxjb25kaXRpb25zPlNVTk5ZPC9jb25kaXRpb25zPgogIDxXaW5kU3BlZWQ+NSBNUEg8L1dpbmRTcGVlZD4KICA8V2luZERpcj5TT1VUSDwvV2luZERpcj4KIDwvZGF5MT4KPC9mb3JlY2FzdD4="/>
+                                    </L7p:HardcodedResponse>
+                                </wsp:All>
+                            </wsp:OneOrMore>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="*** Nice Weather Only"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                        <wsp:OneOrMore wsp:Usage="Required">
+                            <wsp:All wsp:Usage="Required">
+                                <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${request.http.parameter.period}"/>
+                                    <L7p:Operator operatorNull="null"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="int"/>
+                                    </L7p:item>
+                                    <L7p:item binary="included">
+                                    <L7p:RightValue stringValue="5"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                </L7p:ComparisonAssertion>
+                                <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="PGZvcmVjYXN0PgogPGNpdHk+JHt1cmkucGFydHNbMl19PC9jaXR5PgogPGRheTE+CiAgPHRlbXA+NzVGPC90ZW1wPgogIDxjb25kaXRpb25zPlNVTk5ZPC9jb25kaXRpb25zPgogIDxXaW5kU3BlZWQ+NSBNUEg8L1dpbmRTcGVlZD4KICA8V2luZERpcj5TT1VUSDwvV2luZERpcj4KIDwvZGF5MT4KIDxkYXkyPgogIDx0ZW1wPjY4RjwvdGVtcD4KICA8Y29uZGl0aW9ucz5DTE9VRFk8L2NvbmRpdGlvbnM+CiAgPFdpbmRTcGVlZD4xNSBNUEg8L1dpbmRTcGVlZD4KICA8V2luZERpcj5TT1VUSC1FQVNUPC9XaW5kRGlyPgogPC9kYXkyPgogPGRheTM+CiAgPHRlbXA+NjBGPC90ZW1wPgogIDxjb25kaXRpb25zPlJBSU48L2NvbmRpdGlvbnM+CiAgPFdpbmRTcGVlZD4yNSBNUEg8L1dpbmRTcGVlZD4KICA8V2luZERpcj5TT1VUSDwvV2luZERpcj4KIDwvZGF5Mz4KIDxkYXk0PgogIDx0ZW1wPjU1RjwvdGVtcD4KICA8Y29uZGl0aW9ucz5DTE9VRFk8L2NvbmRpdGlvbnM+CiAgPFdpbmRTcGVlZD4xNSBNUEg8L1dpbmRTcGVlZD4KICA8V2luZERpcj5TT1VUSDwvV2luZERpcj4KIDwvZGF5ND4KIDxkYXk1PgogIDx0ZW1wPjQwRjwvdGVtcD4KICA8Y29uZGl0aW9ucz5SQUlOPC9jb25kaXRpb25zPgogIDxXaW5kU3BlZWQ+NTUgTVBIPC9XaW5kU3BlZWQ+CiAgPFdpbmREaXI+Tk9SVEgtV0VTVDwvV2luZERpcj4KIDwvZGF5NT4KPC9mb3JlY2FzdD4="/>
+                                </L7p:HardcodedResponse>
+                            </wsp:All>
+                            <wsp:All wsp:Usage="Required">
+                                <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${request.http.parameter.period}"/>
+                                    <L7p:Operator operatorNull="null"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="int"/>
+                                    </L7p:item>
+                                    <L7p:item binary="included">
+                                    <L7p:Operator operator="LT"/>
+                                    <L7p:RightValue stringValue="5"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                </L7p:ComparisonAssertion>
+                                <L7p:HardcodedResponse>
+                                    <L7p:Base64ResponseBody stringValue="PGZvcmVjYXN0PgogPGNpdHk+JHt1cmkucGFydHNbMl19PC9jaXR5PgogPGRheTE+CiAgPHRlbXA+NzVGPC90ZW1wPgogIDxjb25kaXRpb25zPlNVTk5ZPC9jb25kaXRpb25zPgogIDxXaW5kU3BlZWQ+NSBNUEg8L1dpbmRTcGVlZD4KICA8V2luZERpcj5TT1VUSDwvV2luZERpcj4KIDwvZGF5MT4KPC9mb3JlY2FzdD4="/>
+                                </L7p:HardcodedResponse>
+                            </wsp:All>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="*** Not Nice Weather"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:OneOrMore>
+                    </wsp:OneOrMore>
+                </wsp:All>
+            </wsp:OneOrMore>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:ComparisonAssertion>
+                        <L7p:Expression1 stringValue="${request.http.header.Content-Type}"/>
+                        <L7p:Expression2 stringValue="application/json"/>
+                        <L7p:Operator operator="CONTAINS"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item binary="included">
+                                <L7p:Operator operator="CONTAINS"/>
+                                <L7p:RightValue stringValue="application/json"/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <L7p:JsonTransformation>
+                        <L7p:RootTagString stringValue=""/>
+                    </L7p:JsonTransformation>
+                </wsp:All>
+                <L7p:TrueAssertion/>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="*** Transform to JSON or keep as XML"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:OneOrMore>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

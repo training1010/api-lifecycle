@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References/>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="************************************************************"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API :- Get Transfer Limits"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API Group :- Banking"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API TYPE :- &lt;REST>"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="Author: Balaji Radhakrishnan"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="************************************************************"/>
+            </L7p:CommentAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:HttpRoutingAssertion>
+                    <L7p:ProtectedServiceUrl stringValue="https://${gateway.cluster.hostname}:8443/getLimits${request.url.query}"/>
+                    <L7p:ProxyPassword stringValueNull="null"/>
+                    <L7p:ProxyUsername stringValueNull="null"/>
+                    <L7p:RequestHeaderRules httpPassthroughRuleSet="included">
+                        <L7p:ForwardAll booleanValue="true"/>
+                        <L7p:Rules httpPassthroughRules="included">
+                            <L7p:item httpPassthroughRule="included">
+                                <L7p:Name stringValue="Cookie"/>
+                            </L7p:item>
+                            <L7p:item httpPassthroughRule="included">
+                                <L7p:Name stringValue="SOAPAction"/>
+                            </L7p:item>
+                        </L7p:Rules>
+                    </L7p:RequestHeaderRules>
+                    <L7p:RequestParamRules httpPassthroughRuleSet="included">
+                        <L7p:ForwardAll booleanValue="true"/>
+                        <L7p:Rules httpPassthroughRules="included"/>
+                    </L7p:RequestParamRules>
+                    <L7p:ResponseHeaderRules httpPassthroughRuleSet="included">
+                        <L7p:ForwardAll booleanValue="true"/>
+                        <L7p:Rules httpPassthroughRules="included">
+                            <L7p:item httpPassthroughRule="included">
+                                <L7p:Name stringValue="Set-Cookie"/>
+                            </L7p:item>
+                        </L7p:Rules>
+                    </L7p:ResponseHeaderRules>
+                    <L7p:SamlAssertionVersion intValue="2"/>
+                </L7p:HttpRoutingAssertion>
+                <L7p:ResponseXpathAssertion>
+                    <L7p:VariablePrefix stringValue="value"/>
+                    <L7p:XpathExpression xpathExpressionValue="included">
+                        <L7p:Expression stringValue="/CustomField/customFiledValue"/>
+                        <L7p:Namespaces mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="L7j"/>
+                                <L7p:value stringValue="http://ns.l7tech.com/2012/08/jdbc-query-result"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="s"/>
+                                <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                            </L7p:entry>
+                        </L7p:Namespaces>
+                        <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                    </L7p:XpathExpression>
+                </L7p:ResponseXpathAssertion>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHt2YWx1ZS5yZXN1bHR9"/>
+                    <L7p:ContentType stringValue="text/xml; charset=utf-8"/>
+                    <L7p:DataType variableDataType="message"/>
+                    <L7p:VariableToSet stringValue="output"/>
+                </L7p:SetVariable>
+            </wsp:All>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:ComparisonAssertion>
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Expression1 stringValue="${value.result}"/>
+                        <L7p:Operator operatorNull="null"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item dataType="included">
+                                <L7p:Type variableDataType="decimal"/>
+                            </L7p:item>
+                            <L7p:item binary="included">
+                                <L7p:Negated booleanValue="true"/>
+                                <L7p:Operator operator="EMPTY"/>
+                                <L7p:RightValue stringValue=""/>
+                            </L7p:item>
+                            <L7p:item binary="included">
+                                <L7p:Negated booleanValue="true"/>
+                                <L7p:RightValue stringValue="null"/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <L7p:HardcodedResponse>
+                        <L7p:Base64ResponseBody stringValue="eyAiTGltaXQiIDogeyAiRGFpbHkiOiAiJCR7dmFsdWUucmVzdWx0fSBEZWZpbmVkIiwKCSJEZXNjcmlwdGlvbiI6ICJBUEkgcmV0cmlldmluZyBjdXJyZW50IFRyYW5zZmVyIExpbWl0IiB9Cn0="/>
+                        <L7p:ResponseContentType stringValue="text/json; charset=UTF-8"/>
+                    </L7p:HardcodedResponse>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:CustomizeErrorResponse>
+                        <L7p:Content stringValueReference="inline"><![CDATA[{ "Limit" : { "Daily": "$${value.result} NOT Defined",
+	"Description": "Transfer Limit not defined" }
+}]]></L7p:Content>
+                        <L7p:ContentType stringValue="text/json; charset=UTF-8"/>
+                        <L7p:Enabled booleanValue="false"/>
+                        <L7p:ExtraHeaders nameValuePairArray="included"/>
+                    </L7p:CustomizeErrorResponse>
+                    <L7p:FalseAssertion>
+                        <L7p:Enabled booleanValue="false"/>
+                    </L7p:FalseAssertion>
+                    <L7p:HardcodedResponse>
+                        <L7p:Base64ResponseBody stringValue="eyAiTGltaXQiIDogeyAiRGFpbHkiOiAiJCR7dmFsdWUucmVzdWx0fSBOT1QgRGVmaW5lZCIsCgkiRGVzY3JpcHRpb24iOiAiVHJhbnNmZXIgTGltaXQgbm90IGRlZmluZWQiIH0KfQ=="/>
+                        <L7p:ResponseContentType stringValue="application/json; charset=UTF-8"/>
+                    </L7p:HardcodedResponse>
+                </wsp:All>
+            </wsp:OneOrMore>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

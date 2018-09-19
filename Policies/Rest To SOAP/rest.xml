@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References/>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <wsp:All wsp:Usage="Required">
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="Q1NOUG9saWN5"/>
+                    <L7p:VariableToSet stringValue="rootTag"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="L3Jlc3QvQ1NOUG9saWN5Lw=="/>
+                    <L7p:VariableToSet stringValue="uriTag"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="dG5z"/>
+                    <L7p:VariableToSet stringValue="nameSpace"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtyZXF1ZXN0Lmh0dHAudXJpfQ=="/>
+                    <L7p:VariableToSet stringValue="uri"/>
+                </L7p:SetVariable>
+                <L7p:Regex>
+                    <L7p:AutoTarget booleanValue="false"/>
+                    <L7p:OtherTargetMessageVariable stringValue="uri"/>
+                    <L7p:PatternContainsVariables booleanValue="true"/>
+                    <L7p:Regex stringValue="${uriTag}"/>
+                    <L7p:Replace booleanValue="true"/>
+                    <L7p:Replacement stringValue=""/>
+                    <L7p:Target target="OTHER"/>
+                </L7p:Regex>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtyZXF1ZXN0Lmh0dHAuaGVhZGVyLm9wZXJhdGlvbn0="/>
+                    <L7p:VariableToSet stringValue="operation"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtyZXF1ZXN0Lmh0dHAuaGVhZGVyLnNvYXBBY3Rpb259"/>
+                    <L7p:VariableToSet stringValue="soapAction"/>
+                </L7p:SetVariable>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="//VARIABLES"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="//Prepare &amp; Validate variables"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:JsonTransformation>
+                        <L7p:DestinationMessageTarget MessageTarget="included">
+                            <L7p:OtherTargetMessageVariable stringValue="soapMsg"/>
+                            <L7p:Target target="OTHER"/>
+                            <L7p:TargetModifiedByGateway booleanValue="true"/>
+                        </L7p:DestinationMessageTarget>
+                        <L7p:PrettyPrint booleanValue="true"/>
+                        <L7p:RootTagString stringValue="${rootTag}"/>
+                        <L7p:Target target="REQUEST"/>
+                        <L7p:Transformation transformation="JSON_to_XML"/>
+                    </L7p:JsonTransformation>
+                    <wsp:OneOrMore wsp:Usage="Required">
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Enabled booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${operation}"/>
+                                <L7p:Operator operatorNull="null"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="string"/>
+                                    </L7p:item>
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="EmailUpdateOperation"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:ResponseXpathAssertion>
+                                <L7p:Enabled booleanValue="false"/>
+                                <L7p:VariablePrefix stringValue="soapReq"/>
+                                <L7p:XmlMsgSrc stringValue="soapMsg"/>
+                                <L7p:XpathExpression xpathExpressionValue="included">
+                                    <L7p:Expression stringValue="/CSNPolicy/EmailUpdate"/>
+                                    <L7p:Namespaces mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="tns"/>
+                                    <L7p:value stringValue="http://services.primerica.com/tns/"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="s"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="soapenv"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                    </L7p:entry>
+                                    </L7p:Namespaces>
+                                    <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                                </L7p:XpathExpression>
+                            </L7p:ResponseXpathAssertion>
+                            <L7p:ResponseXpathAssertion>
+                                <L7p:VariablePrefix stringValue="soapReq"/>
+                                <L7p:XmlMsgSrc stringValue="soapMsg"/>
+                                <L7p:XpathExpression xpathExpressionValue="included">
+                                    <L7p:Expression stringValue="/CSNPolicy/*"/>
+                                    <L7p:Namespaces mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="tns"/>
+                                    <L7p:value stringValue="http://services.primerica.com/tns/"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="s"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="soapenv"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                    </L7p:entry>
+                                    </L7p:Namespaces>
+                                    <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                                </L7p:XpathExpression>
+                            </L7p:ResponseXpathAssertion>
+                        </wsp:All>
+                        <wsp:All L7p:Enabled="false" wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${operation}"/>
+                                <L7p:Operator operatorNull="null"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="string"/>
+                                    </L7p:item>
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="PolicyModeChangeOperation"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:ResponseXpathAssertion>
+                                <L7p:VariablePrefix stringValue="soapReq"/>
+                                <L7p:XmlMsgSrc stringValue="soapMsg"/>
+                                <L7p:XpathExpression xpathExpressionValue="included">
+                                    <L7p:Expression stringValue="/CSNPolicy/PolicyModeChangeRequest"/>
+                                    <L7p:Namespaces mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="tns"/>
+                                    <L7p:value stringValue="http://services.primerica.com/tns/"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="s"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="soapenv"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                    </L7p:entry>
+                                    </L7p:Namespaces>
+                                    <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                                </L7p:XpathExpression>
+                            </L7p:ResponseXpathAssertion>
+                        </wsp:All>
+                        <wsp:All L7p:Enabled="false" wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${operation}"/>
+                                <L7p:Operator operatorNull="null"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="string"/>
+                                    </L7p:item>
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="FindPolicyByNumberOperation"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:ResponseXpathAssertion>
+                                <L7p:VariablePrefix stringValue="soapReq"/>
+                                <L7p:XmlMsgSrc stringValue="soapMsg"/>
+                                <L7p:XpathExpression xpathExpressionValue="included">
+                                    <L7p:Expression stringValue="/CSNPolicy/FindPolicyByNumberRequest"/>
+                                    <L7p:Namespaces mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="tns"/>
+                                    <L7p:value stringValue="http://services.primerica.com/tns/"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="s"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="soapenv"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                    </L7p:entry>
+                                    </L7p:Namespaces>
+                                    <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                                </L7p:XpathExpression>
+                            </L7p:ResponseXpathAssertion>
+                        </wsp:All>
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:CustomizeErrorResponse>
+                                <L7p:Content stringValueReference="inline"><![CDATA[{ 	"Exception":"XPath Failure",
+	"Exception Details": "Failed to Extract XML Element"
+}]]></L7p:Content>
+                                <L7p:ContentType stringValue="application/json; charset=UTF-8"/>
+                                <L7p:ExtraHeaders nameValuePairArray="included"/>
+                            </L7p:CustomizeErrorResponse>
+                            <L7p:RaiseError/>
+                        </wsp:All>
+                        <L7p:assertionComment>
+                            <L7p:Properties mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="LEFT.COMMENT"/>
+                                    <L7p:value stringValue="//OPERATIONS"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="//Identify and Extract Inputs based on operations."/>
+                                </L7p:entry>
+                            </L7p:Properties>
+                        </L7p:assertionComment>
+                    </wsp:OneOrMore>
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="JHtzb2FwUmVxLmVsZW1lbnRzfQ=="/>
+                            <L7p:ContentType stringValue="text/xml; charset=utf-8"/>
+                            <L7p:DataType variableDataType="message"/>
+                            <L7p:VariableToSet stringValue="soapMsg"/>
+                        </L7p:SetVariable>
+                        <L7p:Regex>
+                            <L7p:AutoTarget booleanValue="false"/>
+                            <L7p:OtherTargetMessageVariable stringValue="soapMsg"/>
+                            <L7p:Regex stringValue="&lt;"/>
+                            <L7p:RegexName stringValue="Replace &lt; with &lt;namspace:"/>
+                            <L7p:Replace booleanValue="true"/>
+                            <L7p:Replacement stringValue="&lt;${nameSpace}:"/>
+                            <L7p:Target target="OTHER"/>
+                        </L7p:Regex>
+                        <L7p:Regex>
+                            <L7p:AutoTarget booleanValue="false"/>
+                            <L7p:OtherTargetMessageVariable stringValue="soapMsg"/>
+                            <L7p:Regex stringValue="&lt;tns:/"/>
+                            <L7p:RegexName stringValue="Replace &lt;/ with &lt;/tns:"/>
+                            <L7p:Replace booleanValue="true"/>
+                            <L7p:Replacement stringValue="&lt;/${nameSpace}:"/>
+                            <L7p:Target target="OTHER"/>
+                        </L7p:Regex>
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOnRucz0iaHR0cDovL3NlcnZpY2VzLnByaW1lcmljYS5jb20vdG5zLyI+DQogICA8c29hcGVudjpIZWFkZXIvPg0KICAgPHNvYXBlbnY6Qm9keT4NCgkJJHtzb2FwTXNnLm1haW5wYXJ0fQ0KICAgPC9zb2FwZW52OkJvZHk+DQo8L3NvYXBlbnY6RW52ZWxvcGU+"/>
+                            <L7p:ContentType stringValue="text/xml; charset=utf-8"/>
+                            <L7p:DataType variableDataType="message"/>
+                            <L7p:VariableToSet stringValue="soapInput"/>
+                        </L7p:SetVariable>
+                        <L7p:assertionComment>
+                            <L7p:Properties mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="LEFT.COMMENT"/>
+                                    <L7p:value stringValue="//TRANSFORMATION"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="//Transform JSON to XML and add namespace."/>
+                                </L7p:entry>
+                            </L7p:Properties>
+                        </L7p:assertionComment>
+                    </wsp:All>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="LEFT.COMMENT"/>
+                                <L7p:value stringValue="//INPUT"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="//prepare input for SOAP Request"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:CustomizeErrorResponse>
+                        <L7p:Content stringValueReference="inline"><![CDATA[{ 	"Exception":"Request Failed",
+	"Exception Details": "Failed to Process the incoming request"
+}]]></L7p:Content>
+                        <L7p:ContentType stringValue="application/json; charset=UTF-8"/>
+                        <L7p:ExtraHeaders nameValuePairArray="included"/>
+                    </L7p:CustomizeErrorResponse>
+                    <L7p:RaiseError/>
+                </wsp:All>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="//PROCESS"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="//Prepare SOAP Request."/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:OneOrMore>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:HttpRoutingAssertion>
+                        <L7p:ProtectedServiceUrl stringValue="https://sandbox3a.dev.com:8443/soap/CSNPolicy/${uri}"/>
+                        <L7p:ProxyPassword stringValueNull="null"/>
+                        <L7p:ProxyUsername stringValueNull="null"/>
+                        <L7p:RequestHeaderRules httpPassthroughRuleSet="included">
+                            <L7p:Rules httpPassthroughRules="included">
+                                <L7p:item httpPassthroughRule="included">
+                                    <L7p:Name stringValue="Cookie"/>
+                                </L7p:item>
+                                <L7p:item httpPassthroughRule="included">
+                                    <L7p:CustomizeValue stringValue="${soapAction}"/>
+                                    <L7p:Name stringValue="SOAPAction"/>
+                                    <L7p:UsesCustomizedValue booleanValue="true"/>
+                                </L7p:item>
+                                <L7p:item httpPassthroughRule="included">
+                                    <L7p:CustomizeValue stringValue="${operation}"/>
+                                    <L7p:Name stringValue="operation"/>
+                                    <L7p:UsesCustomizedValue booleanValue="true"/>
+                                </L7p:item>
+                            </L7p:Rules>
+                        </L7p:RequestHeaderRules>
+                        <L7p:RequestMsgSrc stringValue="soapInput"/>
+                        <L7p:RequestParamRules httpPassthroughRuleSet="included">
+                            <L7p:ForwardAll booleanValue="true"/>
+                            <L7p:Rules httpPassthroughRules="included"/>
+                        </L7p:RequestParamRules>
+                        <L7p:ResponseHeaderRules httpPassthroughRuleSet="included">
+                            <L7p:ForwardAll booleanValue="true"/>
+                            <L7p:Rules httpPassthroughRules="included">
+                                <L7p:item httpPassthroughRule="included">
+                                    <L7p:Name stringValue="Set-Cookie"/>
+                                </L7p:item>
+                            </L7p:Rules>
+                        </L7p:ResponseHeaderRules>
+                        <L7p:SamlAssertionVersion intValue="2"/>
+                    </L7p:HttpRoutingAssertion>
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:ResponseXpathAssertion>
+                            <L7p:VariablePrefix stringValue="soapResponse"/>
+                            <L7p:XpathExpression xpathExpressionValue="included">
+                                <L7p:Expression stringValue="/SOAP-ENV:Envelope/SOAP-ENV:Body/*"/>
+                                <L7p:Namespaces mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="tns"/>
+                                    <L7p:value stringValue="http://services.primerica.com/tns/"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="xmlns"/>
+                                    <L7p:value stringValue="https://urldefense.proofpoint.com/v2/url?u=http-3A__services.primerica.com_tns_&amp;d=DwIGaQ&amp;c=_hRq4mqlUmqpqlyQ5hkoDXIVh6I6pxfkkNxQuL0p-Z0&amp;r=YOonP7ZpqkBxAYmdV6ZlY0BZ6eiW5jg7ZU2xbzKmZOk&amp;m=FaRmpb08Jzt-AMQtF_1-pchQRYdf0wtRnBF6olXAPLk&amp;s=jKlGN-0pkQCwsiJFqsbCjxE-iGpxtHVcdgZllpkl1XU&amp;e="/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="soapenv"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="SOAP-ENV"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                    </L7p:entry>
+                                </L7p:Namespaces>
+                                <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                            </L7p:XpathExpression>
+                        </L7p:ResponseXpathAssertion>
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="JHtzb2FwUmVzcG9uc2UuZWxlbWVudHN9"/>
+                            <L7p:ContentType stringValue="text/xml; charset=utf-8"/>
+                            <L7p:DataType variableDataType="message"/>
+                            <L7p:VariableToSet stringValue="soapMsg"/>
+                        </L7p:SetVariable>
+                        <L7p:JsonTransformation>
+                            <L7p:DestinationMessageTarget MessageTarget="included">
+                                <L7p:OtherTargetMessageVariable stringValue="soapMsg"/>
+                                <L7p:Target target="OTHER"/>
+                                <L7p:TargetModifiedByGateway booleanValue="true"/>
+                            </L7p:DestinationMessageTarget>
+                            <L7p:OtherTargetMessageVariable stringValue="soapMsg"/>
+                            <L7p:PrettyPrint booleanValue="true"/>
+                            <L7p:RootTagString stringValue=""/>
+                            <L7p:Target target="OTHER"/>
+                            <L7p:UseNumbersWhenPossible booleanValue="true"/>
+                        </L7p:JsonTransformation>
+                    </wsp:All>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:CustomizeErrorResponse>
+                        <L7p:Content stringValueReference="inline"><![CDATA[{ 	"Exception":"Routing Failure",
+	"Exception Details": "Failed to route the request"
+}]]></L7p:Content>
+                        <L7p:ContentType stringValue="application/json; charset=UTF-8"/>
+                        <L7p:ExtraHeaders nameValuePairArray="included"/>
+                    </L7p:CustomizeErrorResponse>
+                    <L7p:RaiseError/>
+                </wsp:All>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="//ROUTING"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="//ROUTE to SOAP End Point...."/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:OneOrMore>
+            <L7p:HardcodedResponse>
+                <L7p:Base64ResponseBody stringValue="JHtzb2FwTXNnLm1haW5wYXJ0fQoK"/>
+                <L7p:ResponseContentType stringValue="application/json; charset=UTF-8"/>
+            </L7p:HardcodedResponse>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References/>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:AuditAssertion>
+                <L7p:SaveRequest booleanValue="true"/>
+                <L7p:SaveResponse booleanValue="true"/>
+            </L7p:AuditAssertion>
+            <L7p:CreateRoutingStrategy>
+                <L7p:Routes routes="included">
+                    <L7p:item route="included">
+                        <L7p:Name stringValue="mas.apim.ca.com:8080/hello"/>
+                    </L7p:item>
+                    <L7p:item route="included">
+                        <L7p:Name stringValue="192.168.28.185:8080/hello"/>
+                    </L7p:item>
+                    <L7p:item route="included">
+                        <L7p:Name stringValue="192.168.28.164:8080/hello"/>
+                    </L7p:item>
+                </L7p:Routes>
+                <L7p:StrategyDescription stringValue="Random Sticky with Failover"/>
+                <L7p:StrategyName stringValue="sticky"/>
+            </L7p:CreateRoutingStrategy>
+            <L7p:AuditDetailAssertion>
+                <L7p:Detail stringValueReference="inline"><![CDATA[Strategy:- ${strategy}
+Strategy RoutingList: ${strategy.routeList}]]></L7p:Detail>
+            </L7p:AuditDetailAssertion>
+            <L7p:ExecuteRoutingStrategy/>
+            <L7p:AuditDetailAssertion>
+                <L7p:Detail stringValueReference="inline"><![CDATA[Route:- ${route}
+Feedback: ${feedback}
+Feedback.Current: ${feedback.current.route}]]></L7p:Detail>
+            </L7p:AuditDetailAssertion>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <L7p:HttpRoutingAssertion>
+                    <L7p:ProtectedServiceUrl stringValue="http://${route}"/>
+                    <L7p:ProxyPassword stringValueNull="null"/>
+                    <L7p:ProxyUsername stringValueNull="null"/>
+                    <L7p:RequestHeaderRules httpPassthroughRuleSet="included">
+                        <L7p:ForwardAll booleanValue="true"/>
+                        <L7p:Rules httpPassthroughRules="included">
+                            <L7p:item httpPassthroughRule="included">
+                                <L7p:Name stringValue="Cookie"/>
+                            </L7p:item>
+                            <L7p:item httpPassthroughRule="included">
+                                <L7p:Name stringValue="SOAPAction"/>
+                            </L7p:item>
+                        </L7p:Rules>
+                    </L7p:RequestHeaderRules>
+                    <L7p:RequestParamRules httpPassthroughRuleSet="included">
+                        <L7p:ForwardAll booleanValue="true"/>
+                        <L7p:Rules httpPassthroughRules="included"/>
+                    </L7p:RequestParamRules>
+                    <L7p:ResponseHeaderRules httpPassthroughRuleSet="included">
+                        <L7p:ForwardAll booleanValue="true"/>
+                        <L7p:Rules httpPassthroughRules="included">
+                            <L7p:item httpPassthroughRule="included">
+                                <L7p:Name stringValue="Set-Cookie"/>
+                            </L7p:item>
+                        </L7p:Rules>
+                    </L7p:ResponseHeaderRules>
+                    <L7p:SamlAssertionVersion intValue="2"/>
+                </L7p:HttpRoutingAssertion>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="LTE="/>
+                    <L7p:DataType variableDataType="int"/>
+                    <L7p:VariableToSet stringValue="feedback.current.status"/>
+                </L7p:SetVariable>
+            </wsp:OneOrMore>
+            <L7p:AuditDetailAssertion>
+                <L7p:Detail stringValueReference="inline"><![CDATA[Latency:- ${httpRouting.latency}
+ReasonCode: ${httpRouting.url}
+URL: ${httpRouting.reasonCode}]]></L7p:Detail>
+            </L7p:AuditDetailAssertion>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${feedback.current.status}"/>
+                    <L7p:Operator operatorNull="null"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item dataType="included">
+                            <L7p:Type variableDataType="int"/>
+                        </L7p:item>
+                        <L7p:item binary="included">
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:RightValue stringValue="-1"/>
+                        </L7p:item>
+                        <L7p:item binary="included">
+                            <L7p:Negated booleanValue="true"/>
+                            <L7p:Operator operator="EMPTY"/>
+                            <L7p:RightValue stringValue=""/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="dHJ1ZQ=="/>
+                    <L7p:VariableToSet stringValue="routeList.break"/>
+                </L7p:SetVariable>
+            </wsp:OneOrMore>
+            <L7p:ProcessRoutingStrategyResult/>
+            <L7p:HardcodedResponse>
+                <L7p:Base64ResponseBody stringValue="JHtyZXNwb25zZS5tYWlucGFydH0KPGJyPgo8YnI+Cgo8dGFibGUgaWQ9InQwMSI+Cjx0ciBjb2xzcGFuID0gIjUiICBoZWlnaHQ9IjcwIj4KICAgIDx0aCBjb2xzcGFuPSIzIj5TdHJhdGVneSBSb3V0aW5nTGlzdDwvdGg+CiAgICA8dGQgY29sc3Bhbj0iMiI+PHA+JHtzdHJhdGVneS5yb3V0ZUxpc3R9PC9QPjwvdGQ+CiA8L3RyPgo8dHIgY29sc3BhbiA9ICI1IiAgaGVpZ2h0PSI3MCI+CiAgICA8dGggY29sc3Bhbj0iMyI+Um91dGU8L3RoPgogICAgPHRkIGNvbHNwYW49IjIiPjxwPiR7cm91dGV9PC9QPjwvdGQ+CiA8L3RyPgo8dHIgY29sc3BhbiA9ICI1IiAgaGVpZ2h0PSI3MCI+CiAgICA8dGggY29sc3Bhbj0iMyI+Q3VycmVudCBGZWVkYmFjazwvdGg+CiAgICA8dGQgY29sc3Bhbj0iMiI+PHA+JHtmZWVkYmFjay5jdXJyZW50LnJvdXRlfTwvUD48L3RkPgogPC90cj4KPHRyIGNvbHNwYW4gPSAiNSIgIGhlaWdodD0iNzAiPgogICAgPHRoIGNvbHNwYW49IjMiPkxhdGVuY3k8L3RoPgogICAgPHRkIGNvbHNwYW49IjEiPjxwPiR7aHR0cFJvdXRpbmcubGF0ZW5jeX08L1A+PC90ZD4KIDwvdHI+Cjx0ciBjb2xzcGFuID0gIjUiICBoZWlnaHQ9IjcwIj4KICAgIDx0aCBjb2xzcGFuPSIzIj5Sb3V0aW5nIFVSTDwvdGg+CiAgICA8dGQgY29sc3Bhbj0iMSI+PHA+JHtodHRwUm91dGluZy51cmx9PC9QPjwvdGQ+CiA8L3RyPgo8dHIgY29sc3BhbiA9ICI1IiAgaGVpZ2h0PSI3MCI+CiAgICA8dGggY29sc3Bhbj0iMyI+UmVhc29uIENvZGU8L3RoPgogICAgPHRkIGNvbHNwYW49IjEiPjxwPiR7aHR0cFJvdXRpbmcucmVhc29uQ29kZX08L1A+PC90ZD4KIDwvdHI+CjwvdGFibGU+CjwvYm9keT4KPC9odG1sPg=="/>
+                <L7p:ResponseContentType stringValue="text/htmlml; charset=UTF-8"/>
+            </L7p:HardcodedResponse>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

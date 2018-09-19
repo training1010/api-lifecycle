@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References/>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:AuditAssertion>
+                <L7p:SaveRequest booleanValue="true"/>
+                <L7p:SaveResponse booleanValue="true"/>
+            </L7p:AuditAssertion>
+            <L7p:FaultLevel>
+                <L7p:LevelInfo soapFaultLevel="included">
+                    <L7p:Level intValue="4"/>
+                </L7p:LevelInfo>
+            </L7p:FaultLevel>
+            <L7p:SslAssertion>
+                <L7p:RequireClientAuthentication booleanValue="true"/>
+            </L7p:SslAssertion>
+            <wsse:SecurityToken xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+                <wsse:TokenType>urn:oasis:names:tc:SAML:2.0:assertion#Assertion</wsse:TokenType>
+                <L7p:SamlParams>
+                    <L7p:AssertionComment assertionComment="included">
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="//validate SAML Token"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:AssertionComment>
+                    <L7p:AuthenticationStatement samlAuthenticationInfo="included">
+                        <L7p:AuthenticationMethods stringArrayValue="included">
+                            <L7p:item stringValue="urn:ietf:rfc:1510"/>
+                            <L7p:item stringValue="urn:oasis:names:tc:SAML:2.0:ac:classes:MobileTwoFactorContract"/>
+                            <L7p:item stringValue="urn:oasis:names:tc:SAML:1.0:am:unspecified"/>
+                            <L7p:item stringValue="urn:oasis:names:tc:SAML:1.0:am:SPKI"/>
+                            <L7p:item stringValue="urn:oasis:names:tc:SAML:1.0:am:X509-PKI"/>
+                            <L7p:item stringValue="urn:oasis:names:tc:SAML:2.0:ac:classes:Smartcard"/>
+                            <L7p:item stringValue="urn:ietf:rfc:3075"/>
+                            <L7p:item stringValue="urn:oasis:names:tc:SAML:2.0:ac:classes:TimeSyncToken"/>
+                            <L7p:item stringValue="urn:ietf:rfc:2945"/>
+                            <L7p:item stringValue="urn:oasis:names:tc:SAML:2.0:ac:classes:SmartcardPKI"/>
+                            <L7p:item stringValue="urn:oasis:names:tc:SAML:2.0:ac:classes:PreviousSession"/>
+                            <L7p:item stringValue="urn:oasis:names:tc:SAML:2.0:ac:classes:MobileTwoFactorUnregistered"/>
+                            <L7p:item stringValue="urn:oasis:names:tc:SAML:2.0:ac:classes:MobileOneFactorContract"/>
+                            <L7p:item stringValue="urn:oasis:names:tc:SAML:2.0:ac:classes:NomadTelephony"/>
+                            <L7p:item stringValue="urn:oasis:names:tc:SAML:2.0:ac:classes:MobileOneFactorUnregistered"/>
+                            <L7p:item stringValue="urn:oasis:names:tc:SAML:2.0:ac:classes:AuthenticatedTelephony"/>
+                            <L7p:item stringValue="urn:oasis:names:tc:SAML:1.0:am:PGP"/>
+                            <L7p:item stringValue="urn:ietf:rfc:2246"/>
+                            <L7p:item stringValue="urn:oasis:names:tc:SAML:2.0:ac:classes:PersonalizedTelephony"/>
+                            <L7p:item stringValue="urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol"/>
+                            <L7p:item stringValue="urn:oasis:names:tc:SAML:2.0:ac:classes:Telephony"/>
+                            <L7p:item stringValue="urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocolPassword"/>
+                            <L7p:item stringValue="urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport"/>
+                            <L7p:item stringValue="urn:oasis:names:tc:SAML:2.0:ac:classes:SoftwarePKI"/>
+                            <L7p:item stringValue="urn:oasis:names:tc:SAML:1.0:am:password"/>
+                        </L7p:AuthenticationMethods>
+                    </L7p:AuthenticationStatement>
+                    <L7p:MaxExpiry longValue="3600000"/>
+                    <L7p:NameFormats stringArrayValue="included">
+                        <L7p:item stringValue="urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified"/>
+                    </L7p:NameFormats>
+                    <L7p:NameQualifier stringValue=""/>
+                    <L7p:RequireHolderOfKeyWithMessageSignature booleanValue="true"/>
+                    <L7p:SubjectConfirmationDataCheckAddress booleanValue="true"/>
+                    <L7p:SubjectConfirmations stringArrayValue="included">
+                        <L7p:item stringValue="urn:oasis:names:tc:SAML:1.0:cm:holder-of-key"/>
+                        <L7p:item stringValue="urn:oasis:names:tc:SAML:1.0:cm:sender-vouches"/>
+                    </L7p:SubjectConfirmations>
+                </L7p:SamlParams>
+            </wsse:SecurityToken>
+            <L7p:HttpRoutingAssertion>
+                <L7p:ProtectedServiceUrl stringValue="http://explore.apim.ca:8080/ACMEWarehouse/services/WarehouseSoap"/>
+                <L7p:RequestHeaderRules httpPassthroughRuleSet="included">
+                    <L7p:ForwardAll booleanValue="true"/>
+                    <L7p:Rules httpPassthroughRules="included">
+                        <L7p:item httpPassthroughRule="included">
+                            <L7p:Name stringValue="Cookie"/>
+                        </L7p:item>
+                        <L7p:item httpPassthroughRule="included">
+                            <L7p:Name stringValue="SOAPAction"/>
+                        </L7p:item>
+                    </L7p:Rules>
+                </L7p:RequestHeaderRules>
+                <L7p:RequestParamRules httpPassthroughRuleSet="included">
+                    <L7p:ForwardAll booleanValue="true"/>
+                    <L7p:Rules httpPassthroughRules="included"/>
+                </L7p:RequestParamRules>
+                <L7p:ResponseHeaderRules httpPassthroughRuleSet="included">
+                    <L7p:ForwardAll booleanValue="true"/>
+                    <L7p:Rules httpPassthroughRules="included">
+                        <L7p:item httpPassthroughRule="included">
+                            <L7p:Name stringValue="Set-Cookie"/>
+                        </L7p:item>
+                    </L7p:Rules>
+                </L7p:ResponseHeaderRules>
+            </L7p:HttpRoutingAssertion>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

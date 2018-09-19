@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References/>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <wsp:All wsp:Usage="Required">
+                <L7p:RequestSizeLimit>
+                    <L7p:Limit stringValue="5"/>
+                </L7p:RequestSizeLimit>
+                <L7p:OversizedText>
+                    <L7p:Enabled booleanValue="false"/>
+                </L7p:OversizedText>
+                <L7p:JsonDocumentStructure>
+                    <L7p:Enabled booleanValue="false"/>
+                </L7p:JsonDocumentStructure>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="Threat"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="Threat Protection on API"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:RateLimit>
+                    <L7p:CounterName stringValue="PRESET(814d08aec62dd8b5)${request.clientid}"/>
+                    <L7p:MaxConcurrency stringValue="3"/>
+                    <L7p:MaxRequestsPerSecond stringValue="1"/>
+                </L7p:RateLimit>
+                <L7p:ThroughputQuota>
+                    <L7p:CounterName stringValue="PRESET(e8a66642a53e02d4)${request.authenticateduser.id}-${request.authenticateduser.providerid}"/>
+                    <L7p:Global booleanValue="true"/>
+                    <L7p:Synchronous booleanValue="false"/>
+                </L7p:ThroughputQuota>
+                <L7p:TimeRange>
+                    <L7p:ControlDay booleanValue="true"/>
+                    <L7p:ControlTime booleanValue="true"/>
+                    <L7p:Enabled booleanValue="false"/>
+                    <L7p:EndDayOfWeek intValue="1"/>
+                    <L7p:StartDayOfWeek intValue="2"/>
+                    <L7p:TimeRange timeOfDayRange="included">
+                        <L7p:From timeOfDay="included">
+                            <L7p:Hour intValue="12"/>
+                        </L7p:From>
+                        <L7p:To timeOfDay="included">
+                            <L7p:Hour intValue="21"/>
+                        </L7p:To>
+                    </L7p:TimeRange>
+                </L7p:TimeRange>
+                <L7p:CsrfProtection>
+                    <L7p:AllowMissingOrEmptyReferer booleanValue="true"/>
+                    <L7p:CookieName stringValue=""/>
+                    <L7p:EnableDoubleSubmitCookieChecking booleanValue="false"/>
+                    <L7p:EnableHttpRefererChecking booleanValue="true"/>
+                    <L7p:ParameterName stringValue=""/>
+                </L7p:CsrfProtection>
+                <L7p:RemoteIpAddressRange>
+                    <L7p:Enabled booleanValue="false"/>
+                </L7p:RemoteIpAddressRange>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="SLA"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="SLA Management for API Throttling"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

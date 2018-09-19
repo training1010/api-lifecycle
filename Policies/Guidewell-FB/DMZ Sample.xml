@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References>
+        <FederatedIDProviderReference RefType="com.l7tech.console.policy.exporter.FederatedIdProviderReference">
+            <GOID>9b232f15f3ca5c79191f2bdd38ff7622</GOID>
+            <Name>Partner DMZ Certificate</Name>
+            <Props>PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPGphdmEgdmVyc2lvbj0iMS44&#xd;
+LjBfNTEiIGNsYXNzPSJqYXZhLmJlYW5zLlhNTERlY29kZXIiPgogPG9iamVjdCBjbGFzcz0iamF2&#xd;
+YS51dGlsLkhhc2hNYXAiPgogIDx2b2lkIG1ldGhvZD0icHV0Ij4KICAgPHN0cmluZz54NTA5U3Vw&#xd;
+cG9ydGVkPC9zdHJpbmc+CiAgIDxib29sZWFuPnRydWU8L2Jvb2xlYW4+CiAgPC92b2lkPgogIDx2&#xd;
+b2lkIG1ldGhvZD0icHV0Ij4KICAgPHN0cmluZz5zYW1sU3VwcG9ydGVkPC9zdHJpbmc+CiAgIDxi&#xd;
+b29sZWFuPmZhbHNlPC9ib29sZWFuPgogIDwvdm9pZD4KIDwvb2JqZWN0Pgo8L2phdmE+Cg==</Props>
+            <TypeVal>3</TypeVal>
+            <Users>
+                <User>
+                    <GOID>9b232f15f3ca5c79191f2bdd38ff7645</GOID>
+                    <Name>partner</Name>
+                    <SubjectDn>cn=partner</SubjectDn>
+                </User>
+            </Users>
+        </FederatedIDProviderReference>
+        <EncapsulatedAssertionReference RefType="com.l7tech.console.policy.exporter.EncapsulatedAssertionReference">
+            <Name>OTK Require OAuth 2.0 Token</Name>
+            <Guid>393bcb93-82ad-4b55-8333-1119f607a560</Guid>
+        </EncapsulatedAssertionReference>
+        <PrivateKeyReference RefType="com.l7tech.console.policy.exporter.PrivateKeyReference">
+            <IsDefaultKey>false</IsDefaultKey>
+            <KeystoreOID>00000000000000000000000000000002</KeystoreOID>
+            <KeyAlias>trusted</KeyAlias>
+        </PrivateKeyReference>
+    </exp:References>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="************************************************************"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API :- &lt;Enter the API Name>"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API Group :- &lt;Enter the API Group>"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API TYPE :- &lt;REST/SOAP/DATA>"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="Author: Balaji Radhakrishnan"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="************************************************************"/>
+            </L7p:CommentAssertion>
+            <L7p:AuditAssertion>
+                <L7p:SaveRequest booleanValue="true"/>
+                <L7p:SaveResponse booleanValue="true"/>
+            </L7p:AuditAssertion>
+            <L7p:ApiPortalIntegration>
+                <L7p:ApiGroup stringValue=""/>
+                <L7p:ApiId stringValue="2890bbaf-363c-4c7a-b14b-aeff3cf7e68f"/>
+                <L7p:Enabled booleanValue="false"/>
+                <L7p:PortalManagedApiFlag stringValue="L7p:ApiPortalManagedServiceAssertion"/>
+            </L7p:ApiPortalIntegration>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="JHtyZXF1ZXN0Lmh0dHAuaGVhZGVyLmNvbnRlbnQtdHlwZX0="/>
+                <L7p:VariableToSet stringValue="transform"/>
+            </L7p:SetVariable>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="Ww0KICB7DQogICAgImVtcF9ubyI6IDEwMDAxLA0KICAgICJMb3lhbHR5IjogIkV4Y2VsbGVudCIsDQogICAgIkNyZWRpdExpbWl0IjogMjAwMDAsDQogICAgIkFtb3VudEJhbGFuY2UiOiA4MDAsDQogICAgIkBtZXRhZGF0YSI6IHsNCiAgICAgICJocmVmIjogImh0dHA6Ly8xOTIuMTY4LjEuMTY6ODA4MC9yZXN0L2RlZmF1bHQvZXJtL3YxL0NyZWRpdENoZWNrLzEwMDAxIiwNCiAgICAgICJjaGVja3N1bSI6ICJBOjU4NDQ2ZTA0MzFiZDdiYWMiDQogICAgfQ0KICB9LA0KICB7DQogICAgImVtcF9ubyI6IDEwMDAyLA0KICAgICJMb3lhbHR5IjogIkV4Y2VsbGVudCIsDQogICAgIkNyZWRpdExpbWl0IjogMjAwMDAsDQogICAgIkFtb3VudEJhbGFuY2UiOiA1MDAwLA0KICAgICJAbWV0YWRhdGEiOiB7DQogICAgICAiaHJlZiI6ICJodHRwOi8vMTkyLjE2OC4xLjE2OjgwODAvcmVzdC9kZWZhdWx0L2VybS92MS9DcmVkaXRDaGVjay8xMDAwMiIsDQogICAgICAiY2hlY2tzdW0iOiAiQTo4Y2Y5OTgzMGEwN2I5MDlmIg0KICAgIH0NCiAgfSwNCiAgew0KICAgICJlbXBfbm8iOiAxMDAwMywNCiAgICAiTG95YWx0eSI6ICJHb29kIiwNCiAgICAiQ3JlZGl0TGltaXQiOiAyMDAwMCwNCiAgICAiQW1vdW50QmFsYW5jZSI6IDIwMDAsDQogICAgIkBtZXRhZGF0YSI6IHsNCiAgICAgICJocmVmIjogImh0dHA6Ly8xOTIuMTY4LjEuMTY6ODA4MC9yZXN0L2RlZmF1bHQvZXJtL3YxL0NyZWRpdENoZWNrLzEwMDAzIiwNCiAgICAgICJjaGVja3N1bSI6ICJBOjFjYTY3MWQwNWFkMTEzMjMiDQogICAgfQ0KICB9LA0KICB7DQogICAgImVtcF9ubyI6IDEwMDA1LA0KICAgICJMb3lhbHR5IjogIkdyZWF0IiwNCiAgICAiQ3JlZGl0TGltaXQiOiAyMDAwMCwNCiAgICAiQW1vdW50QmFsYW5jZSI6IDEyMDAwLA0KICAgICJAbWV0YWRhdGEiOiB7DQogICAgICAiaHJlZiI6ICJodHRwOi8vMTkyLjE2OC4xLjE2OjgwODAvcmVzdC9kZWZhdWx0L2VybS92MS9DcmVkaXRDaGVjay8xMDAwNSIsDQogICAgICAiY2hlY2tzdW0iOiAiQTozM2I4ZTQ1MDQ5YTBhMTZiIg0KICAgIH0NCiAgfSwNCiAgew0KICAgICJlbXBfbm8iOiAxMDAwNiwNCiAgICAiTG95YWx0eSI6ICJHcmVhdCIsDQogICAgIkNyZWRpdExpbWl0IjogMjAwMDAsDQogICAgIkFtb3VudEJhbGFuY2UiOiAxMTAwMCwNCiAgICAiQG1ldGFkYXRhIjogew0KICAgICAgImhyZWYiOiAiaHR0cDovLzE5Mi4xNjguMS4xNjo4MDgwL3Jlc3QvZGVmYXVsdC9lcm0vdjEvQ3JlZGl0Q2hlY2svMTAwMDYiLA0KICAgICAgImNoZWNrc3VtIjogIkE6ZjVmYjk2NTc1M2YwNjQwYiINCiAgICB9DQogIH0sDQogIHsNCiAgICAiZW1wX25vIjogMTAwMDcsDQogICAgIkxveWFsdHkiOiAiR29vZCIsDQogICAgIkNyZWRpdExpbWl0IjogMjAwMDAsDQogICAgIkFtb3VudEJhbGFuY2UiOiAxMTAwMCwNCiAgICAiQG1ldGFkYXRhIjogew0KICAgICAgImhyZWYiOiAiaHR0cDovLzE5Mi4xNjguMS4xNjo4MDgwL3Jlc3QvZGVmYXVsdC9lcm0vdjEvQ3JlZGl0Q2hlY2svMTAwMDciLA0KICAgICAgImNoZWNrc3VtIjogIkE6MTIyYWUxOTk4NWZiZTBhNiINCiAgICB9DQogIH0sDQogIHsNCiAgICAiZW1wX25vIjogMTAwMDgsDQogICAgIkxveWFsdHkiOiAiRXhjZWxsZW50IiwNCiAgICAiQ3JlZGl0TGltaXQiOiAyMDAwMCwNCiAgICAiQW1vdW50QmFsYW5jZSI6IDYwMDAsDQogICAgIkBtZXRhZGF0YSI6IHsNCiAgICAgICJocmVmIjogImh0dHA6Ly8xOTIuMTY4LjEuMTY6ODA4MC9yZXN0L2RlZmF1bHQvZXJtL3YxL0NyZWRpdENoZWNrLzEwMDA4IiwNCiAgICAgICJjaGVja3N1bSI6ICJBOjU5Y2ZhNGI3NjQzNjM4M2IiDQogICAgfQ0KICB9LA0KICB7DQogICAgImVtcF9ubyI6IDEwMDA5LA0KICAgICJMb3lhbHR5IjogIkV4Y2VsbGVudCIsDQogICAgIkNyZWRpdExpbWl0IjogMjAwMDAsDQogICAgIkFtb3VudEJhbGFuY2UiOiA0MDAwLA0KICAgICJAbWV0YWRhdGEiOiB7DQogICAgICAiaHJlZiI6ICJodHRwOi8vMTkyLjE2OC4xLjE2OjgwODAvcmVzdC9kZWZhdWx0L2VybS92MS9DcmVkaXRDaGVjay8xMDAwOSIsDQogICAgICAiY2hlY2tzdW0iOiAiQTpjMWEyYzQzMjk4NGQ0ZDI0Ig0KICAgIH0NCiAgfSwNCiAgew0KICAgICJlbXBfbm8iOiAxMDAxMCwNCiAgICAiTG95YWx0eSI6ICJFeGNlbGxlbnQiLA0KICAgICJDcmVkaXRMaW1pdCI6IDIwMDAwLA0KICAgICJBbW91bnRCYWxhbmNlIjogNzAwMCwNCiAgICAiQG1ldGFkYXRhIjogew0KICAgICAgImhyZWYiOiAiaHR0cDovLzE5Mi4xNjguMS4xNjo4MDgwL3Jlc3QvZGVmYXVsdC9lcm0vdjEvQ3JlZGl0Q2hlY2svMTAwMTAiLA0KICAgICAgImNoZWNrc3VtIjogIkE6ZDMyYjc0N2MwOTMyMzY1YyINCiAgICB9DQogIH0sDQogIHsNCiAgICAiZW1wX25vIjogMTAwMTEsDQogICAgIkxveWFsdHkiOiAiRXhjZWxsZW50IiwNCiAgICAiQ3JlZGl0TGltaXQiOiAyMDAwMCwNCiAgICAiQW1vdW50QmFsYW5jZSI6IDEwMDAsDQogICAgIkBtZXRhZGF0YSI6IHsNCiAgICAgICJocmVmIjogImh0dHA6Ly8xOTIuMTY4LjEuMTY6ODA4MC9yZXN0L2RlZmF1bHQvZXJtL3YxL0NyZWRpdENoZWNrLzEwMDExIiwNCiAgICAgICJjaGVja3N1bSI6ICJBOjAzMzM1NzYxYTliM2I5MDgiDQogICAgfQ0KICB9LA0KICB7DQogICAgImVtcF9ubyI6IDEwMDEyLA0KICAgICJMb3lhbHR5IjogIkdvb2QiLA0KICAgICJDcmVkaXRMaW1pdCI6IDIwMDAwLA0KICAgICJBbW91bnRCYWxhbmNlIjogMjEwMCwNCiAgICAiQG1ldGFkYXRhIjogew0KICAgICAgImhyZWYiOiAiaHR0cDovLzE5Mi4xNjguMS4xNjo4MDgwL3Jlc3QvZGVmYXVsdC9lcm0vdjEvQ3JlZGl0Q2hlY2svMTAwMTIiLA0KICAgICAgImNoZWNrc3VtIjogIkE6OTdhZjUxYjczYjUxOGE0NiINCiAgICB9DQogIH0sDQogIHsNCiAgICAiZW1wX25vIjogMTAwMTMsDQogICAgIkxveWFsdHkiOiAiRXhjZWxsZW50IiwNCiAgICAiQ3JlZGl0TGltaXQiOiAyMDAwMCwNCiAgICAiQW1vdW50QmFsYW5jZSI6IDQwMCwNCiAgICAiQG1ldGFkYXRhIjogew0KICAgICAgImhyZWYiOiAiaHR0cDovLzE5Mi4xNjguMS4xNjo4MDgwL3Jlc3QvZGVmYXVsdC9lcm0vdjEvQ3JlZGl0Q2hlY2svMTAwMTMiLA0KICAgICAgImNoZWNrc3VtIjogIkE6MzZmZDMxNmZjODZjMjNiNyINCiAgICB9DQogIH0sDQogIHsNCiAgICAiZW1wX25vIjogMTAwMTQsDQogICAgIkxveWFsdHkiOiAiR29vZCIsDQogICAgIkNyZWRpdExpbWl0IjogMjAwMDAsDQogICAgIkFtb3VudEJhbGFuY2UiOiAzMDAsDQogICAgIkBtZXRhZGF0YSI6IHsNCiAgICAgICJocmVmIjogImh0dHA6Ly8xOTIuMTY4LjEuMTY6ODA4MC9yZXN0L2RlZmF1bHQvZXJtL3YxL0NyZWRpdENoZWNrLzEwMDE0IiwNCiAgICAgICJjaGVja3N1bSI6ICJBOmExMDdkYjM2NzcwNWE4ZTIiDQogICAgfQ0KICB9LA0KICB7DQogICAgImVtcF9ubyI6IDEwMDE1LA0KICAgICJMb3lhbHR5IjogIkdvb2QiLA0KICAgICJDcmVkaXRMaW1pdCI6IDIwMDAwLA0KICAgICJBbW91bnRCYWxhbmNlIjogMzAwLA0KICAgICJAbWV0YWRhdGEiOiB7DQogICAgICAiaHJlZiI6ICJodHRwOi8vMTkyLjE2OC4xLjE2OjgwODAvcmVzdC9kZWZhdWx0L2VybS92MS9DcmVkaXRDaGVjay8xMDAxNSIsDQogICAgICAiY2hlY2tzdW0iOiAiQTo4OTcwZDY5NDkyNGZlYzVlIg0KICAgIH0NCiAgfSwNCiAgew0KICAgICJlbXBfbm8iOiAxMDAxNiwNCiAgICAiTG95YWx0eSI6ICJHb29kIiwNCiAgICAiQ3JlZGl0TGltaXQiOiAyMDAwMCwNCiAgICAiQW1vdW50QmFsYW5jZSI6IDMwMCwNCiAgICAiQG1ldGFkYXRhIjogew0KICAgICAgImhyZWYiOiAiaHR0cDovLzE5Mi4xNjguMS4xNjo4MDgwL3Jlc3QvZGVmYXVsdC9lcm0vdjEvQ3JlZGl0Q2hlY2svMTAwMTYiLA0KICAgICAgImNoZWNrc3VtIjogIkE6MjA0ZmI4Y2QyZjM5NDQ1OCINCiAgICB9DQogIH0NCl0="/>
+                <L7p:ContentType stringValue="text/json; charset=utf-8"/>
+                <L7p:DataType variableDataType="message"/>
+                <L7p:VariableToSet stringValue="message"/>
+            </L7p:SetVariable>
+            <wsp:All wsp:Usage="Required">
+                <L7p:CustomizeErrorResponse>
+                    <L7p:Content stringValue="${errorMsg}"/>
+                    <L7p:ContentType stringValue="${content-type}"/>
+                    <L7p:ExtraHeaders nameValuePairArray="included">
+                        <L7p:item nameValuePair="included">
+                            <L7p:Key stringValue="Pragma"/>
+                            <L7p:Value stringValue="no-cache"/>
+                        </L7p:item>
+                        <L7p:item nameValuePair="included">
+                            <L7p:Key stringValue="Cache-Control"/>
+                            <L7p:Value stringValue="no-store"/>
+                        </L7p:item>
+                        <L7p:item nameValuePair="included">
+                            <L7p:Key stringValue="x-ca-err"/>
+                            <L7p:Value stringValue="${errorCode}"/>
+                        </L7p:item>
+                    </L7p:ExtraHeaders>
+                    <L7p:HttpStatus stringValue="${status}"/>
+                </L7p:CustomizeErrorResponse>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="NDAw"/>
+                    <L7p:VariableToSet stringValue="status"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="eyJlcnJvciI6IkludmFsaWRfcmVxdWVzdCIsICJlcnJvcl9kZXNjcmlwdGlvbiI6IlRoZSBnaXZlbiBSZXF1ZXN0IGlzIEludmFsaWQifQ=="/>
+                    <L7p:VariableToSet stringValue="errorMsg"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="MDAwMA=="/>
+                    <L7p:VariableToSet stringValue="errorCode"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="YXBwbGljYXRpb24vanNvbg=="/>
+                    <L7p:VariableToSet stringValue="content-type"/>
+                </L7p:SetVariable>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="ERROR"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="//   Exception Handling block"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="eyJlcnJvciI6IkF1dGhlbnRpY2F0aW9uIEZhaWxlZCIsICJlcnJvcl9kZXNjcmlwdGlvbiI6Ik5vdCBhIFZhbGlkIENlcnRpZmljYXRlIn0="/>
+                        <L7p:VariableToSet stringValue="errorMsg"/>
+                    </L7p:SetVariable>
+                    <L7p:SslAssertion>
+                        <L7p:RequireClientAuthentication booleanValue="true"/>
+                    </L7p:SslAssertion>
+                    <L7p:Authentication>
+                        <L7p:IdentityProviderOid goidValue="9b232f15f3ca5c79191f2bdd38ff7622"/>
+                    </L7p:Authentication>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="eyJlcnJvciI6IkF1dGhlbnRpY2F0aW9uIEZhaWxlZCIsICJlcnJvcl9kZXNjcmlwdGlvbiI6IkludmFsaWQgQWNjZXNzIFRva2VuIn0="/>
+                        <L7p:VariableToSet stringValue="errorMsg"/>
+                    </L7p:SetVariable>
+                    <L7p:Encapsulated>
+                        <L7p:EncapsulatedAssertionConfigGuid stringValue="393bcb93-82ad-4b55-8333-1119f607a560"/>
+                        <L7p:EncapsulatedAssertionConfigName stringValue="OTK Require OAuth 2.0 Token"/>
+                        <L7p:Parameters mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="cache_lifetime"/>
+                                <L7p:value stringValue="0"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="given_access_token"/>
+                                <L7p:value stringValue=""/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="onetime"/>
+                                <L7p:value stringValue="false"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="scope_fail"/>
+                                <L7p:value stringValue="false"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="scope_required"/>
+                                <L7p:value stringValue=""/>
+                            </L7p:entry>
+                        </L7p:Parameters>
+                    </L7p:Encapsulated>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="MDAwMQ=="/>
+                        <L7p:VariableToSet stringValue="errorCode"/>
+                    </L7p:SetVariable>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="NDAx"/>
+                        <L7p:VariableToSet stringValue="status"/>
+                    </L7p:SetVariable>
+                    <L7p:RaiseError/>
+                </wsp:All>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="AUTHENTICATION"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="//    2 factor Authentication - SSL Cert &amp; OAUTH "/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:OneOrMore>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="eyJlcnJvciI6IlRocmVhdCBQcm90ZWN0aW9uIiwgImVycm9yX2Rlc2NyaXB0aW9uIjoiRmFpbGVkIGR1ZSB0byBTUUwgQXR0YWNrIn0="/>
+                        <L7p:VariableToSet stringValue="errorMsg"/>
+                    </L7p:SetVariable>
+                    <L7p:SqlAttackProtection>
+                        <L7p:IncludeUrlPath booleanValue="true"/>
+                        <L7p:IncludeUrlQueryString booleanValue="true"/>
+                        <L7p:Protections stringSetValue="included">
+                            <L7p:item stringValue="SqlMetaText"/>
+                            <L7p:item stringValue="OraSql"/>
+                            <L7p:item stringValue="MsSql"/>
+                            <L7p:item stringValue="SqlMeta"/>
+                        </L7p:Protections>
+                    </L7p:SqlAttackProtection>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="eyJlcnJvciI6IlRocmVhdCBQcm90ZWN0aW9uIiwgImVycm9yX2Rlc2NyaXB0aW9uIjoiRmFpbGVkIGR1ZSB0byBDb2RlIEluamVjdGlvbi4ifQ=="/>
+                        <L7p:VariableToSet stringValue="errorMsg"/>
+                    </L7p:SetVariable>
+                    <L7p:CodeInjectionProtectionAssertion>
+                        <L7p:IncludeBody booleanValue="true"/>
+                        <L7p:Protections codeInjectionProtectionTypeArray="included">
+                            <L7p:item protectionType="htmlJavaScriptInjection"/>
+                            <L7p:item protectionType="phpEvalInjection"/>
+                            <L7p:item protectionType="shellInjection"/>
+                            <L7p:item protectionType="ldapDnInjection"/>
+                            <L7p:item protectionType="ldapSearchInjection"/>
+                            <L7p:item protectionType="xpathInjection"/>
+                        </L7p:Protections>
+                        <L7p:Target target="REQUEST"/>
+                    </L7p:CodeInjectionProtectionAssertion>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="eyJlcnJvciI6IlRocmVhdCBQcm90ZWN0aW9uIiwgImVycm9yX2Rlc2NyaXB0aW9uIjoiRmFpbGVkIGR1ZSB0byBDU1JGIEZvcmdlcnkifQ=="/>
+                        <L7p:VariableToSet stringValue="errorMsg"/>
+                    </L7p:SetVariable>
+                    <L7p:CsrfProtection>
+                        <L7p:AllowMissingOrEmptyReferer booleanValue="true"/>
+                        <L7p:CookieName stringValue="CASession"/>
+                        <L7p:EnableHttpRefererChecking booleanValue="true"/>
+                        <L7p:OnlyAllowCurrentDomain booleanValue="false"/>
+                        <L7p:ParameterName stringValue="ca"/>
+                        <L7p:ParameterType httpParameterType="GET_AND_POST"/>
+                        <L7p:TrustedDomains stringListValue="included">
+                            <L7p:item stringValue="ssg.dev.com"/>
+                        </L7p:TrustedDomains>
+                    </L7p:CsrfProtection>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="eyJlcnJvciI6IlRocmVhdCBQcm90ZWN0aW9uIiwgImVycm9yX2Rlc2NyaXB0aW9uIjoiRmFpbGVkIGR1ZSB0byBNZXNzYWdlIFNpemUifQ=="/>
+                        <L7p:VariableToSet stringValue="errorMsg"/>
+                    </L7p:SetVariable>
+                    <L7p:RequestSizeLimit>
+                        <L7p:Limit stringValue="10"/>
+                        <L7p:OtherTargetMessageVariable stringValue="message"/>
+                        <L7p:Target target="OTHER"/>
+                    </L7p:RequestSizeLimit>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="MDAwMw=="/>
+                        <L7p:VariableToSet stringValue="errorCode"/>
+                    </L7p:SetVariable>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="NDAz"/>
+                        <L7p:VariableToSet stringValue="status"/>
+                    </L7p:SetVariable>
+                    <L7p:AuditDetailAssertion>
+                        <L7p:CustomLoggerSuffix stringValue="hca"/>
+                        <L7p:Detail stringValue="${errorCode} :- ${errorMsg} with response ${response.mainpart}"/>
+                    </L7p:AuditDetailAssertion>
+                    <L7p:RaiseError/>
+                </wsp:All>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="THREAT"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="//  Threat Protection Examples"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:OneOrMore>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="eyJlcnJvciI6IlNMQSBNYW5hZ2VtZW50IiwgImVycm9yX2Rlc2NyaXB0aW9uIjoiUmF0ZSBsaW1pdCBleGNlZWRlZCJ9"/>
+                        <L7p:VariableToSet stringValue="errorMsg"/>
+                    </L7p:SetVariable>
+                    <L7p:RateLimit>
+                        <L7p:CounterName stringValue="PRESET(d72063fdef8d59a1)${request.clientid}"/>
+                        <L7p:MaxConcurrency stringValue="10"/>
+                        <L7p:MaxRequestsPerSecond stringValue="10"/>
+                    </L7p:RateLimit>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="eyJlcnJvciI6IlNMQSBNYW5hZ2VtZW50IiwgImVycm9yX2Rlc2NyaXB0aW9uIjoiR2l2ZW4gUXVvdGEgRXhjZWVkZWQifQ=="/>
+                        <L7p:VariableToSet stringValue="errorMsg"/>
+                    </L7p:SetVariable>
+                    <L7p:ThroughputQuota>
+                        <L7p:CounterName stringValue="PRESET(4301efa7f4c4cd43)${request.authenticateduser.id}-${request.authenticateduser.providerid}"/>
+                        <L7p:Global booleanValue="true"/>
+                        <L7p:Quota stringValue="10"/>
+                        <L7p:Synchronous booleanValue="false"/>
+                        <L7p:TimeUnit intValue="2"/>
+                    </L7p:ThroughputQuota>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="eyJlcnJvciI6IlNMQSBNYW5hZ2VtZW50IiwgImVycm9yX2Rlc2NyaXB0aW9uIjoiUmVzdHJpY3Rpb24gaGFzIGJlZW4gYXBwbGllZCJ9"/>
+                        <L7p:VariableToSet stringValue="errorMsg"/>
+                    </L7p:SetVariable>
+                    <L7p:TimeRange>
+                        <L7p:EndDayOfWeek intValue="6"/>
+                        <L7p:StartDayOfWeek intValue="2"/>
+                        <L7p:TimeRange timeOfDayRange="included">
+                            <L7p:From timeOfDay="included">
+                                <L7p:Hour intValue="12"/>
+                            </L7p:From>
+                            <L7p:To timeOfDay="included">
+                                <L7p:Hour intValue="21"/>
+                            </L7p:To>
+                        </L7p:TimeRange>
+                    </L7p:TimeRange>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="eyJlcnJvciI6IlNMQSBNYW5hZ2VtZW50IiwgImVycm9yX2Rlc2NyaXB0aW9uIjoiSVAgQWRkcmVzcyBSZXN0cmljdGlvbiJ9"/>
+                        <L7p:VariableToSet stringValue="errorMsg"/>
+                    </L7p:SetVariable>
+                    <L7p:RemoteIpAddressRange>
+                        <L7p:StartIp stringValue="192.168.28.213"/>
+                    </L7p:RemoteIpAddressRange>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="MDAwNA=="/>
+                        <L7p:VariableToSet stringValue="errorCode"/>
+                    </L7p:SetVariable>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="NDA0"/>
+                        <L7p:VariableToSet stringValue="status"/>
+                    </L7p:SetVariable>
+                    <L7p:AuditDetailAssertion>
+                        <L7p:CustomLoggerSuffix stringValue="hca"/>
+                        <L7p:Detail stringValue="${errorCode} :- ${errorMsg} with response ${response.mainpart}"/>
+                    </L7p:AuditDetailAssertion>
+                    <L7p:RaiseError/>
+                </wsp:All>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="THROTTLING"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="//  Service Availability examples"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:OneOrMore>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:CacheLookup>
+                        <L7p:CacheId stringValue="apimCache"/>
+                        <L7p:ContentTypeOverride stringValue=""/>
+                        <L7p:MaxEntryAgeSeconds stringValue="30"/>
+                    </L7p:CacheLookup>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="LEFT.COMMENT"/>
+                                <L7p:value stringValue="CACHE"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="// Cache Look up first"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="eyJlcnJvciI6IlJvdXRpbmcgRmFpbGVkIiwgImVycm9yX2Rlc2NyaXB0aW9uIjoiSW52YWxpZCBVUkwgLSBOb3QgYSBWYWxpZCBBUEkifQ=="/>
+                        <L7p:VariableToSet stringValue="errorMsg"/>
+                    </L7p:SetVariable>
+                    <L7p:HttpRoutingAssertion>
+                        <L7p:KeyAlias stringValue="trusted"/>
+                        <L7p:NonDefaultKeystoreId goidValue="00000000000000000000000000000002"/>
+                        <L7p:ProtectedServiceUrl stringValue="https://${gateway.cluster.hostname}:8443/trusted/soa/getInfo${request.url.query}"/>
+                        <L7p:ProxyPassword stringValueNull="null"/>
+                        <L7p:ProxyUsername stringValueNull="null"/>
+                        <L7p:RequestHeaderRules httpPassthroughRuleSet="included">
+                            <L7p:ForwardAll booleanValue="true"/>
+                            <L7p:Rules httpPassthroughRules="included">
+                                <L7p:item httpPassthroughRule="included">
+                                    <L7p:Name stringValue="Cookie"/>
+                                </L7p:item>
+                                <L7p:item httpPassthroughRule="included">
+                                    <L7p:Name stringValue="SOAPAction"/>
+                                </L7p:item>
+                            </L7p:Rules>
+                        </L7p:RequestHeaderRules>
+                        <L7p:RequestParamRules httpPassthroughRuleSet="included">
+                            <L7p:ForwardAll booleanValue="true"/>
+                            <L7p:Rules httpPassthroughRules="included"/>
+                        </L7p:RequestParamRules>
+                        <L7p:ResponseHeaderRules httpPassthroughRuleSet="included">
+                            <L7p:ForwardAll booleanValue="true"/>
+                            <L7p:Rules httpPassthroughRules="included">
+                                <L7p:item httpPassthroughRule="included">
+                                    <L7p:Name stringValue="Set-Cookie"/>
+                                </L7p:item>
+                            </L7p:Rules>
+                        </L7p:ResponseHeaderRules>
+                        <L7p:SamlAssertionVersion intValue="2"/>
+                        <L7p:UsesDefaultKeyStore booleanValue="false"/>
+                    </L7p:HttpRoutingAssertion>
+                    <L7p:CacheStorage>
+                        <L7p:CacheId stringValue="apimCache"/>
+                        <L7p:MaxEntryAgeSeconds stringValue="30"/>
+                    </L7p:CacheStorage>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="MDAwMg=="/>
+                        <L7p:VariableToSet stringValue="errorCode"/>
+                    </L7p:SetVariable>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="NDAy"/>
+                        <L7p:VariableToSet stringValue="status"/>
+                    </L7p:SetVariable>
+                    <L7p:AuditDetailAssertion>
+                        <L7p:CustomLoggerSuffix stringValue="hca"/>
+                        <L7p:Detail stringValue="${errorCode} :- ${errorMsg} with response ${response.mainpart}"/>
+                    </L7p:AuditDetailAssertion>
+                    <L7p:RaiseError/>
+                </wsp:All>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="ROUTING"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="// Request (HTTP) routing to Trusted ZONE"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:OneOrMore>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:ComparisonAssertion>
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Expression1 stringValue="${transform}"/>
+                        <L7p:Operator operatorNull="null"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item dataType="included">
+                                <L7p:Type variableDataType="string"/>
+                            </L7p:item>
+                            <L7p:item binary="included">
+                                <L7p:RightValue stringValue="text/xml"/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <L7p:JsonTransformation>
+                        <L7p:PrettyPrint booleanValue="true"/>
+                        <L7p:RootTagString stringValue="output"/>
+                        <L7p:Transformation transformation="JSON_to_XML"/>
+                    </L7p:JsonTransformation>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:TrueAssertion/>
+                </wsp:All>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="TRANSFORMATION"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="// Payload Transformation"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:OneOrMore>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

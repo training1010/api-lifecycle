@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References>
+        <IDProviderReference RefType="com.l7tech.console.policy.exporter.IdProviderReference">
+            <GOID>00dbf3efb268a366424d7571b34f9cb4</GOID>
+            <Name>LDAP IDP</Name>
+            <Props>PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPGphdmEgdmVyc2lvbj0iMS44&#xd;
+LjBfNTEiIGNsYXNzPSJqYXZhLmJlYW5zLlhNTERlY29kZXIiPgogPG9iamVjdCBjbGFzcz0iamF2&#xd;
+YS51dGlsLkhhc2hNYXAiPgogIDx2b2lkIG1ldGhvZD0icHV0Ij4KICAgPHN0cmluZz51c2VyQ2Vy&#xd;
+dFVzZVR5cGU8L3N0cmluZz4KICAgPHN0cmluZz5OT05FPC9zdHJpbmc+CiAgPC92b2lkPgogIDx2&#xd;
+b2lkIG1ldGhvZD0icHV0Ij4KICAgPHN0cmluZz5udGxtUHJvdmlkZXJQcm9wZXJ0aWVzPC9zdHJp&#xd;
+bmc+CiAgIDxvYmplY3QgY2xhc3M9ImphdmEudXRpbC5UcmVlTWFwIj4KICAgIDx2b2lkIG1ldGhv&#xd;
+ZD0icHV0Ij4KICAgICA8c3RyaW5nPmRvbWFpbi5kbnMubmFtZTwvc3RyaW5nPgogICAgIDxzdHJp&#xd;
+bmc+PC9zdHJpbmc+CiAgICA8L3ZvaWQ+CiAgICA8dm9pZCBtZXRob2Q9InB1dCI+CiAgICAgPHN0&#xd;
+cmluZz5kb21haW4ubmV0Ymlvcy5uYW1lPC9zdHJpbmc+CiAgICAgPHN0cmluZz48L3N0cmluZz4K&#xd;
+ICAgIDwvdm9pZD4KICAgIDx2b2lkIG1ldGhvZD0icHV0Ij4KICAgICA8c3RyaW5nPmVuYWJsZWQ8&#xd;
+L3N0cmluZz4KICAgICA8c3RyaW5nPmZhbHNlPC9zdHJpbmc+CiAgICA8L3ZvaWQ+CiAgICA8dm9p&#xd;
+ZCBtZXRob2Q9InB1dCI+CiAgICAgPHN0cmluZz5ob3N0LmRucy5uYW1lPC9zdHJpbmc+CiAgICAg&#xd;
+PHN0cmluZz48L3N0cmluZz4KICAgIDwvdm9pZD4KICAgIDx2b2lkIG1ldGhvZD0icHV0Ij4KICAg&#xd;
+ICA8c3RyaW5nPmhvc3QubmV0Ymlvcy5uYW1lPC9zdHJpbmc+CiAgICAgPHN0cmluZz48L3N0cmlu&#xd;
+Zz4KICAgIDwvdm9pZD4KICAgIDx2b2lkIG1ldGhvZD0icHV0Ij4KICAgICA8c3RyaW5nPnNlcnZl&#xd;
+ci5kbnMubmFtZTwvc3RyaW5nPgogICAgIDxzdHJpbmc+PC9zdHJpbmc+CiAgICA8L3ZvaWQ+CiAg&#xd;
+ICA8dm9pZCBtZXRob2Q9InB1dCI+CiAgICAgPHN0cmluZz5zZXJ2aWNlLmFjY291bnQ8L3N0cmlu&#xd;
+Zz4KICAgICA8c3RyaW5nPjwvc3RyaW5nPgogICAgPC92b2lkPgogICA8L29iamVjdD4KICA8L3Zv&#xd;
+aWQ+CiAgPHZvaWQgbWV0aG9kPSJwdXQiPgogICA8c3RyaW5nPmdyb3VwTWVtYmVyc2hpcENhc2VJ&#xd;
+bnNlbnNpdGl2ZTwvc3RyaW5nPgogICA8Ym9vbGVhbj5mYWxzZTwvYm9vbGVhbj4KICA8L3ZvaWQ+&#xd;
+CiAgPHZvaWQgbWV0aG9kPSJwdXQiPgogICA8c3RyaW5nPnVzcm1hcHBpbmdzPC9zdHJpbmc+CiAg&#xd;
+IDxvYmplY3QgY2xhc3M9ImphdmEudXRpbC5IYXNoTWFwIj4KICAgIDx2b2lkIG1ldGhvZD0icHV0&#xd;
+Ij4KICAgICA8c3RyaW5nPmluZXRvcmdwZXJzb248L3N0cmluZz4KICAgICA8b2JqZWN0IGNsYXNz&#xd;
+PSJjb20ubDd0ZWNoLmlkZW50aXR5LmxkYXAuVXNlck1hcHBpbmdDb25maWciPgogICAgICA8dm9p&#xd;
+ZCBwcm9wZXJ0eT0iZW1haWxOYW1lQXR0ck5hbWUiPgogICAgICAgPHN0cmluZz5tYWlsPC9zdHJp&#xd;
+bmc+CiAgICAgIDwvdm9pZD4KICAgICAgPHZvaWQgcHJvcGVydHk9ImZpcnN0TmFtZUF0dHJOYW1l&#xd;
+Ij4KICAgICAgIDxzdHJpbmc+Z2l2ZW5OYW1lPC9zdHJpbmc+CiAgICAgIDwvdm9pZD4KICAgICAg&#xd;
+PHZvaWQgcHJvcGVydHk9ImtlcmJlcm9zQXR0ck5hbWUiPgogICAgICAgPHN0cmluZz51aWQ8L3N0&#xd;
+cmluZz4KICAgICAgPC92b2lkPgogICAgICA8dm9pZCBwcm9wZXJ0eT0ibGFzdE5hbWVBdHRyTmFt&#xd;
+ZSI+CiAgICAgICA8c3RyaW5nPnNuPC9zdHJpbmc+CiAgICAgIDwvdm9pZD4KICAgICAgPHZvaWQg&#xd;
+cHJvcGVydHk9ImxvZ2luQXR0ck5hbWUiPgogICAgICAgPHN0cmluZz51aWQ8L3N0cmluZz4KICAg&#xd;
+ICAgPC92b2lkPgogICAgICA8dm9pZCBwcm9wZXJ0eT0ibmFtZUF0dHJOYW1lIj4KICAgICAgIDxz&#xd;
+dHJpbmc+Y248L3N0cmluZz4KICAgICAgPC92b2lkPgogICAgICA8dm9pZCBwcm9wZXJ0eT0ib2Jq&#xd;
+Q2xhc3MiPgogICAgICAgPHN0cmluZz5pbmV0T3JnUGVyc29uPC9zdHJpbmc+CiAgICAgIDwvdm9p&#xd;
+ZD4KICAgICAgPHZvaWQgcHJvcGVydHk9InBhc3N3ZEF0dHJOYW1lIj4KICAgICAgIDxzdHJpbmc+&#xd;
+dXNlclBhc3N3b3JkPC9zdHJpbmc+CiAgICAgIDwvdm9pZD4KICAgICAgPHZvaWQgcHJvcGVydHk9&#xd;
+InBhc3N3ZFR5cGUiPgogICAgICAgPG9iamVjdCBjbGFzcz0iY29tLmw3dGVjaC5pZGVudGl0eS5s&#xd;
+ZGFwLlBhc3N3ZFN0cmF0ZWd5Ii8+CiAgICAgIDwvdm9pZD4KICAgICAgPHZvaWQgcHJvcGVydHk9&#xd;
+InVzZXJDZXJ0QXR0ck5hbWUiPgogICAgICAgPHN0cmluZz51c2VyQ2VydGlmaWNhdGU7YmluYXJ5&#xd;
+PC9zdHJpbmc+CiAgICAgIDwvdm9pZD4KICAgICA8L29iamVjdD4KICAgIDwvdm9pZD4KICAgPC9v&#xd;
+YmplY3Q+CiAgPC92b2lkPgogIDx2b2lkIG1ldGhvZD0icHV0Ij4KICAgPHN0cmluZz5sZGFwc2Vh&#xd;
+cmNoYmFzZTwvc3RyaW5nPgogICA8c3RyaW5nPmRjPWw3dGVjaCwgZGM9Y29tPC9zdHJpbmc+CiAg&#xd;
+PC92b2lkPgogIDx2b2lkIG1ldGhvZD0icHV0Ij4KICAgPHN0cmluZz5ncm91cENhY2hlTWF4QWdl&#xd;
+PC9zdHJpbmc+CiAgIDxsb25nPjYwMDAwPC9sb25nPgogIDwvdm9pZD4KICA8dm9pZCBtZXRob2Q9&#xd;
+InB1dCI+CiAgIDxzdHJpbmc+dXNlckxvb2t1cEJ5Q2VydE1vZGU8L3N0cmluZz4KICAgPHN0cmlu&#xd;
+Zz5MT0dJTjwvc3RyaW5nPgogIDwvdm9pZD4KICA8dm9pZCBtZXRob2Q9InB1dCI+CiAgIDxzdHJp&#xd;
+bmc+bGRhcEJpbmRETjwvc3RyaW5nPgogICA8c3RyaW5nPjwvc3RyaW5nPgogIDwvdm9pZD4KICA8&#xd;
+dm9pZCBtZXRob2Q9InB1dCI+CiAgIDxzdHJpbmc+Z3JvdXBDYWNoZVNpemU8L3N0cmluZz4KICAg&#xd;
+PGludD4xMDA8L2ludD4KICA8L3ZvaWQ+CiAgPHZvaWQgbWV0aG9kPSJwdXQiPgogICA8c3RyaW5n&#xd;
+Pmdyb3VwTWF4TmVzdGluZzwvc3RyaW5nPgogICA8aW50PjU8L2ludD4KICA8L3ZvaWQ+CiAgPHZv&#xd;
+aWQgbWV0aG9kPSJwdXQiPgogICA8c3RyaW5nPmdycG1hcHBpbmdzPC9zdHJpbmc+CiAgIDxvYmpl&#xd;
+Y3QgY2xhc3M9ImphdmEudXRpbC5IYXNoTWFwIj4KICAgIDx2b2lkIG1ldGhvZD0icHV0Ij4KICAg&#xd;
+ICA8c3RyaW5nPnBvc2l4Z3JvdXA8L3N0cmluZz4KICAgICA8b2JqZWN0IGNsYXNzPSJjb20ubDd0&#xd;
+ZWNoLmlkZW50aXR5LmxkYXAuR3JvdXBNYXBwaW5nQ29uZmlnIj4KICAgICAgPHZvaWQgcHJvcGVy&#xd;
+dHk9Im1lbWJlckF0dHJOYW1lIj4KICAgICAgIDxzdHJpbmc+bWVtYmVyVWlkPC9zdHJpbmc+CiAg&#xd;
+ICAgIDwvdm9pZD4KICAgICAgPHZvaWQgcHJvcGVydHk9Im1lbWJlclN0cmF0ZWd5Ij4KICAgICAg&#xd;
+IDxvYmplY3QgY2xhc3M9ImNvbS5sN3RlY2guaWRlbnRpdHkubGRhcC5NZW1iZXJTdHJhdGVneSI+&#xd;
+CiAgICAgICAgPHZvaWQgcHJvcGVydHk9InZhbCI+CiAgICAgICAgIDxpbnQ+MTwvaW50PgogICAg&#xd;
+ICAgIDwvdm9pZD4KICAgICAgIDwvb2JqZWN0PgogICAgICA8L3ZvaWQ+CiAgICAgIDx2b2lkIHBy&#xd;
+b3BlcnR5PSJuYW1lQXR0ck5hbWUiPgogICAgICAgPHN0cmluZz5jbjwvc3RyaW5nPgogICAgICA8&#xd;
+L3ZvaWQ+CiAgICAgIDx2b2lkIHByb3BlcnR5PSJvYmpDbGFzcyI+CiAgICAgICA8c3RyaW5nPnBv&#xd;
+c2l4R3JvdXA8L3N0cmluZz4KICAgICAgPC92b2lkPgogICAgIDwvb2JqZWN0PgogICAgPC92b2lk&#xd;
+PgogICAgPHZvaWQgbWV0aG9kPSJwdXQiPgogICAgIDxzdHJpbmc+Z3JvdXBvZnVuaXF1ZW5hbWVz&#xd;
+PC9zdHJpbmc+CiAgICAgPG9iamVjdCBjbGFzcz0iY29tLmw3dGVjaC5pZGVudGl0eS5sZGFwLkdy&#xd;
+b3VwTWFwcGluZ0NvbmZpZyI+CiAgICAgIDx2b2lkIHByb3BlcnR5PSJtZW1iZXJBdHRyTmFtZSI+&#xd;
+CiAgICAgICA8c3RyaW5nPnVuaXF1ZU1lbWJlcjwvc3RyaW5nPgogICAgICA8L3ZvaWQ+CiAgICAg&#xd;
+IDx2b2lkIHByb3BlcnR5PSJtZW1iZXJTdHJhdGVneSI+CiAgICAgICA8b2JqZWN0IGNsYXNzPSJj&#xd;
+b20ubDd0ZWNoLmlkZW50aXR5LmxkYXAuTWVtYmVyU3RyYXRlZ3kiPgogICAgICAgIDx2b2lkIHBy&#xd;
+b3BlcnR5PSJ2YWwiPgogICAgICAgICA8aW50PjI8L2ludD4KICAgICAgICA8L3ZvaWQ+CiAgICAg&#xd;
+ICA8L29iamVjdD4KICAgICAgPC92b2lkPgogICAgICA8dm9pZCBwcm9wZXJ0eT0ibmFtZUF0dHJO&#xd;
+YW1lIj4KICAgICAgIDxzdHJpbmc+Y248L3N0cmluZz4KICAgICAgPC92b2lkPgogICAgICA8dm9p&#xd;
+ZCBwcm9wZXJ0eT0ib2JqQ2xhc3MiPgogICAgICAgPHN0cmluZz5ncm91cE9mVW5pcXVlTmFtZXM8&#xd;
+L3N0cmluZz4KICAgICAgPC92b2lkPgogICAgIDwvb2JqZWN0PgogICAgPC92b2lkPgogICAgPHZv&#xd;
+aWQgbWV0aG9kPSJwdXQiPgogICAgIDxzdHJpbmc+b3JnYW5pemF0aW9uYWx1bml0PC9zdHJpbmc+&#xd;
+CiAgICAgPG9iamVjdCBjbGFzcz0iY29tLmw3dGVjaC5pZGVudGl0eS5sZGFwLkdyb3VwTWFwcGlu&#xd;
+Z0NvbmZpZyI+CiAgICAgIDx2b2lkIHByb3BlcnR5PSJtZW1iZXJBdHRyTmFtZSI+CiAgICAgICA8&#xd;
+c3RyaW5nPjwvc3RyaW5nPgogICAgICA8L3ZvaWQ+CiAgICAgIDx2b2lkIHByb3BlcnR5PSJtZW1i&#xd;
+ZXJTdHJhdGVneSI+CiAgICAgICA8b2JqZWN0IGNsYXNzPSJjb20ubDd0ZWNoLmlkZW50aXR5Lmxk&#xd;
+YXAuTWVtYmVyU3RyYXRlZ3kiPgogICAgICAgIDx2b2lkIHByb3BlcnR5PSJ2YWwiPgogICAgICAg&#xd;
+ICA8aW50PjM8L2ludD4KICAgICAgICA8L3ZvaWQ+CiAgICAgICA8L29iamVjdD4KICAgICAgPC92&#xd;
+b2lkPgogICAgICA8dm9pZCBwcm9wZXJ0eT0ibmFtZUF0dHJOYW1lIj4KICAgICAgIDxzdHJpbmc+&#xd;
+b3U8L3N0cmluZz4KICAgICAgPC92b2lkPgogICAgICA8dm9pZCBwcm9wZXJ0eT0ib2JqQ2xhc3Mi&#xd;
+PgogICAgICAgPHN0cmluZz5vcmdhbml6YXRpb25hbFVuaXQ8L3N0cmluZz4KICAgICAgPC92b2lk&#xd;
+PgogICAgIDwvb2JqZWN0PgogICAgPC92b2lkPgogICA8L29iamVjdD4KICA8L3ZvaWQ+CiAgPHZv&#xd;
+aWQgbWV0aG9kPSJwdXQiPgogICA8c3RyaW5nPm9yaWdpbmFsVGVtcGxhdGVOYW1lPC9zdHJpbmc+&#xd;
+CiAgIDxzdHJpbmc+R2VuZXJpY0xEQVA8L3N0cmluZz4KICA8L3ZvaWQ+CiAgPHZvaWQgbWV0aG9k&#xd;
+PSJwdXQiPgogICA8c3RyaW5nPmFkbWluRW5hYmxlZDwvc3RyaW5nPgogICA8Ym9vbGVhbj5mYWxz&#xd;
+ZTwvYm9vbGVhbj4KICA8L3ZvaWQ+CiAgPHZvaWQgbWV0aG9kPSJwdXQiPgogICA8c3RyaW5nPmdy&#xd;
+b3VwQ2FjaGVNYXhBZ2VVbml0PC9zdHJpbmc+CiAgIDxzdHJpbmc+bTwvc3RyaW5nPgogIDwvdm9p&#xd;
+ZD4KICA8dm9pZCBtZXRob2Q9InB1dCI+CiAgIDxzdHJpbmc+bGRhcHVybDwvc3RyaW5nPgogICA8&#xd;
+YXJyYXkgY2xhc3M9ImphdmEubGFuZy5TdHJpbmciIGxlbmd0aD0iMSI+CiAgICA8dm9pZCBpbmRl&#xd;
+eD0iMCI+CiAgICAgPHN0cmluZz5sZGFwOi8vcWFtb3NxdWl0dG8ubDd0ZWNoLmNvbTwvc3RyaW5n&#xd;
+PgogICAgPC92b2lkPgogICA8L2FycmF5PgogIDwvdm9pZD4KICA8dm9pZCBtZXRob2Q9InB1dCI+&#xd;
+CiAgIDxzdHJpbmc+Y2xpZW50QXV0aDwvc3RyaW5nPgogICA8Ym9vbGVhbj5mYWxzZTwvYm9vbGVh&#xd;
+bj4KICA8L3ZvaWQ+CiA8L29iamVjdD4KPC9qYXZhPgo=</Props>
+            <TypeVal>2</TypeVal>
+        </IDProviderReference>
+    </exp:References>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="************************************************************"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="Policy for Scanning Authenticated User Groups"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API Group :- &lt;Enter the API Group>"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API TYPE :- &lt;REST/SOAP/DATA>"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="Author: Balaji Radhakrishnan"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="************************************************************"/>
+            </L7p:CommentAssertion>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue=""/>
+                <L7p:VariableToSet stringValue="groups"/>
+            </L7p:SetVariable>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:MemberOfGroup>
+                        <L7p:GroupId stringValue="cn=USS Enterprise,ou=people,dc=l7tech,dc=com"/>
+                        <L7p:GroupName stringValue="USS Enterprise"/>
+                        <L7p:IdentityProviderOid goidValue="00dbf3efb268a366424d7571b34f9cb4"/>
+                    </L7p:MemberOfGroup>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="JHtncm91cHN9PGdyb3VwPlVTUyBFbnRlcnByaXNlPC9ncm91cD4="/>
+                        <L7p:VariableToSet stringValue="groups"/>
+                    </L7p:SetVariable>
+                    <L7p:TrueAssertion/>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:CustomizeErrorResponse>
+                        <L7p:Content stringValue="Authentication Failed!..."/>
+                        <L7p:Enabled booleanValue="false"/>
+                        <L7p:ExtraHeaders nameValuePairArray="included"/>
+                    </L7p:CustomizeErrorResponse>
+                    <L7p:RaiseError>
+                        <L7p:Enabled booleanValue="false"/>
+                    </L7p:RaiseError>
+                    <L7p:TrueAssertion/>
+                </wsp:All>
+            </wsp:OneOrMore>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:MemberOfGroup>
+                        <L7p:GroupId stringValue="cn=Vulcans,ou=people,dc=l7tech,dc=com"/>
+                        <L7p:GroupName stringValue="Vulcans"/>
+                        <L7p:IdentityProviderOid goidValue="00dbf3efb268a366424d7571b34f9cb4"/>
+                    </L7p:MemberOfGroup>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="JHtncm91cHN9PGdyb3VwPlZ1bGNhbnM8L2dyb3VwPg=="/>
+                        <L7p:VariableToSet stringValue="groups"/>
+                    </L7p:SetVariable>
+                    <L7p:TrueAssertion/>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:CustomizeErrorResponse>
+                        <L7p:Content stringValue="Authentication Failed!..."/>
+                        <L7p:Enabled booleanValue="false"/>
+                        <L7p:ExtraHeaders nameValuePairArray="included"/>
+                    </L7p:CustomizeErrorResponse>
+                    <L7p:RaiseError>
+                        <L7p:Enabled booleanValue="false"/>
+                    </L7p:RaiseError>
+                    <L7p:TrueAssertion/>
+                </wsp:All>
+            </wsp:OneOrMore>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:MemberOfGroup>
+                        <L7p:GroupId stringValue="cn=Starfleet,ou=people,dc=l7tech,dc=com"/>
+                        <L7p:GroupName stringValue="Starfleet"/>
+                        <L7p:IdentityProviderOid goidValue="00dbf3efb268a366424d7571b34f9cb4"/>
+                    </L7p:MemberOfGroup>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="JHtncm91cHN9PGdyb3VwPlN0YXJmbGVldDwvZ3JvdXA+"/>
+                        <L7p:VariableToSet stringValue="groups"/>
+                    </L7p:SetVariable>
+                    <L7p:TrueAssertion/>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:CustomizeErrorResponse>
+                        <L7p:Content stringValue="Authentication Failed!..."/>
+                        <L7p:Enabled booleanValue="false"/>
+                        <L7p:ExtraHeaders nameValuePairArray="included"/>
+                    </L7p:CustomizeErrorResponse>
+                    <L7p:RaiseError>
+                        <L7p:Enabled booleanValue="false"/>
+                    </L7p:RaiseError>
+                    <L7p:TrueAssertion/>
+                </wsp:All>
+            </wsp:OneOrMore>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:MemberOfGroup>
+                        <L7p:GroupId stringValue="ou=people,dc=l7tech,dc=com"/>
+                        <L7p:GroupName stringValue="people"/>
+                        <L7p:IdentityProviderOid goidValue="00dbf3efb268a366424d7571b34f9cb4"/>
+                    </L7p:MemberOfGroup>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="JHtncm91cHN9PGdyb3VwPnBlb3BsZTwvZ3JvdXA+"/>
+                        <L7p:VariableToSet stringValue="groups"/>
+                    </L7p:SetVariable>
+                    <L7p:TrueAssertion/>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:CustomizeErrorResponse>
+                        <L7p:Content stringValue="Authentication Failed!..."/>
+                        <L7p:Enabled booleanValue="false"/>
+                        <L7p:ExtraHeaders nameValuePairArray="included"/>
+                    </L7p:CustomizeErrorResponse>
+                    <L7p:RaiseError>
+                        <L7p:Enabled booleanValue="false"/>
+                    </L7p:RaiseError>
+                    <L7p:TrueAssertion/>
+                </wsp:All>
+            </wsp:OneOrMore>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:MemberOfGroup>
+                        <L7p:GroupId stringValue="cn=Senior Officers,ou=people,dc=l7tech,dc=com"/>
+                        <L7p:GroupName stringValue="Senior Officers"/>
+                        <L7p:IdentityProviderOid goidValue="00dbf3efb268a366424d7571b34f9cb4"/>
+                    </L7p:MemberOfGroup>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="JHtncm91cHN9PGdyb3VwPlNlbmlvciBPZmZpY2VyczwvZ3JvdXA+"/>
+                        <L7p:VariableToSet stringValue="groups"/>
+                    </L7p:SetVariable>
+                    <L7p:TrueAssertion/>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:CustomizeErrorResponse>
+                        <L7p:Content stringValue="Authentication Failed!..."/>
+                        <L7p:Enabled booleanValue="false"/>
+                        <L7p:ExtraHeaders nameValuePairArray="included"/>
+                    </L7p:CustomizeErrorResponse>
+                    <L7p:RaiseError>
+                        <L7p:Enabled booleanValue="false"/>
+                    </L7p:RaiseError>
+                    <L7p:TrueAssertion/>
+                </wsp:All>
+            </wsp:OneOrMore>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:MemberOfGroup>
+                        <L7p:GroupId stringValue="cn=Humans,ou=people,dc=l7tech,dc=com"/>
+                        <L7p:GroupName stringValue="Humans"/>
+                        <L7p:IdentityProviderOid goidValue="00dbf3efb268a366424d7571b34f9cb4"/>
+                    </L7p:MemberOfGroup>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="JHtncm91cHN9PGdyb3VwPkh1bWFuczwvZ3JvdXA+"/>
+                        <L7p:VariableToSet stringValue="groups"/>
+                    </L7p:SetVariable>
+                    <L7p:TrueAssertion/>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:CustomizeErrorResponse>
+                        <L7p:Content stringValue="Authentication Failed!..."/>
+                        <L7p:Enabled booleanValue="false"/>
+                        <L7p:ExtraHeaders nameValuePairArray="included"/>
+                    </L7p:CustomizeErrorResponse>
+                    <L7p:RaiseError>
+                        <L7p:Enabled booleanValue="false"/>
+                    </L7p:RaiseError>
+                    <L7p:TrueAssertion/>
+                </wsp:All>
+            </wsp:OneOrMore>
+            <L7p:ExportVariables>
+                <L7p:ExportedVars stringArrayValue="included">
+                    <L7p:item stringValue="groups"/>
+                </L7p:ExportedVars>
+            </L7p:ExportVariables>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

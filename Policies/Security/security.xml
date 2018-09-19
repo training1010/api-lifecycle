@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References>
+        <FederatedIDProviderReference RefType="com.l7tech.console.policy.exporter.FederatedIdProviderReference">
+            <GOID>00dbf3efb268a366424d7571b3501b43</GOID>
+            <Name>HomeDepotCertification</Name>
+            <Props>PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPGphdmEgdmVyc2lvbj0iMS44&#xd;
+LjBfNTEiIGNsYXNzPSJqYXZhLmJlYW5zLlhNTERlY29kZXIiPgogPG9iamVjdCBjbGFzcz0iamF2&#xd;
+YS51dGlsLkhhc2hNYXAiPgogIDx2b2lkIG1ldGhvZD0icHV0Ij4KICAgPHN0cmluZz54NTA5U3Vw&#xd;
+cG9ydGVkPC9zdHJpbmc+CiAgIDxib29sZWFuPnRydWU8L2Jvb2xlYW4+CiAgPC92b2lkPgogIDx2&#xd;
+b2lkIG1ldGhvZD0icHV0Ij4KICAgPHN0cmluZz5zYW1sU3VwcG9ydGVkPC9zdHJpbmc+CiAgIDxi&#xd;
+b29sZWFuPmZhbHNlPC9ib29sZWFuPgogIDwvdm9pZD4KIDwvb2JqZWN0Pgo8L2phdmE+Cg==</Props>
+            <TypeVal>3</TypeVal>
+            <Users>
+                <User>
+                    <GOID>00dbf3efb268a366424d7571b3501b62</GOID>
+                    <Name>thduser</Name>
+                    <SubjectDn>cn=thduser</SubjectDn>
+                </User>
+            </Users>
+        </FederatedIDProviderReference>
+        <EncapsulatedAssertionReference RefType="com.l7tech.console.policy.exporter.EncapsulatedAssertionReference">
+            <Name>OTK Require OAuth 2.0 Token</Name>
+            <Guid>393bcb93-82ad-4b55-8333-1119f607a560</Guid>
+        </EncapsulatedAssertionReference>
+    </exp:References>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="************************************************************"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API :- Two Factor Authentication"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API Group :- Security"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API TYPE :- &lt;REST/SOAP/DATA>"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="Author: Balaji Radhakrishnan"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="************************************************************"/>
+            </L7p:CommentAssertion>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="RmFpbGVkIENlcnRpZmljYXRpb24gQXV0aGVudGljYXRpb24sIHBsZWFzZSBhcHByb2FjaCBBZG1pbi4="/>
+                        <L7p:VariableToSet stringValue="error"/>
+                    </L7p:SetVariable>
+                    <L7p:SslAssertion>
+                        <L7p:RequireClientAuthentication booleanValue="true"/>
+                    </L7p:SslAssertion>
+                    <L7p:Authentication>
+                        <L7p:IdentityProviderOid goidValue="00dbf3efb268a366424d7571b3501b43"/>
+                    </L7p:Authentication>
+                    <L7p:CertificateAttributes/>
+                    <L7p:LookupTrustedCertificate>
+                        <L7p:TrustedCertificateName stringValue="thduser"/>
+                    </L7p:LookupTrustedCertificate>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:RaiseError/>
+                    <L7p:CustomizeErrorResponse>
+                        <L7p:Content stringValue="${error}"/>
+                        <L7p:ExtraHeaders nameValuePairArray="included"/>
+                    </L7p:CustomizeErrorResponse>
+                </wsp:All>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="Factor 1: - SSL Certificate Authentication"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:OneOrMore>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:Encapsulated>
+                        <L7p:EncapsulatedAssertionConfigGuid stringValue="393bcb93-82ad-4b55-8333-1119f607a560"/>
+                        <L7p:EncapsulatedAssertionConfigName stringValue="OTK Require OAuth 2.0 Token"/>
+                        <L7p:Parameters mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="cache_lifetime"/>
+                                <L7p:value stringValue="0"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="given_access_token"/>
+                                <L7p:value stringValue=""/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="onetime"/>
+                                <L7p:value stringValue="false"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="scope_fail"/>
+                                <L7p:value stringValue="false"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="scope_required"/>
+                                <L7p:value stringValue=""/>
+                            </L7p:entry>
+                        </L7p:Parameters>
+                    </L7p:Encapsulated>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="T0FVVEggLSBDbGllbnQgQXV0aGVudGljYXRpb24gRmFpbGVkLCBwbGVhc2UgYXBwcm9hY2ggQWRtaW4u"/>
+                        <L7p:VariableToSet stringValue="error"/>
+                    </L7p:SetVariable>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:RaiseError/>
+                    <L7p:CustomizeErrorResponse>
+                        <L7p:Content stringValue="${error}"/>
+                        <L7p:ExtraHeaders nameValuePairArray="included"/>
+                    </L7p:CustomizeErrorResponse>
+                </wsp:All>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="Factor 2:- OAUTH - Client Authentication "/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:OneOrMore>
+            <L7p:HardcodedResponse>
+                <L7p:Base64ResponseBody stringValue="U3VjY2Vzc2Z1bGwgQXV0aGVudGljYXRpb24gdXNpbmcgCgpBY2Nlc3MgVG9rZW4gOiAtICR7YWNjZXNzX3Rva2VufSBmb3IgY3VzdG9tZXIgSUQgOi0gJHtzZXNzaW9uLmNsaWVudF9pZH0KCkF1dGhvcml6ZWQgQ2VydGlmaWNhdGU6Cgoke2NlcnRpZmljYXRlc30KCkNlcnRpZmljYXRlIFBFTToKCiR7Y2VydGlmaWNhdGUucGVtfQoKQ2VydGlmaWNhdGUgSXNzdWVyOgoKJHtjZXJ0aWZpY2F0ZS5pc3N1ZXIuZG59"/>
+                <L7p:ResponseContentType stringValue="text/plain; charset=UTF-8"/>
+            </L7p:HardcodedResponse>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

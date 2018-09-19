@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References>
+        <IDProviderReference RefType="com.l7tech.console.policy.exporter.IdProviderReference">
+            <GOID>0000000000000000fffffffffffffffe</GOID>
+            <Name>Internal Identity Provider</Name>
+            <Props>PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPGphdmEgdmVyc2lvbj0iMS44&#xd;
+LjBfNDUiIGNsYXNzPSJqYXZhLmJlYW5zLlhNTERlY29kZXIiPgogPG9iamVjdCBjbGFzcz0iamF2&#xd;
+YS51dGlsLkhhc2hNYXAiPgogIDx2b2lkIG1ldGhvZD0icHV0Ij4KICAgPHN0cmluZz5hZG1pbkVu&#xd;
+YWJsZWQ8L3N0cmluZz4KICAgPGJvb2xlYW4+dHJ1ZTwvYm9vbGVhbj4KICA8L3ZvaWQ+CiA8L29i&#xd;
+amVjdD4KPC9qYXZhPgo=</Props>
+            <TypeVal>1</TypeVal>
+        </IDProviderReference>
+    </exp:References>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:AuditAssertion/>
+            <L7p:MQTTCredential/>
+            <L7p:Authentication>
+                <L7p:IdentityProviderOid goidValue="0000000000000000fffffffffffffffe"/>
+            </L7p:Authentication>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="YXBtd29ya3N0YXRpb24tMTAtNS5hd3MuY2E="/>
+                <L7p:VariableToSet stringValue="broker.hostname"/>
+            </L7p:SetVariable>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="MTg4Mw=="/>
+                <L7p:VariableToSet stringValue="broker.port"/>
+            </L7p:SetVariable>
+            <L7p:AuditDetailAssertion>
+                <L7p:Detail stringValueReference="inline"><![CDATA[MQTT Request Message Type==(${request.mqtt.messageType})
+MQTT Request Client ID==(${request.mqtt.clientIdentifier})
+MQTT Request Publish Topic==(${request.mqtt.publish.topic})
+MQTT Request Publish QoS==(${request.mqtt.publish.qos})
+MQTT Request Subscribe Subscriptions==(${request.mqtt.subscribe.subscriptions})
+MQTT Request Unsubscribe Subscriptions==(${request.mqtt.unsubscribe.subscriptions})]]></L7p:Detail>
+            </L7p:AuditDetailAssertion>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:ComparisonAssertion>
+                        <L7p:Expression1 stringValue="${request.mqtt.messageType}"/>
+                        <L7p:Expression2 stringValue="CONNECT"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item binary="included">
+                                <L7p:RightValue stringValue="CONNECT"/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <L7p:MQTTConnectionAssertion>
+                        <L7p:BrokerHost stringValue="${broker.hostname}"/>
+                        <L7p:BrokerPort stringValue="${broker.port}"/>
+                        <L7p:ClientIdentifier stringValue="${request.mqtt.clientIdentifier}"/>
+                        <L7p:CustomPrivateKeySelecedAlgorithm stringValue="RSA"/>
+                        <L7p:CustomPrivateKeySelectedAlias stringValue="admin"/>
+                        <L7p:CustomPrivateKeySelectedGoid goidValue="00000000000000000000000000000002"/>
+                        <L7p:ProvideWill stringValue=""/>
+                        <L7p:SubscriptionUpdatesPolicyId goidValue="6a9ea59acd6684264f08e5db16cfe336"/>
+                        <L7p:Target target="REQUEST"/>
+                        <L7p:TlsVersion stringValueNull="null"/>
+                        <L7p:UserName stringValue=""/>
+                        <L7p:UserPassword stringValue=""/>
+                        <L7p:WillMessage stringValue=""/>
+                        <L7p:WillRetain stringValue=""/>
+                        <L7p:WillTopic stringValue=""/>
+                    </L7p:MQTTConnectionAssertion>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="// CONNECT"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:ComparisonAssertion>
+                        <L7p:Expression1 stringValue="${request.mqtt.messageType}"/>
+                        <L7p:Expression2 stringValue="SUBSCRIBE"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item binary="included">
+                                <L7p:RightValue stringValue="SUBSCRIBE"/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <L7p:MQTTSubscribeAssertion>
+                        <L7p:BrokerHost stringValue="${broker.hostname}"/>
+                        <L7p:BrokerPort stringValue="${broker.port}"/>
+                        <L7p:ClientIdentifier stringValue="${request.mqtt.clientIdentifier}"/>
+                        <L7p:Target target="REQUEST"/>
+                        <L7p:TopicsContextVariable stringValue="${request.mqtt.subscribe.subscriptions}"/>
+                        <L7p:TopicsFromContextVariable booleanValue="true"/>
+                        <L7p:UserName stringValue=""/>
+                        <L7p:UserPassword stringValue=""/>
+                    </L7p:MQTTSubscribeAssertion>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="// SUBSCRIBE"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:ComparisonAssertion>
+                        <L7p:Expression1 stringValue="${request.mqtt.messageType}"/>
+                        <L7p:Expression2 stringValue="UNSUBSCRIBE"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item binary="included">
+                                <L7p:RightValue stringValue="UNSUBSCRIBE"/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <L7p:MQTTSubscribeAssertion>
+                        <L7p:BrokerHost stringValue="${broker.hostname}"/>
+                        <L7p:BrokerPort stringValue="${broker.port}"/>
+                        <L7p:ClientIdentifier stringValue="${request.mqtt.clientIdentifier}"/>
+                        <L7p:SubscribeAssertion booleanValue="false"/>
+                        <L7p:Target target="REQUEST"/>
+                        <L7p:TopicsContextVariable stringValue="${request.mqtt.unsubscribe.subscriptions}"/>
+                        <L7p:TopicsFromContextVariable booleanValue="true"/>
+                        <L7p:UserName stringValue=""/>
+                        <L7p:UserPassword stringValue=""/>
+                    </L7p:MQTTSubscribeAssertion>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="// UNSUBSCRIBE"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:ComparisonAssertion>
+                        <L7p:Expression1 stringValue="${request.mqtt.messageType}"/>
+                        <L7p:Expression2 stringValue="PUBLISH"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item binary="included">
+                                <L7p:RightValue stringValue="PUBLISH"/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="JHtyZXF1ZXN0Lm1haW5wYXJ0fSAtIGFwcGVuZGVkIHdpdGggbW9kaWZpZWQgbWVzc2FnZSBkYXRhLg=="/>
+                        <L7p:ContentType stringValue="text/plain; charset=utf-8"/>
+                        <L7p:DataType variableDataType="message"/>
+                        <L7p:VariableToSet stringValue="modifiedmessage"/>
+                    </L7p:SetVariable>
+                    <L7p:MQTTPublishAssertion>
+                        <L7p:BrokerHost stringValue="${broker.hostname}"/>
+                        <L7p:BrokerPort stringValue="${broker.port}"/>
+                        <L7p:ClientIdentifier stringValue="${request.mqtt.clientIdentifier}"/>
+                        <L7p:RetainMessage stringValue="false"/>
+                        <L7p:TopicName stringValue="${request.mqtt.publish.topic}"/>
+                        <L7p:TopicQOS stringValue="${request.mqtt.publish.qos}"/>
+                        <L7p:UserName stringValue=""/>
+                        <L7p:UserPassword stringValue=""/>
+                    </L7p:MQTTPublishAssertion>
+                    <L7p:MQTTPublishAssertion>
+                        <L7p:BrokerHost stringValue="${broker.hostname}"/>
+                        <L7p:BrokerPort stringValue="${broker.port}"/>
+                        <L7p:ClientIdentifier stringValue="${request.mqtt.clientIdentifier}"/>
+                        <L7p:Enabled booleanValue="false"/>
+                        <L7p:ListenPortId goidValue="6a9ea59acd6684264f08e5db16cfe2ca"/>
+                        <L7p:PublishToBroker booleanValue="false"/>
+                        <L7p:RetainMessage stringValue="false"/>
+                        <L7p:TopicName stringValue="${request.mqtt.publish.topic}"/>
+                        <L7p:TopicQOS stringValue="${request.mqtt.publish.qos}"/>
+                        <L7p:UserName stringValue=""/>
+                        <L7p:UserPassword stringValue=""/>
+                    </L7p:MQTTPublishAssertion>
+                    <L7p:MQTTPublishAssertion>
+                        <L7p:BrokerHost stringValue="${broker.hostname}"/>
+                        <L7p:BrokerPort stringValue="${broker.port}"/>
+                        <L7p:ClientIdentifier stringValue="${request.mqtt.clientIdentifier}"/>
+                        <L7p:ListenPortId goidValue="6a9ea59acd6684264f08e5db16cfe2ca"/>
+                        <L7p:OtherTargetMessageVariable stringValue="modifiedmessage"/>
+                        <L7p:PublishToBroker booleanValue="false"/>
+                        <L7p:RetainMessage stringValue="false"/>
+                        <L7p:Target target="OTHER"/>
+                        <L7p:TopicName stringValue="${request.mqtt.publish.topic}"/>
+                        <L7p:TopicQOS stringValue="${request.mqtt.publish.qos}"/>
+                        <L7p:UserName stringValue=""/>
+                        <L7p:UserPassword stringValue=""/>
+                    </L7p:MQTTPublishAssertion>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="// PUBLISH"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:ComparisonAssertion>
+                        <L7p:Expression1 stringValue="${request.mqtt.messageType}"/>
+                        <L7p:Expression2 stringValue="DISCONNECT"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item binary="included">
+                                <L7p:RightValue stringValue="DISCONNECT"/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <L7p:MQTTConnectionAssertion>
+                        <L7p:BrokerHost stringValue="${broker.hostname}"/>
+                        <L7p:BrokerPort stringValue="${broker.port}"/>
+                        <L7p:ClientIdentifier stringValue="${request.mqtt.clientIdentifier}"/>
+                        <L7p:ConnectAssertion booleanValue="false"/>
+                        <L7p:CustomPrivateKeySelecedAlgorithm stringValue="RSA"/>
+                        <L7p:CustomPrivateKeySelectedAlias stringValue="admin"/>
+                        <L7p:CustomPrivateKeySelectedGoid goidValue="00000000000000000000000000000002"/>
+                        <L7p:ProvideWill stringValue=""/>
+                        <L7p:Target target="REQUEST"/>
+                        <L7p:TlsVersion stringValueNull="null"/>
+                        <L7p:UserName stringValue=""/>
+                        <L7p:UserPassword stringValue=""/>
+                        <L7p:WillMessage stringValue=""/>
+                        <L7p:WillRetain stringValue=""/>
+                        <L7p:WillTopic stringValue=""/>
+                    </L7p:MQTTConnectionAssertion>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="// DISCONNECT"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:AuditDetailAssertion>
+                        <L7p:Detail stringValue="Missing or unrecognized packet type (${request.mqtt.messageType})."/>
+                    </L7p:AuditDetailAssertion>
+                    <L7p:FalseAssertion/>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="// ERROR"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:All>
+            </wsp:OneOrMore>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

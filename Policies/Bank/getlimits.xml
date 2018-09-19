@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References>
+        <JdbcConnectionReference RefType="com.l7tech.console.policy.exporter.JdbcConnectionReference">
+            <ConnectionName>MyHost</ConnectionName>
+            <DriverClass>com.mysql.jdbc.Driver</DriverClass>
+            <JdbcUrl>jdbc:mysql://myMacHost.com:3307/employees</JdbcUrl>
+            <UserName>bradhakr</UserName>
+            <AdditionalProperties>
+                <Property>
+                    <Name>EnableCancelTimeout</Name>
+                    <Value>true</Value>
+                </Property>
+            </AdditionalProperties>
+        </JdbcConnectionReference>
+    </exp:References>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:JdbcQuery>
+                <L7p:ConnectionName stringValue="MyHost"/>
+                <L7p:ConvertVariablesToStrings booleanValue="false"/>
+                <L7p:NamingMap mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="CustomFiledValuescol"/>
+                        <L7p:value stringValue="cfValue"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="customFieldID"/>
+                        <L7p:value stringValue="cfID"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="customFiledName"/>
+                        <L7p:value stringValue="cfName"/>
+                    </L7p:entry>
+                </L7p:NamingMap>
+                <L7p:SqlQuery stringValue="SELECT * FROM employees.CustomFiledValues where APIKeys = 0;"/>
+                <L7p:VariablePrefix stringValue="jQ"/>
+            </L7p:JdbcQuery>
+            <L7p:HardcodedResponse>
+                <L7p:Base64ResponseBody stringValue="PEN1c3RvbUZpZWxkPgoJPGN1c3RvbUZpbGVkTmFtZT4ke2pRLmNmTmFtZX08L2N1c3RvbUZpbGVkTmFtZT4KCTxjdXN0b21GaWxlZFZhbHVlPiR7alEuY2ZWYWx1ZX08L2N1c3RvbUZpbGVkVmFsdWU+CjwvQ3VzdG9tRmllbGQ+"/>
+            </L7p:HardcodedResponse>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

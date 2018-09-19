@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References/>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="*********************************************************************************************************************"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="*** Rest to Soap Service"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="***  Uses the incoming startinpoint parameter to set the startingpoint name space in the soap request from the voonair reservation operation."/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="*** Sets a variable for the SOAPAction."/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="*** Sets the Reservation Operation request to soaprequest message variable."/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="*** Version 1.0 Created by CA "/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="*********************************************************************************************************************"/>
+            </L7p:CommentAssertion>
+            <L7p:SetVariable>
+                <L7p:AssertionComment assertionComment="included">
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="--- sets startingpoint variable from the incoming parameter"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:AssertionComment>
+                <L7p:Base64Expression stringValue="JHtyZXF1ZXN0Lmh0dHAucGFyYW1ldGVyLnN0YXJ0aW5ncG9pbnR9"/>
+                <L7p:VariableToSet stringValue="startingpoint"/>
+            </L7p:SetVariable>
+            <L7p:SetVariable>
+                <L7p:AssertionComment assertionComment="included">
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="--- Sets a message variable with the soap request needed for soap request"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:AssertionComment>
+                <L7p:Base64Expression stringValue="PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOndzPSJodHRwOi8vdm9vbmFpci5jb20vd3MiPg0KICAgPHNvYXBlbnY6SGVhZGVyLz4NCiAgIDxzb2FwZW52OkJvZHk+DQogICAgICA8d3M6dm9vbmFpcnJlc2VydmF0aW9ucz4NCiAgICAgICAgIDx3czpzdGFydGluZ3BvaW50PiR7c3RhcnRpbmdwb2ludH08L3dzOnN0YXJ0aW5ncG9pbnQ+DQogICAgICA8L3dzOnZvb25haXJyZXNlcnZhdGlvbnM+DQogICA8L3NvYXBlbnY6Qm9keT4NCjwvc29hcGVudjpFbnZlbG9wZT4="/>
+                <L7p:ContentType stringValue="text/xml; charset=utf-8"/>
+                <L7p:DataType variableDataType="message"/>
+                <L7p:VariableToSet stringValue="soaprequest"/>
+            </L7p:SetVariable>
+            <L7p:SetVariable>
+                <L7p:AssertionComment assertionComment="included">
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="-- Creates a variable used forthe soapaction"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:AssertionComment>
+                <L7p:Base64Expression stringValue="Imh0dHA6Ly92b29uYWlyLmNvbS93cy92b29uYWlycmVzZXJ2YXRpb25zIg=="/>
+                <L7p:VariableToSet stringValue="soapaction"/>
+            </L7p:SetVariable>
+            <L7p:HttpRoutingAssertion>
+                <L7p:AssertionComment assertionComment="included">
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="--- Routes to the voonair soap service"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:AssertionComment>
+                <L7p:ProtectedServiceUrl stringValue="${gateway.voonairsoap}"/>
+                <L7p:ProxyPassword stringValueNull="null"/>
+                <L7p:ProxyUsername stringValueNull="null"/>
+                <L7p:RequestHeaderRules httpPassthroughRuleSet="included">
+                    <L7p:Rules httpPassthroughRules="included">
+                        <L7p:item httpPassthroughRule="included">
+                            <L7p:Name stringValue="Cookie"/>
+                        </L7p:item>
+                        <L7p:item httpPassthroughRule="included">
+                            <L7p:CustomizeValue stringValue="${soapaction}"/>
+                            <L7p:Name stringValue="SOAPAction"/>
+                            <L7p:UsesCustomizedValue booleanValue="true"/>
+                        </L7p:item>
+                    </L7p:Rules>
+                </L7p:RequestHeaderRules>
+                <L7p:RequestMsgSrc stringValue="soaprequest"/>
+                <L7p:RequestParamRules httpPassthroughRuleSet="included">
+                    <L7p:ForwardAll booleanValue="true"/>
+                    <L7p:Rules httpPassthroughRules="included"/>
+                </L7p:RequestParamRules>
+                <L7p:ResponseHeaderRules httpPassthroughRuleSet="included">
+                    <L7p:ForwardAll booleanValue="true"/>
+                    <L7p:Rules httpPassthroughRules="included">
+                        <L7p:item httpPassthroughRule="included">
+                            <L7p:Name stringValue="Set-Cookie"/>
+                        </L7p:item>
+                    </L7p:Rules>
+                </L7p:ResponseHeaderRules>
+                <L7p:ResponseMsgDest stringValue="soapresponse"/>
+                <L7p:SamlAssertionVersion intValue="2"/>
+            </L7p:HttpRoutingAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="*********************************************************************************************** "/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="***  Response comes back as a soap response "/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="***  We need to use a different variable then the standard response message."/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="***  New message variable will be soapresponse"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="*********************************************************************************************** "/>
+            </L7p:CommentAssertion>
+            <L7p:ResponseXpathAssertion>
+                <L7p:VariablePrefix stringValue="result"/>
+                <L7p:XmlMsgSrc stringValue="soapresponse"/>
+                <L7p:XpathExpression xpathExpressionValue="included">
+                    <L7p:Expression stringValue="/soapenv:Envelope/soapenv:Body/ns:voonairreservationResponse/ns:voonairreservationResult"/>
+                    <L7p:Namespaces mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="soapenv"/>
+                            <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="ns"/>
+                            <L7p:value stringValue="http://voonair.com/ws"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="s"/>
+                            <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="xsd"/>
+                            <L7p:value stringValue="http://www.w3.org/2001/XMLSchema"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="xsi"/>
+                            <L7p:value stringValue="http://www.w3.org/2001/XMLSchema-instance"/>
+                        </L7p:entry>
+                    </L7p:Namespaces>
+                    <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                </L7p:XpathExpression>
+            </L7p:ResponseXpathAssertion>
+            <L7p:HardcodedResponse>
+                <L7p:Base64ResponseBody stringValue="PHhtbHJlc3BvbnNlPgo8U3RhcnRpbmdwb2ludD4ke3N0YXJ0aW5ncG9pbnR9PC9TdGFydGluZ3BvaW50Pgo8RGVzdGluYXRpb25yZXN1bHRzPgoke3Jlc3VsdC5lbGVtZW50c30KPC9EZXN0aW5hdGlvbnJlc3VsdHM+CjwveG1scmVzcG9uc2U+"/>
+            </L7p:HardcodedResponse>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

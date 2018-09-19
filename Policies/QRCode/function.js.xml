@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References/>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:HardcodedResponse>
+                <L7p:Base64ResponseBody stringValue="ZnVuY3Rpb24gcG9sbCh0YXJnZXQpIHsKICAgICQuZ2V0KHRhcmdldCwKICAgICAgICBmdW5jdGlvbiAoZGF0YSkgewogICAgICAgICAgICBpZihkYXRhLnJlZGlyZWN0X3VyaSkgewogICAgICAgICAgICAgICAgd2luZG93LmxvY2F0aW9uLnJlcGxhY2UoZGF0YS5yZWRpcmVjdF91cmkpOwogICAgICAgICAgICB9CiAgICAgICAgICAgIC8vIGRvIG5vdGhpbmcgb3RoZXJ3aXNlCiAgICAgICAgfQogICAgKQp9"/>
+                <L7p:ResponseContentType stringValue="text/javascript; charset=UTF-8"/>
+            </L7p:HardcodedResponse>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

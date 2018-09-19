@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References>
+        <PrivateKeyReference RefType="com.l7tech.console.policy.exporter.PrivateKeyReference">
+            <IsDefaultKey>false</IsDefaultKey>
+            <KeystoreOID>00000000000000000000000000000002</KeystoreOID>
+            <KeyAlias>demo_trusted</KeyAlias>
+        </PrivateKeyReference>
+        <TrustedCertificateReference RefType="com.l7tech.console.policy.exporter.TrustedCertReference">
+            <GOID>6cf4b2892d53ab3a07fecf55b353458d</GOID>
+            <CertificateName>explore.apim.ca</CertificateName>
+            <CertificateIssuerDn>CN=explore.apim.ca</CertificateIssuerDn>
+            <CertificateSerialNum>12062991573916973698</CertificateSerialNum>
+        </TrustedCertificateReference>
+    </exp:References>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:WssSignElement>
+                <L7p:KeyAlias stringValue="demo_trusted"/>
+                <L7p:NonDefaultKeystoreId goidValue="00000000000000000000000000000002"/>
+                <L7p:Target target="REQUEST"/>
+                <L7p:UsesDefaultKeyStore booleanValue="false"/>
+                <L7p:XpathExpression xpathExpressionValue="included">
+                    <L7p:Expression stringValue="/s:Envelope/s:Body"/>
+                    <L7p:Namespaces mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="s"/>
+                            <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                        </L7p:entry>
+                    </L7p:Namespaces>
+                </L7p:XpathExpression>
+            </L7p:WssSignElement>
+            <L7p:WssEncryptElement>
+                <L7p:Target target="REQUEST"/>
+                <L7p:XpathExpression xpathExpressionValue="included">
+                    <L7p:Expression stringValue="/s:Envelope/s:Body"/>
+                    <L7p:Namespaces mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="s"/>
+                            <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                        </L7p:entry>
+                    </L7p:Namespaces>
+                </L7p:XpathExpression>
+            </L7p:WssEncryptElement>
+            <L7p:WsSecurity>
+                <L7p:RecipientTrustedCertificateGoid goidValue="6cf4b2892d53ab3a07fecf55b353458d"/>
+            </L7p:WsSecurity>
+            <L7p:EchoRoutingAssertion>
+                <L7p:CurrentSecurityHeaderHandling intValue="3"/>
+            </L7p:EchoRoutingAssertion>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

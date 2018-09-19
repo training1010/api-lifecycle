@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References/>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="************************************************************"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API :- HMAC Signature Generation"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API Group :-Security"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="API TYPE :- &lt;REST/SOAP/DATA>"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="Author: Balaji Radhakrishnan"/>
+            </L7p:CommentAssertion>
+            <L7p:CommentAssertion>
+                <L7p:Comment stringValue="************************************************************"/>
+            </L7p:CommentAssertion>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="dGVzdDEyMw=="/>
+                <L7p:VariableToSet stringValue="clientSecret"/>
+            </L7p:SetVariable>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:ComparisonAssertion>
+                        <L7p:Enabled booleanValue="false"/>
+                        <L7p:Expression1 stringValue="${request.http.header.X-Incomm-DateTime}"/>
+                        <L7p:Expression2 stringValue=""/>
+                        <L7p:Negate booleanValue="true"/>
+                        <L7p:Operator operator="EMPTY"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item binary="included">
+                                <L7p:Negated booleanValue="true"/>
+                                <L7p:Operator operator="EMPTY"/>
+                                <L7p:RightValue stringValue=""/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <L7p:ComparisonAssertion>
+                        <L7p:Expression1 stringValue="${request.http.header.accessid}"/>
+                        <L7p:Expression2 stringValue=""/>
+                        <L7p:Negate booleanValue="true"/>
+                        <L7p:Operator operator="EMPTY"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item binary="included">
+                                <L7p:Negated booleanValue="true"/>
+                                <L7p:Operator operator="EMPTY"/>
+                                <L7p:RightValue stringValue=""/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <L7p:ComparisonAssertion>
+                        <L7p:Expression1 stringValue="${request.http.header.Content-Type}"/>
+                        <L7p:Expression2 stringValue=""/>
+                        <L7p:Negate booleanValue="true"/>
+                        <L7p:Operator operator="EMPTY"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item binary="included">
+                                <L7p:Negated booleanValue="true"/>
+                                <L7p:Operator operator="EMPTY"/>
+                                <L7p:RightValue stringValue=""/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <L7p:ComparisonAssertion>
+                        <L7p:Expression1 stringValue="${request.http.header.Req-URL}"/>
+                        <L7p:Expression2 stringValue=""/>
+                        <L7p:Negate booleanValue="true"/>
+                        <L7p:Operator operator="EMPTY"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item binary="included">
+                                <L7p:Negated booleanValue="true"/>
+                                <L7p:Operator operator="EMPTY"/>
+                                <L7p:RightValue stringValue=""/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="JHtyZXF1ZXN0Lmh0dHAuaGVhZGVyLmFjY2Vzc2lkfQ=="/>
+                        <L7p:VariableToSet stringValue="accessid"/>
+                    </L7p:SetVariable>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="JHtyZXF1ZXN0LnRpbWUuaXNvODYwMX0="/>
+                        <L7p:VariableToSet stringValue="date-time"/>
+                    </L7p:SetVariable>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="JHtyZXF1ZXN0Lmh0dHAuaGVhZGVyLlgtSW5jb21tLURhdGVUaW1lfSR7cmVxdWVzdC5odHRwLmhlYWRlci5Db250ZW50LVR5cGV9JHtyZXF1ZXN0Lmh0dHAuaGVhZGVyLlJlcS1VUkx9"/>
+                        <L7p:Enabled booleanValue="false"/>
+                        <L7p:VariableToSet stringValue="canonicalString"/>
+                    </L7p:SetVariable>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="JHtkYXRlLXRpbWV9JHtyZXF1ZXN0Lmh0dHAuaGVhZGVyLkNvbnRlbnQtVHlwZX0ke3JlcXVlc3QuaHR0cC5oZWFkZXIuUmVxLVVSTH0="/>
+                        <L7p:VariableToSet stringValue="canonicalString"/>
+                    </L7p:SetVariable>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:CustomizeErrorResponse>
+                        <L7p:Content stringValue="Missing mandate header information, please approach administrator!"/>
+                        <L7p:ExtraHeaders nameValuePairArray="included"/>
+                    </L7p:CustomizeErrorResponse>
+                    <L7p:RaiseError/>
+                </wsp:All>
+            </wsp:OneOrMore>
+            <L7p:EncodeDecode>
+                <L7p:SourceVariableName stringValue="accessid"/>
+                <L7p:TargetDataType variableDataType="string"/>
+                <L7p:TargetVariableName stringValue="accessid"/>
+                <L7p:TransformType transformType="BASE64_ENCODE"/>
+            </L7p:EncodeDecode>
+            <L7p:GenerateSecurityHash>
+                <L7p:Base64Data stringValue="JHtjYW5vbmljYWxTdHJpbmd9"/>
+                <L7p:KeyText stringValue="${clientSecret}"/>
+                <L7p:LineBreak lineBreak="CR-LF"/>
+                <L7p:TargetOutputVariable stringValue="b64.hmac"/>
+            </L7p:GenerateSecurityHash>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="JHthY2Nlc3NpZH06JHtiNjQuaG1hY30="/>
+                <L7p:VariableToSet stringValue="hmacSignature"/>
+            </L7p:SetVariable>
+            <L7p:HardcodedResponse>
+                <L7p:Base64ResponseBody stringValue="CnsgIkhNQUMgU2lnbmF0dXJlIiA6ICR7aG1hY1NpZ25hdHVyZX0sCiAgImRhdGUtdGltZSI6IiR7ZGF0ZS10aW1lfSIKfQo="/>
+            </L7p:HardcodedResponse>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

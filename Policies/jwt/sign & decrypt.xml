@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References>
+        <PrivateKeyReference RefType="com.l7tech.console.policy.exporter.PrivateKeyReference">
+            <IsDefaultKey>false</IsDefaultKey>
+            <KeystoreOID>00000000000000000000000000000002</KeystoreOID>
+            <KeyAlias>partner</KeyAlias>
+        </PrivateKeyReference>
+    </exp:References>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="JHtyZXF1ZXN0Lm1haW5wYXJ0fQ=="/>
+                <L7p:VariableToSet stringValue="input"/>
+            </L7p:SetVariable>
+            <L7p:DecodeJsonWebToken>
+                <L7p:KeyAlias stringValue="partner"/>
+                <L7p:KeyGoid goidValue="00000000000000000000000000000002"/>
+                <L7p:SourcePayload stringValue="${input}"/>
+                <L7p:TargetVariablePrefix stringValue="output"/>
+                <L7p:ValidationType stringValue="Using Recipient Key From List"/>
+            </L7p:DecodeJsonWebToken>
+            <L7p:HardcodedResponse>
+                <L7p:Base64ResponseBody stringValue="JHtvdXRwdXQudHlwZX0KJHtvdXRwdXQuaGVhZGVyfQoke291dHB1dC5oZWFkZXIubmFtZXN9CkFjdHVhbCBQYXlsb2FkOi0ke291dHB1dC5wYXlsb2FkfQoke291dHB1dC5zaWduYXR1cmV9CiR7b3V0cHV0LmVuY3J5cHRlZF9rZXl9CkFjdHVhbCBvdXRwdXQgaW4gUGxhaW4gVGV4dDogLSAke291dHB1dC5wbGFpbnRleHR9CiR7b3V0cHV0LmF1dGhlbnRpY2F0aW9uX3RhZ30KJHtvdXRwdXQuY2lwaGVyX3RleHR9"/>
+                <L7p:ResponseContentType stringValue="application/json; charset=UTF-8"/>
+            </L7p:HardcodedResponse>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

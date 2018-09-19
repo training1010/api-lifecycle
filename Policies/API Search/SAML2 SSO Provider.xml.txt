@@ -1,0 +1,814 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References>
+        <IDProviderReference RefType="com.l7tech.console.policy.exporter.IdProviderReference">
+            <GOID>0000000000000000fffffffffffffffe</GOID>
+            <Name>Internal Identity Provider</Name>
+            <Props>PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPGphdmEgdmVyc2lvbj0iMS44&#xd;
+LjBfMTExIiBjbGFzcz0iamF2YS5iZWFucy5YTUxEZWNvZGVyIj4KIDxvYmplY3QgY2xhc3M9Imph&#xd;
+dmEudXRpbC5IYXNoTWFwIj4KICA8dm9pZCBtZXRob2Q9InB1dCI+CiAgIDxzdHJpbmc+YWRtaW5F&#xd;
+bmFibGVkPC9zdHJpbmc+CiAgIDxib29sZWFuPnRydWU8L2Jvb2xlYW4+CiAgPC92b2lkPgogPC9v&#xd;
+YmplY3Q+CjwvamF2YT4K</Props>
+            <TypeVal>1</TypeVal>
+        </IDProviderReference>
+        <IDProviderReference RefType="com.l7tech.console.policy.exporter.IdProviderReference">
+            <GOID>218eddf461277c4690479a6f7b91b8bd</GOID>
+        </IDProviderReference>
+        <CustomAssertionReference RefType="com.l7tech.console.policy.exporter.CustomAssertionReference">
+            <CustomAssertionName>Decode and Inflate</CustomAssertionName>
+        </CustomAssertionReference>
+        <PrivateKeyReference RefType="com.l7tech.console.policy.exporter.PrivateKeyReference">
+            <IsDefaultKey>false</IsDefaultKey>
+            <KeystoreOID>00000000000000000000000000000002</KeystoreOID>
+            <KeyAlias>ssl</KeyAlias>
+        </PrivateKeyReference>
+    </exp:References>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:SslAssertion/>
+            <L7p:SetVariable>
+                <L7p:AssertionComment assertionComment="included">
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="// Seconds"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:AssertionComment>
+                <L7p:Base64Expression stringValue="MTA="/>
+                <L7p:VariableToSet stringValue="sessionTimeout"/>
+            </L7p:SetVariable>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <wsp:OneOrMore wsp:Usage="Required">
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:CookieCredentialSource>
+                                <L7p:CookieName stringValue="L7IDPSESSION"/>
+                                <L7p:VariablePrefix stringValue="session"/>
+                            </L7p:CookieCredentialSource>
+                            <L7p:EncodeDecode>
+                                <L7p:SourceVariableName stringValue="session.L7IDPSESSION"/>
+                                <L7p:TargetDataType variableDataType="string"/>
+                                <L7p:TargetVariableName stringValue="session.L7IDPSESSION"/>
+                                <L7p:TransformType transformType="URL_DECODE"/>
+                            </L7p:EncodeDecode>
+                            <L7p:EncodeDecode>
+                                <L7p:SourceVariableName stringValue="session.L7IDPSESSION"/>
+                                <L7p:TargetDataType variableDataType="string"/>
+                                <L7p:TargetVariableName stringValue="session.L7IDPSESSION"/>
+                                <L7p:TransformType transformType="BASE64_DECODE"/>
+                            </L7p:EncodeDecode>
+                            <L7p:CacheLookup>
+                                <L7p:AssertionComment assertionComment="included">
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="// Key: ${session.L7IDPSESSION}"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                </L7p:AssertionComment>
+                                <L7p:CacheEntryKey stringValue="${session.L7IDPSESSION}"/>
+                                <L7p:CacheId stringValue="ssoSessionCache"/>
+                                <L7p:ContentTypeOverride stringValue=""/>
+                                <L7p:MaxEntryAgeSeconds stringValue="${sessionTimeout}"/>
+                                <L7p:OtherTargetMessageVariable stringValue="sessionState"/>
+                                <L7p:Target target="OTHER"/>
+                            </L7p:CacheLookup>
+                            <L7p:SetVariable>
+                                <L7p:Base64Expression stringValue="JHtzZXNzaW9uU3RhdGUubWFpbnBhcnR9"/>
+                                <L7p:VariableToSet stringValue="session"/>
+                            </L7p:SetVariable>
+                            <L7p:AuditDetailAssertion>
+                                <L7p:Detail stringValue="SESSION: ${session}"/>
+                            </L7p:AuditDetailAssertion>
+                            <L7p:Split>
+                                <L7p:InputVariable stringValue="session"/>
+                                <L7p:OutputVariable stringValue="session"/>
+                                <L7p:SplitPattern stringValue="|"/>
+                                <L7p:SplitPatternRegEx booleanValue="false"/>
+                            </L7p:Split>
+                            <L7p:SetVariable>
+                                <L7p:Base64Expression stringValue="JHtzZXNzaW9uWzBdfQ=="/>
+                                <L7p:VariableToSet stringValue="user.login"/>
+                            </L7p:SetVariable>
+                            <L7p:SetVariable>
+                                <L7p:Base64Expression stringValue="JHtzZXNzaW9uWzFdfQ=="/>
+                                <L7p:VariableToSet stringValue="user.email"/>
+                            </L7p:SetVariable>
+                            <L7p:SetVariable>
+                                <L7p:Base64Expression stringValue="JHtzZXNzaW9uWzJdfQ=="/>
+                                <L7p:VariableToSet stringValue="user.lastName"/>
+                            </L7p:SetVariable>
+                            <L7p:SetVariable>
+                                <L7p:Base64Expression stringValue="JHtzZXNzaW9uWzNdfQ=="/>
+                                <L7p:VariableToSet stringValue="user.firstName"/>
+                            </L7p:SetVariable>
+                            <L7p:SetVariable>
+                                <L7p:Base64Expression stringValue="JHtzZXNzaW9uWzRdfQ=="/>
+                                <L7p:VariableToSet stringValue="user.group"/>
+                            </L7p:SetVariable>
+                            <L7p:SetVariable>
+                                <L7p:Base64Expression stringValue="JHtzZXNzaW9uWzVdfQ=="/>
+                                <L7p:VariableToSet stringValue="user.portalOrganization"/>
+                            </L7p:SetVariable>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="// Session cookie"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:XpathCredentialSource>
+                                <L7p:PasswordExpression xpathExpressionValue="included">
+                                    <L7p:Expression stringValue="$request.http.parameter.password"/>
+                                    <L7p:Namespaces mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="s"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                    </L7p:entry>
+                                    </L7p:Namespaces>
+                                </L7p:PasswordExpression>
+                                <L7p:XpathExpression xpathExpressionValue="included">
+                                    <L7p:Expression stringValue="$request.http.parameter.username"/>
+                                    <L7p:Namespaces mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="s"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                    </L7p:entry>
+                                    </L7p:Namespaces>
+                                </L7p:XpathExpression>
+                            </L7p:XpathCredentialSource>
+                            <L7p:Authentication>
+                                <L7p:IdentityProviderOid goidValue="0000000000000000fffffffffffffffe"/>
+                            </L7p:Authentication>
+                            <L7p:IdentityAttributes>
+                                <L7p:Enabled booleanValue="false"/>
+                                <L7p:IdentityProviderOid goidValue="218eddf461277c4690479a6f7b91b8bd"/>
+                                <L7p:LookupAttributes identityMappingArray="included">
+                                    <L7p:item ldapAttributeMapping="included">
+                                    <L7p:AttributeConfig attributeConfig="included">
+                                    <L7p:Header header="included">
+                                    <L7p:Name stringValue="Unique ID"/>
+                                    <L7p:Type variableDataType="string"/>
+                                    <L7p:UsersOrGroups usersOrGroups="BOTH"/>
+                                    <L7p:VariableName stringValue="id"/>
+                                    </L7p:Header>
+                                    <L7p:VariableName stringValue="dn"/>
+                                    </L7p:AttributeConfig>
+                                    <L7p:ProviderOid goidValue="218eddf461277c4690479a6f7b91b8bd"/>
+                                    </L7p:item>
+                                    <L7p:item ldapAttributeMapping="included">
+                                    <L7p:AttributeConfig attributeConfig="included">
+                                    <L7p:Header header="included">
+                                    <L7p:Name stringValue="E-mail Address"/>
+                                    <L7p:Type variableDataType="string"/>
+                                    <L7p:UsersOrGroups usersOrGroups="USERS"/>
+                                    <L7p:VariableName stringValue="email"/>
+                                    </L7p:Header>
+                                    <L7p:VariableName stringValue="email"/>
+                                    </L7p:AttributeConfig>
+                                    <L7p:ProviderOid goidValue="218eddf461277c4690479a6f7b91b8bd"/>
+                                    </L7p:item>
+                                    <L7p:item ldapAttributeMapping="included">
+                                    <L7p:AttributeConfig attributeConfig="included">
+                                    <L7p:Header header="included">
+                                    <L7p:Name stringValue="Last Name"/>
+                                    <L7p:Type variableDataType="string"/>
+                                    <L7p:UsersOrGroups usersOrGroups="USERS"/>
+                                    <L7p:VariableName stringValue="lastName"/>
+                                    </L7p:Header>
+                                    <L7p:VariableName stringValue="lastName"/>
+                                    </L7p:AttributeConfig>
+                                    <L7p:ProviderOid goidValue="218eddf461277c4690479a6f7b91b8bd"/>
+                                    </L7p:item>
+                                    <L7p:item ldapAttributeMapping="included">
+                                    <L7p:AttributeConfig attributeConfig="included">
+                                    <L7p:Header header="included">
+                                    <L7p:Name stringValue="First Name"/>
+                                    <L7p:Type variableDataType="string"/>
+                                    <L7p:UsersOrGroups usersOrGroups="USERS"/>
+                                    <L7p:VariableName stringValue="firstName"/>
+                                    </L7p:Header>
+                                    <L7p:VariableName stringValue="firstName"/>
+                                    </L7p:AttributeConfig>
+                                    <L7p:ProviderOid goidValue="218eddf461277c4690479a6f7b91b8bd"/>
+                                    </L7p:item>
+                                    <L7p:item ldapAttributeMapping="included">
+                                    <L7p:AttributeConfig attributeConfig="included">
+                                    <L7p:VariableName stringValue="portalOrganization"/>
+                                    </L7p:AttributeConfig>
+                                    <L7p:CustomAttributeName stringValue="portalOrganization"/>
+                                    <L7p:ProviderOid goidValue="218eddf461277c4690479a6f7b91b8bd"/>
+                                    </L7p:item>
+                                    <L7p:item ldapAttributeMapping="included">
+                                    <L7p:AttributeConfig attributeConfig="included">
+                                    <L7p:Header header="included">
+                                    <L7p:Name stringValue="User Login"/>
+                                    <L7p:Type variableDataType="string"/>
+                                    <L7p:UsersOrGroups usersOrGroups="USERS"/>
+                                    <L7p:VariableName stringValue="login"/>
+                                    </L7p:Header>
+                                    <L7p:VariableName stringValue="login"/>
+                                    </L7p:AttributeConfig>
+                                    <L7p:ProviderOid goidValue="218eddf461277c4690479a6f7b91b8bd"/>
+                                    </L7p:item>
+                                </L7p:LookupAttributes>
+                                <L7p:VariablePrefix stringValue="user"/>
+                            </L7p:IdentityAttributes>
+                            <wsp:All wsp:Usage="Required">
+                                <L7p:SetVariable>
+                                    <L7p:Base64Expression stringValue="MTIzNDU="/>
+                                    <L7p:VariableToSet stringValue="user.dn"/>
+                                </L7p:SetVariable>
+                                <L7p:SetVariable>
+                                    <L7p:Base64Expression stringValue="Z2FyeS52ZXJtZXVsZW5AY2EuY29t"/>
+                                    <L7p:VariableToSet stringValue="user.email"/>
+                                </L7p:SetVariable>
+                                <L7p:SetVariable>
+                                    <L7p:Base64Expression stringValue="VmVybWV1bGVu"/>
+                                    <L7p:VariableToSet stringValue="user.lastName"/>
+                                </L7p:SetVariable>
+                                <L7p:SetVariable>
+                                    <L7p:Base64Expression stringValue="R2FyeQ=="/>
+                                    <L7p:VariableToSet stringValue="user.firstName"/>
+                                </L7p:SetVariable>
+                                <L7p:SetVariable>
+                                    <L7p:Base64Expression stringValue=""/>
+                                    <L7p:VariableToSet stringValue="user.portalOrganization"/>
+                                </L7p:SetVariable>
+                                <L7p:SetVariable>
+                                    <L7p:Base64Expression stringValue="YWRtaW4="/>
+                                    <L7p:VariableToSet stringValue="user.group"/>
+                                </L7p:SetVariable>
+                                <L7p:SetVariable>
+                                    <L7p:Base64Expression stringValue="dmVyZ2EwMQ=="/>
+                                    <L7p:VariableToSet stringValue="user.login"/>
+                                </L7p:SetVariable>
+                            </wsp:All>
+                            <L7p:AuditDetailAssertion>
+                                <L7p:Detail stringValue="DN: ${user.dn}"/>
+                                <L7p:Enabled booleanValue="false"/>
+                            </L7p:AuditDetailAssertion>
+                            <L7p:LDAPQuery>
+                                <L7p:AllowMultipleResults booleanValue="true"/>
+                                <L7p:AttrNames stringArrayValue="included">
+                                    <L7p:item stringValue="cn"/>
+                                </L7p:AttrNames>
+                                <L7p:CacheSize intValue="100"/>
+                                <L7p:Enabled booleanValue="false"/>
+                                <L7p:LdapProviderOid goidValue="218eddf461277c4690479a6f7b91b8bd"/>
+                                <L7p:QueryMappings queryAttributeMappings="included">
+                                    <L7p:item mapping="included">
+                                    <L7p:AttributeName stringValue="cn"/>
+                                    <L7p:JoinMultivalued booleanValue="false"/>
+                                    <L7p:MatchingContextVariableName stringValue="groups"/>
+                                    <L7p:Multivalued booleanValue="true"/>
+                                    </L7p:item>
+                                </L7p:QueryMappings>
+                                <L7p:SearchFilter stringValue="(&amp;(objectClass=groupOfUniqueNames)(uniqueMember=${user.dn}))"/>
+                                <L7p:SearchFilterInjectionProtected booleanValue="true"/>
+                            </L7p:LDAPQuery>
+                            <L7p:AuditDetailAssertion>
+                                <L7p:Detail stringValue="GROUPS: ${groups}"/>
+                                <L7p:Enabled booleanValue="false"/>
+                            </L7p:AuditDetailAssertion>
+                            <L7p:SetVariable>
+                                <L7p:Base64Expression stringValue="cG9ydGFsQWRtaW5z"/>
+                                <L7p:VariableToSet stringValue="groups"/>
+                            </L7p:SetVariable>
+                            <wsp:OneOrMore L7p:Enabled="false" wsp:Usage="Required">
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${groups}"/>
+                                    <L7p:ExpressionIsVariable booleanValue="false"/>
+                                    <L7p:Operator operatorNull="null"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="string"/>
+                                    </L7p:item>
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="portalAdmins"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:SetVariable>
+                                    <L7p:Base64Expression stringValue="cG9ydGFsQWRtaW5z"/>
+                                    <L7p:VariableToSet stringValue="user.group"/>
+                                    </L7p:SetVariable>
+                                    <L7p:SetVariable>
+                                    <L7p:Base64Expression stringValue=""/>
+                                    <L7p:VariableToSet stringValue="user.portalOrganization"/>
+                                    </L7p:SetVariable>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="// Is portal admin"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                </wsp:All>
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${groups}"/>
+                                    <L7p:ExpressionIsVariable booleanValue="false"/>
+                                    <L7p:Operator operatorNull="null"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="string"/>
+                                    </L7p:item>
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="portalApiOwners"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:SetVariable>
+                                    <L7p:Base64Expression stringValue="cG9ydGFsQXBpT3duZXJz"/>
+                                    <L7p:VariableToSet stringValue="user.group"/>
+                                    </L7p:SetVariable>
+                                    <L7p:SetVariable>
+                                    <L7p:Base64Expression stringValue=""/>
+                                    <L7p:VariableToSet stringValue="user.portalOrganization"/>
+                                    </L7p:SetVariable>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="// Is portal API owner"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                </wsp:All>
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${groups}"/>
+                                    <L7p:ExpressionIsVariable booleanValue="false"/>
+                                    <L7p:Operator operatorNull="null"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="string"/>
+                                    </L7p:item>
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="portalOrgAdmins"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${user.portalOrganization}"/>
+                                    <L7p:Operator operatorNull="null"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="string"/>
+                                    </L7p:item>
+                                    <L7p:item stringLength="included">
+                                    <L7p:Max intValue="-1"/>
+                                    <L7p:Min intValue="1"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:SetVariable>
+                                    <L7p:Base64Expression stringValue="cG9ydGFsT3JnQWRtaW5z"/>
+                                    <L7p:VariableToSet stringValue="user.group"/>
+                                    </L7p:SetVariable>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="// Is portal org admin"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                </wsp:All>
+                                <wsp:All wsp:Usage="Required">
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${groups}"/>
+                                    <L7p:Expression2 stringValue="portalDevelopers"/>
+                                    <L7p:ExpressionIsVariable booleanValue="false"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="portalDevelopers"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${user.portalOrganization}"/>
+                                    <L7p:Operator operatorNull="null"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="string"/>
+                                    </L7p:item>
+                                    <L7p:item stringLength="included">
+                                    <L7p:Max intValue="-1"/>
+                                    <L7p:Min intValue="1"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    <L7p:SetVariable>
+                                    <L7p:Base64Expression stringValue="cG9ydGFsRGV2ZWxvcGVycw=="/>
+                                    <L7p:VariableToSet stringValue="user.group"/>
+                                    </L7p:SetVariable>
+                                    <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="// Is portal developer"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:assertionComment>
+                                </wsp:All>
+                                <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="// Identify portal user group"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                </L7p:assertionComment>
+                            </wsp:OneOrMore>
+                            <L7p:AuditDetailAssertion>
+                                <L7p:Detail stringValue="User.Username: ${user.login}"/>
+                            </L7p:AuditDetailAssertion>
+                            <L7p:AuditDetailAssertion>
+                                <L7p:Detail stringValue="User.Email: ${user.email}"/>
+                            </L7p:AuditDetailAssertion>
+                            <L7p:AuditDetailAssertion>
+                                <L7p:Detail stringValue="User.Lastname: ${user.lastName}"/>
+                            </L7p:AuditDetailAssertion>
+                            <L7p:AuditDetailAssertion>
+                                <L7p:Detail stringValue="User.Firstname: ${user.firstName}"/>
+                            </L7p:AuditDetailAssertion>
+                            <L7p:AuditDetailAssertion>
+                                <L7p:Detail stringValue="User.Group: ${user.group}"/>
+                            </L7p:AuditDetailAssertion>
+                            <L7p:AuditDetailAssertion>
+                                <L7p:Detail stringValue="User.Organization: ${user.portalOrganization}"/>
+                            </L7p:AuditDetailAssertion>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="// Username and password"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                        <L7p:assertionComment>
+                            <L7p:Properties mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="// Verify credentials"/>
+                                </L7p:entry>
+                            </L7p:Properties>
+                        </L7p:assertionComment>
+                    </wsp:OneOrMore>
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:CommentAssertion>
+                            <L7p:Comment stringValue="Policy should optionally require and verify a signed SAML request"/>
+                        </L7p:CommentAssertion>
+                        <L7p:CommentAssertion>
+                            <L7p:Comment stringValue="Policy should compare signer/issuer of request against trusted/registered requestors"/>
+                        </L7p:CommentAssertion>
+                        <L7p:CommentAssertion>
+                            <L7p:Comment stringValue="Policy should build a dynamic SAML response based upon the actual SAML request"/>
+                        </L7p:CommentAssertion>
+                        <L7p:AuditDetailAssertion>
+                            <L7p:Detail stringValue="SAML REQUEST: ${request.http.parameter.SAMLRequest}"/>
+                        </L7p:AuditDetailAssertion>
+                        <L7p:AuditDetailAssertion>
+                            <L7p:Detail stringValue="RELAY STATE: ${request.http.parameter.RelayState}"/>
+                        </L7p:AuditDetailAssertion>
+                        <wsp:OneOrMore wsp:Usage="Required">
+                            <wsp:All wsp:Usage="Required">
+                                <L7p:ComparisonAssertion>
+                                    <L7p:Expression1 stringValue="${request.http.parameter.SAMLRequestType}"/>
+                                    <L7p:Expression2 stringValue="GET"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:RightValue stringValue="GET"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                </L7p:ComparisonAssertion>
+                                <L7p:CustomAssertion>
+                                    <L7p:base64SerializedValue>rO0ABXNyADFjb20ubDd0ZWNoLnBvbGljeS5hc3NlcnRpb24uQ3VzdG9tQXNzZXJ0aW9uSG9sZGVyZtcreFwddTICAAlaAAxpc1VpQXV0b09wZW5MAApjYXRlZ29yaWVzdAAPTGphdmEvdXRpbC9TZXQ7TAAIY2F0ZWdvcnl0ACpMY29tL2w3dGVjaC9wb2xpY3kvYXNzZXJ0aW9uL2V4dC9DYXRlZ29yeTtMAA9jdXN0b21Bc3NlcnRpb250ADFMY29tL2w3dGVjaC9wb2xpY3kvYXNzZXJ0aW9uL2V4dC9DdXN0b21Bc3NlcnRpb247TAAUY3VzdG9tTW9kdWxlRmlsZU5hbWV0ABJMamF2YS9sYW5nL1N0cmluZztMAA9kZXNjcmlwdGlvblRleHRxAH4ABEwAD3BhbGV0dGVOb2RlTmFtZXEAfgAETAAOcG9saWN5Tm9kZU5hbWVxAH4ABEwAHnJlZ2lzdGVyZWRDdXN0b21GZWF0dXJlU2V0TmFtZXEAfgAEeHIAJWNvbS5sN3RlY2gucG9saWN5LmFzc2VydGlvbi5Bc3NlcnRpb27bX2OZPL2isQIAAloAB2VuYWJsZWRMABBhc3NlcnRpb25Db21tZW50dAAvTGNvbS9sN3RlY2gvcG9saWN5L2Fzc2VydGlvbi9Bc3NlcnRpb24kQ29tbWVudDt4cAFwAXNyABFqYXZhLnV0aWwuSGFzaFNldLpEhZWWuLc0AwAAeHB3DAAAAAI/QAAAAAAAAXNyAChjb20ubDd0ZWNoLnBvbGljeS5hc3NlcnRpb24uZXh0LkNhdGVnb3J5WrCcZaFE/jUCAAJJAAVteUtleUwABm15TmFtZXEAfgAEeHAAAAALdAAQQ3VzdG9tQXNzZXJ0aW9uc3hwc3IANmNvbS5sN3RlY2guY3VzdG9tLmRlY29kZWluZmxhdGUuRGVjb2RlSW5mbGF0ZUFzc2VydGlvbkvh1zzzssRRAgACTAAbT1VUUFVUX1NUUklOR19WQVJJQUJMRV9OQU1FcQB+AARMAAtpbnB1dFN0cmluZ3EAfgAEeHB0AAxvdXRwdXRTdHJpbmd0ACUke3JlcXVlc3QuaHR0cC5wYXJhbWV0ZXIuU0FNTFJlcXVlc3R9dAAaRGVjb2RlSW5mbGF0ZUFzc2VydGlvbi5qYXJ0AGhUaGlzIGFzc2VydGlvbiBiYXNlNjQgZGVjb2RlcyBhbmQgaW5mbGF0ZXMgdGhlIGlucHV0IHN0cmluZywgYW5kIHBhc3NlcyB0aGUgcmVzdWx0cyBhcyBhbiBvdXRwdXQgc3RyaW5nLnBwcA==</L7p:base64SerializedValue>
+                                </L7p:CustomAssertion>
+                                <L7p:SetVariable>
+                                    <L7p:Base64Expression stringValue="JHtvdXRwdXRTdHJpbmd9"/>
+                                    <L7p:ContentType stringValue="text/xml; charset=utf-8"/>
+                                    <L7p:DataType variableDataType="message"/>
+                                    <L7p:VariableToSet stringValue="samlRequest"/>
+                                </L7p:SetVariable>
+                                <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="// Decode and inflate HTTP-Redirect request"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                </L7p:assertionComment>
+                            </wsp:All>
+                            <L7p:EncodeDecode>
+                                <L7p:AssertionComment assertionComment="included">
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="// Decode HTTP-Post request"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                </L7p:AssertionComment>
+                                <L7p:CharacterEncoding stringValueNull="null"/>
+                                <L7p:SourceVariableName stringValue="request.http.parameter.SAMLRequest"/>
+                                <L7p:TargetContentType stringValue="text/xml; charset=utf-8"/>
+                                <L7p:TargetDataType variableDataType="message"/>
+                                <L7p:TargetVariableName stringValue="samlRequest"/>
+                                <L7p:TransformType transformType="BASE64_DECODE"/>
+                            </L7p:EncodeDecode>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="// Decode SAML Request"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:OneOrMore>
+                        <L7p:AuditDetailAssertion>
+                            <L7p:Detail stringValue="DECODED SAML REQUEST: ${samlRequest.mainpart}"/>
+                        </L7p:AuditDetailAssertion>
+                        <L7p:ResponseXpathAssertion>
+                            <L7p:VariablePrefix stringValue="serviceProviderURL"/>
+                            <L7p:XmlMsgSrc stringValue="samlRequest"/>
+                            <L7p:XpathExpression xpathExpressionValue="included">
+                                <L7p:Expression stringValue="/samlp2:AuthnRequest/@AssertionConsumerServiceURL"/>
+                                <L7p:Namespaces mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="ac"/>
+                                    <L7p:value stringValue="urn:oasis:names:tc:SAML:2.0:ac"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="s"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="saml2"/>
+                                    <L7p:value stringValue="urn:oasis:names:tc:SAML:2.0:assertion"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="samlp2"/>
+                                    <L7p:value stringValue="urn:oasis:names:tc:SAML:2.0:protocol"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="xenc"/>
+                                    <L7p:value stringValue="http://www.w3.org/2001/04/xmlenc#"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="ds"/>
+                                    <L7p:value stringValue="http://www.w3.org/2000/09/xmldsig#"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="xsi"/>
+                                    <L7p:value stringValue="http://www.w3.org/2001/XMLSchema-instance"/>
+                                    </L7p:entry>
+                                </L7p:Namespaces>
+                                <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                            </L7p:XpathExpression>
+                        </L7p:ResponseXpathAssertion>
+                        <L7p:AuditDetailAssertion>
+                            <L7p:Detail stringValue="SERVICE PROVIDER URL: ${serviceProviderURL.result}"/>
+                        </L7p:AuditDetailAssertion>
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="ZW1lYS1idQ=="/>
+                            <L7p:VariableToSet stringValue="audience"/>
+                        </L7p:SetVariable>
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="aHR0cHM6Ly9lbWVhLWJ1LXNzZy5zdXRyYW9uZS5jb206ODQ0My9wb3J0YWxBdXRoL3Nzby92YWxpZGF0ZVNhbWw="/>
+                            <L7p:Enabled booleanValue="false"/>
+                            <L7p:VariableToSet stringValue="serviceProviderURL.result"/>
+                        </L7p:SetVariable>
+                        <L7p:SamlIssuer>
+                            <L7p:AssertionComment assertionComment="included">
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="to ${issuedSamlAssertion}"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:AssertionComment>
+                            <L7p:AttributeStatement samlAttributeInfo="included">
+                                <L7p:Attributes samlAttributeElementInfoArray="included">
+                                    <L7p:item samlAttributeElementInfo="included">
+                                    <L7p:Name stringValue="User.Username"/>
+                                    <L7p:Namespace stringValue=""/>
+                                    <L7p:Value stringValue="${user.login}"/>
+                                    </L7p:item>
+                                    <L7p:item samlAttributeElementInfo="included">
+                                    <L7p:Name stringValue="User.Email"/>
+                                    <L7p:Namespace stringValue=""/>
+                                    <L7p:Value stringValue="${user.email}"/>
+                                    </L7p:item>
+                                    <L7p:item samlAttributeElementInfo="included">
+                                    <L7p:Name stringValue="User.Lastname"/>
+                                    <L7p:Namespace stringValue=""/>
+                                    <L7p:Value stringValue="${user.lastName}"/>
+                                    </L7p:item>
+                                    <L7p:item samlAttributeElementInfo="included">
+                                    <L7p:Name stringValue="User.Firstname"/>
+                                    <L7p:Namespace stringValue=""/>
+                                    <L7p:Value stringValue="${user.firstName}"/>
+                                    </L7p:item>
+                                    <L7p:item samlAttributeElementInfo="included">
+                                    <L7p:Name stringValue="User.Group"/>
+                                    <L7p:Namespace stringValue=""/>
+                                    <L7p:Value stringValue="${user.group}"/>
+                                    </L7p:item>
+                                    <L7p:item samlAttributeElementInfo="included">
+                                    <L7p:Name stringValue="User.Organization"/>
+                                    <L7p:Namespace stringValue=""/>
+                                    <L7p:Value stringValue="${user.portalOrganization}"/>
+                                    </L7p:item>
+                                </L7p:Attributes>
+                            </L7p:AttributeStatement>
+                            <L7p:AudienceRestriction stringValue="${audience}"/>
+                            <L7p:AuthenticationStatement samlAuthenticationInfo="included">
+                                <L7p:AuthenticationMethods stringArrayValue="included"/>
+
+                                <L7p:IncludeAuthenticationContextDeclaration booleanValue="false"/>
+                            </L7p:AuthenticationStatement>
+                            <L7p:KeyAlias stringValue="ssl"/>
+                            <L7p:NameIdentifierFormat stringValue="urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified"/>
+                            <L7p:NameIdentifierType nameIdentifierType="SPECIFIED"/>
+                            <L7p:NameIdentifierValue stringValue="${nameIdentifierValue}"/>
+                            <L7p:NameQualifier stringValue=""/>
+                            <L7p:NonDefaultKeystoreId goidValue="00000000000000000000000000000002"/>
+
+                            <L7p:SubjectConfirmationDataNotOnOrAfterExpirySeconds intValue="30"/>
+                            <L7p:SubjectConfirmationDataRecipient stringValue="${serviceProviderURL.result}"/>
+                            <L7p:SubjectConfirmationMethodUri stringValue="urn:oasis:names:tc:SAML:1.0:cm:bearer"/>
+                            <L7p:UsesDefaultKeyStore booleanValue="false"/>
+                            <L7p:Version boxedIntegerValue="2"/>
+                        </L7p:SamlIssuer>
+                        <L7p:AuditDetailAssertion>
+                            <L7p:Detail stringValue="ISSUED SAML ASSERTION: ${issuedSamlAssertion}"/>
+                        </L7p:AuditDetailAssertion>
+                        <L7p:SamlpResponseBuilder>
+                            <L7p:AddIssuer booleanValue="true"/>
+                            <L7p:CustomIssuerValue stringValue="emea-bu"/>
+                            <L7p:Destination stringValue="${serviceProviderURL.result}"/>
+                            <L7p:OtherTargetMessageVariable stringValue="samlResponse"/>
+                            <L7p:ResponseAssertions stringValue="${issuedSamlAssertion}"/>
+                            <L7p:SignResponse booleanValue="true"/>
+                            <L7p:StatusDetail stringValue=""/>
+                            <L7p:StatusMessage stringValue=""/>
+                            <L7p:Target target="OTHER"/>
+                        </L7p:SamlpResponseBuilder>
+                        <L7p:EncodeDecode>
+                            <L7p:SourceVariableName stringValue="samlResponse"/>
+                            <L7p:TargetDataType variableDataType="string"/>
+                            <L7p:TargetVariableName stringValue="encodedSamlResponse"/>
+                            <L7p:TransformType transformType="BASE64_ENCODE"/>
+                        </L7p:EncodeDecode>
+                        <L7p:HardcodedResponse>
+                            <L7p:AssertionComment assertionComment="included">
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="With Body OnLoad Script"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:AssertionComment>
+                            <L7p:Base64ResponseBody stringValue="PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCFET0NUWVBFIGh0bWwgUFVCTElDICItLy9XM0MvL0RURCBYSFRNTCAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvVFIveGh0bWwxMS9EVEQveGh0bWwxMS5kdGQiPgo8aHRtbCB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCIgeG1sOmxhbmc9ImVuIj4KICAgIDxib2R5IG9ubG9hZD0iZG9jdW1lbnQuZm9ybXNbMF0uc3VibWl0KCkiPgogICAgICAgIDxmb3JtIGFjdGlvbj0iJHtzZXJ2aWNlUHJvdmlkZXJVUkwucmVzdWx0fSIgIG1ldGhvZD0icG9zdCI+CiAgICAgICAgICAgIDxwPgogICAgICAgICAgICAgICAgUHJlc3MgdGhlIENvbnRpbnVlIGJ1dHRvbiB0byBQT1NUIHlvdXIgcmVzb3VyY2UgcmVxdWVzdCB3aXRoIFNBTUwgUmVzcG9uc2UgdG8gdGhlIGdhdGV3YXkuCiAgICAgICAgICAgIDwvcD4KICAgICAgICAgICAgPGRpdj4KICAgICAgICAgICAgICAgIDxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9IlJlbGF5U3RhdGUiCiAgICAgICAgICAgICAgICAgICAgdmFsdWU9IiR7cmVxdWVzdC5odHRwLnBhcmFtZXRlci5SZWxheVN0YXRlfSIvPgogICAgICAgICAgICAgICAgPGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iU0FNTFJlc3BvbnNlIgogICAgICAgICAgICAgICAgICAgIHZhbHVlPSIke2VuY29kZWRTYW1sUmVzcG9uc2V9Ii8+CiAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICA8ZGl2PgogICAgICAgICAgICAgICAgPGlucHV0IHR5cGU9InN1Ym1pdCIgdmFsdWU9IkNvbnRpbnVlIi8+CiAgICAgICAgICAgIDwvZGl2PiAgICAgICAgICAgIAogICAgICAgIDwvZm9ybT4KICAgIDwvYm9keT4KPC9odG1sPg=="/>
+                            <L7p:ResponseContentType stringValue="text/html; charset=UTF-8"/>
+                        </L7p:HardcodedResponse>
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:UUIDGenerator>
+                                <L7p:TargetVariable stringValue="guid"/>
+                            </L7p:UUIDGenerator>
+                            <L7p:SetVariable>
+                                <L7p:Base64Expression stringValue="JHt1c2VyLmxvZ2lufXwke3VzZXIuZW1haWx9fCR7dXNlci5sYXN0TmFtZX18JHt1c2VyLmZpcnN0TmFtZX18JHt1c2VyLmdyb3VwfXwke3VzZXIucG9ydGFsT3JnYW5pemF0aW9ufQ=="/>
+                                <L7p:VariableToSet stringValue="cacheString"/>
+                            </L7p:SetVariable>
+                            <L7p:AuditDetailAssertion>
+                                <L7p:Detail stringValue="CACHE STRING: ${cacheString}"/>
+                            </L7p:AuditDetailAssertion>
+                            <L7p:CacheStorage>
+                                <L7p:AssertionComment assertionComment="included">
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="// Key: ${guid}"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                </L7p:AssertionComment>
+                                <L7p:CacheEntryKey stringValue="${guid}"/>
+                                <L7p:CacheId stringValue="ssoSessionCache"/>
+                                <L7p:MaxEntries stringValue="10000"/>
+                                <L7p:MaxEntryAgeSeconds stringValue="${sessionTimeout}"/>
+                                <L7p:MaxEntrySizeBytes stringValue="100"/>
+                                <L7p:OtherTargetMessageVariable stringValue="cacheString"/>
+                                <L7p:Target target="OTHER"/>
+                            </L7p:CacheStorage>
+                            <L7p:EncodeDecode>
+                                <L7p:SourceVariableName stringValue="guid"/>
+                                <L7p:TargetDataType variableDataType="string"/>
+                                <L7p:TargetVariableName stringValue="guid"/>
+                                <L7p:TransformType transformType="BASE64_ENCODE"/>
+                            </L7p:EncodeDecode>
+                            <L7p:EncodeDecode>
+                                <L7p:SourceVariableName stringValue="guid"/>
+                                <L7p:TargetDataType variableDataType="string"/>
+                                <L7p:TargetVariableName stringValue="guid"/>
+                                <L7p:TransformType transformType="URL_ENCODE"/>
+                            </L7p:EncodeDecode>
+                            <L7p:AddHeader>
+                                <L7p:HeaderName stringValue="Set-Cookie"/>
+                                <L7p:HeaderValue stringValue="L7IDPSESSION=${guid}"/>
+                                <L7p:Target target="RESPONSE"/>
+                            </L7p:AddHeader>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="// Set session cookie"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                        <L7p:assertionComment>
+                            <L7p:Properties mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="// Return SAMLResponse"/>
+                                </L7p:entry>
+                            </L7p:Properties>
+                        </L7p:assertionComment>
+                    </wsp:All>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="// Receive SAMLRequest with session cookie or username and password"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:ComparisonAssertion>
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Expression1 stringValue="${request.http.parameter.SAMLRequest}"/>
+                        <L7p:Operator operatorNull="null"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item dataType="included">
+                                <L7p:Type variableDataType="string"/>
+                            </L7p:item>
+                            <L7p:item binary="included">
+                                <L7p:Negated booleanValue="true"/>
+                                <L7p:Operator operator="EMPTY"/>
+                                <L7p:RightValue stringValue=""/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <L7p:HardcodedResponse>
+                        <L7p:Base64ResponseBody stringValue="PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCFET0NUWVBFIGh0bWwgUFVCTElDICItLy9XM0MvL0RURCBYSFRNTCAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvVFIveGh0bWwxMS9EVEQveGh0bWwxMS5kdGQiPgo8aHRtbCB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCIgeG1sOmxhbmc9ImVuIj4KICAgIDxib2R5IHN0eWxlPSJiYWNrZ3JvdW5kOmxpZ2h0Z3JleSI+Cgk8aDE+TGF5ZXIgNyBTQU1MIElkZW50aXR5IFByb3ZpZGVyIFNpZ24gT248L2gxPgoJPGZvcm0gYWN0aW9uPSJodHRwczovL2VtZWEtYnUtc3NnLnN1dHJhb25lLmNvbTo4NDQzJHtyZXF1ZXN0LnVybC5wYXRofSIgIG1ldGhvZD0icG9zdCI+CiAgICAgICAgICAgIDxkaXY+CgkJPHRhYmxlIGJvcmRlcj0iMCI+CgkJCTx0cj4KCQkJCTx0ZD5Vc2VybmFtZTo8L3RkPgoJCQkJPHRkPgoJCQkJCTxpbnB1dCB0eXBlPSJ0ZXh0IiBpZD0idXNlcm5hbWUiIG5hbWU9InVzZXJuYW1lIiBzaXplPSI1MCIgdmFsdWU9IiI+CgkJCQk8L3RkPgoJCQk8L3RyPgoJCQk8dHI+CgkJCQk8dGQ+UGFzc3dvcmQ6PC90ZD4KCQkJCTx0ZD4KCQkJCQk8aW5wdXQgdHlwZT0icGFzc3dvcmQiIG5hbWU9InBhc3N3b3JkIiBzaXplPSI1MCIgdmFsdWU9IiI+CgkJCQk8L3RkPgoJCQk8L3RyPgoJCQk8dHI+CgkJCQk8dGQvPgoJCQkJPHRkIGFsaWduPSJyaWdodCI+CgkJCQkJPGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iUmVsYXlTdGF0ZSIgdmFsdWU9IiR7cmVxdWVzdC5odHRwLnBhcmFtZXRlci5SZWxheVN0YXRlfSIvPgoJCQkJCTxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9IlNBTUxSZXF1ZXN0IiB2YWx1ZT0iJHtyZXF1ZXN0Lmh0dHAucGFyYW1ldGVyLlNBTUxSZXF1ZXN0fSIvPgoJCQkJCTxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9IlNBTUxSZXF1ZXN0VHlwZSIgdmFsdWU9IiR7cmVxdWVzdC5odHRwLm1ldGhvZH0iLz4KCQkJCQk8aW5wdXQgdHlwZT0ic3VibWl0IiB2YWx1ZT0iU2lnbiBPbiIvPgoJCQkJPC90ZD4KCQkJPC90cj4KCQk8L3RhYmxlPgoJICAgIDwvZGl2PgogICAgICAgIDwvZm9ybT4KCTxzY3JpcHQgdHlwZT0idGV4dC9qYXZhc2NyaXB0IiBsYW5ndWFnZT0iamF2YXNjcmlwdCI+CiAgICAgICAgICAgICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJ1c2VybmFtZSIpLmZvY3VzKCk7Cgk8L3NjcmlwdD4KICAgIDwvYm9keT4KPC9odG1sPg=="/>
+                        <L7p:EarlyResponse booleanValue="true"/>
+                        <L7p:ResponseContentType stringValue="text/html; charset=UTF-8"/>
+                    </L7p:HardcodedResponse>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="// Receive SAMLRequest"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:All>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="// Process request"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:OneOrMore>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>

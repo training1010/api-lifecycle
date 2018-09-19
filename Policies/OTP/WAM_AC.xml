@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exp:Export Version="3.0"
+    xmlns:L7p="http://www.layer7tech.com/ws/policy"
+    xmlns:exp="http://www.layer7tech.com/ws/policy/export" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <exp:References>
+        <EncapsulatedAssertionReference RefType="com.l7tech.console.policy.exporter.EncapsulatedAssertionReference">
+            <Name>OTK Require OAuth 2.0 Token</Name>
+            <Guid>393bcb93-82ad-4b55-8333-1119f607a560</Guid>
+        </EncapsulatedAssertionReference>
+    </exp:References>
+    <wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+        <wsp:All wsp:Usage="Required">
+            <L7p:Encapsulated>
+                <L7p:EncapsulatedAssertionConfigGuid stringValue="393bcb93-82ad-4b55-8333-1119f607a560"/>
+                <L7p:EncapsulatedAssertionConfigName stringValue="OTK Require OAuth 2.0 Token"/>
+                <L7p:Parameters mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="cache_lifetime"/>
+                        <L7p:value stringValue="0"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="given_access_token"/>
+                        <L7p:value stringValue=""/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="onetime"/>
+                        <L7p:value stringValue="false"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="scope_fail"/>
+                        <L7p:value stringValue="false"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="scope_required"/>
+                        <L7p:value stringValue=""/>
+                    </L7p:entry>
+                </L7p:Parameters>
+            </L7p:Encapsulated>
+            <wsp:All wsp:Usage="Required">
+                <L7p:CommentAssertion>
+                    <L7p:Comment stringValue="// Possible states:"/>
+                </L7p:CommentAssertion>
+                <L7p:CommentAssertion>
+                    <L7p:Comment stringValue="// 0 = OAuth Session Established, Risk Not Evaluated"/>
+                </L7p:CommentAssertion>
+                <L7p:CommentAssertion>
+                    <L7p:Comment stringValue="// 1 = OAuth Session Established, Risk Evaluated, Risk Low"/>
+                </L7p:CommentAssertion>
+                <L7p:CommentAssertion>
+                    <L7p:Comment stringValue="// 2 = OAuth Session Established, Risk Evaluated, Risk High, OTP Not Verified"/>
+                </L7p:CommentAssertion>
+                <L7p:CommentAssertion>
+                    <L7p:Comment stringValue="// 3 = OAuth Session Established, Risk Evaluated, Risk High, OTP Verified"/>
+                </L7p:CommentAssertion>
+                <L7p:HttpRoutingAssertion>
+                    <L7p:ProtectedServiceUrl stringValue="https://localhost:8443/oauth/session/get?cacheKey=${access_token}"/>
+                    <L7p:ProxyPassword stringValueNull="null"/>
+                    <L7p:ProxyUsername stringValueNull="null"/>
+                    <L7p:RequestHeaderRules httpPassthroughRuleSet="included">
+                        <L7p:ForwardAll booleanValue="true"/>
+                        <L7p:Rules httpPassthroughRules="included">
+                            <L7p:item httpPassthroughRule="included">
+                                <L7p:Name stringValue="Cookie"/>
+                            </L7p:item>
+                            <L7p:item httpPassthroughRule="included">
+                                <L7p:Name stringValue="SOAPAction"/>
+                            </L7p:item>
+                        </L7p:Rules>
+                    </L7p:RequestHeaderRules>
+                    <L7p:RequestParamRules httpPassthroughRuleSet="included">
+                        <L7p:ForwardAll booleanValue="true"/>
+                        <L7p:Rules httpPassthroughRules="included"/>
+                    </L7p:RequestParamRules>
+                    <L7p:ResponseHeaderRules httpPassthroughRuleSet="included">
+                        <L7p:ForwardAll booleanValue="true"/>
+                        <L7p:Rules httpPassthroughRules="included">
+                            <L7p:item httpPassthroughRule="included">
+                                <L7p:Name stringValue="Set-Cookie"/>
+                            </L7p:item>
+                        </L7p:Rules>
+                    </L7p:ResponseHeaderRules>
+                    <L7p:SamlAssertionVersion intValue="2"/>
+                </L7p:HttpRoutingAssertion>
+                <L7p:CustomizeErrorResponse>
+                    <L7p:Content stringValueReference="inline"><![CDATA[State: 0
+
+States
+0 = OAuth Session Established, Risk Not Evaluates
+1 = OAuth Sesssion Established. Risk Evalauted, Risk Low
+2 = OAuth Session Established, Risk High, OTP Not Verified
+3 = OAuth Session Established, Risk High, OTP Verified]]></L7p:Content>
+                    <L7p:ExtraHeaders nameValuePairArray="included"/>
+                </L7p:CustomizeErrorResponse>
+                <L7p:ResponseXpathAssertion>
+                    <L7p:VariablePrefix stringValue="value"/>
+                    <L7p:XpathExpression xpathExpressionValue="included">
+                        <L7p:Expression stringValue="/ns:found/ns:value"/>
+                        <L7p:Namespaces mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="ns"/>
+                                <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-session"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="s"/>
+                                <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                            </L7p:entry>
+                        </L7p:Namespaces>
+                        <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                    </L7p:XpathExpression>
+                </L7p:ResponseXpathAssertion>
+                <L7p:CustomizeErrorResponse>
+                    <L7p:Content stringValueReference="inline"><![CDATA[State: ${value.result}
+
+States
+0 = OAuth Session Established, Risk Not Evaluates
+1 = OAuth Sesssion Established. Risk Evalauted, Risk Low
+2 = OAuth Session Established, Risk High, OTP Not Verified
+3 = OAuth Session Established, Risk High, OTP Verified]]></L7p:Content>
+                    <L7p:ExtraHeaders nameValuePairArray="included"/>
+                </L7p:CustomizeErrorResponse>
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <L7p:ComparisonAssertion>
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Expression1 stringValue="${value.result}"/>
+                        <L7p:Operator operatorNull="null"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item dataType="included">
+                                <L7p:Type variableDataType="int"/>
+                            </L7p:item>
+                            <L7p:item binary="included">
+                                <L7p:RightValue stringValue="1"/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <L7p:ComparisonAssertion>
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Expression1 stringValue="${value.result}"/>
+                        <L7p:Operator operatorNull="null"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item dataType="included">
+                                <L7p:Type variableDataType="int"/>
+                            </L7p:item>
+                            <L7p:item binary="included">
+                                <L7p:RightValue stringValue="3"/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="// States that allow API access"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:OneOrMore>
+            </wsp:All>
+        </wsp:All>
+    </wsp:Policy>
+</exp:Export>
